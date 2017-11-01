@@ -1,11 +1,11 @@
 # Site settings
-title: Emerald | A simple Jekyll blog
+title: JRRN Codding! | A simple Jekyll blog
 description: "A minimal blog template, build with Jekyll."
-url: "http://www.jacoporabolini.com/emerald"
+url: "https://jrrn.github.io"
 author:
-  name: "Jacopo Rabolini"
-  email: "hello@jacoporabolini.com"
-  url: "http://www.jacoporabolini.com"
+  name: "JRRN"
+  email: ""
+  url: "https://jrrn.github.io"
 
 # Build settings
 baseurl: /  # Change this to your relative path (ex: /blog/), or leave just a /
@@ -30,7 +30,7 @@ gems:
   - jekyll-paginate
 
 # Custom variables
-version: "1.1.0"
+version: "0.0.1"
 
 # Options
 custom_header: false
