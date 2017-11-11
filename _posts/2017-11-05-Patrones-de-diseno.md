@@ -14,6 +14,7 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 
 ### Patrones de construcción
 
+- [Patrón Abstract Factory](2017-11-06-Patron-Abstract-Factory.md "Patrón Abstract Factory")
 - Patrón Abstract Factory
 - Patrón Builder
 - Patrón factory method
