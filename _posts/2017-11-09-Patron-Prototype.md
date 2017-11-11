@@ -2,7 +2,6 @@
 title: Patrón Prototype
 ---
 
-
 El objetivo de este patrón es la creación de nuevos objetos mediante la duplicación de objetos existentes llamados prototipos que disponen de la capacidad de clonación.
 
 En resumen, y simplificando, crear nuevos objetos a partir de un objeto existente sin modificar una clase siempre que se añada un nuevo objeto.
