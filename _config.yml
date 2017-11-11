@@ -28,6 +28,8 @@ defaults:
 # Plugins
 gems:
   - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
 
 # Custom variables
 version: "0.0.1"

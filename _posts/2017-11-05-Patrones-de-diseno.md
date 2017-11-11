@@ -15,9 +15,8 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 ### Patrones de construcción
 
 - [Patrón Abstract Factory](Patron-Abstract-Factory "Patrón Abstract Factory")
-- Patrón Abstract Factory
-- Patrón Builder
-- Patrón factory method
+- [Patrón Builder](Patron-Builder "Patrón Builder")
+- Patrón Factory Method
 - Patrón Prototype
 - Patrón Singleton
 
