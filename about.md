@@ -1,8 +1,8 @@
 ---
 layout: page
-title: About Emerald
+title: Sobre mí
 ---
-## About
+<!-- ## About
 Emerald is a minimal theme created for Jekyll. The main purpose of Emerald is to provide a clear theme for those who want a blog ready to use, focused on the content and mobile-first.
 
 For further details on Emerald, please visit the [repository on Github](https://github.com/KingFelix/emerald/).
@@ -18,4 +18,4 @@ Additionally it is possible to fork the repository and use Github Pages as hosti
 
 Last but not least: the [Jekyll documentation](http://jekyllrb.com) is the best starting point!
 
-Enjoy!
+Enjoy! -->
