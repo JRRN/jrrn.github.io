@@ -11,7 +11,7 @@ En nuestro ejemplo de libros, a la hora de generar los documentos digitales de u
 
 Veamos a ver como quedará el código:
 
-<code><pre>public abstract class DocumentoDigital {
+<pre><code>public abstract class DocumentoDigital {
     protected string _contenido = String.Empty();
     public DocumentoDigital Duplica() {
         DocumentoDigital resultado;
@@ -52,10 +52,10 @@ Veamos a ver como quedará el código:
 
 Una vez definidas las clases de cada uno de los objetos, definiremos la clases Documentos:
 
-<code><pre>public abstract class Documentos{
+<pre><code>public abstract class Documentos{
     public IList&lt;Documento&gt; documentos { get; protected set; }
 }</code></pre>
-<code><pre>public abstract class Documentos {
+<pre><code>public abstract class Documentos {
     public IList&lt;Documento&gt;
     documentos { get; protected set; }
 }
@@ -77,7 +77,7 @@ public class DocumentosVacios : Documentos {
 </code></pre>
 
 Y ahora la clase DocumentosCliente:
-<code><pre>public class DocumentosCliente : Documentos {
+<pre><code>public class DocumentosCliente : Documentos {
     public DocumentosCliente(string informacion) {
         documentos = new List&lt;Documento&gt;();
         DocumentosVacios documentosVacios = new DocumentosVacios.Instance();
@@ -103,7 +103,7 @@ Y ahora la clase DocumentosCliente:
 
 Para finalizar veremos las salida con una clase Usuario:
 
-<code><pre>public class Usuario{
+<pre><code>public class Usuario{
     static void Main(string[] args)  {
         DocumentosVacios documentosVacios = DocumentosVacios.Instance();
         documentosVacios.Incluye(new Pedido);
