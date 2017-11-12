@@ -7,7 +7,8 @@ El patrón singleton tiene como objetivo asegurar que una clase sólo posee una 
 Es un patrón simple y conocido. Si queremos que solo haya una instancia de un objeto y no se puedan generar más mientras haya una existente, este es nuestro patrón. Por ejemplo, si recordamos el patrón Abstract Factory, solo necesitamos una única instancia para ir generando los demás tipos de libros.
 
 En nuestro ejemplo de libros, gestionaremos las clases que deban tener una sola instancia:
-<pre><code>public class DocumentosVacios : Documentos {
+~~~csharp
+    public class DocumentosVacios : Documentos {
     public static DocumentosVacios _instance = null;
     private DocumentosVacios() {
         documentos = new List&lt;Documento&gt;();
@@ -23,10 +24,12 @@ En nuestro ejemplo de libros, gestionaremos las clases que deban tener una sola 
     public void Excluye(Documento doc) {
         documentos.Remove(doc);
     }
-}</code></pre>
+}
+~~~
 
 O si creamos una nueva clase Editorial en la que inicializaremos los datos de la editorial una vez y los recuperaremos siempre de esa misma instancia sin tener que generar una instancia cada vez que queramos recuperar los datos de la editorial:
-<pre><code>public class Editorial {
+~~~csharp
+    public class Editorial {
     public string nombreEditorial = { get; set; }
     public string ubicacion = { get; set; }
     public DateTime fechaEditorial = { get; set; }
@@ -41,10 +44,13 @@ O si creamos una nueva clase Editorial en la que inicializaremos los datos de la
         Console.WriteLine( $"Editorial:  {nombreEditorial}");
         Console.WriteLine( $"Ubicacion:  {ubicacion}");
     }
-}</code></pre>
+}
+~~~
 
 Para ver la salida:
-<pre><code>public class TestEditorial {
+
+~~~csharp
+    public class TestEditorial {
     static void Main(string[] args) {
         Editorial laEditorial = Editorial.Instance();
         laEditorial.nombreEditorial = "JRRN Publicaciones";
@@ -54,4 +60,5 @@ Para ver la salida:
     private static void Visualiza() {
         Editorial laEditorial = Editorial.Instance();
     }
-}</code></pre>
+}
+~~~

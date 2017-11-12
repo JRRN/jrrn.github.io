@@ -274,8 +274,7 @@ blockquote {
 #container {
   margin: 0 auto;
   max-width: 730px;
-  padding: 0 1.5rem;
-  text-align: justify; }
+  padding: 0 1.5rem; }
 
 #header {
   text-align: center;
@@ -655,7 +654,8 @@ footer {
 
 /* Literal.Number.Integer.Long */
 /*- Custom style -*/
-
 .socialLinks :hover {
-  background-color: none !important;
-}
+  background-color: #008A3C !important; }
+
+body {
+  text-align: justify; }

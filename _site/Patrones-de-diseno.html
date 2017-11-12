@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 	<meta name="generator" content="Jekyll">
 
-	<title>Typograhy example</title>
+	<title>Patrones de diseño</title>
 
 	<!-- CSS & fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
@@ -44,6 +44,10 @@
 	  
 	    
 	  
+	    
+	  
+	    
+	  
     
     <!-- Nav links -->
 	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
@@ -58,13 +62,11 @@
 
 	<span>version 0.0.1</span>
 	<div class="row">
-		<div class="col-md-6 pull-right">
-			<a href="https://github.com/jrrn">
+		<div class="col-md-12">
+			<a href="https://github.com/jrrn" class="socialLinks" target="_blank">
 				<img src="/img/icons/github_ico.jpg" style="height: 30px;" alt="Github Logo">
 			</a>
-		</div>
-		<div class="col-md-6 pull-left">
-			<a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/">
+			<a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" class="socialLinks" target="_blank">
 				<img src="/img/icons/linkedin_ico.jpg" style="height: 30px;" alt="LinkedIn Logo">
 			</a>
 		</div>
@@ -97,38 +99,59 @@
 		<main>
 
 			<article id="post-page">
-	<h2>Typograhy example</h2>		
-	<time datetime="2015-03-19T00:00:00+01:00" class="by-line">19 Mar 2015</time>
+	<h2>Patrones de diseño</h2>		
+	<time datetime="2017-11-05T00:00:00+01:00" class="by-line">05 Nov 2017</time>
 	<div class="content">
 
-		<p><img src="/emerald/img/img-test.png" alt="Test" title="Test" />
-Lorem ipsum dolor sit amet, <a href="http://www.example.com">consectetur adipisicing</a> elit. Id, aliquam magni et officiis nemo nihil aliquid placeat alias. Eum voluptates ducimus, nobis ex illum laboriosam quidem corrupti impedit ratione in voluptatum amet beatae facilis temporibus voluptate praesentium voluptatibus! At ab, iusto error amet eveniet debitis ipsa recusandae possimus minima sunt itaque, nulla ducimus officia, consequatur ipsum laudantium magnam hic fuga vero incidunt nostrum. Commodi, perspiciatis ut nostrum fugit nulla cumque voluptate harum nemo accusamus?</p>
+		<p>En este artículo introductorio, que formará parte de una serie de artículos breves, revisaremos los patrones de diseño disponibles para C# y otros lenguajes de programación.</p>
 
-<h2 id="this-is-a-h2">This is a h2</h2>
+<p>Mi intención es explicar todos los patrones de una forma clara, con ejemplos y con su codificación y de paso aprender los que no he usado.</p>
 
-<h3 id="h3-h4-h5-and-h6-have-the-same-style">h3, h4, h5 and h6 have the same style.</h3>
+<p>Los patrones de diseño nos sirven para abstraer lógicas de programación sobre paradigmas conocidos.</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas sed quo atque <em>perspiciatis</em>. Eius cum possimus, maxime unde, asperiores neque blanditiis molestiae ipsa odit. <strong>Laboriosam</strong>, error! Ipsa officia magnam at ratione commodi porro nulla consequuntur eum quia nisi officiis cupiditate reprehenderit provident facilis rem, nobis quidem fugiat, et! Tempore maiores reprehenderit laboriosam rerum?</p>
+<p>En definitiva, esto significa que si por ejemplo tomásemos como paradigma un blog. Usaríamos una template (patrón) sobre todas las páginas que fueran de tipo blogPage y/u otra template (patrón)  para las páginas de tipo HomePage.</p>
 
-<blockquote>
-  <p>This is a blockquote</p>
-</blockquote>
+<p>Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículos:</p>
 
-<h3 id="unordered-list">Unordered list</h3>
+<h3 id="patrones-de-construcción">Patrones de construcción</h3>
+
 <ul>
-  <li>list 1</li>
-  <li>list 2</li>
-  <li>list 3</li>
-  <li>list 4</li>
+  <li><a href="Patron-Abstract-Factory" title="Patrón Abstract Factory">Patrón Abstract Factory</a></li>
+  <li><a href="Patron-Builder" title="Patrón Builder">Patrón Builder</a></li>
+  <li><a href="Patron-Factory-Method" title="Patrón Factory Method">Patrón Factory Method</a></li>
+  <li><a href="Patron-Prototype" title="Patrón Prototype">Patrón Prototype</a></li>
+  <li><a href="Patron-Singleton" title="Patrón Singleton">Patrón Singleton</a></li>
 </ul>
 
-<h3 id="ordered-list">Ordered list</h3>
-<ol>
-  <li>one</li>
-  <li>two</li>
-  <li>three</li>
-  <li>four</li>
-</ol>
+<h3 id="patrones-de-estructurales">Patrones de estructurales</h3>
+
+<ul>
+  <li>Patrón Adapter</li>
+  <li>Patrón Bridge</li>
+  <li>Patrón Composite</li>
+  <li>Patrón Decorator</li>
+  <li>Patrón Facade</li>
+  <li>Patrón Flyweight</li>
+  <li>Patrón Proxy</li>
+</ul>
+
+<h3 id="patrones-de-comportamiento">Patrones de comportamiento</h3>
+
+<ul>
+  <li>Patrón Chain of Responsibility</li>
+  <li>Patrón Command</li>
+  <li>Patrón Interpreter</li>
+  <li>Patrón Iterator</li>
+  <li>Patrón Mediator</li>
+  <li>Patrón Memento</li>
+  <li>Patrón Observer</li>
+  <li>Patrón State</li>
+  <li>Patrón Strategy</li>
+  <li>Patrón Template Method</li>
+  <li>Patrón Visitor</li>
+</ul>
+
+<p>Nos vemos en el siguiente post.</p>
 
 		
 	</div>

@@ -18,7 +18,7 @@ La clase Cliente tiene un método que es CrearPedido, este pedido tiene dos form
 
 Así, de esta premisa, nos encontramos con dos clases ClienteEfectivo y ClienteTargeta. Donde la implementación del patrón quedaría de la siguiente manera:
 
-<code><pre>
+~~~csharp
 public abstract class Pedido {
     protected double _importe;
     public Pedido(double importe) {
@@ -26,9 +26,10 @@ public abstract class Pedido {
     }
     public abstract bool valida();
     public abstract void paga();
-}</code></pre>
+}
+~~~
 
-<code><pre>
+~~~csharp
 public PedidoEfectivo : Pedido {
     public PedidoEfectivo(double importe) : base(importe) { }
     public override void Paga() {
@@ -42,8 +43,9 @@ public PedidoTargeta : Pedido {
         Console.WriteLine($\"Método de Pago Targeta, importe: {importe}\");
     }
     public override bool Valida() {
-        return (importe &gt;= 0.0) &amp;&amp; (importe &lt;= 500.0)  }
+        return (importe &gt;= 0.0) &amp;&amp; (importe &lt;= 500.0)
     }
-</code></pre>
+}
+~~~
 
 Como vemos los métodos valida en el caso del pago en efectivo no contiene ninguna lógica de negocio, sin embargo en el pago con tarjeta, este tiene una restricción de que el importe debe ser mayor e igual que 0 y menor e igual que 500.

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="generator" content="Jekyll">
+
+	<title>Patrón Factory Method</title>
+
+	<!-- CSS & fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/main.css">
+	
+	<!-- RSS -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+
+</head>
+
+
+<body>
+	<div id="wrap">
+	  	
+	  	<!-- Navigation -->
+	  	<nav id="nav">
+	<div id="nav-list">
+		<a href="/">Home</a>
+
+		<!-- Nav pages -->
+	  
+	    
+	  
+	    
+	      <a href="/about" title="Sobre mí">Sobre mí</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+    
+    <!-- Nav links -->
+	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
+<a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
+
+
+	</div>
+  
+  <!-- Nav footer -->
+	
+	  <footer>
+
+	<span>version 0.0.1</span>
+	<div class="row">
+		<div class="col-md-12">
+			<a href="https://github.com/jrrn" class="socialLinks" target="_blank">
+				<img src="/img/icons/github_ico.jpg" style="height: 30px;" alt="Github Logo">
+			</a>
+			<a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" class="socialLinks" target="_blank">
+				<img src="/img/icons/linkedin_ico.jpg" style="height: 30px;" alt="LinkedIn Logo">
+			</a>
+		</div>
+	</div>
+</footer>
+	
+
+</nav>
+
+    
+    <!-- Icon menu -->
+	  <a id="nav-menu">
+	  	<div id="menu"></div>
+	  </a>
+
+      <!-- Header -->
+      
+        <header id="header">
+	<a href="/">
+		<img src="/img/emerald.svg" alt="Emerald Logo">
+	  <h1>JRRN Coding!</h1>
+	</a>
+</header>
+
+      
+
+    <!-- Main content -->
+	  <div id="container">
+		  
+		<main>
+
+			<article id="post-page">
+	<h2>Patrón Factory Method</h2>		
+	<time datetime="2017-11-08T00:00:00+01:00" class="by-line">08 Nov 2017</time>
+	<div class="content">
+
+		<p>El objetivo del patrón Factory es proveer de un método abstracto de creación de un objeto delegando en las subclases concretas su creación concreta.</p>
+
+<p>Lo que para los mortales como yo, esto significa que definiremos una clase base donde los métodos puedan ser sobrecargados con la implementación específica de cada clase que herede la clase base. ??? ¿no?</p>
+
+<p>Vale, más fácil todavía, tendremos unas clases con unos métodos abstractos que cuando sean heredados en cada subclase (clase hija que hereda la clase Factory) solo tendremos el nombre, las entradas y las salidas comunes a todas estas clases.</p>
+
+<p>Posteriormente, en cada clase hija. Deberemos implementar estos métodos con el comportamiento de cada una de las clases.</p>
+
+<p>¿Vamos con el ejemplo? ¡¡Vamos!!.</p>
+
+<p>Volviendo a nuestro ejemplo de venta de libros, nos centraremos en la parte de los pedidos que pueden hacer los clientes.</p>
+
+<p>La clase Cliente tiene un método que es CrearPedido, este pedido tiene dos formas de pago una en efectivo y otro de targeta.</p>
+
+<p>Así, de esta premisa, nos encontramos con dos clases ClienteEfectivo y ClienteTargeta. Donde la implementación del patrón quedaría de la siguiente manera:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Pedido</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">double</span> <span class="n">_importe</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nf">Pedido</span><span class="p">(</span><span class="kt">double</span> <span class="n">importe</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_importe</span> <span class="p">=</span> <span class="n">importe</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">abstract</span> <span class="kt">bool</span> <span class="nf">valida</span><span class="p">();</span>
+    <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">paga</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="n">PedidoEfectivo</span> <span class="p">:</span> <span class="n">Pedido</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nf">PedidoEfectivo</span><span class="p">(</span><span class="kt">double</span> <span class="n">importe</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">importe</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Paga</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="err">$\</span><span class="s">"Método de Pago Efectivo, importe: {importe}\");
+</span>    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">Valida</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">true</span><span class="p">;</span>  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="n">PedidoTargeta</span> <span class="p">:</span> <span class="n">Pedido</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nf">PedidoTargeta</span><span class="p">(</span><span class="kt">double</span> <span class="n">importe</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">importe</span><span class="p">)</span>  <span class="p">{</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Paga</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="err">$\</span><span class="s">"Método de Pago Targeta, importe: {importe}\");
+</span>    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">Valida</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">importe</span> <span class="p">&amp;</span><span class="n">gt</span><span class="p">;=</span> <span class="m">0.0</span><span class="p">)</span> <span class="p">&amp;</span><span class="n">amp</span><span class="p">;&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="p">(</span><span class="n">importe</span> <span class="p">&amp;</span><span class="n">lt</span><span class="p">;=</span> <span class="m">500.0</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Como vemos los métodos valida en el caso del pago en efectivo no contiene ninguna lógica de negocio, sin embargo en el pago con tarjeta, este tiene una restricción de que el importe debe ser mayor e igual que 0 y menor e igual que 500.</p>
+
+		
+	</div>
+</article>
+
+
+
+	  </main>
+		
+		  <!-- Pagination links -->
+      
+
+	  </div>
+	    
+	    <!-- Footer -->
+	    <footer><span>@2017 - JRRN</span></footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+
+	    <!-- Script -->
+      <script src="/js/main.js"></script>	
+
+
+	</div>
+</body>
+</html>

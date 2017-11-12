@@ -10,6 +10,11 @@ author:
 # Build settings
 baseurl: /  # Change this to your relative path (ex: /blog/), or leave just a /
 markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
 source: .
 destination: ./_site
 permalink: /:title
@@ -30,6 +35,7 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-feed
+  - rouge
 
 # Custom variables
 version: "0.0.1"

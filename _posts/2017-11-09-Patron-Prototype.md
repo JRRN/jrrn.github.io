@@ -10,7 +10,8 @@ En nuestro ejemplo de libros, a la hora de generar los documentos digitales de u
 
 Veamos a ver como quedará el código:
 
-<pre><code>public abstract class DocumentoDigital {
+~~~csharp
+public abstract class DocumentoDigital {
     protected string _contenido = String.Empty();
     public DocumentoDigital Duplica() {
         DocumentoDigital resultado;
@@ -47,14 +48,16 @@ Veamos a ver como quedará el código:
             Console.WriteLine($\"Imprime LibroDigital: {contenido}\")
         }
     }
-}</code></pre>
+}
+~~~
 
 Una vez definidas las clases de cada uno de los objetos, definiremos la clases Documentos:
 
-<pre><code>public abstract class Documentos{
+~~~csharp
+public abstract class Documentos{
     public IList&lt;Documento&gt; documentos { get; protected set; }
-}</code></pre>
-<pre><code>public abstract class Documentos {
+}
+public abstract class Documentos {
     public IList&lt;Documento&gt;
     documentos { get; protected set; }
 }
@@ -73,10 +76,12 @@ public class DocumentosVacios : Documentos {
     public void Incluye(Documento doc) { documentos.Add(doc);  }
     public void Excluye(Documento doc) { documentos.Remove(doc);  }
 }
-</code></pre>
+~~~
 
 Y ahora la clase DocumentosCliente:
-<pre><code>public class DocumentosCliente : Documentos {
+
+~~~csharp
+public class DocumentosCliente : Documentos {
     public DocumentosCliente(string informacion) {
         documentos = new List&lt;Documento&gt;();
         DocumentosVacios documentosVacios = new DocumentosVacios.Instance();
@@ -98,11 +103,13 @@ Y ahora la clase DocumentosCliente:
             documento.Imprime();}
         }
     }
-}</code></pre>
+}
+~~~
 
 Para finalizar veremos las salida con una clase Usuario:
 
-<pre><code>public class Usuario{
+~~~csharp
+public class Usuario{
     static void Main(string[] args)  {
         DocumentosVacios documentosVacios = DocumentosVacios.Instance();
         documentosVacios.Incluye(new Pedido);
@@ -113,6 +120,7 @@ Para finalizar veremos las salida con una clase Usuario:
         JR.Visualiza();
         RN.Visualiza();
     }
-}</code></pre>
+}
+~~~
 
 Saludos.
