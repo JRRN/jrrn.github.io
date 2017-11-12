@@ -2,7 +2,8 @@
 layout: default
 ---
 <article id="post-page">
-	<div><h2>{{ page.title }}</h2><span>[
+	<div>
+		<h2>{{ page.title }}</h2><span>[
 			{% for tag in page.tags %}
 				{% capture tag_name %}{{ tag }}{% endcapture %}
 				<a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>

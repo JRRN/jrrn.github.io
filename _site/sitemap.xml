@@ -25,10 +25,17 @@
 <lastmod>2017-11-10T00:00:00+01:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/Move-me-to-Azure</loc>
+<lastmod>2017-11-12T00:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/404</loc>
 </url>
 <url>
 <loc>http://localhost:4000/tag/Arquitectura</loc>
+</url>
+<url>
+<loc>http://localhost:4000/tag/Azure</loc>
 </url>
 <url>
 <loc>http://localhost:4000/about</loc>
