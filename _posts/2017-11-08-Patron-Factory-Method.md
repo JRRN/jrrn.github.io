@@ -1,5 +1,7 @@
 ---
+layout: post
 title: Patrón Factory Method
+tags: Arquitectura
 ---
 
 El objetivo del patrón Factory es proveer de un método abstracto de creación de un objeto delegando en las subclases concretas su creación concreta.
@@ -33,14 +35,14 @@ public abstract class Pedido {
 public PedidoEfectivo : Pedido {
     public PedidoEfectivo(double importe) : base(importe) { }
     public override void Paga() {
-        Console.WriteLine($\"Método de Pago Efectivo, importe: {importe}\");
+        Console.WriteLine($"Método de Pago Efectivo, importe: {importe}");
     }
     public override bool Valida() { return true;  }
 }
 public PedidoTargeta : Pedido {
     public PedidoTargeta(double importe) : base(importe)  { }
     public override void Paga() {
-        Console.WriteLine($\"Método de Pago Targeta, importe: {importe}\");
+        Console.WriteLine($"Método de Pago Targeta, importe: {importe}");
     }
     public override bool Valida() {
         return (importe &gt;= 0.0) &amp;&amp; (importe &lt;= 500.0)

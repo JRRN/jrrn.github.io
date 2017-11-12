@@ -16,7 +16,14 @@
 	
 	<!-- RSS -->
 	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+	
+	
 
+
+
+
+
+  	
 </head>
 
 
@@ -29,6 +36,8 @@
 		<a href="/">Home</a>
 
 		<!-- Nav pages -->
+	  
+	    
 	  
 	    
 	  
@@ -54,24 +63,35 @@
 <a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
 
 
+    <br/>
+<br/>
+Archivo
+
+
+
+  
+  
+  <a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code></a>
+
+
+
+
 	</div>
   
   <!-- Nav footer -->
 	
-	  <footer>
-
-	<span>version 0.0.1</span>
-	<div class="row">
-		<div class="col-md-12">
-			<a href="https://github.com/jrrn" class="socialLinks" target="_blank">
-				<img src="/img/icons/github_ico.jpg" style="height: 30px;" alt="Github Logo">
-			</a>
-			<a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" class="socialLinks" target="_blank">
-				<img src="/img/icons/linkedin_ico.jpg" style="height: 30px;" alt="LinkedIn Logo">
-			</a>
-		</div>
+	  <span>version 1.0.0</span>
+<div class="row">
+	<div class="col-md-12">
+		<a href="https://github.com/jrrn" class="socialLinks" target="_blank">
+			<img src="/img/icons/github_ico.jpg" style="height: 30px;" alt="Github Logo">
+		</a>
+		<a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" class="socialLinks" target="_blank">
+			<img src="/img/icons/linkedin_ico.jpg" style="height: 30px;" alt="LinkedIn Logo">
+		</a>
 	</div>
-</footer>
+</div>
+
 	
 
 </nav>
@@ -99,8 +119,15 @@
 		<main>
 
 			<article id="post-page">
-	<h2>Patrón Abstract Factory</h2>		
+	<div><h2>Patrón Abstract Factory</h2><span>[
+			
+				
+				<a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code>&nbsp;</a>
+			
+			]</span>	
 	<time datetime="2017-11-06T00:00:00+01:00" class="by-line">06 Nov 2017</time>
+</div>
+		
 	<div class="content">
 
 		<p>El patrón <b>Abstract Factory</b> proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.</p>
@@ -164,18 +191,20 @@
 <span class="p">}</span>
 
 <span class="k">public</span> <span class="k">class</span> <span class="nc">PaperMagazine</span><span class="p">:</span> <span class="n">Magazine</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nf">PaperMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">){}</span>
+    <span class="k">public</span> <span class="nf">PaperMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span> 
+    <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">){}</span>
 
     <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">mostrarCaracteristicas</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos de la Revista física: </span><span class="p">{</span><span class="n">titulo</span><span class="p">}</span><span class="s"> del autor: </span><span class="p">{</span><span class="n">autor</span><span class="p">}</span><span class="s"> publicada el: </span><span class="p">{</span><span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> de formato: </span><span class="p">{</span><span class="n">formatype</span><span class="p">}</span><span class="s">);   
-</span>    <span class="p">}</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos de la Revista física: </span><span class="p">{</span><span class="n">titulo</span><span class="p">}</span><span class="s"> del autor: </span><span class="p">{</span><span class="n">autor</span><span class="p">}</span><span class="s"> publicada el: </span><span class="p">{</span><span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> de formato: </span><span class="p">{</span><span class="n">formatype</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="k">public</span> <span class="k">class</span> <span class="nc">MediaMagazine</span><span class="p">:</span> <span class="n">Magazine</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nf">MediaMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">){}</span>
+    <span class="k">public</span> <span class="nf">MediaMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span> 
+    <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">){}</span>
     <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">mostrarCaracteristicas</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos de la Revista Electrónica: </span><span class="p">{</span><span class="n">titulo</span><span class="p">}</span><span class="s"> del autor: </span><span class="p">{</span><span class="n">autor</span><span class="p">}</span><span class="s"> publicada el: </span><span class="p">{</span><span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> de formato: </span><span class="p">{</span><span class="n">formatype</span><span class="p">}</span><span class="s">);
-</span>    <span class="p">}</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos de la Revista Electrónica: </span><span class="p">{</span><span class="n">titulo</span><span class="p">}</span><span class="s"> del autor: </span><span class="p">{</span><span class="n">autor</span><span class="p">}</span><span class="s"> publicada el: </span><span class="p">{</span><span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> de formato: </span><span class="p">{</span><span class="n">formatype</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -193,6 +222,7 @@
 
 		
 	</div>
+
 </article>
 
 
@@ -201,8 +231,8 @@
 		
 		  <!-- Pagination links -->
       
-
-	  </div>
+    </div>
+    <br/><br/><br/>
 	    
 	    <!-- Footer -->
 	    <footer><span>@2017 - JRRN</span></footer>
@@ -216,6 +246,6 @@
       <script src="/js/main.js"></script>	
 
 
-	</div>
+  </div>
 </body>
 </html>

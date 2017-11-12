@@ -2,12 +2,20 @@
 layout: default
 ---
 <article id="post-page">
-	<h2>{{ page.title }}</h2>		
+	<div><h2>{{ page.title }}</h2><span>[
+			{% for tag in page.tags %}
+				{% capture tag_name %}{{ tag }}{% endcapture %}
+				<a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
+			{% endfor %}
+			]</span>	
 	<time datetime="{{ page.date | date_to_xmlschema }}" class="by-line">{{ page.date | date_to_string }}</time>
+</div>
+		
 	<div class="content">
 
 		{{ content }}
 		
 	</div>
+
 </article>
 

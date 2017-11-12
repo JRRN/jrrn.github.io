@@ -1,5 +1,7 @@
 ---
+layout: post
 title: Patrón Singleton
+tags: Arquitectura
 ---
 
 El patrón singleton tiene como objetivo asegurar que una clase sólo posee una instancia y proporciona un método de clase único que devuelve la instancia.
@@ -7,6 +9,7 @@ El patrón singleton tiene como objetivo asegurar que una clase sólo posee una 
 Es un patrón simple y conocido. Si queremos que solo haya una instancia de un objeto y no se puedan generar más mientras haya una existente, este es nuestro patrón. Por ejemplo, si recordamos el patrón Abstract Factory, solo necesitamos una única instancia para ir generando los demás tipos de libros.
 
 En nuestro ejemplo de libros, gestionaremos las clases que deban tener una sola instancia:
+
 ~~~csharp
     public class DocumentosVacios : Documentos {
     public static DocumentosVacios _instance = null;
@@ -28,6 +31,7 @@ En nuestro ejemplo de libros, gestionaremos las clases que deban tener una sola 
 ~~~
 
 O si creamos una nueva clase Editorial en la que inicializaremos los datos de la editorial una vez y los recuperaremos siempre de esa misma instancia sin tener que generar una instancia cada vez que queramos recuperar los datos de la editorial:
+
 ~~~csharp
     public class Editorial {
     public string nombreEditorial = { get; set; }

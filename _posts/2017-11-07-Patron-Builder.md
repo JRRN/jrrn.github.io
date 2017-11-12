@@ -1,5 +1,7 @@
 ---
+layout: post
 title: Patrón Builder
+tags: Arquitectura
 ---
 
 El objetivo del patrón **Builder** es abstraer la construcción de objetos complejos de su implementación de modo que un cliente pueda crear objetos complejos sin tener que preocuparse de las diferencias en su implantación.

@@ -16,7 +16,14 @@
 	
 	<!-- RSS -->
 	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+	
+	
 
+
+
+
+
+  	
 </head>
 
 
@@ -29,6 +36,8 @@
 		<a href="/">Home</a>
 
 		<!-- Nav pages -->
+	  
+	    
 	  
 	    
 	  
@@ -54,24 +63,35 @@
 <a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
 
 
+    <br/>
+<br/>
+Archivo
+
+
+
+  
+  
+  <a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code></a>
+
+
+
+
 	</div>
   
   <!-- Nav footer -->
 	
-	  <footer>
-
-	<span>version 0.0.1</span>
-	<div class="row">
-		<div class="col-md-12">
-			<a href="https://github.com/jrrn" class="socialLinks" target="_blank">
-				<img src="/img/icons/github_ico.jpg" style="height: 30px;" alt="Github Logo">
-			</a>
-			<a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" class="socialLinks" target="_blank">
-				<img src="/img/icons/linkedin_ico.jpg" style="height: 30px;" alt="LinkedIn Logo">
-			</a>
-		</div>
+	  <span>version 1.0.0</span>
+<div class="row">
+	<div class="col-md-12">
+		<a href="https://github.com/jrrn" class="socialLinks" target="_blank">
+			<img src="/img/icons/github_ico.jpg" style="height: 30px;" alt="Github Logo">
+		</a>
+		<a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" class="socialLinks" target="_blank">
+			<img src="/img/icons/linkedin_ico.jpg" style="height: 30px;" alt="LinkedIn Logo">
+		</a>
 	</div>
-</footer>
+</div>
+
 	
 
 </nav>
@@ -99,8 +119,15 @@
 		<main>
 
 			<article id="post-page">
-	<h2>Patrón Singleton</h2>		
+	<div><h2>Patrón Singleton</h2><span>[
+			
+				
+				<a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code>&nbsp;</a>
+			
+			]</span>	
 	<time datetime="2017-11-10T00:00:00+01:00" class="by-line">10 Nov 2017</time>
+</div>
+		
 	<div class="content">
 
 		<p>El patrón singleton tiene como objetivo asegurar que una clase sólo posee una instancia y proporciona un método de clase único que devuelve la instancia.</p>
@@ -108,6 +135,7 @@
 <p>Es un patrón simple y conocido. Si queremos que solo haya una instancia de un objeto y no se puedan generar más mientras haya una existente, este es nuestro patrón. Por ejemplo, si recordamos el patrón Abstract Factory, solo necesitamos una única instancia para ir generando los demás tipos de libros.</p>
 
 <p>En nuestro ejemplo de libros, gestionaremos las clases que deban tener una sola instancia:</p>
+
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">public</span> <span class="k">class</span> <span class="nc">DocumentosVacios</span> <span class="p">:</span> <span class="n">Documentos</span> <span class="p">{</span>
     <span class="k">public</span> <span class="k">static</span> <span class="n">DocumentosVacios</span> <span class="n">_instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
     <span class="k">private</span> <span class="nf">DocumentosVacios</span><span class="p">()</span> <span class="p">{</span>
@@ -128,6 +156,7 @@
 </code></pre></div></div>
 
 <p>O si creamos una nueva clase Editorial en la que inicializaremos los datos de la editorial una vez y los recuperaremos siempre de esa misma instancia sin tener que generar una instancia cada vez que queramos recuperar los datos de la editorial:</p>
+
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">public</span> <span class="k">class</span> <span class="nc">Editorial</span> <span class="p">{</span>
     <span class="k">public</span> <span class="kt">string</span> <span class="n">nombreEditorial</span> <span class="p">=</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
     <span class="k">public</span> <span class="kt">string</span> <span class="n">ubicacion</span> <span class="p">=</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
@@ -163,6 +192,7 @@
 
 		
 	</div>
+
 </article>
 
 
@@ -171,8 +201,8 @@
 		
 		  <!-- Pagination links -->
       
-
-	  </div>
+    </div>
+    <br/><br/><br/>
 	    
 	    <!-- Footer -->
 	    <footer><span>@2017 - JRRN</span></footer>
@@ -186,6 +216,6 @@
       <script src="/js/main.js"></script>	
 
 
-	</div>
+  </div>
 </body>
 </html>

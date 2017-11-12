@@ -16,7 +16,14 @@
 	
 	<!-- RSS -->
 	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+	
+	
 
+
+
+
+
+  	
 </head>
 
 
@@ -29,6 +36,8 @@
 		<a href="/">Home</a>
 
 		<!-- Nav pages -->
+	  
+	    
 	  
 	    
 	  
@@ -54,24 +63,35 @@
 <a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
 
 
+    <br/>
+<br/>
+Archivo
+
+
+
+  
+  
+  <a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code></a>
+
+
+
+
 	</div>
   
   <!-- Nav footer -->
 	
-	  <footer>
-
-	<span>version 0.0.1</span>
-	<div class="row">
-		<div class="col-md-12">
-			<a href="https://github.com/jrrn" class="socialLinks" target="_blank">
-				<img src="/img/icons/github_ico.jpg" style="height: 30px;" alt="Github Logo">
-			</a>
-			<a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" class="socialLinks" target="_blank">
-				<img src="/img/icons/linkedin_ico.jpg" style="height: 30px;" alt="LinkedIn Logo">
-			</a>
-		</div>
+	  <span>version 1.0.0</span>
+<div class="row">
+	<div class="col-md-12">
+		<a href="https://github.com/jrrn" class="socialLinks" target="_blank">
+			<img src="/img/icons/github_ico.jpg" style="height: 30px;" alt="Github Logo">
+		</a>
+		<a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" class="socialLinks" target="_blank">
+			<img src="/img/icons/linkedin_ico.jpg" style="height: 30px;" alt="LinkedIn Logo">
+		</a>
 	</div>
-</footer>
+</div>
+
 	
 
 </nav>
@@ -99,8 +119,15 @@
 		<main>
 
 			<article id="post-page">
-	<h2>Patrón Prototype</h2>		
+	<div><h2>Patrón Prototype</h2><span>[
+			
+				
+				<a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code>&nbsp;</a>
+			
+			]</span>	
 	<time datetime="2017-11-09T00:00:00+01:00" class="by-line">09 Nov 2017</time>
+</div>
+		
 	<div class="content">
 
 		<p>El objetivo de este patrón es la creación de nuevos objetos mediante la duplicación de objetos existentes llamados prototipos que disponen de la capacidad de clonación.</p>
@@ -126,27 +153,27 @@
     <span class="p">}</span>
     <span class="k">public</span> <span class="k">class</span> <span class="nc">Factura</span> <span class="p">:</span> <span class="n">Documento</span> <span class="p">{</span>
         <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">visualiza</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="err">$\</span><span class="s">"Factura: {contenido}\")
-</span>        <span class="p">}</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Factura: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
         <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="err">$\</span><span class="s">"Imprime Factura: {contenido}\")
-</span>        <span class="p">}</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Imprime Factura: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
     <span class="p">}</span>
     <span class="k">public</span> <span class="k">class</span> <span class="nc">Pedido</span> <span class="p">:</span> <span class="n">Documento</span> <span class="p">{</span>
         <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="err">$\</span><span class="s">"Pedido: {contenido}\")
-</span>        <span class="p">}</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Pedido: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
         <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span>  <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="err">$\</span><span class="s">"Imprime Pedido: {contenido}\")
-</span>        <span class="p">}</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Imprime Pedido: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
     <span class="p">}</span>
     <span class="k">public</span> <span class="k">class</span> <span class="nc">LibroDigital</span> <span class="p">:</span> <span class="n">Documento</span> <span class="p">{</span>
         <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="err">$\</span><span class="s">"LibroDigital: {contenido}\")
-</span>        <span class="p">}</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"LibroDigital: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
         <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="err">$\</span><span class="s">"Imprime LibroDigital: {contenido}\")
-</span>        <span class="p">}</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Imprime LibroDigital: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -212,9 +239,9 @@
         <span class="n">documentosVacios</span><span class="p">.</span><span class="nf">Incluye</span><span class="p">(</span><span class="k">new</span> <span class="n">Pedido</span><span class="p">);</span>
         <span class="n">documentosVacios</span><span class="p">.</span><span class="nf">Incluye</span><span class="p">(</span><span class="k">new</span> <span class="n">Factura</span><span class="p">);</span>
         <span class="n">documentosVacios</span><span class="p">.</span><span class="nf">Incluye</span><span class="p">(</span><span class="k">new</span> <span class="n">LibroDigital</span><span class="p">);</span>
-        <span class="n">DocumentosCliente</span> <span class="n">JR</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentosCliente</span><span class="p">(</span><span class="err">\</span><span class="s">"JR\");
-</span>        <span class="n">DocumentosCliente</span> <span class="n">RN</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentosCliente</span><span class="p">(</span><span class="err">\</span><span class="s">"RN\");
-</span>        <span class="n">JR</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
+        <span class="n">DocumentosCliente</span> <span class="n">JR</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentosCliente</span><span class="p">(</span><span class="s">"JR"</span><span class="p">);</span>
+        <span class="n">DocumentosCliente</span> <span class="n">RN</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentosCliente</span><span class="p">(</span><span class="s">"RN"</span><span class="p">);</span>
+        <span class="n">JR</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
         <span class="n">RN</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -224,6 +251,7 @@
 
 		
 	</div>
+
 </article>
 
 
@@ -232,8 +260,8 @@
 		
 		  <!-- Pagination links -->
       
-
-	  </div>
+    </div>
+    <br/><br/><br/>
 	    
 	    <!-- Footer -->
 	    <footer><span>@2017 - JRRN</span></footer>
@@ -247,6 +275,6 @@
       <script src="/js/main.js"></script>	
 
 
-	</div>
+  </div>
 </body>
 </html>

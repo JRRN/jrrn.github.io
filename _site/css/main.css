@@ -392,7 +392,10 @@ footer {
   background-color: #008A3C;
   color: #FDFDFD;
   text-align: center;
-  padding: 0.6667em 0; }
+  padding: 0.6667em;
+  bottom: 0px;
+  position: fixed;
+  width: 100%; }
 
 /*
  * A Github stylesheet to highlight code snippet

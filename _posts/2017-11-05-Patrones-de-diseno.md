@@ -1,5 +1,7 @@
 ---
+layout: post
 title: Patrones de diseño
+tags: Arquitectura
 ---
 
 En este artículo introductorio, que formará parte de una serie de artículos breves, revisaremos los patrones de diseño disponibles para C# y otros lenguajes de programación.

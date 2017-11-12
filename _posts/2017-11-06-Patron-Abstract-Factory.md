@@ -1,5 +1,7 @@
 ---
+layout: post
 title: Patrón Abstract Factory
+tags: Arquitectura
 ---
 
 El patrón <b>Abstract Factory</b> proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.
@@ -65,17 +67,19 @@ public abstract class Magazine {
 }
 
 public class PaperMagazine: Magazine {
-    public PaperMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType) : base(titulo, autor, añoPublicacion, formatType){}
+    public PaperMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType) 
+    : base(titulo, autor, añoPublicacion, formatType){}
 
     public override void mostrarCaracteristicas() {
-        Console.WriteLine($"Datos de la Revista física: {titulo} del autor: {autor} publicada el: {añoPublicacion} de formato: {formatype});   
+        Console.WriteLine($"Datos de la Revista física: {titulo} del autor: {autor} publicada el: {añoPublicacion} de formato: {formatype}");
     }
 }
 
 public class MediaMagazine: Magazine {
-    public MediaMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType) : base(titulo, autor, añoPublicacion, formatType){}
+    public MediaMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType) 
+    : base(titulo, autor, añoPublicacion, formatType){}
     public override void mostrarCaracteristicas() {
-        Console.WriteLine($"Datos de la Revista Electrónica: {titulo} del autor: {autor} publicada el: {añoPublicacion} de formato: {formatype});
+        Console.WriteLine($"Datos de la Revista Electrónica: {titulo} del autor: {autor} publicada el: {añoPublicacion} de formato: {formatype}");
     }
 }
 ~~~

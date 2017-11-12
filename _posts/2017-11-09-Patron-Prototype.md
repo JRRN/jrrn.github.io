@@ -1,5 +1,7 @@
 ---
+layout: post
 title: Patrón Prototype
+tags: Arquitectura
 ---
 
 El objetivo de este patrón es la creación de nuevos objetos mediante la duplicación de objetos existentes llamados prototipos que disponen de la capacidad de clonación.
@@ -26,26 +28,26 @@ public abstract class DocumentoDigital {
     }
     public class Factura : Documento {
         public override void visualiza() {
-            Console.WriteLine($\"Factura: {contenido}\")
+            Console.WriteLine($"Factura: {contenido}")
         }
         public override void Imprime() {
-            Console.WriteLine($\"Imprime Factura: {contenido}\")
+            Console.WriteLine($"Imprime Factura: {contenido}")
         }
     }
     public class Pedido : Documento {
         public override void Visualiza() {
-            Console.WriteLine($\"Pedido: {contenido}\")
+            Console.WriteLine($"Pedido: {contenido}")
         }
         public override void Imprime()  {
-            Console.WriteLine($\"Imprime Pedido: {contenido}\")
+            Console.WriteLine($"Imprime Pedido: {contenido}")
         }
     }
     public class LibroDigital : Documento {
         public override void Visualiza() {
-            Console.WriteLine($\"LibroDigital: {contenido}\")
+            Console.WriteLine($"LibroDigital: {contenido}")
         }
         public override void Imprime() {
-            Console.WriteLine($\"Imprime LibroDigital: {contenido}\")
+            Console.WriteLine($"Imprime LibroDigital: {contenido}")
         }
     }
 }
@@ -115,8 +117,8 @@ public class Usuario{
         documentosVacios.Incluye(new Pedido);
         documentosVacios.Incluye(new Factura);
         documentosVacios.Incluye(new LibroDigital);
-        DocumentosCliente JR = new DocumentosCliente(\"JR\");
-        DocumentosCliente RN = new DocumentosCliente(\"RN\");
+        DocumentosCliente JR = new DocumentosCliente("JR");
+        DocumentosCliente RN = new DocumentosCliente("RN");
         JR.Visualiza();
         RN.Visualiza();
     }

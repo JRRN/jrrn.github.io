@@ -38,7 +38,7 @@ plugins:
   - rouge
 
 # Custom variables
-version: "0.0.1"
+version: "1.0.0"
 
 # Options
 custom_header: false
