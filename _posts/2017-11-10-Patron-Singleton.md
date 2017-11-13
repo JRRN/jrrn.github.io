@@ -14,7 +14,7 @@ En nuestro ejemplo de libros, gestionaremos las clases que deban tener una sola 
     public class DocumentosVacios : Documentos {
     public static DocumentosVacios _instance = null;
     private DocumentosVacios() {
-        documentos = new List&lt;Documento&gt;();
+        documentos = new List<Documento>();
     }
     public static DocumentosVacios Instance() {
         if(_instance == null) {
