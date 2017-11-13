@@ -12,7 +12,7 @@ Estos documentos se pueden generar en pdf y/o en formato html para remitir por m
 
 ~~~csharp
 public abstract class Documentacion {
-    protected IList&lt;string&gt; contenido = new List&lt;string&gt;();
+    protected IList<string> contenido = new List<string>();
     public abstract void agregaDocumento(string documento);
     public abstract void imprime();
 }
@@ -74,13 +74,13 @@ public class ConstructorDocumentacionPdf :  ConstructorDocumentacion {
 
     public override void construyeSolicitudPedido(string nombreCliente) {
         string documento;
-        documento = "&lt;PDF&gt;Solicitud de pedido Cliente: " + nombreCliente + "&lt;/PDF&gt;";
+        documento = "<PDF>Solicitud de pedido Cliente: " + nombreCliente + "</PDF>";
         documentacion.agregaDocumento(documento);
     }
 
     public override void construyeSolicitudFactura(string nombreSolicitante) {
         string documento;
-        documento = "&lt;PDF&gt;Solicitud de factura Solicitante: " + nombreSolicitante + "&lt;/PDF&gt;";
+        documento = "<PDF>Solicitud de factura Solicitante: " + nombreSolicitante + "</PDF>";
         documentacion.agregaDocumento(documento);
     }
 }
