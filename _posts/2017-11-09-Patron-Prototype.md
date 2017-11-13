@@ -57,16 +57,16 @@ Una vez definidas las clases de cada uno de los objetos, definiremos la clases D
 
 ~~~csharp
 public abstract class Documentos{
-    public IList&lt;Documento&gt; documentos { get; protected set; }
+    public IList<Documento> documentos { get; protected set; }
 }
 public abstract class Documentos {
-    public IList&lt;Documento&gt;
+    public IList<Documento>;
     documentos { get; protected set; }
 }
 public class DocumentosVacios : Documentos {
     public static DocumentosVacios _instance = null;
     private DocumentosVacios()  {
-        documentos = new List&lt;Documento&gt;();
+        documentos = new List<Documento>();
     }
     // Patrón Singleton
     public static DocumentosVacios Instance() {
@@ -85,9 +85,9 @@ Y ahora la clase DocumentosCliente:
 ~~~csharp
 public class DocumentosCliente : Documentos {
     public DocumentosCliente(string informacion) {
-        documentos = new List&lt;Documento&gt;();
+        documentos = new List<Documento>();
         DocumentosVacios documentosVacios = new DocumentosVacios.Instance();
-        IList&lt;Documento&gt; documentosVacios = documentosVacios.documentos;
+        IList<Documento> documentosVacios = documentosVacios.documentos;
 
         foreach(Documento documentos in documentosVacios) {
             Documento copioDocumento = documento.Duplica();
