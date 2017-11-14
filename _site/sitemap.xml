@@ -54,6 +54,9 @@
 <loc>http://localhost:4000/tag/Azure</loc>
 </url>
 <url>
+<loc>http://localhost:4000/tag/Git</loc>
+</url>
+<url>
 <loc>http://localhost:4000/about</loc>
 </url>
 <url>

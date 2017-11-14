@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-14T21:33:38+01:00</updated><id>http://localhost:4000/</id><title type="html">JRRN Coding! | A simple Jekyll blog</title><subtitle>A minimal blog template, build with Jekyll.</subtitle><author><name>JRRN</name><email></email></author><entry><title type="html">Un poquito de Git</title><link href="http://localhost:4000/Un-poquito-de-git" rel="alternate" type="text/html" title="Un poquito de Git" /><published>2017-11-14T00:00:00+01:00</published><updated>2017-11-14T00:00:00+01:00</updated><id>http://localhost:4000/Un-poquito-de-git</id><content type="html" xml:base="http://localhost:4000/Un-poquito-de-git">&lt;p&gt;Hola, hoy quiero traeros una recopilación de comandos relacionados con la función que realizan sobre un repositorio Git.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-14T21:42:25+01:00</updated><id>http://localhost:4000/</id><title type="html">JRRN Coding! | A simple Jekyll blog</title><subtitle>A minimal blog template, build with Jekyll.</subtitle><author><name>JRRN</name><email></email></author><entry><title type="html">Un poquito de Git</title><link href="http://localhost:4000/Un-poquito-de-git" rel="alternate" type="text/html" title="Un poquito de Git" /><published>2017-11-14T00:00:00+01:00</published><updated>2017-11-14T00:00:00+01:00</updated><id>http://localhost:4000/Un-poquito-de-git</id><content type="html" xml:base="http://localhost:4000/Un-poquito-de-git">&lt;p&gt;Hola, hoy quiero traeros una recopilación de comandos relacionados con la función que realizan sobre un repositorio Git.&lt;/p&gt;
 
 &lt;p&gt;Con esta chuleta podremos recordar facilmente que comandos deberíamos usar en cada caso en nuestra lucha con los repositorios.&lt;/p&gt;
 
@@ -759,9 +759,9 @@
 &lt;h3 id=&quot;patrones-de-construcción&quot;&gt;Patrones de construcción]&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;Patron-abstract-factory&quot; title=&quot;Patrón Abstract Factory&quot;&gt;Patrón Abstract Factory&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;Patron-builder&quot; title=&quot;Patrón Builder&quot;&gt;Patrón Builder&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;Patron-factory-method&quot; title=&quot;Patrón Factory Method&quot;&gt;Patrón Factory Method&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;Patron-prototype&quot; title=&quot;Patrón Prototype&quot;&gt;Patrón Prototype&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;Patron-singleton&quot; title=&quot;Patrón Singleton&quot;&gt;Patrón Singleton&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;../Patron-abstract-factory&quot; title=&quot;Patrón Abstract Factory&quot;&gt;Patrón Abstract Factory&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;../Patron-builder&quot; title=&quot;Patrón Builder&quot;&gt;Patrón Builder&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;../Patron-factory-method&quot; title=&quot;Patrón Factory Method&quot;&gt;Patrón Factory Method&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;../Patron-prototype&quot; title=&quot;Patrón Prototype&quot;&gt;Patrón Prototype&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;../Patron-singleton&quot; title=&quot;Patrón Singleton&quot;&gt;Patrón Singleton&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">Los patrones de construcción tienen como misión abstraer los mecanimos de creación de objetos, volviendose independiente de la forma en que se crean los objetos y los mecanismos de instanciación de las clases concretas.</summary></entry></feed>
