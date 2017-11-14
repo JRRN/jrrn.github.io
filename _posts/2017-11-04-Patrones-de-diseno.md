@@ -14,7 +14,11 @@ En definitiva, esto significa que si por ejemplo tomásemos como paradigma un bl
 
 Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículos:
 
-### [Patrones de construcción](Patrones-de-construccion "Patrones de construcción")
+### Patrones de construcción ###
+
+Los patrones de construcción tienen como misión abstraer los mecanimos de creación de objetos, volviendose independiente de la forma en que se crean los objetos y los mecanismos de instanciación de las clases concretas.
+
+Estos patrones encapsulan el uso de clases concretas y favorecen el uso de interfaces en las relaciones con los objectos, posibilitando una mayor abstracción en el diseño global.
 
 - [Patrón Abstract Factory](Patron-abstract-factory "Patrón Abstract Factory")
 - [Patrón Builder](Patron-builder "Patrón Builder")
@@ -22,7 +26,7 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 - [Patrón Prototype](Patron-prototype "Patrón Prototype")
 - [Patrón Singleton](Patron-singleton "Patrón Singleton")
 
-### [Patrones de estructura](Patrones-de-Estructura "Patrones de estructura")
+### Patrones de estructura ###
 
 - Patrón Adapter
 - Patrón Bridge
@@ -32,7 +36,7 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 - Patrón Flyweight
 - Patrón Proxy
 
-### Patrones de comportamiento
+### Patrones de comportamiento ###
 
 - Patrón Chain of Responsibility
 - Patrón Command

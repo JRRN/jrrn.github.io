@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-14T21:42:25+01:00</updated><id>http://localhost:4000/</id><title type="html">JRRN Coding! | A simple Jekyll blog</title><subtitle>A minimal blog template, build with Jekyll.</subtitle><author><name>JRRN</name><email></email></author><entry><title type="html">Un poquito de Git</title><link href="http://localhost:4000/Un-poquito-de-git" rel="alternate" type="text/html" title="Un poquito de Git" /><published>2017-11-14T00:00:00+01:00</published><updated>2017-11-14T00:00:00+01:00</updated><id>http://localhost:4000/Un-poquito-de-git</id><content type="html" xml:base="http://localhost:4000/Un-poquito-de-git">&lt;p&gt;Hola, hoy quiero traeros una recopilación de comandos relacionados con la función que realizan sobre un repositorio Git.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-14T22:14:26+01:00</updated><id>http://localhost:4000/</id><title type="html">JRRN Coding! | A simple Jekyll blog</title><subtitle>A minimal blog template, build with Jekyll.</subtitle><author><name>JRRN</name><email></email></author><entry><title type="html">Un poquito de Git</title><link href="http://localhost:4000/Un-poquito-de-git" rel="alternate" type="text/html" title="Un poquito de Git" /><published>2017-11-14T00:00:00+01:00</published><updated>2017-11-14T00:00:00+01:00</updated><id>http://localhost:4000/Un-poquito-de-git</id><content type="html" xml:base="http://localhost:4000/Un-poquito-de-git">&lt;p&gt;Hola, hoy quiero traeros una recopilación de comandos relacionados con la función que realizan sobre un repositorio Git.&lt;/p&gt;
 
 &lt;p&gt;Con esta chuleta podremos recordar facilmente que comandos deberíamos usar en cada caso en nuestra lucha con los repositorios.&lt;/p&gt;
 
@@ -310,17 +310,7 @@
     &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;Saludos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Git" /><summary type="html">Hola, hoy quiero traeros una recopilación de comandos relacionados con la función que realizan sobre un repositorio Git.</summary></entry><entry><title type="html">Patrón Adapter</title><link href="http://localhost:4000/Patron-adapter" rel="alternate" type="text/html" title="Patrón Adapter" /><published>2017-11-14T00:00:00+01:00</published><updated>2017-11-14T00:00:00+01:00</updated><id>http://localhost:4000/Patron-adapter</id><content type="html" xml:base="http://localhost:4000/Patron-adapter"></content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html"></summary></entry><entry><title type="html">Patrones de Estructura</title><link href="http://localhost:4000/Patrones-de-estructura" rel="alternate" type="text/html" title="Patrones de Estructura" /><published>2017-11-13T00:00:00+01:00</published><updated>2017-11-13T00:00:00+01:00</updated><id>http://localhost:4000/Patrones-de-estructura</id><content type="html" xml:base="http://localhost:4000/Patrones-de-estructura">&lt;h3 id=&quot;patrones-de-estructura&quot;&gt;Patrones de estructura&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Patrón Adapter&lt;/li&gt;
-  &lt;li&gt;Patrón Bridge&lt;/li&gt;
-  &lt;li&gt;Patrón Composite&lt;/li&gt;
-  &lt;li&gt;Patrón Decorator&lt;/li&gt;
-  &lt;li&gt;Patrón Facade&lt;/li&gt;
-  &lt;li&gt;Patrón Flyweight&lt;/li&gt;
-  &lt;li&gt;Patrón Proxy&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">Patrones de estructura</summary></entry><entry><title type="html">Move me To Azure</title><link href="http://localhost:4000/Move-me-to-azure" rel="alternate" type="text/html" title="Move me To Azure" /><published>2017-11-12T00:00:00+01:00</published><updated>2017-11-12T00:00:00+01:00</updated><id>http://localhost:4000/Move-me-to-azure</id><content type="html" xml:base="http://localhost:4000/Move-me-to-azure">&lt;p&gt;Hola de nuevo, cambiando un poco la temática que llevo siguiendo sobre patrones, me gustaría escribir algo que he descubierto y que es una píldora, fácil y rápida.&lt;/p&gt;
+&lt;p&gt;Saludos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Git" /><summary type="html">Hola, hoy quiero traeros una recopilación de comandos relacionados con la función que realizan sobre un repositorio Git.</summary></entry><entry><title type="html">Patrón Adapter</title><link href="http://localhost:4000/Patron-adapter" rel="alternate" type="text/html" title="Patrón Adapter" /><published>2017-11-14T00:00:00+01:00</published><updated>2017-11-14T00:00:00+01:00</updated><id>http://localhost:4000/Patron-adapter</id><content type="html" xml:base="http://localhost:4000/Patron-adapter"></content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html"></summary></entry><entry><title type="html">Move me To Azure</title><link href="http://localhost:4000/Move-me-to-azure" rel="alternate" type="text/html" title="Move me To Azure" /><published>2017-11-12T00:00:00+01:00</published><updated>2017-11-12T00:00:00+01:00</updated><id>http://localhost:4000/Move-me-to-azure</id><content type="html" xml:base="http://localhost:4000/Move-me-to-azure">&lt;p&gt;Hola de nuevo, cambiando un poco la temática que llevo siguiendo sobre patrones, me gustaría escribir algo que he descubierto y que es una píldora, fácil y rápida.&lt;/p&gt;
 
 &lt;p&gt;En &lt;a href=&quot;https://www.plainconcepts.com&quot; title=&quot;Plain Concepts&quot;&gt;Plain&lt;/a&gt; he estado trabajando en la integración con una herramienta &lt;em&gt;third party&lt;/em&gt;.&lt;/p&gt;
 
@@ -664,7 +654,7 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Saludos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El objetivo del patrón Builder es abstraer la construcción de objetos complejos de su implementación de modo que un cliente pueda crear objetos complejos sin tener que preocuparse de las diferencias en su implantación.</summary></entry><entry><title type="html">Patrón Abstract Factory</title><link href="http://localhost:4000/Patron-abstract-factory" rel="alternate" type="text/html" title="Patrón Abstract Factory" /><published>2017-11-06T00:00:00+01:00</published><updated>2017-11-06T00:00:00+01:00</updated><id>http://localhost:4000/Patron-abstract-factory</id><content type="html" xml:base="http://localhost:4000/Patron-abstract-factory">&lt;p&gt;El patrón &lt;b&gt;Abstract Factory&lt;/b&gt; proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.&lt;/p&gt;
+&lt;p&gt;Saludos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El objetivo del patrón Builder es abstraer la construcción de objetos complejos de su implementación de modo que un cliente pueda crear objetos complejos sin tener que preocuparse de las diferencias en su implantación.</summary></entry><entry><title type="html">Patrón Abstract Factory</title><link href="http://localhost:4000/Patron-abstract-factory" rel="alternate" type="text/html" title="Patrón Abstract Factory" /><published>2017-11-06T00:00:00+01:00</published><updated>2017-11-06T00:00:00+01:00</updated><id>http://localhost:4000/Patron-abstract-factory</id><content type="html" xml:base="http://localhost:4000/Patron-abstract-factory">&lt;p&gt;El patrón &lt;strong&gt;Abstract Factory&lt;/strong&gt; proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.&lt;/p&gt;
 
 &lt;p&gt;Esto quiere decir, que por poner un ejemplo, podríamos crear objetos de tipo Books sin tener que definir los tipos de books explícitamente. ¿Mejor con un ejemplo, no?&lt;/p&gt;
 
@@ -752,16 +742,56 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Saludos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El patrón Abstract Factory proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.</summary></entry><entry><title type="html">Patrones de Construcción</title><link href="http://localhost:4000/Patrones-de-construccion" rel="alternate" type="text/html" title="Patrones de Construcción" /><published>2017-11-05T00:00:00+01:00</published><updated>2017-11-05T00:00:00+01:00</updated><id>http://localhost:4000/Patrones-de-construccion</id><content type="html" xml:base="http://localhost:4000/Patrones-de-construccion">&lt;p&gt;Los patrones de construcción tienen como misión abstraer los mecanimos de creación de objetos, volviendose independiente de la forma en que se crean los objetos y los mecanismos de instanciación de las clases concretas.&lt;/p&gt;
+&lt;p&gt;Saludos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El patrón Abstract Factory proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.</summary></entry><entry><title type="html">Patrones de diseño</title><link href="http://localhost:4000/Patrones-de-diseno" rel="alternate" type="text/html" title="Patrones de diseño" /><published>2017-11-04T00:00:00+01:00</published><updated>2017-11-04T00:00:00+01:00</updated><id>http://localhost:4000/Patrones-de-diseno</id><content type="html" xml:base="http://localhost:4000/Patrones-de-diseno">&lt;p&gt;En este artículo introductorio, que formará parte de una serie de artículos breves, revisaremos los patrones de diseño disponibles para C# y otros lenguajes de programación.&lt;/p&gt;
+
+&lt;p&gt;Mi intención es explicar todos los patrones de una forma clara, con ejemplos y con su codificación y de paso aprender los que no he usado.&lt;/p&gt;
+
+&lt;p&gt;Los patrones de diseño nos sirven para abstraer lógicas de programación sobre paradigmas conocidos.&lt;/p&gt;
+
+&lt;p&gt;En definitiva, esto significa que si por ejemplo tomásemos como paradigma un blog. Usaríamos una template (patrón) sobre todas las páginas que fueran de tipo blogPage y/u otra template (patrón)  para las páginas de tipo HomePage.&lt;/p&gt;
+
+&lt;p&gt;Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículos:&lt;/p&gt;
+
+&lt;h3 id=&quot;patrones-de-construcción&quot;&gt;Patrones de construcción&lt;/h3&gt;
+
+&lt;p&gt;Los patrones de construcción tienen como misión abstraer los mecanimos de creación de objetos, volviendose independiente de la forma en que se crean los objetos y los mecanismos de instanciación de las clases concretas.&lt;/p&gt;
 
 &lt;p&gt;Estos patrones encapsulan el uso de clases concretas y favorecen el uso de interfaces en las relaciones con los objectos, posibilitando una mayor abstracción en el diseño global.&lt;/p&gt;
 
-&lt;h3 id=&quot;patrones-de-construcción&quot;&gt;Patrones de construcción]&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;Patron-abstract-factory&quot; title=&quot;Patrón Abstract Factory&quot;&gt;Patrón Abstract Factory&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;Patron-builder&quot; title=&quot;Patrón Builder&quot;&gt;Patrón Builder&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;Patron-factory-method&quot; title=&quot;Patrón Factory Method&quot;&gt;Patrón Factory Method&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;Patron-prototype&quot; title=&quot;Patrón Prototype&quot;&gt;Patrón Prototype&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;Patron-singleton&quot; title=&quot;Patrón Singleton&quot;&gt;Patrón Singleton&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;patrones-de-estructura&quot;&gt;Patrones de estructura&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;../Patron-abstract-factory&quot; title=&quot;Patrón Abstract Factory&quot;&gt;Patrón Abstract Factory&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;../Patron-builder&quot; title=&quot;Patrón Builder&quot;&gt;Patrón Builder&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;../Patron-factory-method&quot; title=&quot;Patrón Factory Method&quot;&gt;Patrón Factory Method&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;../Patron-prototype&quot; title=&quot;Patrón Prototype&quot;&gt;Patrón Prototype&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;../Patron-singleton&quot; title=&quot;Patrón Singleton&quot;&gt;Patrón Singleton&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">Los patrones de construcción tienen como misión abstraer los mecanimos de creación de objetos, volviendose independiente de la forma en que se crean los objetos y los mecanismos de instanciación de las clases concretas.</summary></entry></feed>
+  &lt;li&gt;Patrón Adapter&lt;/li&gt;
+  &lt;li&gt;Patrón Bridge&lt;/li&gt;
+  &lt;li&gt;Patrón Composite&lt;/li&gt;
+  &lt;li&gt;Patrón Decorator&lt;/li&gt;
+  &lt;li&gt;Patrón Facade&lt;/li&gt;
+  &lt;li&gt;Patrón Flyweight&lt;/li&gt;
+  &lt;li&gt;Patrón Proxy&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;patrones-de-comportamiento&quot;&gt;Patrones de comportamiento&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Patrón Chain of Responsibility&lt;/li&gt;
+  &lt;li&gt;Patrón Command&lt;/li&gt;
+  &lt;li&gt;Patrón Interpreter&lt;/li&gt;
+  &lt;li&gt;Patrón Iterator&lt;/li&gt;
+  &lt;li&gt;Patrón Mediator&lt;/li&gt;
+  &lt;li&gt;Patrón Memento&lt;/li&gt;
+  &lt;li&gt;Patrón Observer&lt;/li&gt;
+  &lt;li&gt;Patrón State&lt;/li&gt;
+  &lt;li&gt;Patrón Strategy&lt;/li&gt;
+  &lt;li&gt;Patrón Template Method&lt;/li&gt;
+  &lt;li&gt;Patrón Visitor&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Nos vemos en el siguiente post.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">En este artículo introductorio, que formará parte de una serie de artículos breves, revisaremos los patrones de diseño disponibles para C# y otros lenguajes de programación.</summary></entry></feed>

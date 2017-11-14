@@ -6,7 +6,7 @@ tags: Arquitectura
 
 El objetivo del patrón Factory es proveer de un método abstracto de creación de un objeto delegando en las subclases concretas su creación concreta.
 
-Lo que para los mortales como yo, esto significa que definiremos una clase base donde los métodos puedan ser sobrecargados con la implementación específica de cada clase que herede la clase base. ??? ¿no? 
+Lo que para los mortales como yo, esto significa que definiremos una clase base donde los métodos puedan ser sobrecargados con la implementación específica de cada clase que herede la clase base. ??? ¿no?
 
 Vale, más fácil todavía, tendremos unas clases con unos métodos abstractos que cuando sean heredados en cada subclase (clase hija que hereda la clase Factory) solo tendremos el nombre, las entradas y las salidas comunes a todas estas clases.
 

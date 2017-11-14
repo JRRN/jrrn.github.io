@@ -4,7 +4,7 @@ title: Patrón Abstract Factory
 tags: Arquitectura
 ---
 
-El patrón <b>Abstract Factory</b> proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.
+El patrón **Abstract Factory** proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.
 
 Esto quiere decir, que por poner un ejemplo, podríamos crear objetos de tipo Books sin tener que definir los tipos de books explícitamente. ¿Mejor con un ejemplo, no?
 

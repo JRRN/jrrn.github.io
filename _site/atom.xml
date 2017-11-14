@@ -4,7 +4,7 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2017-11-14T21:42:25+01:00</updated>
+ <updated>2017-11-14T22:14:26+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
@@ -29,27 +29,6 @@
    <id>http://localhost:4000/Patron-adapter</id>
    <updated>2017-11-14T00:00:00+01:00</updated>
    <content type="html">
-</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrones de Estructura</title>
-   <link href="http://localhost:4000/Patrones-de-estructura"/>
-   <id>http://localhost:4000/Patrones-de-estructura</id>
-   <updated>2017-11-13T00:00:00+01:00</updated>
-   <content type="html">&lt;h3 id=&quot;patrones-de-estructura&quot;&gt;Patrones de estructura&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Patrón Adapter&lt;/li&gt;
-  &lt;li&gt;Patrón Bridge&lt;/li&gt;
-  &lt;li&gt;Patrón Composite&lt;/li&gt;
-  &lt;li&gt;Patrón Decorator&lt;/li&gt;
-  &lt;li&gt;Patrón Facade&lt;/li&gt;
-  &lt;li&gt;Patrón Flyweight&lt;/li&gt;
-  &lt;li&gt;Patrón Proxy&lt;/li&gt;
-&lt;/ul&gt;
 </content>
  </entry>
 
@@ -110,17 +89,17 @@
    <link href="http://localhost:4000/Patron-abstract-factory"/>
    <id>http://localhost:4000/Patron-abstract-factory</id>
    <updated>2017-11-06T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón &lt;b&gt;Abstract Factory&lt;/b&gt; proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.&lt;/p&gt; &lt;p&gt;Esto quiere decir, que por poner un ejemplo, podríamos crear objetos de tipo Books sin tener que definir los tipos de books explícitamente. ¿Mejor con un ejemplo,...</content>
+   <content type="html">&lt;p&gt;El patrón &lt;strong&gt;Abstract Factory&lt;/strong&gt; proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.&lt;/p&gt; &lt;p&gt;Esto quiere decir, que por poner un ejemplo, podríamos crear objetos de tipo Books sin tener que definir los tipos de books explícitamente. ¿Mejor con un ejemplo,...</content>
  </entry>
 
  
 
  <entry>
-   <title>Patrones de Construcción</title>
-   <link href="http://localhost:4000/Patrones-de-construccion"/>
-   <id>http://localhost:4000/Patrones-de-construccion</id>
-   <updated>2017-11-05T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;Los patrones de construcción tienen como misión abstraer los mecanimos de creación de objetos, volviendose independiente de la forma en que se crean los objetos y los mecanismos de instanciación de las clases concretas.&lt;/p&gt; &lt;p&gt;Estos patrones encapsulan el uso de clases concretas y favorecen el uso de interfaces en las...</content>
+   <title>Patrones de diseño</title>
+   <link href="http://localhost:4000/Patrones-de-diseno"/>
+   <id>http://localhost:4000/Patrones-de-diseno</id>
+   <updated>2017-11-04T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;En este artículo introductorio, que formará parte de una serie de artículos breves, revisaremos los patrones de diseño disponibles para C# y otros lenguajes de programación.&lt;/p&gt; &lt;p&gt;Mi intención es explicar todos los patrones de una forma clara, con ejemplos y con su codificación y de paso aprender los que no...</content>
  </entry>
 
  
