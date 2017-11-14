@@ -14,15 +14,15 @@ En definitiva, esto significa que si por ejemplo tomásemos como paradigma un bl
 
 Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículos:
 
-### Patrones de construcción
+### [Patrones de construcción](Patrones-de-construccion "Patrones de construcción")
 
-- [Patrón Abstract Factory](Patron-Abstract-Factory "Patrón Abstract Factory")
-- [Patrón Builder](Patron-Builder "Patrón Builder")
-- [Patrón Factory Method](Patron-Factory-Method "Patrón Factory Method")
-- [Patrón Prototype](Patron-Prototype "Patrón Prototype")
-- [Patrón Singleton](Patron-Singleton "Patrón Singleton")
+- [Patrón Abstract Factory](Patron-abstract-factory "Patrón Abstract Factory")
+- [Patrón Builder](Patron-builder "Patrón Builder")
+- [Patrón Factory Method](Patron-factory-method "Patrón Factory Method")
+- [Patrón Prototype](Patron-prototype "Patrón Prototype")
+- [Patrón Singleton](Patron-singleton "Patrón Singleton")
 
-### Patrones de estructurales
+### [Patrones de estructura](Patrones-de-Estructura "Patrones de estructura")
 
 - Patrón Adapter
 - Patrón Bridge

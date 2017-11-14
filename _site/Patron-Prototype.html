@@ -59,6 +59,8 @@
 	  
 	    
 	  
+	    
+	  
     
     <!-- Nav links -->
 	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
@@ -74,6 +76,10 @@ Archivo
   
   
   <a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code></a>
+
+  
+  
+  <a href="/tag/Git"><code class="highligher-rouge"><nobr>Git</nobr></code></a>
 
   
   
@@ -188,16 +194,16 @@ Archivo
 <p>Una vez definidas las clases de cada uno de los objetos, definiremos la clases Documentos:</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Documentos</span><span class="p">{</span>
-    <span class="k">public</span> <span class="n">IList</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Documento</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">documentos</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">protected</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;</span> <span class="n">documentos</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">protected</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Documentos</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="n">IList</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Documento</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;;</span>
     <span class="n">documentos</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">protected</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">public</span> <span class="k">class</span> <span class="nc">DocumentosVacios</span> <span class="p">:</span> <span class="n">Documentos</span> <span class="p">{</span>
     <span class="k">public</span> <span class="k">static</span> <span class="n">DocumentosVacios</span> <span class="n">_instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
     <span class="k">private</span> <span class="nf">DocumentosVacios</span><span class="p">()</span>  <span class="p">{</span>
-        <span class="n">documentos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Documento</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;();</span>
+        <span class="n">documentos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;();</span>
     <span class="p">}</span>
     <span class="c1">// Patrón Singleton</span>
     <span class="k">public</span> <span class="k">static</span> <span class="n">DocumentosVacios</span> <span class="nf">Instance</span><span class="p">()</span> <span class="p">{</span>
@@ -215,9 +221,9 @@ Archivo
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">DocumentosCliente</span> <span class="p">:</span> <span class="n">Documentos</span> <span class="p">{</span>
     <span class="k">public</span> <span class="nf">DocumentosCliente</span><span class="p">(</span><span class="kt">string</span> <span class="n">informacion</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">documentos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Documento</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;();</span>
+        <span class="n">documentos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;();</span>
         <span class="n">DocumentosVacios</span> <span class="n">documentosVacios</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DocumentosVacios</span><span class="p">.</span><span class="nf">Instance</span><span class="p">();</span>
-        <span class="n">IList</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Documento</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">documentosVacios</span> <span class="p">=</span> <span class="n">documentosVacios</span><span class="p">.</span><span class="n">documentos</span><span class="p">;</span>
+        <span class="n">IList</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;</span> <span class="n">documentosVacios</span> <span class="p">=</span> <span class="n">documentosVacios</span><span class="p">.</span><span class="n">documentos</span><span class="p">;</span>
 
         <span class="k">foreach</span><span class="p">(</span><span class="n">Documento</span> <span class="n">documentos</span> <span class="k">in</span> <span class="n">documentosVacios</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">Documento</span> <span class="n">copioDocumento</span> <span class="p">=</span> <span class="n">documento</span><span class="p">.</span><span class="nf">Duplica</span><span class="p">();</span>

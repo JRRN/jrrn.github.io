@@ -59,6 +59,8 @@
 	  
 	    
 	  
+	    
+	  
     
     <!-- Nav links -->
 	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
@@ -74,6 +76,10 @@ Archivo
   
   
   <a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code></a>
+
+  
+  
+  <a href="/tag/Git"><code class="highligher-rouge"><nobr>Git</nobr></code></a>
 
   
   
@@ -144,7 +150,7 @@ Archivo
 <p>Estos documentos se pueden generar en pdf y/o en formato html para remitir por mail, por ejemplo. Con lo que obtendríamos los métodos constructorDocumentacionHtml y constructorDocumentacionPdf.</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Documentacion</span> <span class="p">{</span>
-    <span class="k">protected</span> <span class="n">IList</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">string</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">contenido</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">string</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;();</span>
+    <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">contenido</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
     <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">agregaDocumento</span><span class="p">(</span><span class="kt">string</span> <span class="n">documento</span><span class="p">);</span>
     <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">imprime</span><span class="p">();</span>
 <span class="p">}</span>
@@ -206,13 +212,13 @@ Archivo
 
     <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">construyeSolicitudPedido</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreCliente</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">string</span> <span class="n">documento</span><span class="p">;</span>
-        <span class="n">documento</span> <span class="p">=</span> <span class="s">"&amp;lt;PDF&amp;gt;Solicitud de pedido Cliente: "</span> <span class="p">+</span> <span class="n">nombreCliente</span> <span class="p">+</span> <span class="s">"&amp;lt;/PDF&amp;gt;"</span><span class="p">;</span>
+        <span class="n">documento</span> <span class="p">=</span> <span class="s">"&lt;PDF&gt;Solicitud de pedido Cliente: "</span> <span class="p">+</span> <span class="n">nombreCliente</span> <span class="p">+</span> <span class="s">"&lt;/PDF&gt;"</span><span class="p">;</span>
         <span class="n">documentacion</span><span class="p">.</span><span class="nf">agregaDocumento</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">construyeSolicitudFactura</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreSolicitante</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">string</span> <span class="n">documento</span><span class="p">;</span>
-        <span class="n">documento</span> <span class="p">=</span> <span class="s">"&amp;lt;PDF&amp;gt;Solicitud de factura Solicitante: "</span> <span class="p">+</span> <span class="n">nombreSolicitante</span> <span class="p">+</span> <span class="s">"&amp;lt;/PDF&amp;gt;"</span><span class="p">;</span>
+        <span class="n">documento</span> <span class="p">=</span> <span class="s">"&lt;PDF&gt;Solicitud de factura Solicitante: "</span> <span class="p">+</span> <span class="n">nombreSolicitante</span> <span class="p">+</span> <span class="s">"&lt;/PDF&gt;"</span><span class="p">;</span>
         <span class="n">documentacion</span><span class="p">.</span><span class="nf">agregaDocumento</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
