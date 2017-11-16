@@ -22,9 +22,9 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 - [Patrón Prototype](patron-prototype "Patrón Prototype")
 - [Patrón Singleton](patron-singleton "Patrón Singleton")
 
-### Patrones de estructura ###
+### [Patrones de estructura](patrones-de-estructura "Patrones de estructura") ###
 
-- Patrón Adapter
+- [Patrón Adapter](patron-adapter "Patrón Adapter")
 - Patrón Bridge
 - Patrón Composite
 - Patrón Decorator
