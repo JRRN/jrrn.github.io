@@ -14,11 +14,7 @@ En definitiva, esto significa que si por ejemplo tomásemos como paradigma un bl
 
 Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículos:
 
-### Patrones de construcción ###
-
-Los patrones de construcción tienen como misión abstraer los mecanimos de creación de objetos, volviendose independiente de la forma en que se crean los objetos y los mecanismos de instanciación de las clases concretas.
-
-Estos patrones encapsulan el uso de clases concretas y favorecen el uso de interfaces en las relaciones con los objectos, posibilitando una mayor abstracción en el diseño global.
+### [Patrones de construcción](patrones-de-construccion "Patrones de construcción") ###
 
 - [Patrón Abstract Factory](patron-abstract-factory "Patrón Abstract Factory")
 - [Patrón Builder](patron-builder "Patrón Builder")
