@@ -31,11 +31,11 @@ public class PaperBook : IBook {
     }
 
     public void Imprime() {
-        Consolte.WriteLine($"Mandando a imprimir Contenido {contenido}");
+        Console.WriteLine($"Mandando a imprimir Contenido {contenido}");
     }
 
     public void Enviar(){
-        Consolte.WriteLine($"Enviar al cliente");
+        Console.WriteLine($"Enviar al cliente");
     }
 }
 ~~~
@@ -52,19 +52,19 @@ public class PdfBase {
     }
 
     public void PdfPrevisualizar() {
-        Consolte.WriteLine($"Previsualización de Contenido: { _contenido }");
+        Console.WriteLine($"Previsualización de Contenido: { _contenido }");
     }
 
     public void PdfAlmacena() {
-        Consolte.WriteLine($"Guardando de Book");
+        Console.WriteLine($"Guardando de Book");
     }
 
     public void PdfImprimePorPantalla() {
-        Consolte.WriteLine($"Imprime por pantall { _contenido }");
+        Console.WriteLine($"Imprime por pantall { _contenido }");
     }
 
     public void PdfEnviar(){
-        Consolte.WriteLine($"Enviando link de descarga al cliente");
+        Console.WriteLine($"Enviando link de descarga al cliente");
     }
 }
 ~~~
