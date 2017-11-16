@@ -4,7 +4,7 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2017-11-16T19:54:02+01:00</updated>
+ <updated>2017-11-16T21:03:08+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
@@ -28,8 +28,7 @@
    <link href="http://localhost:4000/patron-adapter"/>
    <id>http://localhost:4000/patron-adapter</id>
    <updated>2017-11-14T00:00:00+01:00</updated>
-   <content type="html">
-</content>
+   <content type="html">&lt;p&gt;El patrón adapter se centra en convertir la interfaz de una clase en la interfaz que necesitaran los clientes. Se trata de ofrecer con una nueva interfaz la exposición de los objetos de los clientes.&lt;/p&gt; &lt;p&gt;En definitiva, lo que se prentende con este patrón es generar una nueva interfaz, sobre...</content>
  </entry>
 
  
@@ -39,18 +38,7 @@
    <link href="http://localhost:4000/patrones-de-estructura"/>
    <id>http://localhost:4000/patrones-de-estructura</id>
    <updated>2017-11-13T00:00:00+01:00</updated>
-   <content type="html">&lt;h3 id=&quot;patrones-de-estructura&quot;&gt;Patrones de estructura&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Patrón Adapter&lt;/li&gt;
-  &lt;li&gt;Patrón Bridge&lt;/li&gt;
-  &lt;li&gt;Patrón Composite&lt;/li&gt;
-  &lt;li&gt;Patrón Decorator&lt;/li&gt;
-  &lt;li&gt;Patrón Facade&lt;/li&gt;
-  &lt;li&gt;Patrón Flyweight&lt;/li&gt;
-  &lt;li&gt;Patrón Proxy&lt;/li&gt;
-&lt;/ul&gt;
-</content>
+   <content type="html">&lt;h3 id=&quot;patrones-de-estructura&quot;&gt;Patrones de estructura&lt;/h3&gt; &lt;p&gt;Los patrones de estructura tiene el objetivo de facilitar la separación de la interfaz de un objeto o varios de sus implementaciones.&lt;/p&gt; &lt;p&gt;De esta forma se proporcina de un mecanismo de encapsulación de objetos donde se aumenta la abstracción dentro de la aplicaión. Y el mecanismo...</content>
  </entry>
 
  

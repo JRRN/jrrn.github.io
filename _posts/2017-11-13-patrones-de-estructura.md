@@ -6,7 +6,11 @@ tags: Arquitectura
 
 ### Patrones de estructura ###
 
-- Patrón Adapter
+Los patrones de estructura tiene el objetivo de facilitar la separación de la interfaz de un objeto o varios de sus implementaciones.
+
+De esta forma se proporcina de un mecanismo de encapsulación de objetos donde se aumenta la abstracción dentro de la aplicaión. Y el mecanismo que queda publico y con acceso son estas interfaces.
+
+- [Patrón Adapter](patron-adapter "Patrón Adapter")
 - Patrón Bridge
 - Patrón Composite
 - Patrón Decorator
