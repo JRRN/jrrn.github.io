@@ -5,15 +5,12 @@
 
 <body>
 	<div id="wrap">
-	  	
 	  	<!-- Navigation -->
 	  	{% include menu.html %}
-    
     <!-- Icon menu -->
 	  <a {% if site.reverse == true %}id="nav-menu-left"{% else %}id="nav-menu"{% endif %}>
 	  	<div id="menu"></div>
 	  </a>
-
       <!-- Header -->
       {% if site.custom_header == true %}
         {% include header-custom.html %}
@@ -23,13 +20,20 @@
 
     <!-- Main content -->
 	  <div id="container">
-		  
-		<main>
-
-			{{ content }}
-
-	  </main>
-		
+      <div class="row">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-md-7 col-lg-7">
+          <main>
+            {{ content }}
+          </main>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            {% include archive.html %}
+        </div>
+        <div class="col-md-1 col-lg-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 pull-center">
 		  <!-- Pagination links -->
       {% if paginator.total_pages > 1 %}
         <div class="pagination">
@@ -58,6 +62,8 @@
           {% endif %}
         </div>
         {% endif %}
+      </div>
+      </div>
     </div>
     <br/><br/><br/>
 	    

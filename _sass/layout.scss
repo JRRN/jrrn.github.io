@@ -113,7 +113,7 @@
 
 #container {
 	margin:0 auto;
-	max-width: 730px;
+	//max-width: 730px;
 	padding: 0 1.5rem;
 }
 
@@ -225,6 +225,7 @@ code {
 .pagination {
   text-align: center;
   margin: 2.666668em;
+  display: inherit;
   span {
     background-color: darken($background-color, 5%);
     color: $text-color;

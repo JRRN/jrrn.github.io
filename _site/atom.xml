@@ -4,12 +4,23 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2017-11-16T21:03:08+01:00</updated>
+ <updated>2017-11-18T15:40:21+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
    <email></email>
  </author>
+
+ 
+
+ <entry>
+   <title>Patrón Bridge</title>
+   <link href="http://localhost:4000/patron-bridge"/>
+   <id>http://localhost:4000/patron-bridge</id>
+   <updated>2017-11-16T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;El patrón bridge&lt;/p&gt;
+</content>
+ </entry>
 
  
 
@@ -99,16 +110,6 @@
    <id>http://localhost:4000/patron-abstract-factory</id>
    <updated>2017-11-06T00:00:00+01:00</updated>
    <content type="html">&lt;p&gt;El patrón &lt;strong&gt;Abstract Factory&lt;/strong&gt; proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.&lt;/p&gt; &lt;p&gt;Esto quiere decir, que por poner un ejemplo, podríamos crear objetos de tipo Books sin tener que definir los tipos de books explícitamente. ¿Mejor con un ejemplo,...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrones de Construcción</title>
-   <link href="http://localhost:4000/patrones-de-construccion"/>
-   <id>http://localhost:4000/patrones-de-construccion</id>
-   <updated>2017-11-05T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;Los patrones de construcción tienen como misión abstraer los mecanimos de creación de objetos, volviendose independiente de la forma en que se crean los objetos y los mecanismos de instanciación de las clases concretas.&lt;/p&gt; &lt;p&gt;Estos patrones encapsulan el uso de clases concretas y favorecen el uso de interfaces en las...</content>
  </entry>
 
  
