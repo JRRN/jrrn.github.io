@@ -44,6 +44,8 @@
 	    
 	  
 	    
+	  
+	    
 	      <a href="/about" title="Sobre mí">Sobre mí</a>
 	    
 	  
@@ -114,7 +116,103 @@
 	</div>
 		
 	<div class="content">
-		<p>El patrón bridge</p>
+		<p>El patrón bridge es usado para separar la implementación de un objeto, de su representación y de su interfaz. Así, conseguimos que la implementación de este objeto quede intacta, mientras que la representación puede crecer de manera independiente sin que haya un acomplamiento y tengamos que hacer cambios en el objeto con estas nuevas ampliaciones.</p>
+
+<p>Tiene cierta similitud con el patrón adapter, dándole una vuelta más, donde adapter queda un poco limitado.</p>
+
+<p>Para ello, a través de una clase abstracta que hereda los métodos de la clase base, sobrecargaremos estos métodos en cada clase concreta de cada tipo de libro para darle su propia implentación sin que ello afecte a los objetos MediaBook y PaperBook.</p>
+
+<p>Sin más, vamos al ejemplo con el que se verá más claro su estrucutura y comportamiento:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">enum</span> <span class="n">TipoLibroEnum</span><span class="p">{</span>
+    <span class="n">Media</span><span class="p">,</span>
+    <span class="n">Paper</span>
+<span class="p">};</span>
+
+<span class="k">public</span> <span class="k">interface</span> <span class="nc">IBook</span> <span class="p">{</span>
+    <span class="k">void</span> <span class="nf">GenerarLibro</span><span class="p">(</span><span class="kt">string</span> <span class="n">contenido</span><span class="p">);</span>
+
+    <span class="n">TipoLibroEnum</span> <span class="nf">TipoDeLibro</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">MediaBook</span> <span class="p">:</span> <span class="n">IBook</span><span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GenerarLibro</span><span class="p">(</span><span class="kt">string</span> <span class="n">contenido</span><span class="p">){</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Libro Electronico"</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">TipoLibroEnum</span> <span class="nf">TipoDeLibro</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="n">TipoLibroEnum</span><span class="p">.</span><span class="n">Media</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">PaperBook</span> <span class="p">:</span> <span class="n">IBook</span><span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GenerarLibro</span><span class="p">(</span><span class="kt">string</span> <span class="n">contenido</span><span class="p">){</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Libro Papel"</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">TipoLibroEnum</span> <span class="nf">TipoDeLibro</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="n">TipoLibroEnum</span><span class="p">.</span><span class="n">Paper</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">GeneradorLibro</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="n">TipoLibroEnum</span> <span class="n">_tipoLibroEnum</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="n">IBook</span> <span class="n">_book</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">GeneradorLibro</span><span class="p">(</span><span class="n">IBook</span> <span class="n">book</span><span class="p">){</span>
+        <span class="n">_book</span> <span class="p">=</span> <span class="n">book</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Genera</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">_book</span><span class="p">.</span><span class="nf">GenerarLibro</span><span class="p">(</span><span class="n">contenido</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">TipoLibroEnum</span> <span class="nf">TipoDeLibro</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">_book</span><span class="p">.</span><span class="nf">TipoDeLibro</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">abstract</span> <span class="kt">bool</span> <span class="nf">controlTipoLibro</span><span class="p">(</span><span class="n">TipoLibroEnum</span> <span class="n">tipoLibro</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">GeneradorLibroPapel</span> <span class="p">:</span> <span class="n">GeneradorLibro</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nf">GeneradorLibroPapel</span><span class="p">(</span><span class="n">GeneradorLibro</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">book</span><span class="p">){}</span>
+
+    <span class="k">protected</span> <span class="k">override</span> <span class="n">TipoLibroEnum</span> <span class="nf">controlTipoLibro</span><span class="p">(</span><span class="n">TipoLibroEnum</span> <span class="n">tipoLibro</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">TipoLibroEnum</span><span class="p">.</span><span class="n">Paper</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">GeneradorLibroElectronico</span> <span class="p">:</span> <span class="n">GeneradorLibro</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nf">GeneradorLibroElectronico</span><span class="p">(</span><span class="n">GeneradorLibro</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">book</span><span class="p">){}</span>
+
+    <span class="k">protected</span> <span class="k">override</span> <span class="n">TipoLibroEnum</span> <span class="nf">controlTipoLibro</span><span class="p">(</span><span class="n">TipoLibroEnum</span> <span class="n">tipoLibro</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">TipoLibroEnum</span><span class="p">.</span><span class="n">Media</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Libreria</span><span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">){</span>
+        <span class="n">GeneradorLibroPapel</span> <span class="n">libroElectronico</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">GeneradorLibroPapel</span><span class="p">(</span><span class="k">new</span> <span class="nf">MediaBook</span><span class="p">());</span>
+
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">libroElectronico</span><span class="p">.</span><span class="nf">controlTipoLibro</span><span class="p">().</span><span class="nf">Tostring</span><span class="p">())</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">libroElectronico</span><span class="p">.</span><span class="n">controlTipoLibro</span> <span class="p">==</span> <span class="n">TipoLibroEnum</span><span class="p">.</span><span class="n">Media</span><span class="p">){</span>
+            <span class="n">libroElectronico</span><span class="p">.</span><span class="nf">GenerarLibro</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="n">GeneradorLibroPapel</span> <span class="n">libroPapel</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">GeneradorLibroElectronico</span><span class="p">(</span><span class="k">new</span> <span class="nf">PaperBook</span><span class="p">());</span>
+
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">libroPapel</span><span class="p">.</span><span class="nf">controlTipoLibro</span><span class="p">().</span><span class="nf">Tostring</span><span class="p">())</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">libroPapel</span><span class="p">.</span><span class="n">controlTipoLibro</span> <span class="p">==</span> <span class="n">TipoLibroEnum</span><span class="p">.</span><span class="n">Papel</span><span class="p">){</span>
+            <span class="n">libroPapel</span><span class="p">.</span><span class="nf">GenerarLibro</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Como hemos dicho, en nuestro caso de los libros la clase GeneradorLibro podría extenderse sin tener que tocar las clases  MediaBook y PaperBook.</p>
+
+<p>Saludos.</p>
 
 	</div>
 </article>
@@ -136,6 +234,10 @@
   
   
   <a href="/tag/Git"><code class="highligher-rouge"><nobr>Git</nobr></code></a><br/>
+
+  
+  
+  <a href="/tag/Docker"><code class="highligher-rouge"><nobr>Docker</nobr></code></a><br/>
 
   
   

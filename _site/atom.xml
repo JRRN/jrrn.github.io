@@ -4,7 +4,7 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2017-11-18T15:40:21+01:00</updated>
+ <updated>2017-11-23T21:30:26+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
@@ -14,12 +14,21 @@
  
 
  <entry>
+   <title>Docker Pills</title>
+   <link href="http://localhost:4000/docker-pills"/>
+   <id>http://localhost:4000/docker-pills</id>
+   <updated>2017-11-19T00:00:00+01:00</updated>
+   <content type="html">&lt;h3 id=&quot;docker&quot;&gt;Docker&lt;/h3&gt; &lt;p&gt;Hola, nuevamente un recordatorio rápido de comandos docker para la lucha con contenedores.&lt;/p&gt; &lt;p&gt;Show Containers: &lt;code&gt;docker container ls&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Execute Commands: &lt;code&gt;docker container exec [containerId or containerName] [command]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Console on Container: &lt;code&gt;docker container exec -it [containerId or containerName] /bin/bash&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Run Containers: &lt;code&gt;docker container run [containerName] :[imageVersion]&lt;/code&gt; &lt;code&gt;docker container run...</content>
+ </entry>
+
+ 
+
+ <entry>
    <title>Patrón Bridge</title>
    <link href="http://localhost:4000/patron-bridge"/>
    <id>http://localhost:4000/patron-bridge</id>
    <updated>2017-11-16T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón bridge&lt;/p&gt;
-</content>
+   <content type="html">&lt;p&gt;El patrón bridge es usado para separar la implementación de un objeto, de su representación y de su interfaz. Así, conseguimos que la implementación de este objeto quede intacta, mientras que la representación puede crecer de manera independiente sin que haya un acomplamiento y tengamos que hacer cambios en el...</content>
  </entry>
 
  
@@ -100,16 +109,6 @@
    <id>http://localhost:4000/patron-builder</id>
    <updated>2017-11-07T00:00:00+01:00</updated>
    <content type="html">&lt;p&gt;El objetivo del patrón &lt;strong&gt;Builder&lt;/strong&gt; es abstraer la construcción de objetos complejos de su implementación de modo que un cliente pueda crear objetos complejos sin tener que preocuparse de las diferencias en su implantación.&lt;/p&gt; &lt;p&gt;Volviendo a nuestro ejemplo de los libros y revistas. Durante la compra de libros/revistas se generan...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Abstract Factory</title>
-   <link href="http://localhost:4000/patron-abstract-factory"/>
-   <id>http://localhost:4000/patron-abstract-factory</id>
-   <updated>2017-11-06T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón &lt;strong&gt;Abstract Factory&lt;/strong&gt; proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.&lt;/p&gt; &lt;p&gt;Esto quiere decir, que por poner un ejemplo, podríamos crear objetos de tipo Books sin tener que definir los tipos de books explícitamente. ¿Mejor con un ejemplo,...</content>
  </entry>
 
  

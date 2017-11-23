@@ -11,7 +11,7 @@ Los patrones de estructura tiene el objetivo de facilitar la separación de la i
 De esta forma se proporcina de un mecanismo de encapsulación de objetos donde se aumenta la abstracción dentro de la aplicaión. Y el mecanismo que queda publico y con acceso son estas interfaces.
 
 - [Patrón Adapter](patron-adapter "Patrón Adapter")
-- Patrón Bridge
+- [Patrón Bridge](patron-bridge "Patrón Bridge")
 - Patrón Composite
 - Patrón Decorator
 - Patrón Facade

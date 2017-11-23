@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 	<meta name="generator" content="Jekyll">
 
-	<title>Sobre mí</title>
+	<title>Docker Pills</title>
 
 	<!-- CSS & fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
@@ -104,28 +104,60 @@
         <div class="col-md-2 col-lg-2"></div>
         <div class="col-md-7 col-lg-7">
           <main>
-            <article id="page">
-	
-  <!-- ## About
-Emerald is a minimal theme created for Jekyll. The main purpose of Emerald is to provide a clear theme for those who want a blog ready to use, focused on the content and mobile-first.
+            <article id="post-page">
+	<div>
+		<h2>Docker Pills</h2><span>[
+			
+				
+				<a href="/tag/Docker"><code class="highligher-rouge"><nobr>Docker</nobr></code>&nbsp;</a>
+			
+			]</span>	
+	<time datetime="2017-11-19T00:00:00+01:00" class="by-line">19 Nov 2017</time>
+	</div>
+		
+	<div class="content">
+		<h3 id="docker">Docker</h3>
 
-For further details on Emerald, please visit the [repository on Github](https://github.com/KingFelix/emerald/).
+<p>Hola, nuevamente un recordatorio rápido de comandos docker para la lucha con contenedores.</p>
 
-![Emerald](img/Emerald01.png "Emerald")
+<p>Show Containers:
+<code>docker container ls</code></p>
 
-### Setup
-Emerald may be installed by simply downloading the .zip folder from the [repository on Github](https://github.com/KingFelix/emerald/archive/master.zip).
+<p>Execute Commands:
+<code>docker container exec [containerId or containerName] [command]</code></p>
 
-After extracting the content from the folder into the selected directory, you can type ``jekyll serve`` from the terminal, than open your browser to ``0.0.0.0:4000/emerald/`` and you will find it there.
+<p>Console on Container:
+<code>docker container exec -it [containerId or containerName] /bin/bash</code></p>
 
-Additionally it is possible to fork the repository and use Github Pages as hosting. By following this way it will be enough to change the ``baseurl`` value into the ``_config.yml`` file, with the directory name of your project (for example /blog) or simply with a "/" (slash) if you want install Emerald in the root. 
+<p>Run  Containers:
+<code>docker container run [containerName] :[imageVersion]</code>
+<code>docker container run -p [hostPort]:[containerPort][containerName]:[imageVersion]</code></p>
 
-Last but not least: the [Jekyll documentation](http://jekyllrb.com) is the best starting point!
+<p>Background Run:
+<code>docker container run --detach -p [hostPort]:[containerPort][containerName]:[imageVersion]</code></p>
 
-Enjoy! -->
+<p>Copiar archivos :
+<code>docker container cp [file] elegant_noether:[path]</code></p>
 
+<p>Ejecutar DockerFile:
+<code>docker image build --tag [containerName]:[setNumVersion] .</code></p>
 
+<p>Volumen:
+<code>docker run -d -p [hostPort]:[containerPort] -v /[myVolumeName] :[patFolderOnContainerHost] [containerName]:[imageVersion]</code></p>
+
+<p><code>
+DockerFile FROM [imageName:imageVersion]
+EXPOSE [port]
+RUN [shellCommand]
+COPY [file] [toPath]
+LABEL [KeyPairValuem{maintainer=\"moby-dock@example.com\"}]
+</code></p>
+
+<p>Saludos.</p>
+
+	</div>
 </article>
+
 
           </main>
         </div>

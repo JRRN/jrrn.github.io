@@ -25,7 +25,7 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 ### [Patrones de estructura](patrones-de-estructura "Patrones de estructura") ###
 
 - [Patrón Adapter](patron-adapter "Patrón Adapter")
-- Patrón Bridge
+- [Patrón Bridge](patron-bridge "Patrón Bridge")
 - Patrón Composite
 - Patrón Decorator
 - Patrón Facade
