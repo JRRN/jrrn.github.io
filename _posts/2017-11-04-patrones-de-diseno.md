@@ -27,7 +27,7 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 - [Patrón Adapter](patron-adapter "Patrón Adapter")
 - [Patrón Bridge](patron-bridge "Patrón Bridge")
 - [Patrón Composite](patron-composite "Patrón Composite")
-- Patrón Decorator
+- [Patrón Decorator](patron-decorator "Patrón Decorator")
 - Patrón Facade
 - Patrón Flyweight
 - Patrón Proxy

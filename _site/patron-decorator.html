@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="generator" content="Jekyll">
+
+	<title>Patron Decorator</title>
+
+	<!-- CSS & fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/main.css">
+	
+	<!-- RSS -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+	
+	
+
+
+
+
+
+  	
+</head>
+
+
+<body>
+	<div id="wrap">
+	  	<!-- Navigation -->
+	  	<nav id="nav">
+	<div id="nav-list">
+		<a href="/">Home</a>
+		<!-- Nav pages -->
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	      <a href="/about" title="Sobre mí">Sobre mí</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+    <!-- Nav links -->
+	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
+<a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
+
+
+
+	</div>
+  
+  <!-- Nav footer -->
+	
+	  <span>version 1.0.0</span>
+
+
+
+
+
+	
+
+</nav>
+
+    <!-- Icon menu -->
+	  <a id="nav-menu">
+	  	<div id="menu"></div>
+	  </a>
+      <!-- Header -->
+      
+        <header id="header">
+	<a href="/">
+		<img src="/img/emerald.svg" alt="Emerald Logo">
+	  <h1>JRRN Coding!</h1>
+	</a>
+</header>
+
+      
+
+    <!-- Main content -->
+	  <div id="container">
+      <div class="row">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-md-7 col-lg-7">
+          <main>
+            <article id="post-page">
+	<div>
+		<h2>Patron Decorator</h2><span>[
+			
+			]</span>	
+	<time datetime="2017-11-29T00:00:00+01:00" class="by-line">29 Nov 2017</time>
+	</div>
+		
+	<div class="content">
+		
+<hr />
+<p>layout: post
+title: Patrón Decorator
+tags: Arquitectura
+—
+El patrón decorator nos permite agregar de forma dinámica funcionalidades suplementarias a un objeto sin tener que modificar la interfaz de un objeto y quedando de una forma transparente de cara al cliente.</p>
+
+<p>Así, el patrón decorator es una forma más para poder crear una subclase y vitaminar un objeto sin tener que tocar la clase principal de ese mismo objeto.</p>
+
+<p>En nuestro sistema de libros, podemos querer ver ciertas particularidades que tienen los libros de tecnología.</p>
+
+<p>Muchos pensareís “<em>pero si esto me lo da la herencia</em>” y yo os contesto “<em>la herencia es demasiado potente para esta vanalidad y recordad que la herencia es un mecanismo estático</em>” con lo que deberiamos ir tocando en todas las hereditairas si ampliamos la interfaz o el objeto Book.</p>
+
+<p>¿Lo vemos con el ejemplo? Pues vamos.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">ICatalago</span> <span class="p">{</span>
+    <span class="k">void</span> <span class="nf">VerDatosLibro</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Books</span> <span class="p">:</span> <span class="n">ICatalago</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">VerDatosLibro</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Mostrando Libro"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Decorador</span> <span class="p">:</span> <span class="n">ICatalago</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="n">ICatalago</span> <span class="n">_catalogo</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">Decorador</span><span class="p">(</span><span class="n">ICatalogo</span> <span class="n">catalogo</span><span class="p">){</span>
+        <span class="n">_catalogo</span> <span class="p">=</span> <span class="n">catalogo</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">VerCatalogo</span><span class="p">(){</span>
+        <span class="n">_catalogo</span><span class="p">.</span><span class="nf">VerDatosLibro</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">EditorialTecnologicaDecorador</span> <span class="p">:</span> <span class="n">Decordor</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nf">EditorialTecnologicaDecorador</span><span class="p">(</span><span class="n">ICatalago</span> <span class="n">catalogo</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">catalogo</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">void</span> <span class="nf">VisualizaEditorialLibrosTecnicos</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Editorial libro técnico."</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">VerCatalogo</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">base</span><span class="p">.</span><span class="nf">VerDatosLibro</span><span class="p">();</span>
+        <span class="nf">VisualizaEditorialLibrosTecnicos</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">AutorTecnologicoDecorador</span> <span class="p">:</span> <span class="n">Decordor</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nf">AutorTecnologicaDecorador</span><span class="p">(</span><span class="n">ICatalago</span> <span class="n">catalogo</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">catalogo</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">void</span> <span class="nf">VisualizaAutorLibrosTecnicos</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Autor técnico."</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">VerCatalogo</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">base</span><span class="p">.</span><span class="nf">VerDatosLibro</span><span class="p">();</span>
+        <span class="nf">VisualizaAutorLibrosTecnicos</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">VistaCatalogo</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Book</span> <span class="n">libro</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Book</span><span class="p">();</span>
+        <span class="n">EditorialTecnologicaDecorador</span> <span class="n">editorialTechlDecorador</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EditorialTecnologicaDecorador</span><span class="p">(</span><span class="n">libro</span><span class="p">);</span>
+        <span class="n">AutorTecnologicaDecorador</span> <span class="n">autorTechDecorador</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">AutorTecnologicaDecorador</span><span class="p">(</span><span class="n">libro</span><span class="p">);</span>
+        <span class="n">autorTechDecorador</span><span class="p">.</span><span class="nf">VerDatosLibro</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>La salida sería:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Mostrando Libro
+Editorial libro técnico.
+Autor técnico
+</code></pre></div></div>
+
+<p>Saludos.</p>
+
+
+	</div>
+</article>
+
+
+          </main>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <br/>
+<br/>
+<h5>Archivo </h5>
+
+
+
+  
+  
+  <a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code></a><br/>
+
+  
+  
+  <a href="/tag/Git"><code class="highligher-rouge"><nobr>Git</nobr></code></a><br/>
+
+  
+  
+  <a href="/tag/Docker"><code class="highligher-rouge"><nobr>Docker</nobr></code></a><br/>
+
+  
+  
+  <a href="/tag/Azure"><code class="highligher-rouge"><nobr>Azure</nobr></code></a><br/>
+
+
+        </div>
+        <div class="col-md-1 col-lg-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 pull-center">
+		  <!-- Pagination links -->
+      
+      </div>
+      </div>
+    </div>
+    <br/><br/><br/>
+	    
+	    <!-- Footer -->
+	    <footer>
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10 pull-center">
+                <span>@2017 - JRRN</span>
+        </div>
+        <div class="col-md-1 pull-right">
+                <a href="https://github.com/jrrn" target="_blank">
+                    <img src="/img/icons/github_ico.jpg" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
+                </a>
+                <a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" target="_blank">
+                    <img src="/img/icons/linkedin_ico.jpg" class="socialLinksfooter" style="height: 30px;" alt="LinkedIn Logo">
+                </a>
+        </div>
+    </div>
+
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+
+	    <!-- Script -->
+      <script src="/js/main.js"></script>	
+
+
+  </div>
+</body>
+</html>
