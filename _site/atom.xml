@@ -4,7 +4,7 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2017-11-29T20:32:02+01:00</updated>
+ <updated>2017-11-29T20:33:41+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
@@ -14,11 +14,11 @@
  
 
  <entry>
-   <title>Patron Decorator</title>
+   <title>Patrón Decorator</title>
    <link href="http://localhost:4000/patron-decorator"/>
    <id>http://localhost:4000/patron-decorator</id>
    <updated>2017-11-29T00:00:00+01:00</updated>
-   <content type="html">&lt;hr /&gt; &lt;p&gt;layout: post title: Patrón Decorator tags: Arquitectura — El patrón decorator nos permite agregar de forma dinámica funcionalidades suplementarias a un objeto sin tener que modificar la interfaz de un objeto y quedando de una forma transparente de cara al cliente.&lt;/p&gt; &lt;p&gt;Así, el patrón decorator es una forma...</content>
+   <content type="html">&lt;p&gt;El patrón decorator nos permite agregar de forma dinámica funcionalidades suplementarias a un objeto sin tener que modificar la interfaz de un objeto y quedando de una forma transparente de cara al cliente.&lt;/p&gt; &lt;p&gt;Así, el patrón decorator es una forma más para poder crear una subclase y vitaminar un objeto...</content>
  </entry>
 
  
