@@ -4,12 +4,22 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2017-11-23T21:30:26+01:00</updated>
+ <updated>2017-11-29T19:54:10+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
    <email></email>
  </author>
+
+ 
+
+ <entry>
+   <title>Patrón Composite</title>
+   <link href="http://localhost:4000/patron-composite"/>
+   <id>http://localhost:4000/patron-composite</id>
+   <updated>2017-11-27T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;El patrón composite nos da la utilidad de generar un composición de objetos variables. Esta compsición, generalmente, se encuentra en forma de arbol y respeta un jerarquía.&lt;/p&gt; &lt;p&gt;A través de este poliformismo variable de la citada jerarquía el encapsulamiento a ojos del cliente es muy sencilla y puede usarlos sin...</content>
+ </entry>
 
  
 
@@ -99,16 +109,6 @@
    <id>http://localhost:4000/patron-factory-method</id>
    <updated>2017-11-08T00:00:00+01:00</updated>
    <content type="html">&lt;p&gt;El objetivo del patrón Factory es proveer de un método abstracto de creación de un objeto delegando en las subclases concretas su creación concreta.&lt;/p&gt; &lt;p&gt;Lo que para los mortales como yo, esto significa que definiremos una clase base donde los métodos puedan ser sobrecargados con la implementación específica de cada...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Builder</title>
-   <link href="http://localhost:4000/patron-builder"/>
-   <id>http://localhost:4000/patron-builder</id>
-   <updated>2017-11-07T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El objetivo del patrón &lt;strong&gt;Builder&lt;/strong&gt; es abstraer la construcción de objetos complejos de su implementación de modo que un cliente pueda crear objetos complejos sin tener que preocuparse de las diferencias en su implantación.&lt;/p&gt; &lt;p&gt;Volviendo a nuestro ejemplo de los libros y revistas. Durante la compra de libros/revistas se generan...</content>
  </entry>
 
  
