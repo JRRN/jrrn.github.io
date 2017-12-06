@@ -3,6 +3,7 @@ layout: post
 title: Patrón Decorator
 tags: Arquitectura
 ---
+
 El patrón decorator nos permite agregar de forma dinámica funcionalidades suplementarias a un objeto sin tener que modificar la interfaz de un objeto y quedando de una forma transparente de cara al cliente.
 
 Así, el patrón decorator es una forma más para poder crear una subclase y vitaminar un objeto sin tener que tocar la clase principal de ese mismo objeto.

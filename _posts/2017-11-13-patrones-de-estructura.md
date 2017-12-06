@@ -14,6 +14,6 @@ De esta forma se proporcina de un mecanismo de encapsulación de objetos donde s
 - [Patrón Bridge](patron-bridge "Patrón Bridge")
 - [Patrón Composite](patron-composite "Patrón Composite")
 - [Patrón Decorator](patron-decorator "Patrón Decorator")
-- Patrón Facade
+- [Patrón Facade](patron-facade "Patrón Facade")
 - Patrón Flyweight
 - Patrón Proxy

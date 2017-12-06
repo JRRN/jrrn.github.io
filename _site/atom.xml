@@ -4,12 +4,22 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2017-11-29T20:34:00+01:00</updated>
+ <updated>2017-12-06T12:14:46+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
    <email></email>
  </author>
+
+ 
+
+ <entry>
+   <title>Patrón Facade</title>
+   <link href="http://localhost:4000/patron-facade"/>
+   <id>http://localhost:4000/patron-facade</id>
+   <updated>2017-12-03T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;La función del patrón facade es resolver agrupando en una única interfaz como conjunto de objetos varias interfaces.&lt;/p&gt; &lt;p&gt;De esta forma el patrón facade encapsula las interfaces especificas y expone una unica interfaz como punto de entrada.&lt;/p&gt; &lt;p&gt;Para los mortales, simplemente se trata de que toda petición entre por una...</content>
+ </entry>
 
  
 
@@ -99,16 +109,6 @@
    <id>http://localhost:4000/patron-singleton</id>
    <updated>2017-11-10T00:00:00+01:00</updated>
    <content type="html">&lt;p&gt;El patrón singleton tiene como objetivo asegurar que una clase sólo posee una instancia y proporciona un método de clase único que devuelve la instancia.&lt;/p&gt; &lt;p&gt;Es un patrón simple y conocido. Si queremos que solo haya una instancia de un objeto y no se puedan generar más mientras haya una...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Prototype</title>
-   <link href="http://localhost:4000/patron-prototype"/>
-   <id>http://localhost:4000/patron-prototype</id>
-   <updated>2017-11-09T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El objetivo de este patrón es la creación de nuevos objetos mediante la duplicación de objetos existentes llamados prototipos que disponen de la capacidad de clonación.&lt;/p&gt; &lt;p&gt;En resumen, y simplificando, crear nuevos objetos a partir de un objeto existente sin modificar una clase siempre que se añada un nuevo objeto.&lt;/p&gt;...</content>
  </entry>
 
  
