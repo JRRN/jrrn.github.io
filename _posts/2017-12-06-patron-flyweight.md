@@ -61,7 +61,40 @@ public class DeterminaOpcion {
     }
 }
 
+public class LibroPedido{
+    protected IList<OpcionLibro> opcionLibro = new List<OpcionLibro>();
+    protected IList<int> precioVenta = new List<int>();
 
+    public void agregaOpcionLibro(TipoLibro tipoLibro, int precio, DeterminaOpcion opcion) {
+        opcionLibro.Add(DeterminaOpcion.GetOpcionesLibro(tipoLibro));
+        precioVenta.Add(precio);
+    }
 
+    public void MuestraOpciones()
+    {
+        int tamaño;
+        tamaño = opcionLibro.Count;
 
+        for(int inddice = 0; indice < tamaño; indice++) {
+            opcionLibro[indice].Visualiza(precioVenta[indice]);
+            Console.WriteLine();
+        }
+    }
+}
+
+public class Cliente {
+    static void Main(string[] args) {
+        DeterminaOpcion opcion = new DeterminaOpcion();
+        LibroPedido libroPedido = new LibroPedido();
+
+        libropedido.agregaOpcionLibro(TipoLibro.Anillas, 10, opcion);
+        libropedido.agregaOpcionLibro(TipoLibro.Encolado, 30, opcion);
+
+        libroPedido.MuestraOpciones();
+    }
+}
 ~~~
+
+Como se puede apreciar Flyweigth nos permite granular el tipo de libro y ,sobre este, calcular las propiedades específicas del libro, tales como el grosor del papel y el tipo de tapa sin tener que pasar ningún parámetro sobre estos en cada capa del servicio.
+
+Saludos.

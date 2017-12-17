@@ -13,7 +13,6 @@ Para ello, a través de una clase abstracta que hereda los métodos de la clase 
 Sin más, vamos al ejemplo con el que se verá más claro su estrucutura y comportamiento:
 
 ~~~csharp
-
 enum TipoLibroEnum{
     Media,
     Paper
