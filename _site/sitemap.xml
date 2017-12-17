@@ -45,6 +45,10 @@
 <lastmod>2017-11-14T00:00:00+01:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/patron-proxy</loc>
+<lastmod>2017-11-15T00:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/patron-bridge</loc>
 <lastmod>2017-11-16T00:00:00+01:00</lastmod>
 </url>
@@ -67,6 +71,10 @@
 <url>
 <loc>http://localhost:4000/patron-flyweight</loc>
 <lastmod>2017-12-06T00:00:00+01:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/patrones-de-comportamiento</loc>
+<lastmod>2017-12-17T00:00:00+01:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/404</loc>

@@ -4,12 +4,22 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2017-12-17T19:33:54+01:00</updated>
+ <updated>2017-12-17T20:24:31+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
    <email></email>
  </author>
+
+ 
+
+ <entry>
+   <title>Patrones de Estructura</title>
+   <link href="http://localhost:4000/patrones-de-comportamiento"/>
+   <id>http://localhost:4000/patrones-de-comportamiento</id>
+   <updated>2017-12-17T00:00:00+01:00</updated>
+   <content type="html">&lt;h3 id=&quot;patrones-de-comportamiento&quot;&gt;Patrones de comportamiento&lt;/h3&gt; &lt;p&gt;Los patrones de comportamiento, nos ayudan a solucionar los problemas con las estrcuturas de datos y los objetos. Nos proporcionan soluciones a para identificar y poder distribuir los algoritmos entre ellos y su proceso.&lt;/p&gt; &lt;p&gt;Mediante flujos de control y flujos de proceso se orquestan estos algortimos...</content>
+ </entry>
 
  
 
@@ -74,6 +84,16 @@
  
 
  <entry>
+   <title>Patrón Proxy</title>
+   <link href="http://localhost:4000/patron-proxy"/>
+   <id>http://localhost:4000/patron-proxy</id>
+   <updated>2017-11-15T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;El patrón proxy se utiliza para diseñar un objeto que substutiye a otro objeto que controla su acceso. El objeto proxy es el que queda expuesto en la capa de servicios o presentación siendo idéntico y con mismo contrato que el orignal.&lt;/p&gt; &lt;p&gt;El claro ejemplo, son las entidades que solemos...</content>
+ </entry>
+
+ 
+
+ <entry>
    <title>Un poquito de Git</title>
    <link href="http://localhost:4000/un-poquito-de-git"/>
    <id>http://localhost:4000/un-poquito-de-git</id>
@@ -89,26 +109,6 @@
    <id>http://localhost:4000/patron-adapter</id>
    <updated>2017-11-14T00:00:00+01:00</updated>
    <content type="html">&lt;p&gt;El patrón adapter se centra en convertir la interfaz de una clase en la interfaz que necesitaran los clientes. Se trata de ofrecer con una nueva interfaz la exposición de los objetos de los clientes.&lt;/p&gt; &lt;p&gt;En definitiva, lo que se prentende con este patrón es generar una nueva interfaz, sobre...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrones de Estructura</title>
-   <link href="http://localhost:4000/patrones-de-estructura"/>
-   <id>http://localhost:4000/patrones-de-estructura</id>
-   <updated>2017-11-13T00:00:00+01:00</updated>
-   <content type="html">&lt;h3 id=&quot;patrones-de-estructura&quot;&gt;Patrones de estructura&lt;/h3&gt; &lt;p&gt;Los patrones de estructura tiene el objetivo de facilitar la separación de la interfaz de un objeto o varios de sus implementaciones.&lt;/p&gt; &lt;p&gt;De esta forma se proporcina de un mecanismo de encapsulación de objetos donde se aumenta la abstracción dentro de la aplicaión. Y el mecanismo...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Move me To Azure</title>
-   <link href="http://localhost:4000/move-me-to-azure"/>
-   <id>http://localhost:4000/move-me-to-azure</id>
-   <updated>2017-11-12T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;Hola de nuevo, cambiando un poco la temática que llevo siguiendo sobre patrones, me gustaría escribir algo que he descubierto y que es una píldora, fácil y rápida.&lt;/p&gt; &lt;p&gt;En &lt;a href=&quot;https://www.plainconcepts.com&quot; title=&quot;Plain Concepts&quot;&gt;Plain&lt;/a&gt; he estado trabajando en la integración con una herramienta &lt;em&gt;third party&lt;/em&gt;.&lt;/p&gt; &lt;p&gt;Es una aplicación que se auto...</content>
  </entry>
 
  
