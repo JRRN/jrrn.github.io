@@ -175,10 +175,43 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
+<span class="k">public</span> <span class="k">class</span> <span class="nc">LibroPedido</span><span class="p">{</span>
+    <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">OpcionLibro</span><span class="p">&gt;</span> <span class="n">opcionLibro</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">OpcionLibro</span><span class="p">&gt;();</span>
+    <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">precioVenta</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
 
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">agregaOpcionLibro</span><span class="p">(</span><span class="n">TipoLibro</span> <span class="n">tipoLibro</span><span class="p">,</span> <span class="kt">int</span> <span class="n">precio</span><span class="p">,</span> <span class="n">DeterminaOpcion</span> <span class="n">opcion</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">opcionLibro</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">DeterminaOpcion</span><span class="p">.</span><span class="nf">GetOpcionesLibro</span><span class="p">(</span><span class="n">tipoLibro</span><span class="p">));</span>
+        <span class="n">precioVenta</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">precio</span><span class="p">);</span>
+    <span class="p">}</span>
 
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">MuestraOpciones</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">tama</span><span class="err">ñ</span><span class="n">o</span><span class="p">;</span>
+        <span class="n">tama</span><span class="err">ñ</span><span class="n">o</span> <span class="p">=</span> <span class="n">opcionLibro</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
 
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">inddice</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">indice</span> <span class="p">&lt;</span> <span class="n">tama</span><span class="err">ñ</span><span class="n">o</span><span class="p">;</span> <span class="n">indice</span><span class="p">++)</span> <span class="p">{</span>
+            <span class="n">opcionLibro</span><span class="p">[</span><span class="n">indice</span><span class="p">].</span><span class="nf">Visualiza</span><span class="p">(</span><span class="n">precioVenta</span><span class="p">[</span><span class="n">indice</span><span class="p">]);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Cliente</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">DeterminaOpcion</span> <span class="n">opcion</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DeterminaOpcion</span><span class="p">();</span>
+        <span class="n">LibroPedido</span> <span class="n">libroPedido</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">LibroPedido</span><span class="p">();</span>
+
+        <span class="n">libropedido</span><span class="p">.</span><span class="nf">agregaOpcionLibro</span><span class="p">(</span><span class="n">TipoLibro</span><span class="p">.</span><span class="n">Anillas</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">opcion</span><span class="p">);</span>
+        <span class="n">libropedido</span><span class="p">.</span><span class="nf">agregaOpcionLibro</span><span class="p">(</span><span class="n">TipoLibro</span><span class="p">.</span><span class="n">Encolado</span><span class="p">,</span> <span class="m">30</span><span class="p">,</span> <span class="n">opcion</span><span class="p">);</span>
+
+        <span class="n">libroPedido</span><span class="p">.</span><span class="nf">MuestraOpciones</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
+
+<p>Como se puede apreciar Flyweigth nos permite granular el tipo de libro y ,sobre este, calcular las propiedades específicas del libro, tales como el grosor del papel y el tipo de tapa sin tener que pasar ningún parámetro sobre estos en cada capa del servicio.</p>
+
+<p>Saludos.</p>
 
 	</div>
 </article>
