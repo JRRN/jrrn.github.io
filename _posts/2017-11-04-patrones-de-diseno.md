@@ -29,7 +29,7 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 - [Patrón Composite](patron-composite "Patrón Composite")
 - [Patrón Decorator](patron-decorator "Patrón Decorator")
 - [Patrón Facade](patron-facade "Patrón Facade")
-- Patrón Flyweight
+- [Patrón Flyweight](patron-flyweight "Patrón Flyweight")
 - Patrón Proxy
 
 ### Patrones de comportamiento ###

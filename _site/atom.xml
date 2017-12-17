@@ -4,12 +4,22 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2017-12-06T12:14:46+01:00</updated>
+ <updated>2017-12-17T19:33:54+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
    <email></email>
  </author>
+
+ 
+
+ <entry>
+   <title>Patrón Flyweight</title>
+   <link href="http://localhost:4000/patron-flyweight"/>
+   <id>http://localhost:4000/patron-flyweight</id>
+   <updated>2017-12-06T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;El patrón Flyweight esta enfocado a resolver el problema de la granularidad de los objetos.&lt;/p&gt; &lt;p&gt;Recordemos que la granularidad en programación es la capacidad de definir objetos fragmentando en unidades más pequeñas la composición de este objeto de la forma más correcta.&lt;/p&gt; &lt;p&gt;En nuestro caso de libros, pongamos el ejemplo...</content>
+ </entry>
 
  
 
@@ -99,16 +109,6 @@
    <id>http://localhost:4000/move-me-to-azure</id>
    <updated>2017-11-12T00:00:00+01:00</updated>
    <content type="html">&lt;p&gt;Hola de nuevo, cambiando un poco la temática que llevo siguiendo sobre patrones, me gustaría escribir algo que he descubierto y que es una píldora, fácil y rápida.&lt;/p&gt; &lt;p&gt;En &lt;a href=&quot;https://www.plainconcepts.com&quot; title=&quot;Plain Concepts&quot;&gt;Plain&lt;/a&gt; he estado trabajando en la integración con una herramienta &lt;em&gt;third party&lt;/em&gt;.&lt;/p&gt; &lt;p&gt;Es una aplicación que se auto...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Singleton</title>
-   <link href="http://localhost:4000/patron-singleton"/>
-   <id>http://localhost:4000/patron-singleton</id>
-   <updated>2017-11-10T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón singleton tiene como objetivo asegurar que una clase sólo posee una instancia y proporciona un método de clase único que devuelve la instancia.&lt;/p&gt; &lt;p&gt;Es un patrón simple y conocido. Si queremos que solo haya una instancia de un objeto y no se puedan generar más mientras haya una...</content>
  </entry>
 
  
