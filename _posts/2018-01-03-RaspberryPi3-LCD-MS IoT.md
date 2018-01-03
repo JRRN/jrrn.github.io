@@ -6,7 +6,7 @@ tags: MsIoT
 
 ### Raspberry Pi 3, LCD, C# y MS IoT
 
-Hola hará un año o así, compré una Raspeberry Pi 3.
+Hola, hará un año o así, compré una Raspeberry Pi 3.
 
 Mi idea era jugar un poco con ella tanto en su versión modo PC/Servidor como su versión IoT.
 
@@ -27,6 +27,31 @@ Por otro lado, el esquema en [Fritzing](http://fritzing.org/home/ "fritzing"), q
 [FritzingFile](/img/lcdiot/lcdfritzing.fzz "Fritzing File")
 
 Y finalmente el código fuente:
+
+~~~csharp
+    public sealed partial class MainPage : Page
+    {
+        CharacterLCD lcd = null;
+        public MainPage()
+        {
+            InitializeComponent();
+            Unloaded += MainPage_Unloaded;
+
+            lcd = new CharacterLCD();
+            lcd.WriteLCD("Welcome MS IoT 2 Plain Concepts!");
+        }
+
+        private void MainPage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            lcd.Dispose();
+        }
+
+        private void WriteLCD_Click(object sender, RoutedEventArgs e)
+        {
+            lcd.WriteLCD(txtWriteLCD.Text);
+        }
+    }
+~~~
 
 [LCD](https://github.com/JRRN/MS_IoT "GitHub JRRN")
 
