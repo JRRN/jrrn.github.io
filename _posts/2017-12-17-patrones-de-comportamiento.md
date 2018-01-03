@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Patrones de Estructura
+title: Patrones de Comportamiento
 tags: Arquitectura
 ---
 ### Patrones de comportamiento ###
