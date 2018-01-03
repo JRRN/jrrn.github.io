@@ -4,7 +4,7 @@ title: Raspberry Pi 3, LCD Display, C# y MS IoT
 tags: MsIoT
 ---
 
-### Raspberry Pi 3, LCD y MS IoT
+### Raspberry Pi 3, LCD, C# y MS IoT
 
 Hola hará un año o así, compré una Raspeberry Pi 3.
 
