@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 	<meta name="generator" content="Jekyll">
 
-	<title>Move me To Azure</title>
+	<title>Patrones de Comportamiento</title>
 
 	<!-- CSS & fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
@@ -110,53 +110,43 @@
           <main>
             <article id="post-page">
 	<div>
-		<h2>Move me To Azure</h2><span>[
+		<h2>Patrones de Comportamiento</h2><span>[
 			
 				
-				<a href="/tag/Azure"><code class="highligher-rouge"><nobr>Azure</nobr></code>&nbsp;</a>
+				<a href="/tag/MsIoT"><code class="highligher-rouge"><nobr>MsIoT</nobr></code>&nbsp;</a>
 			
 			]</span>	
-	<time datetime="2017-11-12T00:00:00+01:00" class="by-line">12 Nov 2017</time>
+	<time datetime="2018-01-03T00:00:00+01:00" class="by-line">03 Jan 2018</time>
 	</div>
 		
 	<div class="content">
-		<p>Hola de nuevo, cambiando un poco la temática que llevo siguiendo sobre patrones, me gustaría escribir algo que he descubierto y que es una píldora, fácil y rápida.</p>
+		<h3 id="mostrar-texto-en-lcd-via-microsoft-iot">Mostrar Texto En LCD via Microsoft IoT</h3>
 
-<p>En <a href="https://www.plainconcepts.com" title="Plain Concepts">Plain</a> he estado trabajando en la integración con una herramienta <em>third party</em>.</p>
+<p>Hola hará un año o así, compré una Raspeberry Pi 3.</p>
 
-<p>Es una aplicación que se auto instala en el IIS. La problemática que tenía era la forma de migrar ese instalable sobre un servicio App en Azure.</p>
+<p>Mi idea era jugar un poco con ella tanto en su versión modo PC/Servidor como su versión IoT.</p>
 
-<p>En <a href="https://www.movemetothecloud.net/" title="Migración a Azure">Movemetothecloud</a> encontré la solución. Con un par de siguiente, siguiente, siguiente, había desplegado la aplicación <em>third party</em> en un segundos y funcionando correctamente.</p>
+<p>Durante este año, he jugado con ella, he probado varias distribuciones Raspbian, Arch Linux, Suse y Fedora, buscando cual era la más comoda, me ofrecía más prestaciones, etc…</p>
 
-<p><img src="/img/movemetoazure/MoveMeToAzureCloud.png" alt="MoveMeToAzure" title="MoveMeToAzure" /></p>
+<p>En su día, este blog estuvo alojado con un nginx + PhP + postgreSQL + Wordpress, finalmente un día, se me quedó frita, y aunque tenía documentado paso por paso como levantarlo otra vez, decidí migrar a Github Pages.</p>
 
-<p>También, detecta las connectionstrings del web.config, que entiendo que será capaz de desplegar el ServiceApp por un lado en Azure y hacer la referencia sobre la bd a la que apunte el site.</p>
+<p>Después de esta gran anécdota, decidí comprar un par de starter kits de elegoo, el Fun Kit y 37 Sensor Kit v 2.0 y ver si Microsoft había avanzado en este línea, que en sus comienzos era como una piedra, o la tenías de adorno o se la tirabas a alguien a la cabeza. Me sorprende que los sistemas Linux hayan podido montar todo el SO y Microsoft no, pero eso es otra charla, un ¿NANO Server?</p>
 
-<p>Dejo abierto este post, para su actualización, ya que esto que comento, es el siguiente paso que voy probar.</p>
+<p>En definitiva, os adjunto, el código y el esquema para poder enviar texto sobre una pantalla LCD desde la RPi3.</p>
 
-<p>[Actualizado]</p>
+<p>Esquema:</p>
 
-<p>Lo prometido es deuda…</p>
+<p><img src="/img/lcdiot/lcddiagram.png" alt="lcddiagram" title="lcddiagram" /></p>
 
-<p>Efectivamente, he podido comprobar que si la solución tiene connectionsstrings en el web.config, estas son detectadas:</p>
+<p>Por otro lado, el esquema en <a href="http://fritzing.org/home/" title="fritzing">Fritzing</a>, que si no lo conoceís, es un programa de código abierto que te permite crear los esquemas y diagramas con un montón de componentes.</p>
 
-<p><img src="/img/movemetoazure/connstrings.png" alt="Connectionsstring" title="connstrings" /></p>
+<p><a href="/img/lcdiot/lcdfritzing.fzz" title="Fritzing File">FritzingFile</a></p>
 
-<ul>
-  <li><em>Los nombres de la aplicación y de BDs han sido borrados.</em></li>
-</ul>
+<p>Y finalmente el código fuente:</p>
 
-<p>Seleccionamos la applicación a migrar hacia Azure y las bases de datos que la aplicación usa.</p>
+<p><a href="https://github.com/JRRN/MS_IoT" title="GitHub JRRN">LCD</a></p>
 
-<p>Nos encontraremos con un asistente en el que podremos parametrizar los nombres tanto del servidor sql como de la WebApp y otro parámetros de la máquina, tipo, etc…</p>
-
-<p><img src="/img/movemetoazure/migrationDBToAzure.png" alt="MigrationDBToAzure" title="migrationDBToAzure" /></p>
-
-<p>Y ta-chan! Empieza a migrar tanto el site como las bases de datos y TODO su contenido.</p>
-
-<p>Bueno, bonito y barato.</p>
-
-<p>Saludos.</p>
+<p>Nos vemos.</p>
 
 	</div>
 </article>

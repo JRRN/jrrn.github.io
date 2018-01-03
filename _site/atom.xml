@@ -4,12 +4,22 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2018-01-03T19:45:33+01:00</updated>
+ <updated>2018-01-03T22:34:53+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
    <email></email>
  </author>
+
+ 
+
+ <entry>
+   <title>Patrones de Comportamiento</title>
+   <link href="http://localhost:4000/LCD-Ms-IoT"/>
+   <id>http://localhost:4000/LCD-Ms-IoT</id>
+   <updated>2018-01-03T00:00:00+01:00</updated>
+   <content type="html">&lt;h3 id=&quot;mostrar-texto-en-lcd-via-microsoft-iot&quot;&gt;Mostrar Texto En LCD via Microsoft IoT&lt;/h3&gt; &lt;p&gt;Hola hará un año o así, compré una Raspeberry Pi 3.&lt;/p&gt; &lt;p&gt;Mi idea era jugar un poco con ella tanto en su versión modo PC/Servidor como su versión IoT.&lt;/p&gt; &lt;p&gt;Durante este año, he jugado con ella, he probado varias distribuciones Raspbian, Arch...</content>
+ </entry>
 
  
 
@@ -99,16 +109,6 @@
    <id>http://localhost:4000/un-poquito-de-git</id>
    <updated>2017-11-14T00:00:00+01:00</updated>
    <content type="html">&lt;p&gt;Hola, hoy quiero traeros una recopilación de comandos relacionados con la función que realizan sobre un repositorio Git.&lt;/p&gt; &lt;p&gt;Con esta chuleta podremos recordar facilmente que comandos deberíamos usar en cada caso en nuestra lucha con los repositorios.&lt;/p&gt; &lt;table class=&quot;table table-striped&quot;&gt; &lt;thead&gt; &lt;tr class=&quot;row-1 odd&quot;&gt; &lt;th class=&quot;column-1&quot;&gt;Función&lt;/th&gt; &lt;th class=&quot;column-2&quot;&gt;Comando&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt;...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Adapter</title>
-   <link href="http://localhost:4000/patron-adapter"/>
-   <id>http://localhost:4000/patron-adapter</id>
-   <updated>2017-11-14T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón adapter se centra en convertir la interfaz de una clase en la interfaz que necesitaran los clientes. Se trata de ofrecer con una nueva interfaz la exposición de los objetos de los clientes.&lt;/p&gt; &lt;p&gt;En definitiva, lo que se prentende con este patrón es generar una nueva interfaz, sobre...</content>
  </entry>
 
  
