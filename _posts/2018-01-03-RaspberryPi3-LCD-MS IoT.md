@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Patrones de Comportamiento
+title: Raspberry Pi 3, LCD Display, C# y MS IoT
 tags: MsIoT
 ---
 
-### Mostrar Texto En LCD via Microsoft IoT
+### Raspberry Pi 3, LCD y MS IoT
 
 Hola hará un año o así, compré una Raspeberry Pi 3.
 
