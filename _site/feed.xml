@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-03T22:41:18+01:00</updated><id>http://localhost:4000/</id><title type="html">JRRN Coding! | A simple Jekyll blog</title><subtitle>A minimal blog template, build with Jekyll.</subtitle><author><name>JRRN</name><email></email></author><entry><title type="html">Raspberry Pi 3, LCD Display, C# y MS IoT</title><link href="http://localhost:4000/RaspberryPi3-LCD-MS-IoT" rel="alternate" type="text/html" title="Raspberry Pi 3, LCD Display, C# y MS IoT" /><published>2018-01-03T00:00:00+01:00</published><updated>2018-01-03T00:00:00+01:00</updated><id>http://localhost:4000/RaspberryPi3-LCD-MS%20IoT</id><content type="html" xml:base="http://localhost:4000/RaspberryPi3-LCD-MS-IoT">&lt;h3 id=&quot;raspberry-pi-3-lcd-y-ms-iot&quot;&gt;Raspberry Pi 3, LCD y MS IoT&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-03T22:47:46+01:00</updated><id>http://localhost:4000/</id><title type="html">JRRN Coding! | A simple Jekyll blog</title><subtitle>A minimal blog template, build with Jekyll.</subtitle><author><name>JRRN</name><email></email></author><entry><title type="html">Raspberry Pi 3, LCD Display, C# y MS IoT</title><link href="http://localhost:4000/RaspberryPi3-LCD-MS-IoT" rel="alternate" type="text/html" title="Raspberry Pi 3, LCD Display, C# y MS IoT" /><published>2018-01-03T00:00:00+01:00</published><updated>2018-01-03T00:00:00+01:00</updated><id>http://localhost:4000/RaspberryPi3-LCD-MS%20IoT</id><content type="html" xml:base="http://localhost:4000/RaspberryPi3-LCD-MS-IoT">&lt;h3 id=&quot;raspberry-pi-3-lcd-c-y-ms-iot&quot;&gt;Raspberry Pi 3, LCD, C# y MS IoT&lt;/h3&gt;
 
-&lt;p&gt;Hola hará un año o así, compré una Raspeberry Pi 3.&lt;/p&gt;
+&lt;p&gt;Hola, hará un año o así, compré una Raspeberry Pi 3.&lt;/p&gt;
 
 &lt;p&gt;Mi idea era jugar un poco con ella tanto en su versión modo PC/Servidor como su versión IoT.&lt;/p&gt;
 
@@ -22,9 +22,33 @@
 
 &lt;p&gt;Y finalmente el código fuente:&lt;/p&gt;
 
+&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sealed&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;partial&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MainPage&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Page&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;CharacterLCD&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lcd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MainPage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nf&quot;&gt;InitializeComponent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;Unloaded&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MainPage_Unloaded&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;lcd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CharacterLCD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;lcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLCD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Welcome MS IoT 2 Plain Concepts!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MainPage_Unloaded&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RoutedEventArgs&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;lcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Dispose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;WriteLCD_Click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RoutedEventArgs&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;lcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLCD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;txtWriteLCD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;p&gt;&lt;a href=&quot;https://github.com/JRRN/MS_IoT&quot; title=&quot;GitHub JRRN&quot;&gt;LCD&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Nos vemos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="MsIoT" /><summary type="html">Raspberry Pi 3, LCD y MS IoT</summary></entry><entry><title type="html">Patrones de Comportamiento</title><link href="http://localhost:4000/patrones-de-comportamiento" rel="alternate" type="text/html" title="Patrones de Comportamiento" /><published>2017-12-17T00:00:00+01:00</published><updated>2017-12-17T00:00:00+01:00</updated><id>http://localhost:4000/patrones-de-comportamiento</id><content type="html" xml:base="http://localhost:4000/patrones-de-comportamiento">&lt;h3 id=&quot;patrones-de-comportamiento&quot;&gt;Patrones de comportamiento&lt;/h3&gt;
+&lt;p&gt;Nos vemos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="MsIoT" /><summary type="html">Raspberry Pi 3, LCD, C# y MS IoT</summary></entry><entry><title type="html">Patrones de Comportamiento</title><link href="http://localhost:4000/patrones-de-comportamiento" rel="alternate" type="text/html" title="Patrones de Comportamiento" /><published>2017-12-17T00:00:00+01:00</published><updated>2017-12-17T00:00:00+01:00</updated><id>http://localhost:4000/patrones-de-comportamiento</id><content type="html" xml:base="http://localhost:4000/patrones-de-comportamiento">&lt;h3 id=&quot;patrones-de-comportamiento&quot;&gt;Patrones de comportamiento&lt;/h3&gt;
 
 &lt;p&gt;Los patrones de comportamiento, nos ayudan a solucionar los problemas con las estrcuturas de datos y los objetos. Nos proporcionan soluciones a para identificar y poder distribuir los algoritmos entre ellos y su proceso.&lt;/p&gt;
 

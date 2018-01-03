@@ -4,7 +4,7 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2018-01-03T22:41:18+01:00</updated>
+ <updated>2018-01-03T22:47:46+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
@@ -18,7 +18,7 @@
    <link href="http://localhost:4000/RaspberryPi3-LCD-MS-IoT"/>
    <id>http://localhost:4000/RaspberryPi3-LCD-MS IoT</id>
    <updated>2018-01-03T00:00:00+01:00</updated>
-   <content type="html">&lt;h3 id=&quot;raspberry-pi-3-lcd-y-ms-iot&quot;&gt;Raspberry Pi 3, LCD y MS IoT&lt;/h3&gt; &lt;p&gt;Hola hará un año o así, compré una Raspeberry Pi 3.&lt;/p&gt; &lt;p&gt;Mi idea era jugar un poco con ella tanto en su versión modo PC/Servidor como su versión IoT.&lt;/p&gt; &lt;p&gt;Durante este año, he jugado con ella, he probado varias distribuciones Raspbian, Arch...</content>
+   <content type="html">&lt;h3 id=&quot;raspberry-pi-3-lcd-c-y-ms-iot&quot;&gt;Raspberry Pi 3, LCD, C# y MS IoT&lt;/h3&gt; &lt;p&gt;Hola, hará un año o así, compré una Raspeberry Pi 3.&lt;/p&gt; &lt;p&gt;Mi idea era jugar un poco con ella tanto en su versión modo PC/Servidor como su versión IoT.&lt;/p&gt; &lt;p&gt;Durante este año, he jugado con ella, he probado varias distribuciones Raspbian,...</content>
  </entry>
 
  
