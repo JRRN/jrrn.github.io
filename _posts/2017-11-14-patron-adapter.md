@@ -4,9 +4,9 @@ title: Patrón Adapter
 tags: Arquitectura
 ---
 
-El patrón adapter se centra en convertir la interfaz de una clase en la interfaz que necesitaran los clientes. Se trata de ofrecer con una nueva interfaz la exposición de los objetos de los clientes.
+El patrón **adapter** se centra en convertir la interfaz de una clase en la interfaz que necesitaran los clientes. Se trata de ofrecer con una nueva interfaz la exposición de los objetos de los clientes.
 
-En definitiva, lo que se prentende con este patrón es generar una nueva interfaz, sobre una ya existente y no dejar expuesta la clase.
+En definitiva, lo que se pretende con este patrón es generar una nueva interfaz, sobre una ya existente y no dejar expuesta la clase.
 
 En nuestro sistema de libros, crearemos una interfaz con los métodos para generar el libro, componerlo e imprimirlo.
 
@@ -40,7 +40,7 @@ public class PaperBook : IBook {
 }
 ~~~
 
-Sin embargo, ahora vamos a crear un libro no físico, sin emabrgo para este tipo de libros, el mecanismos es muy parecido pero no igual.
+Sin embargo, ahora vamos a crear un libro no físico, sin embargo para este tipo de libros, el mecanismo es muy parecido pero no igual.
 Con lo que aquí entra en juego el patrón Adapter:
 
 ~~~csharp
@@ -69,7 +69,7 @@ public class PdfBase {
 }
 ~~~
 
-Como podemos ver la clase PdfBase es independiente a la jerarquía que hasta ahora tenemos. Sin embargo podemos ver métodos que podrian pertenecer a la interfaz IBook, así que nos toca "adaptar" esta lógica para que acepte la jerarquía:
+Como podemos ver la clase PdfBase es independiente a la jerarquía que hasta ahora tenemos. Sin embargo, podemos ver métodos que podrían pertenecer a la interfaz IBook, así que nos toca "adaptar" esta lógica para que acepte la jerarquía:
 
 ~~~csharp
 public class PdfBook : IBook {
@@ -118,4 +118,5 @@ public class Servicio{
 }
 ~~~
 
-un saludo.
+Un saludo.
+

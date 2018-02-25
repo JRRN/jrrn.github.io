@@ -3,7 +3,7 @@ layout: post
 title: Patrón Flyweight
 tags: Arquitectura
 ---
-El patrón Flyweight esta enfocado a resolver el problema de la granularidad de los objetos.
+El patrón **Flyweight** está enfocado a resolver el problema de la granularidad de los objetos.
 
 Recordemos que la granularidad en programación es la capacidad de definir objetos fragmentando en unidades más pequeñas la composición de este objeto de la forma más correcta.
 
@@ -95,6 +95,7 @@ public class Cliente {
 }
 ~~~
 
-Como se puede apreciar Flyweigth nos permite granular el tipo de libro y ,sobre este, calcular las propiedades específicas del libro, tales como el grosor del papel y el tipo de tapa sin tener que pasar ningún parámetro sobre estos en cada capa del servicio.
+Como se puede apreciar Flyweigth nos permite granular el tipo de libro y, sobre este, calcular las propiedades específicas del libro, tales como el grosor del papel y el tipo de tapa sin tener que pasar ningún parámetro sobre estos en cada capa del servicio.
 
 Saludos.
+

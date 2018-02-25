@@ -4,13 +4,13 @@ title: Patrón Bridge
 tags: Arquitectura
 ---
 
-El patrón bridge es usado para separar la implementación de un objeto, de su representación y de su interfaz. Así, conseguimos que la implementación de este objeto quede intacta, mientras que la representación puede crecer de manera independiente sin que haya un acomplamiento y tengamos que hacer cambios en el objeto con estas nuevas ampliaciones.
+El patrón **bridge** es usado para separar la implementación de un objeto, de su representación y de su interfaz. Así, conseguimos que la implementación de este objeto quede intacta, mientras que la representación puede crecer de manera independiente sin que haya un acoplamiento y tengamos que hacer cambios en el objeto con estas nuevas ampliaciones.
 
 Tiene cierta similitud con el patrón adapter, dándole una vuelta más, donde adapter queda un poco limitado.
 
-Para ello, a través de una clase abstracta que hereda los métodos de la clase base, sobrecargaremos estos métodos en cada clase concreta de cada tipo de libro para darle su propia implentación sin que ello afecte a los objetos MediaBook y PaperBook.
+Para ello, a través de una clase abstracta que hereda los métodos de la clase base, sobrecargaremos estos métodos en cada clase concreta de cada tipo de libro para darle su propia implementación sin que ello afecte a los objetos MediaBook y PaperBook.
 
-Sin más, vamos al ejemplo con el que se verá más claro su estrucutura y comportamiento:
+Sin más, vamos al ejemplo con el que se verá más claro su estructura y comportamiento:
 
 ~~~csharp
 enum TipoLibroEnum{
@@ -98,6 +98,7 @@ public class Libreria{
 }
 ~~~
 
-Como hemos dicho, en nuestro caso de los libros la clase GeneradorLibro podría extenderse sin tener que tocar las clases  MediaBook y PaperBook.
+Como hemos dicho, en nuestro caso de los libros la clase GeneradorLibro podría extenderse sin tener que tocar las clases MediaBook y PaperBook.
 
 Saludos.
+

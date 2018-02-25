@@ -6,7 +6,7 @@ tags: Git
 
 Hola, hoy quiero traeros una recopilación de comandos relacionados con la función que realizan sobre un repositorio Git.
 
-Con esta chuleta podremos recordar facilmente que comandos deberíamos usar en cada caso en nuestra lucha con los repositorios.
+Con esta chuleta podremos recordar fácilmente que comandos deberíamos usar en cada caso en nuestra lucha con los repositorios.
 
 
 <table class="table table-striped"> 

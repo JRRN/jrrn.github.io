@@ -4,9 +4,9 @@ title: Patrón Facade
 tags: Arquitectura
 ---
 
-La función del patrón facade es resolver agrupando en una única interfaz como conjunto de objetos varias interfaces.
+La función del patrón **facade** es resolver agrupando en una única interfaz como conjunto de objetos varias interfaces.
 
-De esta forma el patrón facade encapsula las interfaces especificas y expone una unica interfaz como punto de entrada.
+De esta forma el patrón facade encapsula las interfaces específicas y expone una única interfaz como punto de entrada.
 
 Para los mortales, simplemente se trata de que toda petición entre por una interfaz que engloba las demás y esta sea capaz de redirigir hacia la interfaz concreta que tiene el servicio al que esta solicitando acceso la petición.
 
@@ -87,3 +87,4 @@ public class Web {
 ~~~
 
 Saludos y hasta la próxima.
+

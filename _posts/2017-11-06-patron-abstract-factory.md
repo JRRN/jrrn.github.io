@@ -6,9 +6,9 @@ tags: Arquitectura
 
 El patrón **Abstract Factory** proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.
 
-Esto quiere decir, que por poner un ejemplo, podríamos crear objetos de tipo Books sin tener que definir los tipos de books explícitamente. ¿Mejor con un ejemplo, no?
+Esto quiere decir, que, por poner un ejemplo, podríamos crear objetos de tipo Books sin tener que definir los tipos de books explícitamente. Mejor con un ejemplo, ¿no?
 
-Tendríamos la clase factoria abstracta Books. Imaginemos que tenemos un sistema de venta de libros. De esta forma tenemos dos tipos de formatos uno de manera física y otro de manera electrónica.
+Tendríamos la clase factoría abstracta Books. Imaginemos que tenemos un sistema de venta de libros. De esta forma tenemos dos tipos de formatos uno de manera física y otro de manera electrónica.
 
 ~~~csharp
 public class PaperBook :  Book {
@@ -48,7 +48,7 @@ public class GenerateMediaBook: GenerateBook {
 }
 ~~~
 
-Hasta aquí tendriamos la implementación solicitada del ejemplo. Pero como siempre, viene el PO y nos dice que ha tenido una grandiosa idea y que también esta pensando en revistas. Con nuestro patrón solo tendriamos que agregar ciertas clases y mantendriamos nuestro principio Abierto-Cerrado Intacto.
+Hasta aquí tendríamos la implementación solicitada del ejemplo. Pero como siempre, viene el PO y nos dice que ha tenido una grandiosa idea y que también esta pensando en revistas. Con nuestro patrón solo tendríamos que agregar ciertas clases y mantendríamos nuestro principio Abierto-Cerrado Intacto.
 
 ~~~csharp
 public abstract class Magazine {
@@ -67,7 +67,7 @@ public abstract class Magazine {
 }
 
 public class PaperMagazine: Magazine {
-    public PaperMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType) 
+    public PaperMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType)
     : base(titulo, autor, añoPublicacion, formatType){}
 
     public override void mostrarCaracteristicas() {
@@ -76,7 +76,7 @@ public class PaperMagazine: Magazine {
 }
 
 public class MediaMagazine: Magazine {
-    public MediaMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType) 
+    public MediaMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType)
     : base(titulo, autor, añoPublicacion, formatType){}
     public override void mostrarCaracteristicas() {
         Console.WriteLine($"Datos de la Revista Electrónica: {titulo} del autor: {autor} publicada el: {añoPublicacion} de formato: {formatype}");
@@ -84,7 +84,7 @@ public class MediaMagazine: Magazine {
 }
 ~~~
 
-Y finalmente solo tendriamos que agregar a la interfaz los médotos de CreaMagazine:
+Y finalmente solo tendríamos que agregar a la interfaz los médotos de CreaMagazine:
 
 ~~~csharp
 public interface FabricaVehiculo {

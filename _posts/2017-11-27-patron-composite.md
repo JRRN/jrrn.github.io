@@ -4,9 +4,9 @@ title: Patrón Composite
 tags: Arquitectura
 ---
 
-El patrón composite nos da la utilidad de generar un composición de objetos variables. Esta compsición, generalmente, se encuentra en forma de arbol y respeta un jerarquía.
+El patrón **composite** nos da la utilidad de generar una composición de objetos variables. Esta composición, generalmente, se encuentra en forma de árbol y respeta una jerarquía.
 
-A través de este poliformismo variable de la citada jerarquía el encapsulamiento a ojos del cliente es muy sencilla y puede usarlos sin tener que conocer la profundidad del arbol y objetos generados.
+A través de este polimorfismo variable de la citada jerarquía el encapsulamiento a ojos del cliente es muy sencilla y puede usarlos sin tener que conocer la profundidad del arbol y objetos generados.
 
 En nuestro caso de la venta de libros, el supuesto donde aplicaríamos este patrón podrái ser en la distribucción de nuestro repositorio, tanto a clientes finales, como a editoriales más pequeñas, que pueden tener clientes.
 
@@ -73,3 +73,4 @@ public class Pedido {
 El resultado que obtendremos será el calculo de los libro solicitados por los clientes.
 
 Saludos.
+

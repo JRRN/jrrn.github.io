@@ -10,7 +10,7 @@ En [Plain](https://www.plainconcepts.com "Plain Concepts") he estado trabajando 
 
 Es una aplicación que se auto instala en el IIS. La problemática que tenía era la forma de migrar ese instalable sobre un servicio App en Azure.
 
-En [Movemetothecloud](https://www.movemetothecloud.net/ "Migración a Azure") encontré la solución. Con un par de siguiente, siguiente, siguiente, había desplegado la aplicación *third party* en un segundos y funcionando correctamente.
+En [Movemetothecloud](https://www.movemetothecloud.net/ "Migración a Azure") encontré la solución. Con un par de siguiente, siguiente, siguiente, había desplegado la aplicación *third party* en unos segundos y funcionando correctamente.
 
 ![MoveMeToAzure](/img/movemetoazure/MoveMeToAzureCloud.png "MoveMeToAzure")
 
@@ -28,14 +28,15 @@ Efectivamente, he podido comprobar que si la solución tiene connectionsstrings 
 
 - *Los nombres de la aplicación y de BDs han sido borrados.*
 
-Seleccionamos la applicación a migrar hacia Azure y las bases de datos que la aplicación usa.
+Seleccionamos la aplicación a migrar hacia Azure y las bases de datos que la aplicación usa.
 
-Nos encontraremos con un asistente en el que podremos parametrizar los nombres tanto del servidor sql como de la WebApp y otro parámetros de la máquina, tipo, etc... 
+Nos encontraremos con un asistente en el que podremos parametrizar los nombres tanto del servidor sql como de la WebApp y otros parámetros de la máquina, tipo, etc... 
 
 ![MigrationDBToAzure](/img/movemetoazure/migrationDBToAzure.png "migrationDBToAzure")
 
-Y ta-chan! Empieza a migrar tanto el site como las bases de datos y TODO su contenido.
+¡Y ta-chan! Empieza a migrar tanto el site como las bases de datos y TODO su contenido.
 
 Bueno, bonito y barato.
 
 Saludos.
+

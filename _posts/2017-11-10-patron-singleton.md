@@ -4,7 +4,7 @@ title: Patrón Singleton
 tags: Arquitectura
 ---
 
-El patrón singleton tiene como objetivo asegurar que una clase sólo posee una instancia y proporciona un método de clase único que devuelve la instancia.
+El patrón **singleton** tiene como objetivo asegurar que una clase sólo posee una instancia y proporciona un método de clase único que devuelve la instancia.
 
 Es un patrón simple y conocido. Si queremos que solo haya una instancia de un objeto y no se puedan generar más mientras haya una existente, este es nuestro patrón. Por ejemplo, si recordamos el patrón Abstract Factory, solo necesitamos una única instancia para ir generando los demás tipos de libros.
 
@@ -66,3 +66,5 @@ Para ver la salida:
     }
 }
 ~~~
+
+

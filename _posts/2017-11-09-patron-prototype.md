@@ -10,7 +10,7 @@ En resumen, y simplificando, crear nuevos objetos a partir de un objeto existent
 
 En nuestro ejemplo de libros, a la hora de generar los documentos digitales de un pedido, podemos reutilizar la clase que genera la primera instancia del objeto libro digital para crear tantos libros digitales, el pedido y la factura y luego volcar en ellos cada uno de su contenido.
 
-Veamos a ver como quedará el código:
+Veamos a ver cómo quedará el código:
 
 ~~~csharp
 public abstract class DocumentoDigital {
@@ -53,7 +53,7 @@ public abstract class DocumentoDigital {
 }
 ~~~
 
-Una vez definidas las clases de cada uno de los objetos, definiremos la clases Documentos:
+Una vez definidas las clases de cada uno de los objetos, definiremos la clase Documentos:
 
 ~~~csharp
 public abstract class Documentos{
@@ -126,3 +126,5 @@ public class Usuario{
 ~~~
 
 Saludos.
+
+

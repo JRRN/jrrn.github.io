@@ -5,12 +5,12 @@ tags: Arquitectura
 ---
 ### Patrones de comportamiento ###
 
-Los patrones de comportamiento, nos ayudan a solucionar los problemas con las estrcuturas de datos y los objetos. Nos proporcionan soluciones a para identificar y poder distribuir los algoritmos entre ellos y su proceso.
+Los patrones de comportamiento, nos ayudan a solucionar los problemas con las estructuras de datos y los objetos. Nos proporcionan soluciones a para identificar y poder distribuir los algoritmos entre ellos y su proceso.
 
-Mediante flujos de control y flujos de proceso se orquestan estos algortimos y estos objetos.
+Mediante flujos de control y flujos de proceso se orquestan estos algoritmos y estos objetos.
 
 - [Patrón Chain of Responsibility](patron-chain-of-responsability "Patrón Chain of Responsibility")
-- Patrón Command
+- [Patrón Command](patron-command "Patrón Command")
 - Patrón Interpreter
 - Patrón Iterator
 - Patrón Mediator
@@ -20,3 +20,5 @@ Mediante flujos de control y flujos de proceso se orquestan estos algortimos y e
 - Patrón Strategy
 - Patrón Template Method
 - Patrón Visitor
+
+
