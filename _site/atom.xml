@@ -4,12 +4,22 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2018-01-03T22:47:46+01:00</updated>
+ <updated>2018-02-25T09:41:46+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
    <email></email>
  </author>
+
+ 
+
+ <entry>
+   <title>Sin retornos NULL con Maybe<T></title>
+   <link href="http://localhost:4000/maybe"/>
+   <id>http://localhost:4000/maybe</id>
+   <updated>2018-02-25T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;Maybe es una estructura(Monad) que nos ayuda a no tener que trabajar con objetos NULL.&lt;/p&gt; &lt;p&gt;De esta forma, el objeto, hereda una propiedad HasValue para determinar si es NULO o no, ahorrándonos el típico if (a != null) que tan feo queda en nuestro código.&lt;/p&gt; &lt;p&gt;Así la estrucutura quedaría de...</content>
+ </entry>
 
  
 
@@ -99,16 +109,6 @@
    <id>http://localhost:4000/patron-bridge</id>
    <updated>2017-11-16T00:00:00+01:00</updated>
    <content type="html">&lt;p&gt;El patrón bridge es usado para separar la implementación de un objeto, de su representación y de su interfaz. Así, conseguimos que la implementación de este objeto quede intacta, mientras que la representación puede crecer de manera independiente sin que haya un acomplamiento y tengamos que hacer cambios en el...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Un poquito de Git</title>
-   <link href="http://localhost:4000/un-poquito-de-git"/>
-   <id>http://localhost:4000/un-poquito-de-git</id>
-   <updated>2017-11-14T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;Hola, hoy quiero traeros una recopilación de comandos relacionados con la función que realizan sobre un repositorio Git.&lt;/p&gt; &lt;p&gt;Con esta chuleta podremos recordar facilmente que comandos deberíamos usar en cada caso en nuestra lucha con los repositorios.&lt;/p&gt; &lt;table class=&quot;table table-striped&quot;&gt; &lt;thead&gt; &lt;tr class=&quot;row-1 odd&quot;&gt; &lt;th class=&quot;column-1&quot;&gt;Función&lt;/th&gt; &lt;th class=&quot;column-2&quot;&gt;Comando&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt;...</content>
  </entry>
 
  
