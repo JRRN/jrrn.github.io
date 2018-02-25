@@ -124,7 +124,7 @@
 
 <p>De esta forma, el objeto, hereda una propiedad HasValue para determinar si es NULO o no, ahorrándonos el típico if (a != null) que tan feo queda en nuestro código.</p>
 
-<p>Así la estrucutura quedaría de la siguiente manera:</p>
+<p>Así la estructura quedaría de la siguiente manera:</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">namespace</span> <span class="nn">OurNameSpace</span>
@@ -163,16 +163,15 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Con lo que nuestras llamadas por ejemplo en un Reposity quedaría:</p>
+<p>Con lo que nuestras llamadas por ejemplo en un Reposity quedarían:</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-    <span class="k">public</span> <span class="n">ReadOnlyCollection</span><span class="p">&lt;</span><span class="n">Maybe</span><span class="p">&lt;</span><span class="n">Libros</span><span class="p">&gt;&gt;</span> <span class="nf">GetLibros</span><span class="p">();</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">public</span> <span class="n">ReadOnlyCollection</span><span class="p">&lt;</span><span class="n">Maybe</span><span class="p">&lt;</span><span class="n">Libros</span><span class="p">&gt;&gt;</span> <span class="nf">GetLibros</span><span class="p">();</span>
+    <span class="k">public</span> <span class="n">Maybe</span><span class="p">&lt;</span><span class="n">Libro</span><span class="p">&gt;&gt;</span> <span class="nf">GetLibroById</span><span class="p">();</span>
 </code></pre></div></div>
 
 <p>Y en nuestros servicios:</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-    <span class="kt">var</span> <span class="n">librosRepository</span> <span class="p">=</span> <span class="n">_librosService</span><span class="p">.</span><span class="nf">GetLibros</span><span class="p">();</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">var</span> <span class="n">librosRepository</span> <span class="p">=</span> <span class="n">_librosService</span><span class="p">.</span><span class="nf">GetLibros</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">librosRepository</span><span class="p">.</span><span class="n">HasValue</span><span class="p">){</span>
         <span class="c1">//TODO</span>
     <span class="p">}</span>

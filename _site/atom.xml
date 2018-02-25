@@ -4,7 +4,7 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2018-02-25T09:41:46+01:00</updated>
+ <updated>2018-02-25T10:39:49+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
@@ -18,7 +18,17 @@
    <link href="http://localhost:4000/maybe"/>
    <id>http://localhost:4000/maybe</id>
    <updated>2018-02-25T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;Maybe es una estructura(Monad) que nos ayuda a no tener que trabajar con objetos NULL.&lt;/p&gt; &lt;p&gt;De esta forma, el objeto, hereda una propiedad HasValue para determinar si es NULO o no, ahorrándonos el típico if (a != null) que tan feo queda en nuestro código.&lt;/p&gt; &lt;p&gt;Así la estrucutura quedaría de...</content>
+   <content type="html">&lt;p&gt;Maybe es una estructura(Monad) que nos ayuda a no tener que trabajar con objetos NULL.&lt;/p&gt; &lt;p&gt;De esta forma, el objeto, hereda una propiedad HasValue para determinar si es NULO o no, ahorrándonos el típico if (a != null) que tan feo queda en nuestro código.&lt;/p&gt; &lt;p&gt;Así la estructura quedaría de...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Patrón Chain of Responsability</title>
+   <link href="http://localhost:4000/patron-chain-of-responsability"/>
+   <id>http://localhost:4000/patron-chain-of-responsability</id>
+   <updated>2018-02-14T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;El patrón Chain Of Responsability nos ayuda a crear una secuencia de unión entre objetos tal que si el objeto más interno de la cadena no es capaz de dar una respuesta, uno de los objetos de nivel superior será el encargado de darla. Esta respuesta será a nivel del...</content>
  </entry>
 
  
@@ -99,16 +109,6 @@
    <id>http://localhost:4000/docker-pills</id>
    <updated>2017-11-19T00:00:00+01:00</updated>
    <content type="html">&lt;h3 id=&quot;docker&quot;&gt;Docker&lt;/h3&gt; &lt;p&gt;Hola, nuevamente un recordatorio rápido de comandos docker para la lucha con contenedores.&lt;/p&gt; &lt;p&gt;Show Containers: &lt;code&gt;docker container ls&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Execute Commands: &lt;code&gt;docker container exec [containerId or containerName] [command]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Console on Container: &lt;code&gt;docker container exec -it [containerId or containerName] /bin/bash&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Run Containers: &lt;code&gt;docker container run [containerName] :[imageVersion]&lt;/code&gt; &lt;code&gt;docker container run...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Bridge</title>
-   <link href="http://localhost:4000/patron-bridge"/>
-   <id>http://localhost:4000/patron-bridge</id>
-   <updated>2017-11-16T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón bridge es usado para separar la implementación de un objeto, de su representación y de su interfaz. Así, conseguimos que la implementación de este objeto quede intacta, mientras que la representación puede crecer de manera independiente sin que haya un acomplamiento y tengamos que hacer cambios en el...</content>
  </entry>
 
  

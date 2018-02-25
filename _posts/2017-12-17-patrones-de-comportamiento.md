@@ -9,7 +9,7 @@ Los patrones de comportamiento, nos ayudan a solucionar los problemas con las es
 
 Mediante flujos de control y flujos de proceso se orquestan estos algortimos y estos objetos.
 
-- Patrón Chain of Responsibility
+- [Patrón Chain of Responsibility](patron-chain-of-responsability "Patrón Chain of Responsibility")
 - Patrón Command
 - Patrón Interpreter
 - Patrón Iterator
