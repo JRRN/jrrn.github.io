@@ -122,9 +122,9 @@
 	<div class="content">
 		<p>El patrón <strong>Abstract Factory</strong> proporciona una interfaz para crear familias de objetos relacionados o que dependen entre sí, sin especificar sus clases concretas.</p>
 
-<p>Esto quiere decir, que por poner un ejemplo, podríamos crear objetos de tipo Books sin tener que definir los tipos de books explícitamente. ¿Mejor con un ejemplo, no?</p>
+<p>Esto quiere decir, que, por poner un ejemplo, podríamos crear objetos de tipo Books sin tener que definir los tipos de books explícitamente. Mejor con un ejemplo, ¿no?</p>
 
-<p>Tendríamos la clase factoria abstracta Books. Imaginemos que tenemos un sistema de venta de libros. De esta forma tenemos dos tipos de formatos uno de manera física y otro de manera electrónica.</p>
+<p>Tendríamos la clase factoría abstracta Books. Imaginemos que tenemos un sistema de venta de libros. De esta forma tenemos dos tipos de formatos uno de manera física y otro de manera electrónica.</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">PaperBook</span> <span class="p">:</span>  <span class="n">Book</span> <span class="p">{</span>
     <span class="k">public</span> <span class="nf">PaperBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
@@ -163,7 +163,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Hasta aquí tendriamos la implementación solicitada del ejemplo. Pero como siempre, viene el PO y nos dice que ha tenido una grandiosa idea y que también esta pensando en revistas. Con nuestro patrón solo tendriamos que agregar ciertas clases y mantendriamos nuestro principio Abierto-Cerrado Intacto.</p>
+<p>Hasta aquí tendríamos la implementación solicitada del ejemplo. Pero como siempre, viene el PO y nos dice que ha tenido una grandiosa idea y que también esta pensando en revistas. Con nuestro patrón solo tendríamos que agregar ciertas clases y mantendríamos nuestro principio Abierto-Cerrado Intacto.</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Magazine</span> <span class="p">{</span>
     <span class="k">protected</span> <span class="kt">string</span> <span class="n">_titulo</span><span class="p">;</span>
@@ -181,7 +181,7 @@
 <span class="p">}</span>
 
 <span class="k">public</span> <span class="k">class</span> <span class="nc">PaperMagazine</span><span class="p">:</span> <span class="n">Magazine</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nf">PaperMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span> 
+    <span class="k">public</span> <span class="nf">PaperMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
     <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">){}</span>
 
     <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">mostrarCaracteristicas</span><span class="p">()</span> <span class="p">{</span>
@@ -190,7 +190,7 @@
 <span class="p">}</span>
 
 <span class="k">public</span> <span class="k">class</span> <span class="nc">MediaMagazine</span><span class="p">:</span> <span class="n">Magazine</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nf">MediaMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span> 
+    <span class="k">public</span> <span class="nf">MediaMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
     <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">){}</span>
     <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">mostrarCaracteristicas</span><span class="p">()</span> <span class="p">{</span>
         <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos de la Revista Electrónica: </span><span class="p">{</span><span class="n">titulo</span><span class="p">}</span><span class="s"> del autor: </span><span class="p">{</span><span class="n">autor</span><span class="p">}</span><span class="s"> publicada el: </span><span class="p">{</span><span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> de formato: </span><span class="p">{</span><span class="n">formatype</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
@@ -198,7 +198,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Y finalmente solo tendriamos que agregar a la interfaz los médotos de CreaMagazine:</p>
+<p>Y finalmente solo tendríamos que agregar a la interfaz los médotos de CreaMagazine:</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">FabricaVehiculo</span> <span class="p">{</span>
     <span class="n">PaperBook</span> <span class="nf">creaPaperBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">);</span>

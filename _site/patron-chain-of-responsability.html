@@ -116,19 +116,20 @@
 				<a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code>&nbsp;</a>
 			
 			]</span>	
-	<time datetime="2018-02-14T00:00:00+01:00" class="by-line">14 Feb 2018</time>
+	<time datetime="2018-01-14T00:00:00+01:00" class="by-line">14 Jan 2018</time>
 	</div>
 		
 	<div class="content">
-		<p>El patrón Chain Of Responsability nos ayuda a crear una secuencia de unión entre objetos tal que si el objeto más interno de la cadena no es capaz de dar una respuesta, uno de los objetos de nivel superior será el encargado de darla. Esta respuesta será a nivel del contexto en que el objeto se encuentre y sea capaz de responder.</p>
+		<p>El patrón <strong>Chain Of Responsability</strong> nos ayuda a crear una secuencia de unión entre objetos tal que, si el objeto más interno de la cadena no es capaz de dar una respuesta, uno de los objetos de nivel superior será el encargado de darla. Esta respuesta será a nivel del contexto en que el objeto se encuentre y sea capaz de responder.</p>
 
 <p>Como siempre, mejor con un ejemplo, ¿no?</p>
 
 <p>Os acordáis de nuestro ejemplo de venta de libros…</p>
 
-<p>En él, tenemos libros, dentro de libros tenenemos categoría de libros y dentro de la categoría de libros tenemos el libro en cuestión.</p>
+<p>En él, tenemos libros, dentro de libros tenemos categoría de libros y dentro de la categoría de libros tenemos el libro en cuestión.</p>
 
 <p>Empezamos:</p>
+
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">BaseLibro</span> <span class="p">{</span>
     <span class="k">public</span> <span class="n">BaseLibro</span> <span class="n">siguiente</span> <span class="p">{</span><span class="k">protected</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>
 
@@ -208,6 +209,7 @@
 </code></pre></div></div>
 
 <p>Saludos y hasta la próxima.</p>
+
 
 	</div>
 </article>

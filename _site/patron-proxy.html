@@ -120,11 +120,11 @@
 	</div>
 		
 	<div class="content">
-		<p>El patrón proxy se utiliza para diseñar un objeto que substutiye a otro objeto que controla su acceso. El objeto proxy es el que queda expuesto en la capa de servicios o presentación siendo idéntico y con mismo contrato que el orignal.</p>
+		<p>El patrón <strong>proxy</strong> se utiliza para diseñar un objeto que sustituye a otro objeto que controla su acceso. El objeto proxy es el que queda expuesto en la capa de servicios o presentación siendo idéntico y con mismo contrato que el original.</p>
 
 <p>El claro ejemplo, son las entidades que solemos recoger de la capa de acceso a datos y que mapeamos contra la capa de negocio, dominio, etc…</p>
 
-<p>Para nuestro ejemplo de los libros, tenemos un página web con un listado de libros y que haciendo click sobre cada título podemos ver una descripción más completa del libro seleccionado. En este caso, podríamos tener cargadas todas esta descripciones desde la primera carga, pero mejor, si las recuperarmos cuando son solicitadas y las que son solicitadas.</p>
+<p>Para nuestro ejemplo de los libros, tenemos una página web con un listado de libros y que haciendo clic sobre cada título podemos ver una descripción más completa del libro seleccionado. En este caso, podríamos tener cargadas todas estas descripciones desde la primera carga, pero mejor, si las recuperamos cuando son solicitadas y las que son solicitadas.</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="k">public</span> <span class="k">interface</span> <span class="nc">IBook</span> <span class="p">{</span>
@@ -186,7 +186,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Así obtendriamos esta salida:</p>
+<p>Así obtendríamos esta salida:</p>
 
 <p>Mostrar descripción
 Carga descripción
@@ -194,6 +194,7 @@ Mostrando descripción
 Muestra Descripción</p>
 
 <p>Saludos.</p>
+
 
 	</div>
 </article>

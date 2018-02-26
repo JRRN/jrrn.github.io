@@ -82,7 +82,15 @@
 </url>
 <url>
 <loc>http://localhost:4000/patron-chain-of-responsability</loc>
-<lastmod>2018-02-14T00:00:00+01:00</lastmod>
+<lastmod>2018-01-14T00:00:00+01:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/patron-command</loc>
+<lastmod>2018-01-23T00:00:00+01:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/patron-interpreter</loc>
+<lastmod>2018-02-02T00:00:00+01:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/maybe</loc>

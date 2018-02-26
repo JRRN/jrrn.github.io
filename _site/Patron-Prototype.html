@@ -126,7 +126,7 @@
 
 <p>En nuestro ejemplo de libros, a la hora de generar los documentos digitales de un pedido, podemos reutilizar la clase que genera la primera instancia del objeto libro digital para crear tantos libros digitales, el pedido y la factura y luego volcar en ellos cada uno de su contenido.</p>
 
-<p>Veamos a ver como quedará el código:</p>
+<p>Veamos a ver cómo quedará el código:</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">DocumentoDigital</span> <span class="p">{</span>
     <span class="k">protected</span> <span class="kt">string</span> <span class="n">_contenido</span> <span class="p">=</span> <span class="n">String</span><span class="p">.</span><span class="nf">Empty</span><span class="p">();</span>
@@ -168,7 +168,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Una vez definidas las clases de cada uno de los objetos, definiremos la clases Documentos:</p>
+<p>Una vez definidas las clases de cada uno de los objetos, definiremos la clase Documentos:</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Documentos</span><span class="p">{</span>
     <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;</span> <span class="n">documentos</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">protected</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
@@ -238,6 +238,7 @@
 </code></pre></div></div>
 
 <p>Saludos.</p>
+
 
 	</div>
 </article>

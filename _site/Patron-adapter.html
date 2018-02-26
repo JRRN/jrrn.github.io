@@ -120,9 +120,9 @@
 	</div>
 		
 	<div class="content">
-		<p>El patrón adapter se centra en convertir la interfaz de una clase en la interfaz que necesitaran los clientes. Se trata de ofrecer con una nueva interfaz la exposición de los objetos de los clientes.</p>
+		<p>El patrón <strong>adapter</strong> se centra en convertir la interfaz de una clase en la interfaz que necesitaran los clientes. Se trata de ofrecer con una nueva interfaz la exposición de los objetos de los clientes.</p>
 
-<p>En definitiva, lo que se prentende con este patrón es generar una nueva interfaz, sobre una ya existente y no dejar expuesta la clase.</p>
+<p>En definitiva, lo que se pretende con este patrón es generar una nueva interfaz, sobre una ya existente y no dejar expuesta la clase.</p>
 
 <p>En nuestro sistema de libros, crearemos una interfaz con los métodos para generar el libro, componerlo e imprimirlo.</p>
 
@@ -155,7 +155,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Sin embargo, ahora vamos a crear un libro no físico, sin emabrgo para este tipo de libros, el mecanismos es muy parecido pero no igual.
+<p>Sin embargo, ahora vamos a crear un libro no físico, sin embargo para este tipo de libros, el mecanismo es muy parecido pero no igual.
 Con lo que aquí entra en juego el patrón Adapter:</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">PdfBase</span> <span class="p">{</span>
@@ -183,7 +183,7 @@ Con lo que aquí entra en juego el patrón Adapter:</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Como podemos ver la clase PdfBase es independiente a la jerarquía que hasta ahora tenemos. Sin embargo podemos ver métodos que podrian pertenecer a la interfaz IBook, así que nos toca “adaptar” esta lógica para que acepte la jerarquía:</p>
+<p>Como podemos ver la clase PdfBase es independiente a la jerarquía que hasta ahora tenemos. Sin embargo, podemos ver métodos que podrían pertenecer a la interfaz IBook, así que nos toca “adaptar” esta lógica para que acepte la jerarquía:</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">PdfBook</span> <span class="p">:</span> <span class="n">IBook</span> <span class="p">{</span>
     <span class="k">protected</span> <span class="n">PdfBase</span> <span class="n">_pdfBase</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">PdfBase</span><span class="p">();</span>
@@ -230,7 +230,8 @@ Con lo que aquí entra en juego el patrón Adapter:</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>un saludo.</p>
+<p>Un saludo.</p>
+
 
 	</div>
 </article>
