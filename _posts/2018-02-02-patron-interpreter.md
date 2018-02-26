@@ -3,7 +3,7 @@ layout: post
 title: Patrón Interpreter
 tags: Arquitectura
 ---
-El patrón **Interpreter** nos proporciona la utilidad de transformar, la gramática del lenguaje, de tal forma que podamos evaluar, condificando estas expresiones del lenguaje natural, en objetos.
+El patrón **Interpreter** nos proporciona la utilidad de transformar, la gramática del lenguaje, de tal forma que podamos evaluar, codificando estas expresiones del lenguaje natural, en objetos.
 
 En resumidas, nos da la facilidad de transformar el lenguaje que hablamos y con el que nos comunicamos, en lenguaje máquina.
 
@@ -11,7 +11,7 @@ Y no, esto no es Inteligencia Artificial.
 
 Vamos con el ejemplo.
 
-En nuestro catálogo de libros nos gustaría implementar un buscador que a partir de expresiones regulares, nos devuelva unos y/u otros resultados.
+En nuestro catálogo de libros nos gustaría implementar un buscador que, a partir de expresiones regulares, nos devuelva unos y/u otros resultados.
 
 ~~~csharp
 public abstract class Expression {
