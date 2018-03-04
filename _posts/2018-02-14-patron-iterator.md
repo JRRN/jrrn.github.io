@@ -97,9 +97,9 @@ public class Usuario {
         }
     }
 }
+~~~
 
 Descripción del Libro: Libro PDF
 Descripción del Libro: Gran libro en PDF
-~~~
 
 Hasta la próxima.
