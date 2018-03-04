@@ -12,8 +12,8 @@ Mediante flujos de control y flujos de proceso se orquestan estos algoritmos y e
 - [Patrón Chain of Responsibility](patron-chain-of-responsability "Patrón Chain of Responsibility")
 - [Patrón Command](patron-command "Patrón Command")
 - [Patrón Interpreter](patron-interpreter "Patrón Interpreter")
-- Patrón Iterator
-- Patrón Mediator
+- [Patrón Iterator](patron-iterator "Patrón Iterator")
+- [Patrón Mediator](patron-mediator "Patrón Mediator")
 - Patrón Memento
 - Patrón Observer
 - Patrón State

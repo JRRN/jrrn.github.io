@@ -16,7 +16,7 @@ public abstract class Item {
     }
 
     public bool palabraClaveValida(string palabraClave) {
-        return descripcion.IndexOf(palabraClave) != -1;
+        return descripcion.Contains(palabraClave);
     }
 }
 
@@ -35,16 +35,16 @@ public abstract class Iterador<TItem>  where TItem : Item {
 
     public void inicio() {
         indice = 0;
-        int tamaño = contenido.Count;
-        while ((indice < tamaño) && (!contenido[indice]palabraClaveValida(palabraClaveConsulta))) {
+        int length = contenido.Count;
+        while ((indice < length) && (!contenido[indice]palabraClaveValida(palabraClaveConsulta))) {
             indice++;
         }
     }
 
     public void siguiente() {
-        int tamaño = contenido.Count;
+        int length = contenido.Count;
         indice++;
-        while ((indice < tamaño) && (!contenido[indice]palabraClaveValida(palabraClaveConsulta))) {
+        while ((indice < length) && (!contenido[indice]palabraClaveValida(palabraClaveConsulta))) {
             indice++;
         }
     }
@@ -98,6 +98,8 @@ public class Usuario {
     }
 }
 
-Descripción del Libro: Libro PDF 
+Descripción del Libro: Libro PDF
 Descripción del Libro: Gran libro en PDF
 ~~~
+
+Hasta la próxima.
