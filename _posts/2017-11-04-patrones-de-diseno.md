@@ -34,12 +34,12 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 
 ### Patrones de comportamiento ###
 
-- Patrón Chain of Responsibility
-- Patrón Command
-- Patrón Interpreter
-- Patrón Iterator
-- Patrón Mediator
-- Patrón Memento
+- [Patrón Chain of Responsibility](patron-chain-of-responsability "Patrón Chain of Responsibility")
+- [Patrón Command](patron-command "Patrón Command")
+- [Patrón Interpreter](patron-interpreter "Patrón Interpreter")
+- [Patrón Iterator](patron-iterator "Patrón Iterator")
+- [Patrón Mediator](patron-mediator "Patrón Mediator")
+- [Patrón Memento](patron-memento "Patrón Memento")
 - Patrón Observer
 - Patrón State
 - Patrón Strategy
