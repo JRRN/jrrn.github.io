@@ -45,5 +45,6 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 - Patrón Strategy
 - Patrón Template Method
 - Patrón Visitor
+- [Patrón Specification](patro-specification "Patrón Specification")
 
 Nos vemos en el siguiente post.

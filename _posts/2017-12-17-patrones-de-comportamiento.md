@@ -14,11 +14,10 @@ Mediante flujos de control y flujos de proceso se orquestan estos algoritmos y e
 - [Patrón Interpreter](patron-interpreter "Patrón Interpreter")
 - [Patrón Iterator](patron-iterator "Patrón Iterator")
 - [Patrón Mediator](patron-mediator "Patrón Mediator")
-- Patrón Memento
+- [Patrón Memento](patron-memento "Patrón Memento")
 - Patrón Observer
 - Patrón State
 - Patrón Strategy
 - Patrón Template Method
 - Patrón Visitor
-
-
+- [Patrón Specification](patro-specification "Patrón Specification")
