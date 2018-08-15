@@ -40,8 +40,8 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 - [Patrón Iterator](patron-iterator "Patrón Iterator")
 - [Patrón Mediator](patron-mediator "Patrón Mediator")
 - [Patrón Memento](patron-memento "Patrón Memento")
-- Patrón Observer
-- Patrón State
+- [Patrón Observer](patron-observer "Patrón Observer")
+- [Patrón State](patron-state "Patrón State")
 - Patrón Strategy
 - Patrón Template Method
 - Patrón Visitor
