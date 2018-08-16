@@ -14,8 +14,54 @@ Veamos el ejemplo:
 
 ~~~csharp
 
-public abstract class {
+public abstract class Pedido {
+    protected double importeSinIVA;
+    protected double IVA;
+    protected double importeTotal;
 
+    protected abstract void CalcularIVA();
+
+    public void CalculaPrecioTotal() {
+        this.CalcularIVA();
+        importeTotal = importeSinIVA + IVA;
+    }
+
+    public void setImporteSinIVA(double importeSinIVA) {
+        this.importeSinIVA = importeSinIVA;
+    }
+
+    public void Imprime() {
+        Console.WriteLine("Pedido");
+        Console.WriteLine($"Importe Sin IVA {importeSinIVA} , IVA {IVA}");
+        Console.WriteLine($"Importe Total {importeTotal}");
+    }
 }
 
+public class PedidoEspaña : Pedido {
+    protected override void CalcularIVA(){
+        IVA = importeSinIVA * 0.21;
+    }
+}
+
+public class PedidoMexico : Pedido {
+    protected override void CalcularIVA(){
+        IVA = importeSinIVA * 0.16;
+    }
+}
+
+public class Usuario {
+    static void Main(string[] args) {
+        Pedido pedidoEspaña = new PedidoEspaña();
+        pedidoEspaña.setImporteSinIVA(1000);
+        pedidoEspaña.CalcularIVA();
+        pedidoEspaña.Imprime();
+
+        Pedido pedidoMexico = new PedidoMexico();
+        pedidoMexico.setImporteSinIVA(1000);
+        pedidoMexico.CalcularIVA();
+        pedidoMexico.Imprime();
+    }
+}
 ~~~
+
+Saludos.
