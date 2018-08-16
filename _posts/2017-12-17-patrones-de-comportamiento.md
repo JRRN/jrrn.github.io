@@ -17,7 +17,7 @@ Mediante flujos de control y flujos de proceso se orquestan estos algoritmos y e
 - [Patrón Memento](patron-memento "Patrón Memento")
 - [Patrón Observer](patron-observer "Patrón Observer")
 - [Patrón State](patron-state "Patrón State")
-- Patrón Strategy
+- [Patrón Strategy](patron-strategy "Patrón Strategy")
 - Patrón Template Method
 - Patrón Visitor
 - [Patrón Specification](patro-specification "Patrón Specification")

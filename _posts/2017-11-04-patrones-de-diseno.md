@@ -42,7 +42,7 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 - [Patrón Memento](patron-memento "Patrón Memento")
 - [Patrón Observer](patron-observer "Patrón Observer")
 - [Patrón State](patron-state "Patrón State")
-- Patrón Strategy
+- [Patrón Strategy](patron-strategy "Patrón Strategy")
 - Patrón Template Method
 - Patrón Visitor
 - [Patrón Specification](patro-specification "Patrón Specification")
