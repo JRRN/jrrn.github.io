@@ -12,16 +12,16 @@ Veamos el ejemplo, en este ejemplo lo que haremos es definir varias estrategias 
 
 ~~~csharp
 
-public interface ICalculaIVA {
+public interface IBookCalculaIVA {
     double CalculaIVA(double precio);
     void ImprimeResultado();
 }
 
-public class CalculaIVAEspaña : ICalculaIVA {
+public class CalculaBookIVAEspaña : IBookCalculaIVA {
     protected double precioFinal = new double();
 
-    public double CalculaIVA(double precio) {
-        precioFinal = (precio + precio * 0.21);
+    public double CalculaIVA(double precioBook) {
+        precioFinal = (precioBook + precioBook * 0.21);
         return precioFinal;
     }
 
@@ -30,11 +30,11 @@ public class CalculaIVAEspaña : ICalculaIVA {
     }
 }
 
-public class CalculaIVAMexico : ICalculaIVA {
+public class CalculaBookIVAMexico : IBookCalculaIVA {
     protected double precioFinal = new double();
 
-    public double CalculaIVA(double precio) {
-        precioFinal = (precio + precio * 0.16);
+    public double CalculaIVA(double precioBook) {
+        precioFinal = (precioBook + precioBook * 0.16);
         return precioFinal;
     }
 
@@ -46,12 +46,12 @@ public class CalculaIVAMexico : ICalculaIVA {
 public class Usuario {
 
     static void Main(string[] args) {
-        protected ICalculaIVA _calculaIVA;
+        protected IBookCalculaIVA _calculaIVA;
 
-        _calculaIVA.CalculaIVA(new CalculaIVAEspaña(10));
+        _calculaIVA.CalculaIVA(new CalculaBookIVAEspaña(10));
         _calculaIVA.ImprimeResultado();
 
-        _calculaIVA.CalculaIVA(new CalculaIVAMexico(10));
+        _calculaIVA.CalculaIVA(new CalculaBookIVAMexico(10));
         _calculaIVA.ImprimeResultado();
     }
 }

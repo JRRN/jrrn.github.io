@@ -43,8 +43,8 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 - [Patrón Observer](patron-observer "Patrón Observer")
 - [Patrón State](patron-state "Patrón State")
 - [Patrón Strategy](patron-strategy "Patrón Strategy")
-- Patrón Template Method
-- Patrón Visitor
+- [Patrón Template Method](patron-template-method "Patrón Template Method")
+- [Patrón Visitor](patron-visitor "Patrón Visitor")
 - [Patrón Specification](patro-specification "Patrón Specification")
 
 Nos vemos en el siguiente post.
