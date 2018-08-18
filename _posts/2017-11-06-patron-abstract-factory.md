@@ -15,7 +15,7 @@ public class PaperBook :  Book {
     public PaperBook(string titulo, string autor, int añoPublicacion, FormatType formatType)
     : base(titulo, autor, añoPublicacion, formatType) { }
     public override void mostrarCaracteristicas() {
-        Console.WriteLine($"Datos del libro físico: {titulo} del autor: {autor} publicado el: {añoPublicacion} en formato: {formatype}");
+        Console.WriteLine($"Datos del libro físico: {titulo} del autor: {autor} publicado el: {añoPublicacion} en formato: {formatType}");
     }
 }
 
@@ -24,7 +24,7 @@ public class MediaBook: Book {
     : base(titulo, autor, añoPublicacion, formatType) {}
 
     public override void mostrarCaracteristicas() {
-        Console.WriteLine($"Datos del libro físico:{titulo} del autor: {autor} publicado el: {añoPublicacion} en formato: {formatype}");
+        Console.WriteLine($"Datos del libro físico:{titulo} del autor: {autor} publicado el: {añoPublicacion} en formato: {formatType}");
     }
 }
 
@@ -48,15 +48,15 @@ Hasta aquí tendríamos la implementación solicitada del ejemplo. Pero como sie
 
 ~~~csharp
 public abstract class Book {
-    protected string _titulo;
-    protected string _autor;
-    protected int _añoPublicacion;
-    protected FormatType _formatType;
+    protected string titulo;
+    protected string autor;
+    protected int añoPublicacion;
+    protected FormatType formatType;
     public Book(string titulo, string autor, int añoPublicacion, FormatType formatType) {
-        _titulo = titulo;
-        _autor = autor;
-        _añoPublicacion = añoPublicacion;
-        _formatType = formatType;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.añoPublicacion = añoPublicacion;
+        this.formatType = formatType;
     }
 
     public abstract void mostrarCaracteristicas();
@@ -67,7 +67,7 @@ public class PaperMagazine: Book {
     : base(titulo, autor, añoPublicacion, formatType){}
 
     public override void mostrarCaracteristicas() {
-        Console.WriteLine($"Datos de la Revista física: {titulo} del autor: {autor} publicada el: {añoPublicacion} de formato: {formatype}");
+        Console.WriteLine($"Datos de la Revista física: {titulo} del autor: {autor} publicada el: {añoPublicacion} de formato: {formatType}");
     }
 }
 
@@ -75,7 +75,7 @@ public class MediaMagazine: Book {
     public MediaMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType)
     : base(titulo, autor, añoPublicacion, formatType){}
     public override void mostrarCaracteristicas() {
-        Console.WriteLine($"Datos de la Revista Electrónica: {titulo} del autor: {autor} publicada el: {añoPublicacion} de formato: {formatype}");
+        Console.WriteLine($"Datos de la Revista Electrónica: {titulo} del autor: {autor} publicada el: {añoPublicacion} de formato: {formatType}");
     }
 }
 ~~~
