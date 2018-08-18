@@ -37,13 +37,13 @@ public interface GenerateBook {
 public class GeneratePaperBook: GenerateBook {
     public PaperBook creaPaperBook(string titulo, string autor, int añoPublicacion, FormatType formatType)
     {
-        return new PaperBook(string titulo, string autor, int añoPublicacion, FormatType formatType);
+        return new PaperBook(titulo,autor,añoPublicacion,formatType);
     }
 }
 
 public class GenerateMediaBook: GenerateBook {
     public MediaBook creaMediaBook(string titulo, string autor, int añoPublicacion, FormatType formatType) {
-        return new MediaBook(string titulo, string autor, int añoPublicacion, FormatType formatType);
+        return new MediaBook(titulo,autor,añoPublicacion,formatType);
     }
 }
 ~~~
