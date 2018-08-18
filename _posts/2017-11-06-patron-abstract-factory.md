@@ -87,7 +87,7 @@ public class MediaMagazine: Magazine {
 Y finalmente solo tendríamos que agregar a la interfaz los médotos de CreaMagazine:
 
 ~~~csharp
-public interface FabricaVehiculo {
+public interface AbstractFactoryEditorial {
     PaperBook creaPaperBook(string titulo, string autor, int añoPublicacion, FormatType formatType);
     MediaBook creaMediaBook (string titulo, string autor, int añoPublicacion, FormatType formatType);
     PaperMagazine creaPaperMagazine (string titulo, string autor, int añoPublicacion, FormatType formatType);
