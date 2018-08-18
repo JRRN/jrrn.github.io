@@ -28,20 +28,16 @@ public class MediaBook: Book {
     }
 }
 
-public interface GenerateBook {
-    PaperBook creaPaperBook(string titulo, string autor, int añoPublicacion, FormatType formatType);
 
-    MediaBook creaMediaBook (string titulo, string autor, int añoPublicacion, FormatType formatType);
-}
 
-public class GeneratePaperBook: GenerateBook {
+public class GeneratePaperBook {
     public PaperBook creaPaperBook(string titulo, string autor, int añoPublicacion, FormatType formatType)
     {
         return new PaperBook(titulo,autor,añoPublicacion,formatType);
     }
 }
 
-public class GenerateMediaBook: GenerateBook {
+public class GenerateMediaBook {
     public MediaBook creaMediaBook(string titulo, string autor, int añoPublicacion, FormatType formatType) {
         return new MediaBook(titulo,autor,añoPublicacion,formatType);
     }
