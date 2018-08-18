@@ -8,7 +8,7 @@ El patrón **Abstract Factory** proporciona una interfaz para crear familias de 
 
 Esto quiere decir, que, por poner un ejemplo, podríamos crear objetos de tipo Books sin tener que definir los tipos de books explícitamente. Mejor con un ejemplo, ¿no?
 
-Tendríamos la clase factoría abstracta Books. Imaginemos que tenemos un sistema de venta de libros. De esta forma tenemos dos tipos de formatos uno de manera física y otro de manera electrónica.
+Tendríamos la clase factoría abstracta Book. Imaginemos que tenemos un sistema de venta de libros. De esta forma tenemos dos tipos de formatos uno de manera física y otro de manera electrónica.
 
 ~~~csharp
 public class PaperBook :  Book {
@@ -51,7 +51,7 @@ public class GenerateMediaBook: GenerateBook {
 Hasta aquí tendríamos la implementación solicitada del ejemplo. Pero como siempre, viene el PO y nos dice que ha tenido una grandiosa idea y que también esta pensando en revistas. Con nuestro patrón solo tendríamos que agregar ciertas clases y mantendríamos nuestro principio Abierto-Cerrado Intacto.
 
 ~~~csharp
-public abstract class Magazine {
+public abstract class Book {
     protected string _titulo;
     protected string _autor;
     protected int _añoPublicacion;
@@ -66,7 +66,7 @@ public abstract class Magazine {
     public abstract void mostrarCaracteristicas();
 }
 
-public class PaperMagazine: Magazine {
+public class PaperMagazine: Book {
     public PaperMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType)
     : base(titulo, autor, añoPublicacion, formatType){}
 
@@ -75,7 +75,7 @@ public class PaperMagazine: Magazine {
     }
 }
 
-public class MediaMagazine: Magazine {
+public class MediaMagazine: Book {
     public MediaMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType)
     : base(titulo, autor, añoPublicacion, formatType){}
     public override void mostrarCaracteristicas() {
