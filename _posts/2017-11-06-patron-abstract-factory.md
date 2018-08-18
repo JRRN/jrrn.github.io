@@ -56,7 +56,7 @@ public abstract class Book {
     protected string _autor;
     protected int _añoPublicacion;
     protected FormatType _formatType;
-    public Magazine(string titulo, string autor, int añoPublicacion, FormatType formatType) {
+    public Book(string titulo, string autor, int añoPublicacion, FormatType formatType) {
         _titulo = titulo;
         _autor = autor;
         _añoPublicacion = añoPublicacion;
