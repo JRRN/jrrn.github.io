@@ -20,7 +20,7 @@ public class PaperBook :  Book {
 }
 
 public class MediaBook: Book {
-    public PaperBook(string titulo, string autor, int añoPublicacion, FormatType formatType)
+    public MediaBook(string titulo, string autor, int añoPublicacion, FormatType formatType)
     : base(titulo, autor, añoPublicacion, formatType) {}
 
     public override void mostrarCaracteristicas() {
