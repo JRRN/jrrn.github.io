@@ -11,109 +11,114 @@ Volviendo a nuestro ejemplo de los libros y revistas. Durante la compra de libro
 Estos documentos se pueden generar en pdf y/o en formato html para remitir por mail, por ejemplo. Con lo que obtendríamos los métodos constructorDocumentacionHtml y constructorDocumentacionPdf.
 
 ~~~csharp
-public abstract class Documentacion {
-    protected IList<string> contenido = new List<string>();
-    public abstract void agregaDocumento(string documento);
-    public abstract void imprime();
-}
-
-public class DocumentacionHtml : Documentacion {
-    public override void agregaDocumento(string documento) {
-       if (document.StartsWith("HTML")) contenido.Add(documento);
+    public abstract class Documentacion
+    {
+        protected IList<string> contenido = new List<string>();
+        public abstract void agregaDocumento(string documento);
+        public abstract void imprime();
     }
 
-    public override void imprime() {
-        Console.WriteLine("Documentación HTML");
-        foreach(string s in contenido) Console.WriteLine(s);
-    }
-}
-
-public class DocumentacionPdf : Documentacion {
-    public override void agregaDocumento(string documento) {
-        if (documento.StartsWith("PDF")) contenido.Add(documento);
-    }
-
-    public override void imprime() {
-        Console.WriteLine("Documentación PDF");
-        foreach (string s in contenido)  Console.WriteLine(s);
-    }
-}
-
-public abstract class ConstructorDocumentacion {
-    protected Documentacion documentacion;
-    public abstract void construyeSolicitudPedido(string nombreCliente);
-    public abstract void construyeSolicitudFactura(string nombreSolicitante);
-    public Documentacion resultado() {
-        return documentacion;
-    }
-}
-
-public class constructorDocumentacionHtml : ConstructorDocumentacion {
-    public ConstructorDocumentacionHtml() {
-        documentacion = new DocumentacionHtml();
-    }
-
-    public override void construyeSolicitudPedido(string nombreCliente) {
-        string documento;
-        documento = $"Solicitud de pedido Cliente: {nombreCliente} HTML";
-        documentacion.agregaDocumento(documento);
-    }
-
-    public override void construyeSolicitudFactura(string nombreSolicitante) {
-        string documento;
-        documento =  $"HTML Solicitud de factura Solicitante:  {nombreSolicitante}";
-
-        documentacion.agregaDocumento(documento);
-    }
-}
-
-public class ConstructorDocumentacionPdf :  ConstructorDocumentacion {
-    public ConstructorDocumentacionPdf() {
-        documentacion = new DocumentacionPdf();
-    }
-
-    public override void construyeSolicitudPedido(string nombreCliente) {
-        string documento;
-        documento = "<PDF>Solicitud de pedido Cliente: " + nombreCliente + "</PDF>";
-        documentacion.agregaDocumento(documento);
-    }
-
-    public override void construyeSolicitudFactura(string nombreSolicitante) {
-        string documento;
-        documento = "<PDF>Solicitud de factura Solicitante: " + nombreSolicitante + "</PDF>";
-        documentacion.agregaDocumento(documento);
-    }
-}
-
-public class Vendedor {
-    protected ConstructorDocumentacion constructor;
-    public Vendedor(ConstructorDocumentacionVehiculo constructor) {
-        this.constructor = constructor;
-    }
-
-    public Documentacion construye(string nombreCliente) {
-        constructor.construyeSolicitudPedido(nombreCliente);
-        constructor.construyeSolicitudFactura(nombreCliente);
-        Documentacion documentacion = constructor.resultado();
-        return documentacion;
-    }
-}
-
-public class Cliente {
-    static void Main(string[] args) {
-        ConstructorDocumentacion constructor;
-        Console.WriteLine("Desea generar " + "documentación HTML (1) o PDF (2):");
-        string seleccion = Console.ReadLine();
-        if (seleccion == "1") {
-            constructor = new ConstructorDocumentacionHtml();
-        } else {
-            constructor = new ConstructorDocumentacionPdf();
+    public class DocumentacionHtml : Documentacion
+    {
+        public override void agregaDocumento(string documento)
+        {
+            if (documento.StartsWith("HTML", StringComparison.Ordinal)) contenido.Add(documento);
         }
-        Vendedor vendedor = new Vendedor(constructor);
-        Documentacion documentacion = vendedor.construye("JRRN");
-        documentacion.imprime();
+
+        public override void imprime()
+        {
+            Console.WriteLine("Documentación HTML");
+            foreach (string s in contenido) Console.WriteLine(s);
+        }
     }
-}
+
+    public class DocumentacionPdf : Documentacion
+    {
+        public override void agregaDocumento(string documento)
+        {
+            if (documento.StartsWith("PDF", StringComparison.Ordinal)) contenido.Add(documento);
+        }
+
+        public override void imprime()
+        {
+            Console.WriteLine("Documentación PDF");
+            foreach (string s in contenido) Console.WriteLine(s);
+        }
+    }
+
+    public abstract class ConstructorDocumentacion
+    {
+        protected Documentacion documentacion;
+        public abstract void construyeSolicitudPedido(string nombreCliente);
+        public abstract void construyeSolicitudFactura(string nombreSolicitante);
+        public Documentacion resultado()
+        {
+            return documentacion;
+        }
+    }
+
+    public class ConstructorDocumentacionHtml : ConstructorDocumentacion
+    {
+        public ConstructorDocumentacionHtml()
+        {
+            documentacion = new DocumentacionHtml();
+        }
+
+        public override void construyeSolicitudPedido(string nombreCliente)
+        {
+            string documento;
+            documento = $"Solicitud de pedido Cliente: {nombreCliente} HTML";
+            documentacion.agregaDocumento(documento);
+        }
+
+        public override void construyeSolicitudFactura(string nombreSolicitante)
+        {
+            string documento;
+            documento = $"HTML Solicitud de factura Solicitante:  {nombreSolicitante}";
+
+            documentacion.agregaDocumento(documento);
+        }
+    }
+
+    public class ConstructorDocumentacionPdf : ConstructorDocumentacion
+    {
+        public ConstructorDocumentacionPdf()
+        {
+            documentacion = new DocumentacionPdf();
+        }
+
+        public override void construyeSolicitudPedido(string nombreCliente)
+        {
+            string documento;
+            documento = "<PDF>Solicitud de pedido Cliente: " + nombreCliente + "</PDF>";
+            documentacion.agregaDocumento(documento);
+        }
+
+        public override void construyeSolicitudFactura(string nombreSolicitante)
+        {
+            string documento;
+            documento = "<PDF>Solicitud de factura Solicitante: " + nombreSolicitante + "</PDF>";
+            documentacion.agregaDocumento(documento);
+        }
+    }
+
+    public class Vendedor
+    {
+        protected ConstructorDocumentacion constructor;
+
+        public Vendedor(ConstructorDocumentacion constructor)
+        {
+            this.constructor = constructor;
+        }
+
+        public Documentacion construye(string nombreCliente)
+        {
+            constructor.construyeSolicitudPedido(nombreCliente);
+            constructor.construyeSolicitudFactura(nombreCliente);
+            Documentacion documentacion = constructor.resultado();
+            return documentacion;
+        }
+    }
 ~~~
 
 Saludos.
