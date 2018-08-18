@@ -119,6 +119,22 @@ Estos documentos se pueden generar en pdf y/o en formato html para remitir por m
             return documentacion;
         }
     }
+    
+    public class Usuario {
+    static void Main(string[] args) {
+        ConstructorDocumentacion constructor;
+        Console.WriteLine("Desea generar " + "documentación HTML (1) o PDF (2):");
+        string seleccion = Console.ReadLine();
+        if (seleccion == "1") {
+            constructor = new ConstructorDocumentacionHtml();
+        } else {
+            constructor = new ConstructorDocumentacionPdf();
+        }
+        Vendedor vendedor = new Vendedor(constructor);
+        Documentacion documentacion = vendedor.construye("JRRN");
+        documentacion.imprime();
+    }
+}
 ~~~
 
 Saludos.
