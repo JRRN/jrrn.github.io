@@ -15,80 +15,67 @@ Empezamos:
 
 ~~~csharp
 public abstract class BaseLibro {
-    public BaseLibro siguiente {protected get; set;}
+    public BaseLibro siguiente { protected get; set; }
 
-    private string descripcionBase() {
-        return "Descripción base: Es un libro."
+    private static string DescripcionBase()
+    {
+        return "Descripción base: Es un libro.";
     }
 
-    protected abstract string descripcion {get;}
+    protected abstract string descripcion { get; }
 
-    public string GetDescripcion() {
-        string result;
-        result = descripcion;
+    public string GetDescripcion()
+    {
+        var result = descripcion;
 
-        if(result != null) {
+        if (result != null)
+        {
             return result;
         }
-        if(siguiente != null) {
-            return siguiente.GetDescripcion();
-        }
-        return descripcionBase();
+        return siguiente != null ? siguiente.GetDescripcion() : DescripcionBase();
     }
 }
 
-public class Libro : BaseLibro {
+public class LibroCoR : BaseLibro
+{
     protected string _libroDescripcion;
 
-    public Libro(string descripcion) {
+    public LibroCoR(string descripcion)
+    {
         _libroDescripcion = descripcion;
     }
 
-    protected override string descripcion {
-        get { return _libroDescripcion; }
-    }
+    protected override string descripcion => _libroDescripcion;
 }
 
 public class LibroCategoriaDescripcion : BaseLibro {
-    protected string _categoriaDescripcion;
-    protected string _categoria;
+        protected string _categoriaDescripcion;
+        protected string _categoria;
 
-    public Libro(string descripcion, string categoria) {
-        _categoriaDescripcion = descripcion;
-        _categoria = categoria;
-    }
-
-    protected override string descripcion {
-        get
+        public LibroCategoriaDescripcion(string descripcion, string categoria)
         {
-            if(_categoriaDescripcion != null) {
-                return $"{La categoria {_categoria} : _categoriaDescripcion}";
-            } else {
-                return null;
-            }
+            _categoriaDescripcion = descripcion;
+            _categoria = categoria;
         }
-    }
+
+        protected override string descripcion => 
+                _categoriaDescripcion != null ? $"La categoria {_categoria} 
+                : {_categoriaDescripcion}" : null;
 }
 
 public class LibroDescripcion : BaseLibro {
-    protected string _libroDescripcion;
-    protected string _libro;
+        protected string _libroDescripcion;
+        protected string _libro;
 
-    public Libro(string descripcion, string libro) {
-        _libroDescripcion = descripcion;
-        _libro = libro;
-    }
-
-    protected override string descripcion {
-        get
+        public LibroDescripcion(string descripcion, string libro)
         {
-            if(_libroDescripcion != null) {
-                return $"{El libro {_libro} : _libroDescripcion}";
-            } else {
-                return null;
-            }
+            _libroDescripcion = descripcion;
+            _libro = libro;
         }
-    }
+
+        protected override string descripcion => 
+            _libroDescripcion != null ? $"El libro {_libro} 
+            : {_libroDescripcion}" : null;
 }
 ~~~
 
