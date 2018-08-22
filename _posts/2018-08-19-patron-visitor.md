@@ -10,8 +10,8 @@ El patrón Visitor nos permite agregar operaciones a objetos sin tener que modif
 
 ~~~csharp
 public inteface Visitante {
-    void visita(EditorialSinFilial editorialSinFilial);
-    void visita(EditorialMadre editorialMadre);
+    void Visita(EditorialSinFilial editorialSinFilial);
+    void Visita(EditorialMadre editorialMadre);
 
 }
 
@@ -20,7 +20,8 @@ public abstract class Editorial {
     public string email { get; protected set; }
     public string direccion { get; protected set; }
 
-    public Editorial(string nombre, string email, string direccion) {
+    protected Editorial(string nombre, string email, string direccion)
+    {
         this.nombre = nombre;
         this.email = email;
         this.direccion = direccion;
@@ -32,15 +33,17 @@ public abstract class Editorial {
 }
 
 public class EditorialSinFilial : Editorial {
-    public EditorialFilial(string nombre, string email, string direccion)
-            :base (string nombre, string email, string direccion) { }
+    public EditorialSinFilial(string nombre, string email, string direccion)
+        : base(nombre, email, direccion) { }
 
-    public abstract bool AgregarEditorialFilial(Editorial filial) {
+    public override bool AgregarEditorialFilial(Editorial filial)
+    {
         return false;
     }
 
-    public abstract void AceptaVisitante(Visitante visitante) {
-        visitante.visita(this);
+    public override void AceptaVisitante(Visitante visitante)
+    {
+        visitante.Visita(this);
     }
 }
 
@@ -48,26 +51,31 @@ public class EditorialMadre : Editorial {
     protected IList<Editorial> editorialesFiliales = new List<Editorial>();
 
     public EditorialMadre(string nombre, string email, string direccion)
-            :base (string nombre, string email, string direccion) { }
+        : base(nombre, email, direccion) { }
 
-    public abstract bool AgregarEditorialFilial(Editorial filial) {
+    public override bool AgregarEditorialFilial(Editorial filial)
+    {
         editorialesFiliales.Add(filial);
         return true;
     }
 
-    public abstract void AceptaVisitante(Visitante visitante) {
-        visitante.visita(this);
-        foreach(Editorial editorialFilial in editorialesFiliales) {
-            filial.AceptaVisitante(visitante);
+    public override void AceptaVisitante(Visitante visitante)
+    {
+        visitante.Visita(this);
+        foreach (Editorial editorialFilial in editorialesFiliales)
+        {
+            editorialFilial.AceptaVisitante(visitante);
         }
     }
 }
 
 public class VisitanteMailingComercial : Visitante {
-    public void visita(EditorialSinFilial editorial) {
+    public void Visita(EditorialSinFilial editorial)
+    {
         Console.WriteLine($"Envía mail a {editorial.nombre} a {editorial.email}");
     }
-       public void visita(EditorialMadre editorial) {
+    public void Visita(EditorialMadre editorial)
+    {
         Console.WriteLine($"Envía mail a {editorial.nombre} a {editorial.email}");
     }
 }
@@ -77,7 +85,7 @@ public class Usuario {
         Editorial editorial1 = new EditorialSinFilial("empresa1","mail@empresa1.com","Calle Empresa 1");
         Editorial editorial2 = new EditorialSinFilial("empresa2","mail@empresa2.com","Calle Empresa 2");
 
-        Editorial grupoEditorial = new EditorialMadre("grupoEditorial1","mail@grupoEditorial1.com","Calle Grupo Editorial1"):
+        Editorial grupoEditorial = new EditorialMadre("grupoEditorial1","mail@grupoEditorial1.com","Calle Grupo Editorial1");
 
         grupoEditorial.AgregarEditorialFilial(editorial1);
         grupoEditorial.AgregarEditorialFilial(editorial2);
