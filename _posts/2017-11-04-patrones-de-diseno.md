@@ -32,7 +32,7 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 - [Patrón Flyweight](patron-flyweight "Patrón Flyweight")
 - [Patrón Proxy](patron-proxy "Patrón Proxy")
 
-### Patrones de comportamiento ###
+### [Patrones de comportamiento](patrones-de-comportamiento "Patrones de comportamiento") ###
 
 - [Patrón Chain of Responsibility](patron-chain-of-responsability "Patrón Chain of Responsibility")
 - [Patrón Command](patron-command "Patrón Command")
