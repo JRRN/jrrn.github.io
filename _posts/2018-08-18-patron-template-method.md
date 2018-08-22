@@ -15,50 +15,57 @@ Veamos el ejemplo:
 ~~~csharp
 
 public abstract class Pedido {
-    protected double importeSinIVA;
-    protected double IVA;
-    protected double importeTotal;
+    protected double ImporteSinIva;
+    protected double Iva;
+    protected double ImporteTotal;
 
-    protected abstract void CalcularIVA();
+    public abstract void CalcularIva();
 
-    public void CalculaPrecioTotal() {
-        this.CalcularIVA();
-        importeTotal = importeSinIVA + IVA;
+    public void CalculaPrecioTotal()
+    {
+        CalcularIva();
+        ImporteTotal = ImporteSinIva + Iva;
     }
 
-    public void setImporteSinIVA(double importeSinIVA) {
-        this.importeSinIVA = importeSinIVA;
+    public void SetImporteSinIva(double importeSinIva)
+    {
+        ImporteSinIva = importeSinIva;
     }
 
-    public void Imprime() {
+    public void Imprime()
+    {
         Console.WriteLine("Pedido");
-        Console.WriteLine($"Importe Sin IVA {importeSinIVA} , IVA {IVA}");
-        Console.WriteLine($"Importe Total {importeTotal}");
+        Console.WriteLine($"Importe Sin IVA {ImporteSinIva} , IVA {Iva}");
+        Console.WriteLine($"Importe Total {ImporteTotal}");
     }
 }
 
 public class PedidoEspaña : Pedido {
-    protected override void CalcularIVA(){
-        IVA = importeSinIVA * 0.21;
+    public override void CalcularIva()
+    {
+        Iva = ImporteSinIva * 0.21;
     }
 }
 
 public class PedidoMexico : Pedido {
-    protected override void CalcularIVA(){
-        IVA = importeSinIVA * 0.16;
+    public override void CalcularIva()
+    {
+        Iva = ImporteSinIva * 0.16;
     }
 }
 
 public class Usuario {
     static void Main(string[] args) {
         Pedido pedidoEspaña = new PedidoEspaña();
-        pedidoEspaña.setImporteSinIVA(1000);
-        pedidoEspaña.CalcularIVA();
+        pedidoEspaña.SetImporteSinIva(1000);
+        pedidoEspaña.CalcularIva();
+        pedidoEspaña.CalculaPrecioTotal();
         pedidoEspaña.Imprime();
 
         Pedido pedidoMexico = new PedidoMexico();
-        pedidoMexico.setImporteSinIVA(1000);
-        pedidoMexico.CalcularIVA();
+        pedidoMexico.SetImporteSinIva(1000);
+        pedidoMexico.CalcularIva();
+        pedidoMexico.CalculaPrecioTotal();
         pedidoMexico.Imprime();
     }
 }
