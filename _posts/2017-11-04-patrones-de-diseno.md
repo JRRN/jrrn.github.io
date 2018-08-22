@@ -48,3 +48,5 @@ Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículo
 - [Patrón Specification](patro-specification "Patrón Specification")
 
 Nos vemos en el siguiente post.
+
+* [Código](https://github.com/JRRN/PatternsInAction "Código")
