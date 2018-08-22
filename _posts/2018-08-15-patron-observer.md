@@ -12,63 +12,73 @@ Vamos con el ejemplo:
 
 ~~~csharp
 public abstract class ObjetoPrincipal {
-    protected IList<Observer> observadores = new List<Observer>();
+    protected IList<IObserver> observadores = new List<IObserver>();
 
-    public void Agrega(Observer observador) {
+    public void Agrega(IObserver observador)
+    {
         observadores.Add(observador);
     }
 
-    public void Quita(Observer observadir) {
+    public void Quita(IObserver observador)
+    {
         observadores.Remove(observador);
     }
 
-    public void Actualiza() {
-        foreach (var observador in observadores) {
+    public void Actualiza()
+    {
+        foreach (var observador in observadores)
+        {
             observador.Actualiza();
         }
     }
 }
 
-public interface Observer {
+public interface IObserver {
     void Actualiza();
 }
 
-public class Book : ObjetivoPrincipal {
+public class Book : ObjetoPrincipal {
     protected string _descripcion;
     protected string _precio;
 
-    public string Descripcion {
-        get { return _descripcion; }
+    public string Descripcion
+    {
+        get => _descripcion;
         set { _descripcion = value; this.Actualiza(); }
     }
 
-    public string Precio {
-        get { return _descripcion; }
+    public string Precio
+    {
+        get => _descripcion;
         set { _descripcion = value; this.Actualiza(); }
     }
 }
 
-public class BookView : Observer {
+public class BookView : IObserver {
     protected Book book;
     protected string texto = String.Empty;
 
-    public BookView(Book book) {
+    public BookView(Book book)
+    {
         this.book = book;
         book.Agrega(this);
         ActualizaTexto();
     }
 
-    protected void ActualizaTexto() {
+    protected void ActualizaTexto()
+    {
         texto = $"Descripción {book.Descripcion}, precio {book.Precio}";
     }
 
-    public void Actualiza() {
+    public void Actualiza()
+    {
         ActualizaTexto();
         this.Imprime();
     }
 
-    public void Imprime() {
-        Console.WriteLine (texto);
+    public void Imprime()
+    {
+        Console.WriteLine(texto);
     }
 }
 
