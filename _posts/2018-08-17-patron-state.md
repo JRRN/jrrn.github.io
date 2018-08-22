@@ -11,139 +11,159 @@ El ejemplo más simple para entender este patrón, es en los pedidos, si el pedi
 Vayamos con el ejemplo:
 
 ~~~csharp
-public class Pedido {
-    protected IList<Producto> productos = new List<Producto>();
+public class PedidoState {
+    protected IList<ProductoState> productos = new List<ProductoState>();
 
-    public IList<Producto> Productos {
-        get { return productos; }
+    public IList<ProductoState> Productos => productos;
+
+    protected EstadoPedido EstadoPedido;
+
+    public PedidoState() {
+        EstadoPedido = new PedidoEnCurso(this);
     }
 
-    protected EstadoPedido estadoPedido;
-
-    public Pedido {
-        estado = new PedidoEnCurso(this);
+    public void AgregaProducto(ProductoState producto)
+    {
+        EstadoPedido.AgregaProducto(producto);
     }
 
-    public void AgregaProducto(Producto producto) {
-        estadoPedido.AgregaProducto(producto);
+    public void QuitaProducto(ProductoState producto)
+    {
+        EstadoPedido.QuitaProducto(producto);
     }
 
-    public void QuitaProducto(Producto producto) {
-        estadoPedido.QuitaProducto(producto);
+    public void QuitaTodo()
+    {
+        EstadoPedido.QuitaTodo();
     }
 
-    public void QuitaTodo() {
-        estadoPedido.QuitaTodo()
+    public void EstadoSiguiente()
+    {
+        EstadoPedido = EstadoPedido.EstadoSiguiente();
     }
 
-    public void EstadoSiguiente() {
-        estadoPedido = estadoPedido.EstadoSiguiente();
-    }
-
-    public void Imprime() {
+    public void Imprime()
+    {
         Console.WriteLine("Contenido del pedido:");
-        foreach(var producto in Productos) {
+        foreach (var producto in Productos)
+        {
             producto.Imprime();
         }
+
         Console.WriteLine();
     }
 }
 
 public abstract class EstadoPedido {
-    protected Pedido pedido;
+        protected PedidoState Pedido;
 
-    public EstadoPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
+        protected EstadoPedido(PedidoState pedido) {
+            Pedido = pedido;
+        }
 
-    public abstract void AgregaProducto(Producto producto);
-    public abstract void QuitaTodo();
-    public abstract void QuitaProducto(Producto producto);
-    public abstract EstadoPedido EstadoSiguiente();
+        public abstract void AgregaProducto(ProductoState producto);
+        public abstract void QuitaTodo();
+        public abstract void QuitaProducto(ProductoState producto);
+        public abstract EstadoPedido EstadoSiguiente();
 }
 
 public class PedidoEnCurso : EstadoPedido {
-    public PedidoEnCurso(Pedido pedido) : base(pedido) {}
+    public PedidoEnCurso(PedidoState pedido) : base(pedido) { }
 
-    public override void AgregaProducto(Producto producto) {
-        pedido.Productos.Add(pedido);
+    public override void AgregaProducto(ProductoState producto)
+    {
+        Pedido.Productos.Add(producto);
     }
 
-    public override void QuitaTodo() {
-        pedido.Productos.Clear();
+    public override void QuitaTodo()
+    {
+        Pedido.Productos.Clear();
     }
 
-    public override void QuitaProducto(Producto producto) {
-        pedido.Productos.Remove(pedido);
+    public override void QuitaProducto(ProductoState producto)
+    {
+        Pedido.Productos.Remove(producto);
     }
 
-    public override EstadoPedido EstadoSiguiente() {
-        return new PedidoConfirmado(pedido);
+    public override EstadoPedido EstadoSiguiente()
+    {
+        return new PedidoConfirmado(Pedido);
     }
 }
 
 public class PedidoConfirmado : EstadoPedido {
-    public PedidoConfirmado(Pedido pedido) : base(pedido) {}
+    public PedidoConfirmado(PedidoState pedido) : base(pedido) { }
 
-    public override void AgregaProducto(Producto producto) {}
-
-    public override void QuitaTodo() {
-        pedido.Productos.Clear();
+    public override void AgregaProducto(ProductoState producto)
+    {
     }
 
-    public override void QuitaProducto(Producto producto) {}
+    public override void QuitaTodo()
+    {
+        Pedido.Productos.Clear();
+    }
 
-    public override EstadoPedido EstadoSiguiente() {
-        return new PedidoEntregado(pedido);
+    public override void QuitaProducto(ProductoState producto)
+    {
+    }
+
+    public override EstadoPedido EstadoSiguiente()
+    {
+        return new PedidoEntregado(Pedido);
     }
 }
 
 public class PedidoEntregado : EstadoPedido {
-    public PedidoEntregado(Pedido pedido) : base(pedido) {}
+    public PedidoEntregado(PedidoState pedido) : base(pedido) { }
 
-    public override void AgregaProducto(Producto producto) {}
+    public override void AgregaProducto(ProductoState producto) { }
 
-    public override void QuitaTodo() {}
+    public override void QuitaTodo() { }
 
-    public override void QuitaProducto(Producto producto) {}
+    public override void QuitaProducto(ProductoState producto) { }
 
-    public override EstadoPedido EstadoSiguiente() {
+    public override EstadoPedido EstadoSiguiente()
+    {
         return this;
     }
 }
 
 public class Producto {
-    protected string nombre;
+    public class ProductoState
+    {
+        protected string Nombre;
 
-    public Producto(string nombre) {
-        this.nombre = nombre;
-    }
+        public ProductoState(string nombre)
+        {
+            Nombre = nombre;
+        }
 
-    public void Imprime() {
-        Console.WriteLine($"Producto: {nombre}");
+        public void Imprime()
+        {
+            Console.WriteLine($"Producto: {Nombre}");
+        }
     }
 }
 
 public class Usuario {
     static void Main(string[] args) {
-
-        Pedido pedido = new Pedido();
-        pedido.AgregaProducto(new Producto("Book 1"));
-        pedido.AgregaProducto(new Producto("Book 2"));
+        PedidoState pedido = new PedidoState();
+        pedido.AgregaProducto(new ProductoState("Book 1"));
+        pedido.AgregaProducto(new ProductoState("Book 2"));
         pedido.Imprime();
         pedido.EstadoSiguiente();
-        pedido.AgregaProducto(new Producto("Book 3"));
-        pedido.QuitarTodo();
+        pedido.AgregaProducto(new ProductoState("Book 3"));
+        pedido.QuitaTodo();
         pedido.Imprime();
 
-        Pedido pedido2 = new Pedido();
-        pedido2.AgregaProducto(new Producto("Book 10"));
-        pedido2.AgregaProducto(new Producto("Book 20"));
+        PedidoState pedido2 = new PedidoState();
+        pedido2.AgregaProducto(new ProductoState("Book 10"));
+        pedido2.AgregaProducto(new ProductoState("Book 20"));
         pedido2.Imprime();
         pedido2.EstadoSiguiente();
         pedido2.Imprime();
         pedido2.EstadoSiguiente();
-        pedido2.QuitarTodo(); //En este estado no hará nada
+        pedido2.QuitaTodo(); //En este estado no hará nada
         pedido2.Imprime();
     }
 }
