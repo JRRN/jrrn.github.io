@@ -11,30 +11,37 @@ En definitiva, lo que se pretende con este patrón es generar una nueva interfaz
 En nuestro sistema de libros, crearemos una interfaz con los métodos para generar el libro, componerlo e imprimirlo.
 
 ~~~csharp
-public interface IBook {
-    string contenido {set;}
+public interface IBookAdapter
+{
+    string Contenido { set; }
     void Compone();
     void Imprime();
     void Enviar();
 }
 
-public class PaperBook : IBook {
-    protected string _contenido
+public class PaperBook : IBookAdapter
+{
 
-    public string contenido {
+    protected string _contenido;
+
+    public string Contenido
+    {
         protected get { return _contenido; }
-        set { _contenido = value }
+        set { _contenido = value; }
     }
 
-    public void Compone() {
-        var contenido = ComponerContenido(contenido);
+    public void Compone()
+    {
+        var content = Contenido;
     }
 
-    public void Imprime() {
-        Console.WriteLine($"Mandando a imprimir Contenido {contenido}");
+    public void Imprime()
+    {
+        Console.WriteLine($"Mandando a imprimir Contenido { _contenido }");
     }
 
-    public void Enviar(){
+    public void Enviar()
+    {
         Console.WriteLine($"Enviar al cliente");
     }
 }
@@ -44,26 +51,32 @@ Sin embargo, ahora vamos a crear un libro no físico, sin embargo para este tipo
 Con lo que aquí entra en juego el patrón Adapter:
 
 ~~~csharp
-public class PdfBase {
+public class PdfBase
+{
     protected string _contenido;
 
-    public void PdfComponeContenido(string contenido) {
+    public void PdfComponeContenido(string contenido)
+    {
         _contenido = contenido;
     }
 
-    public void PdfPrevisualizar() {
+    public void PdfPrevisualizar()
+    {
         Console.WriteLine($"Previsualización de Contenido: { _contenido }");
     }
 
-    public void PdfAlmacena() {
-        Console.WriteLine($"Guardando de Book");
+    public void PdfAlmacena()
+    {
+        Console.WriteLine($"Guardando Book");
     }
 
-    public void PdfImprimePorPantalla() {
-        Console.WriteLine($"Imprime por pantall { _contenido }");
+    public void PdfImprimePorPantalla()
+    {
+        Console.WriteLine($"Imprime por pantalla { _contenido }");
     }
 
-    public void PdfEnviar(){
+    public void PdfEnviar()
+    {
         Console.WriteLine($"Enviando link de descarga al cliente");
     }
 }
@@ -72,23 +85,28 @@ public class PdfBase {
 Como podemos ver la clase PdfBase es independiente a la jerarquía que hasta ahora tenemos. Sin embargo, podemos ver métodos que podrían pertenecer a la interfaz IBook, así que nos toca "adaptar" esta lógica para que acepte la jerarquía:
 
 ~~~csharp
-public class PdfBook : IBook {
+public class PdfBook : IBookAdapter
+{
     protected PdfBase _pdfBase = new PdfBase();
 
-    public string contenido {
-        set { _pdfbase.PdfComponeContenido(value); }
+    public string Contenido
+    {
+        set => _pdfBase.PdfComponeContenido(value);
     }
 
-    public void Compone(){
+    public void Compone()
+    {
         _pdfBase.PdfPrevisualizar();
         _pdfBase.PdfAlmacena();
     }
 
-    public void Imprime(){
+    public void Imprime()
+    {
         _pdfBase.PdfImprimePorPantalla();
     }
 
-    public void Enviar(){
+    public void Enviar()
+    {
         _pdfBase.PdfEnviar();
     }
 }
@@ -99,19 +117,15 @@ Como podemos ver, la clase PdfBook ha implementado la interfaz IBook y de esta f
 Finalmente, para generar una salida tendremos:
 
 ~~~csharp
-public class Servicio{
+public class Servicio {
     static void Main(string[] args){
-        Ibook paperBook, mediaBook;
+        IBookAdapter paperBook = new PaperBook { Contenido = "Soy un libro físico"};
+        paperBook.Compone();
+        paperBook.Imprime();
+        paperBook.Enviar();
 
-        paperBook = new PaperBook();
-        paperbook.contenido = "Soy un libro físico";
-        paperbook.Componer();
-        paperbook.Imprime();
-        paperbook.Enviar();
-
-        mediaBook = new PdfBook();
-        mediaBook.contenido = "Soy un libro digital";
-        mediaBook.Componer();
+        IBookAdapter mediaBook = new PdfBook {Contenido = "Soy un libro digital"};
+        mediaBook.Compone();
         mediaBook.Imprime();
         mediaBook.Enviar();
     }
