@@ -12,34 +12,40 @@ Veamos el ejemplo, en este ejemplo lo que haremos es definir varias estrategias 
 
 ~~~csharp
 
-public interface IBookCalculaIVA {
-    double CalculaIVA(double precio);
+public interface IBookCalculaIva {
+    double CalculaIva(double precio);
     void ImprimeResultado();
 }
 
-public class CalculaBookIVAEspaña : IBookCalculaIVA {
-    protected double precioFinal = new double();
+public class CalculaBookIvaEspaña : IBookCalculaIva
+{
+    protected double PrecioFinal;
 
-    public double CalculaIVA(double precioBook) {
-        precioFinal = (precioBook + precioBook * 0.21);
-        return precioFinal;
+    public double CalculaIva(double precioBook)
+    {
+        PrecioFinal = precioBook + precioBook * 0.21;
+        return PrecioFinal;
     }
 
-    void ImprimeResultado(){
-        Console.WriteLine(precioFinal);
+    public void ImprimeResultado()
+    {
+        Console.WriteLine(PrecioFinal);
     }
 }
 
-public class CalculaBookIVAMexico : IBookCalculaIVA {
-    protected double precioFinal = new double();
+public class CalculaBookIvaMexico : IBookCalculaIva
+{
+    protected double PrecioFinal;
 
-    public double CalculaIVA(double precioBook) {
-        precioFinal = (precioBook + precioBook * 0.16);
-        return precioFinal;
+    public double CalculaIva(double precioBook)
+    {
+        PrecioFinal = precioBook + precioBook * 0.16;
+        return PrecioFinal;
     }
 
-    void ImprimeResultado(){
-        Console.WriteLine(precioFinal);
+    public void ImprimeResultado()
+    {
+        Console.WriteLine(PrecioFinal);
     }
 }
 
@@ -48,11 +54,11 @@ public class Usuario {
     static void Main(string[] args) {
         protected IBookCalculaIVA _calculaIVA;
 
-        _calculaIVA.CalculaIVA(new CalculaBookIVAEspaña(10));
-        _calculaIVA.ImprimeResultado();
+        _calculaIva.CalculaIva(new CalculaBookIvaEspaña().CalculaIva(10));
+        _calculaIva.ImprimeResultado();
 
-        _calculaIVA.CalculaIVA(new CalculaBookIVAMexico(10));
-        _calculaIVA.ImprimeResultado();
+        _calculaIva.CalculaIva(new CalculaBookIvaMexico().CalculaIva(10));
+        _calculaIva.ImprimeResultado();
     }
 }
 
