@@ -8,91 +8,102 @@ El patrón **iterator** nos proporciona un mecanismo para recorrer colecciones d
 Vamos con el ejemplo:
 
 ~~~csharp
-public abstract class Item {
+public abstract class Item
+{
     protected string _descripcion;
 
-    public Item(string descripcion) {
+    protected Item(string descripcion)
+    {
         _descripcion = descripcion;
     }
 
-    public bool palabraClaveValida(string palabraClave) {
-        return descripcion.Contains(palabraClave);
+    public bool PalabraClaveValida(string palabraClave)
+    {
+        return _descripcion.Contains(palabraClave);
     }
 }
 
-public class Book : Item {
-    public Book(string descripcion) : base(descripcion) { }
+public class BookIterator : Item
+{
+    public BookIterator(string descripcion) : base(descripcion) { }
 
-    public void visualiza() {
-        Console.WriteLine($"Descripción del Libro: {descripcion}");
+    public void Visualiza()
+    {
+        Console.WriteLine($"Descripción del Libro: { _descripcion}");
     }
 }
 
-public abstract class Iterador<TItem>  where TItem : Item {
+public abstract class Iterador<TItem> where TItem : Item
+{
     public string palabraClaveConsulta { protected get; set; }
     protected int indice;
-    public IList<TElemento> contenido { protected get; set; }
+    public IList<TItem> contenido { protected get; set; }
 
-    public void inicio() {
+    public void Inicio()
+    {
         indice = 0;
         int length = contenido.Count;
-        while ((indice < length) && (!contenido[indice]palabraClaveValida(palabraClaveConsulta))) {
+        while (indice < length && !contenido[indice].PalabraClaveValida(palabraClaveConsulta)) {
             indice++;
         }
     }
 
-    public void siguiente() {
+    public void Siguiente()
+    {
         int length = contenido.Count;
         indice++;
-        while ((indice < length) && (!contenido[indice]palabraClaveValida(palabraClaveConsulta))) {
+        while (indice < length && !contenido[indice].PalabraClaveValida(palabraClaveConsulta)) {
             indice++;
         }
     }
 
-    public TElemento item() {
-        if (indice < contenido.Count){
-            return contenido[indice];
-        }
-        else {
-            return null;
-        }
+    public TItem item()
+    {
+        return indice < contenido.Count ? contenido[indice] : null;
     }
 }
 
-public class IteradorBook : Iterador<Book> {}
+public class IteradorBook : Iterador<BookIterator> { }
 
 public abstract class Catalogo<TElemento, TIterador>
-    where TElemento : Elemento
+    where TElemento : Item
     where TIterador : Iterador<TElemento>, new()
 {
     protected IList<TElemento> contenido = new List<TElemento>();
 
-    public TIterador busqueda(string palabraClaveConsulta) {
-        TIterador resultado = new TIterador();
-        resultado.contenido = contenido;
-        resultado.palabraClaveConsulta = palabraClaveConsulta;
+    public TIterador Busqueda(string palabraClaveConsulta)
+    {
+        TIterador resultado = new TIterador
+        {
+            contenido = contenido,
+            palabraClaveConsulta = palabraClaveConsulta
+        };
+
         return resultado;
     }
 }
 
-public class CatalogoBook : Catalogo<Book, IteradorBook> {
-    public CatalogoBook() {
-       contenido.Add(new Book("Libro PDF"));
-       contenido.Add(new Book("Gran libro en PDF"));
-       contenido.Add(new Book("Libro de gran calidad"));
+public class CatalogoBook : Catalogo<BookIterator, IteradorBook>
+{
+    public CatalogoBook()
+    {
+        contenido.Add(new BookIterator("Libro PDF"));
+        contenido.Add(new BookIterator("Gran libro en PDF"));
+        contenido.Add(new BookIterator("Libro de gran calidad"));
     }
 }
 
 public class Usuario {
     static void Main(string[] args) {
         CatalogoBook catalogo = new CatalogoBook();
-        IteradorBook iterador = catalogo.busqueda("PDF");
-        Book libro;
-        iterador.inicio();
+        IteradorBook iterador = catalogo.Busqueda("PDF");
+        BookIterator libro;
+        iterador.Inicio();
         libro = iterador.item();
-        while (libro != null) {
-            libro.visualiza();
-            iterador.siguiente();
+        while (libro != null)
+        {
+            libro.Visualiza();
+            iterador.Siguiente();
             libro = iterador.item();
         }
     }
