@@ -19,45 +19,58 @@ enum TipoLibro
     Encolado =1
 }
 
-public class OpcionLibro {
+public class OpcionLibro
+{
     protected string _tapa;
     protected int _grosorPapel;
-    protected TipoLibro _tipoLibro;
+    protected TipoLibroEnum _tipoLibro;
 
-    public OpcionLibro(TipoLibro tipoLibro){
+    public OpcionLibro(TipoLibroEnum tipoLibro)
+    {
         _tipoLibro = tipoLibro;
-        _grosorPapel = getGrosorByTipoLibro(tipoLibro);
-        _tapa = getTapaByTipoLibro(tipoLibro);
+        _grosorPapel = getGrosorByTipoLibro((int)tipoLibro);
+        _tapa = getTapaByTipoLibro((int)tipoLibro);
     }
 
-    public void verOpcionesLibro(){
-        Console.WriteLine($"Libro con {_tapa} y grosor de papel {_grosorPapel} para el tipo de libro selecionado {_tipoLibro}")
+    public void VerOpcionesLibro()
+    {
+        Console.WriteLine(
+            $"Libro con {_tapa} y grosor de papel {_grosorPapel} para el tipo de libro selecionado {_tipoLibro}");
     }
 
-    private int getGrosorByTipoLibro(int tipoLibro) {
-        if(tipoLibro == 0) {
-            return 80;
-        }else if(tipoLibro == 1){
-            return 100;
+    private int getGrosorByTipoLibro(int tipoLibro)
+    {
+        switch (tipoLibro)
+        {
+            case 0:
+                return 80;
+            case 1:
+                return 100;
         }
+
         return 90; //default
     }
 
-    private string getTapaByTipoLibro(int tipoLibro) {
-        if(tipoLibro == 0) {
-            return "blanda";
-        }else if(tipoLibro == 1){
-            return "dura";
+    private string getTapaByTipoLibro(int tipoLibro)
+    {
+        switch (tipoLibro)
+        {
+            case 0:
+                return "blanda";
+            case 1:
+                return "dura";
         }
+
         return "blanda"; //default
     }
 }
 
 public class DeterminaOpcion {
-    protected IDictionary<TipoLibro, OpcionLibro> opcionesLibro = new Dictionary<TipoLibro, OpcioLibro>();
+    protected IDictionary<TipoLibroEnum, OpcionLibro> opcionesLibro = new Dictionary<TipoLibroEnum, OpcionLibro>();
 
-    public OpcionLibro GetOpcionesLibro(TipoLibro tipoLibro) {
-        resultadoTipoLibro = new OpcionLibro(tipoLibro);
+    public static OpcionLibro GetOpcionesLibro(TipoLibroEnum tipoLibro)
+    {
+        return new OpcionLibro(tipoLibro);
     }
 }
 
@@ -65,18 +78,19 @@ public class LibroPedido{
     protected IList<OpcionLibro> opcionLibro = new List<OpcionLibro>();
     protected IList<int> precioVenta = new List<int>();
 
-    public void agregaOpcionLibro(TipoLibro tipoLibro, int precio, DeterminaOpcion opcion) {
+    public void agregaOpcionLibro(TipoLibroEnum tipoLibro, int precio, DeterminaOpcion opcion)
+    {
         opcionLibro.Add(DeterminaOpcion.GetOpcionesLibro(tipoLibro));
         precioVenta.Add(precio);
     }
 
     public void MuestraOpciones()
     {
-        int tamaño;
-        tamaño = opcionLibro.Count;
+        var tamaño = opcionLibro.Count;
 
-        for(int inddice = 0; indice < tamaño; indice++) {
-            opcionLibro[indice].Visualiza(precioVenta[indice]);
+        for (int indice = 0; indice < tamaño; indice++)
+        {
+            opcionLibro[indice].VerOpcionesLibro();
             Console.WriteLine();
         }
     }
