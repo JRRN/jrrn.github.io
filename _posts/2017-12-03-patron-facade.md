@@ -24,7 +24,7 @@ public interface IBookService {
 }
 
 public interface IPedidosService {
-    void GetPedidoById(Guid Pedido);
+    void GetPedidoById(Guid pedido);
 }
 
 public class CatalogoService : ICatalagoService {
@@ -71,17 +71,11 @@ public class FacadeService : IFacadeService {
 
 public class Web {
     static void Main(string[] args){
-       IFacadeService _facade = new FacadeService();
+        IFacadeService _facade = new FacadeService();
 
-       Console.WriteLine($"Mostrando Catalago {_facade.GetCatalogo}");
-       var libro = _facade.GetBookById(a2ddedc8-8232-4eab-9fa4-1761a7e3ba22);
-
-       Console.WriteLine($"Libro : {libro}");
-
-       var pedido = _facade.GetPedidoById(a2ddedc8-8232-4eab-9fa4-1761a7e3ba23)
-
-       Console.WriteLine($"Pedido : {pedido}");
-
+        _facade.GetCatalogo();
+        _facade.GetBookById(Guid.NewGuid());
+        _facade.GetPedidoById(Guid.NewGuid());
     }
 }
 ~~~
