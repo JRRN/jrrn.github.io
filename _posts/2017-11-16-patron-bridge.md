@@ -18,81 +18,93 @@ enum TipoLibroEnum{
     Paper
 };
 
-public interface IBook {
+public interface IBookBridge {
     void GenerarLibro(string contenido);
 
     TipoLibroEnum TipoDeLibro();
 }
 
-public class MediaBook : IBook{
-    public void GenerarLibro(string contenido){
-        Console.WriteLine("Libro Electronico" );
+public class MediaBook : IBookBridge{
+    public void GenerarLibro()
+    {
+        Console.WriteLine("Libro de Papel");
     }
 
-    public TipoLibroEnum TipoDeLibro(){
-        return TipoLibroEnum.Media;
+    public TipoLibroEnum TipoDeLibro()
+    {
+        return TipoLibroEnum.Paper;
     }
 }
 
-public class PaperBook : IBook{
-    public void GenerarLibro(string contenido){
-        Console.WriteLine("Libro Papel" );
+public class PaperBook : IBookBridge
+{
+    public void GenerarLibro()
+    {
+        Console.WriteLine("Libro de Papel");
     }
 
-    public TipoLibroEnum TipoDeLibro(){
+    public TipoLibroEnum TipoDeLibro()
+    {
         return TipoLibroEnum.Paper;
     }
 }
 
 public abstract class GeneradorLibro {
-    protected TipoLibroEnum _tipoLibroEnum;
-    protected IBook _book;
+    public TipoLibroEnum _tipoLibroEnum;
+    public IBookBridge _book;
 
-    public GeneradorLibro(IBook book){
+    protected GeneradorLibro(IBookBridge book)
+    {
         _book = book;
     }
 
-    public void Genera() {
-        _book.GenerarLibro(contenido);
+    public void Genera()
+    {
+        _book.GenerarLibro();
     }
 
-    public TipoLibroEnum TipoDeLibro() {
+    public TipoLibroEnum TipoDeLibro()
+    {
         return _book.TipoDeLibro();
     }
 
-    protected abstract bool controlTipoLibro(TipoLibroEnum tipoLibro);
+    public abstract bool ControlTipoLibro(TipoLibroEnum tipoLibro);
 }
 
 public class GeneradorLibroPapel : GeneradorLibro {
-    public GeneradorLibroPapel(GeneradorLibro) : base(book){}
+    public GeneradorLibroPapel(IBookBridge book) : base(book) { }
 
-    protected override TipoLibroEnum controlTipoLibro(TipoLibroEnum tipoLibro){
-        return TipoLibroEnum.Paper;
+    public override bool ControlTipoLibro(TipoLibroEnum tipoLibro)
+    {
+        return tipoLibro == TipoLibroEnum.Paper;
     }
 }
 
 public class GeneradorLibroElectronico : GeneradorLibro {
-    public GeneradorLibroElectronico(GeneradorLibro) : base(book){}
+    public GeneradorLibroElectronico(IBookBridge book) : base(book) { }
 
-    protected override TipoLibroEnum controlTipoLibro(TipoLibroEnum tipoLibro){
-        return TipoLibroEnum.Media;
+    public override bool ControlTipoLibro(TipoLibroEnum tipoLibro)
+    {
+        return tipoLibro == TipoLibroEnum.Media;
     }
 }
 
 public class Libreria{
     static void Main(string[] args){
-        GeneradorLibroPapel libroElectronico = new GeneradorLibroPapel(new MediaBook());
+        GeneradorLibroElectronico libroElectronico = new GeneradorLibroElectronico(new BridgePattern.MediaBook());
 
-        Console.WriteLine(libroElectronico.controlTipoLibro().Tostring())
-        if(libroElectronico.controlTipoLibro == TipoLibroEnum.Media){
-            libroElectronico.GenerarLibro()
+        Console.WriteLine(libroElectronico._tipoLibroEnum);
+        if (libroElectronico.TipoDeLibro() == TipoLibroEnum.Media)
+        {
+            libroElectronico.Genera();
         }
 
-        GeneradorLibroPapel libroPapel = new GeneradorLibroElectronico(new PaperBook());
+        GeneradorLibroPapel libroPapel = new GeneradorLibroPapel(new BridgePattern.PaperBook());
 
-        Console.WriteLine(libroPapel.controlTipoLibro().Tostring())
-        if(libroPapel.controlTipoLibro == TipoLibroEnum.Papel){
-            libroPapel.GenerarLibro()
+        Console.WriteLine(libroPapel._tipoLibroEnum);
+        if (libroPapel.TipoDeLibro() == TipoLibroEnum.Paper)
+        {
+            libroPapel.Genera();
         }
     }
 }
