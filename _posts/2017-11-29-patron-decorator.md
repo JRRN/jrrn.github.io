@@ -15,49 +15,66 @@ Muchos pensaréis "*pero si esto me lo da la herencia*" y yo os contesto "*la he
 ¿Lo vemos con el ejemplo? Pues vamos.
 
 ~~~csharp
-public interface ICatalago {
+public interface ICatalogo
+{
     void VerDatosLibro();
 }
 
-public class Books : ICatalago {
-    public void VerDatosLibro() {
+public class Books : ICatalogo
+{
+    public void VerDatosLibro()
+    {
         Console.WriteLine("Mostrando Libro");
     }
 }
 
-public abstract class Decorador : ICatalago {
-    protected ICatalago _catalogo;
+public abstract class Decorador : ICatalogo
+{
+    protected ICatalogo _catalogo;
 
-    public Decorador(ICatalogo catalogo){
+    protected Decorador(ICatalogo catalogo)
+    {
         _catalogo = catalogo;
     }
 
-    public virtual void VerCatalogo(){
+    public virtual void VerCatalogo()
+    {
+        VerDatosLibro();
+    }
+
+    public void VerDatosLibro()
+    {
         _catalogo.VerDatosLibro();
     }
 }
 
-public class EditorialTecnologicaDecorador : Decordor {
-    public EditorialTecnologicaDecorador(ICatalago catalogo) : base(catalogo) { }
+public class EditorialTecnologicaDecorador : Decorador
+{
+    public EditorialTecnologicaDecorador(ICatalogo catalogo) : base(catalogo) { }
 
-    protected void VisualizaEditorialLibrosTecnicos() {
+    protected void VisualizaEditorialLibrosTecnicos()
+    {
         Console.WriteLine("Editorial libro técnico.");
     }
 
-    public override void VerCatalogo()) {
+    public override void VerCatalogo()
+    {
         base.VerDatosLibro();
         VisualizaEditorialLibrosTecnicos();
     }
 }
 
-public class AutorTecnologicoDecorador : Decordor {
-    public AutorTecnologicaDecorador(ICatalago catalogo) : base(catalogo) { }
+public class AutorTecnologicoDecorador : Decorador
+{
+    public AutorTecnologicoDecorador(ICatalogo catalogo) : base(catalogo) { }
 
-    protected void VisualizaAutorLibrosTecnicos() {
+    protected void VisualizaAutorLibrosTecnicos()
+    {
         Console.WriteLine("Autor técnico.");
     }
 
-    public override void VerCatalogo() {
+    public override void VerCatalogo()
+    {
         base.VerDatosLibro();
         VisualizaAutorLibrosTecnicos();
     }
@@ -65,10 +82,11 @@ public class AutorTecnologicoDecorador : Decordor {
 
 public class VistaCatalogo {
     static void Main(string[] args) {
-        Book libro = new Book();
+        DecoratorPattern.Books libro = new DecoratorPattern.Books();
         EditorialTecnologicaDecorador editorialTechlDecorador = new EditorialTecnologicaDecorador(libro);
-        AutorTecnologicaDecorador autorTechDecorador = new AutorTecnologicaDecorador(libro);
-        autorTechDecorador.VerDatosLibro();
+        AutorTecnologicoDecorador autorTechDecorador = new AutorTecnologicoDecorador(libro);
+        autorTechDecorador.VerCatalogo();
+        editorialTechlDecorador.VerCatalogo();
     }
 }
 
