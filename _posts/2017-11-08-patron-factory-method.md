@@ -53,3 +53,17 @@ public PedidoTargeta : Pedido {
 ~~~
 
 Como vemos los métodos valida en el caso del pago en efectivo no contiene ninguna lógica de negocio, sin embargo, en el pago con tarjeta, este tiene una restricción de que el importe debe ser mayor e igual que 0 y menor e igual que 500.
+
+~~~csharp
+    private static void FactoryMethod()
+    {
+        PedidoTargeta pedidoEfectivo = new PedidoTargeta(100);
+        if (pedidoEfectivo.Valida()) { pedidoEfectivo.Paga();}
+
+        PedidoTargeta pedidoTargetaNoValido = new PedidoTargeta(1000);
+        if (pedidoTargetaNoValido.Valida()) { pedidoTargetaNoValido.Paga(); }
+
+        PedidoTargeta pedidoTargetaValido = new PedidoTargeta(50);
+        if (pedidoTargetaValido.Valida()) { pedidoTargetaValido.Paga(); }
+    }    
+~~~
