@@ -33,17 +33,15 @@ En nuestro ejemplo de libros, gestionaremos las clases que deban tener una sola 
 O si creamos una nueva clase Editorial en la que inicializaremos los datos de la editorial una vez y los recuperaremos siempre de esa misma instancia sin tener que generar una instancia cada vez que queramos recuperar los datos de la editorial:
 
 ~~~csharp
-    public class Editorial {
+    public class EditorialSingleton {
         public string nombreEditorial  { get; set; }
         public string ubicacion  { get; set; }
         public DateTime fechaEditorial  { get; set; }
-        private static Editorial _instance = null;
+        private static EditorialSingleton _instance = null;
 
-        private Editorial() { }
-        public static Editorial Instance()
-        {
-            return _instance ?? (_instance = new Editorial());
-        }
+        private EditorialSingleton() { }
+        public static EditorialSingleton Instance() => _instance ?? (_instance = new EditorialSingleton());
+
         public void Visualiza()
         {
             Console.WriteLine($"Editorial:  {nombreEditorial}");
@@ -57,14 +55,13 @@ Para ver la salida:
 ~~~csharp
     public class TestEditorial {
     static void Main(string[] args) {
-        Editorial laEditorial = Editorial.Instance();
+        EditorialSingleton laEditorial = EditorialSingleton.Instance();
         laEditorial.nombreEditorial = "JRRN Publicaciones";
         laEditorial.ubicacion = "Barcelona";
-        laEditorial.fechaEditorial = new DateTime.Year(1981);
-    }
-    
-    private static void Visualiza() {
-        Editorial laEditorial = Editorial.Instance();
+        laEditorial.fechaEditorial = new DateTime(2018,05,11);
+
+        EditorialSingleton _laEditorial = EditorialSingleton.Instance();
+        _laEditorial.Visualiza();
     }
 }
 ~~~
