@@ -14,18 +14,18 @@ Estos documentos se pueden generar en pdf y/o en formato html para remitir por m
     public abstract class Documentacion
     {
         protected IList<string> contenido = new List<string>();
-        public abstract void agregaDocumento(string documento);
-        public abstract void imprime();
+        public abstract void AgregaDocumento(string documento);
+        public abstract void Imprime();
     }
 
     public class DocumentacionHtml : Documentacion
     {
-        public override void agregaDocumento(string documento)
+        public override void AgregaDocumento(string documento)
         {
             if (documento.StartsWith("HTML", StringComparison.Ordinal)) contenido.Add(documento);
         }
 
-        public override void imprime()
+        public override void Imprime()
         {
             Console.WriteLine("Documentación HTML");
             foreach (string s in contenido) Console.WriteLine(s);
@@ -34,12 +34,12 @@ Estos documentos se pueden generar en pdf y/o en formato html para remitir por m
 
     public class DocumentacionPdf : Documentacion
     {
-        public override void agregaDocumento(string documento)
+        public override void AgregaDocumento(string documento)
         {
             if (documento.StartsWith("PDF", StringComparison.Ordinal)) contenido.Add(documento);
         }
 
-        public override void imprime()
+        public override void Imprime()
         {
             Console.WriteLine("Documentación PDF");
             foreach (string s in contenido) Console.WriteLine(s);
@@ -64,19 +64,19 @@ Estos documentos se pueden generar en pdf y/o en formato html para remitir por m
             documentacion = new DocumentacionHtml();
         }
 
-        public override void construyeSolicitudPedido(string nombreCliente)
+        public override void ConstruyeSolicitudPedido(string nombreCliente)
         {
             string documento;
             documento = $"Solicitud de pedido Cliente: {nombreCliente} HTML";
-            documentacion.agregaDocumento(documento);
+            documentacion.AgregaDocumento(documento);
         }
 
-        public override void construyeSolicitudFactura(string nombreSolicitante)
+        public override void ConstruyeSolicitudFactura(string nombreSolicitante)
         {
             string documento;
             documento = $"HTML Solicitud de factura Solicitante:  {nombreSolicitante}";
 
-            documentacion.agregaDocumento(documento);
+            documentacion.AgregaDocumento(documento);
         }
     }
 
@@ -86,19 +86,18 @@ Estos documentos se pueden generar en pdf y/o en formato html para remitir por m
         {
             documentacion = new DocumentacionPdf();
         }
-
-        public override void construyeSolicitudPedido(string nombreCliente)
+        public override void ConstruyeSolicitudPedido(string nombreCliente)
         {
             string documento;
-            documento = "<PDF>Solicitud de pedido Cliente: " + nombreCliente + "</PDF>";
-            documentacion.agregaDocumento(documento);
+            documento = $"<PDF>Solicitud de pedido Cliente: {nombreCliente} </PDF>";
+            documentacion.AgregaDocumento(documento);
         }
 
-        public override void construyeSolicitudFactura(string nombreSolicitante)
+        public override void ConstruyeSolicitudFactura(string nombreSolicitante)
         {
             string documento;
-            documento = "<PDF>Solicitud de factura Solicitante: " + nombreSolicitante + "</PDF>";
-            documentacion.agregaDocumento(documento);
+            documento = $"<PDF>Solicitud de factura Solicitante: {nombreSolicitante}</PDF>";
+            documentacion.AgregaDocumento(documento);
         }
     }
 
@@ -131,8 +130,8 @@ Estos documentos se pueden generar en pdf y/o en formato html para remitir por m
             constructor = new ConstructorDocumentacionPdf();
         }
         Vendedor vendedor = new Vendedor(constructor);
-        Documentacion documentacion = vendedor.construye("JRRN");
-        documentacion.imprime();
+        Documentacion documentacion = vendedor.Construye("JRRN");
+        documentacion.Imprime();
     }
 }
 ~~~
