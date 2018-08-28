@@ -23,30 +23,32 @@ Así, de esta premisa, nos encontramos con dos clases ClienteEfectivo y ClienteT
 ~~~csharp
 public abstract class Pedido {
     protected double _importe;
-    public Pedido(double importe) {
+
+    protected Pedido(double importe)
+    {
         _importe = importe;
     }
-    public abstract bool valida();
-    public abstract void paga();
+    public abstract bool Valida();
+    public abstract void Paga();
 }
 ~~~
 
 ~~~csharp
 public PedidoEfectivo : Pedido {
     public PedidoEfectivo(double importe) : base(importe) { }
-    public override void Paga() {
-        Console.WriteLine($"Método de Pago Efectivo, importe: {importe}");
+    public override void Paga()
+    {
+        Console.WriteLine($"Método de Pago Efectivo, importe: { _importe }");
     }
-    public override bool Valida() { return true;  }
+    public override bool Valida() { return true; }
 }
 public PedidoTargeta : Pedido {
-    public PedidoTargeta(double importe) : base(importe)  { }
-    public override void Paga() {
-        Console.WriteLine($"Método de Pago Targeta, importe: {importe}");
+    public PedidoTargeta(double importe) : base(importe) { }
+    public override void Paga()
+    {
+        Console.WriteLine($"Método de Pago Targeta, importe: {_importe}");
     }
-    public override bool Valida() {
-        return (importe &gt;= 0.0) &amp;&amp; (importe &lt;= 500.0)
-    }
+    public override bool Valida() => _importe >= 0.0 && _importe <= 500.0;
 }
 ~~~
 
