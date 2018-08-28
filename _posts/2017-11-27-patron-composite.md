@@ -14,39 +14,36 @@ Sin más, vamos al ejemplo con el que se verá más claro su estrucutura y compo
 
 ~~~csharp
 public abstract class Cliente {
-    protected static double _costeLibroUnitario = 1.0;
+    protected static double _costeLibroUnitario = 4.0;
     protected int _numeroLibros;
 
-    public void anadirLibro(){
-        _numeroLibros += 1;
-    }
+    public void AnadirLibro() => _numeroLibros += 1;
 
-    public abstract double calcularPedido();
-    public abstract bool agregarEditorial(string nombreClienteEditorial);
+    public abstract double CalcularPedido();
+    public abstract bool AgregarEditorial(Cliente nombreClienteEditorial);
 }
 
 public class ClienteFinal : Cliente {
-    public override double calcularPedido() {
-        return _numeroLibros * _costeLibroUnitario;
-    }
-    public override bool agregarEditorial(Cliente cliente) {
-        return false;
-    }
+    public override bool AgregarEditorial(Cliente filial) => false;
+    public override double CalcularPedido() => _numeroLibros * _costeLibroUnitario;
 }
 
 public class EditorialCliente : Cliente {
-    protected List<Cliente> _clientesEditorial = new List<Cliente>();
+   protected List<Cliente> _clientesEditorial = new List<Cliente>();
 
-    public override double calcularPedido(){
+    public override double CalcularPedido()
+    {
         double total = 0.0;
 
-        foreach(Cliente clienteEditorial in _clientesEditorial){
-            total = total + clienteEditorial.calcularPedido();
+        foreach (Cliente clienteEditorial in _clientesEditorial)
+        {
+            total = total + clienteEditorial.CalcularPedido();
         }
         return total + _numeroLibros * _costeLibroUnitario;
     }
 
-    public override bool agregarCliente(Cliente cliente) {
+    public override bool AgregarEditorial(Cliente cliente)
+    {
         _clientesEditorial.Add(cliente);
         return true;
     }
@@ -55,18 +52,18 @@ public class EditorialCliente : Cliente {
 public class Pedido {
     static void Main(string[] args) {
         Cliente clienteFinal = new ClienteFinal();
-        clienteFinal.agregarEditorial();
+        clienteFinal.AnadirLibro();
 
         Cliente otroClienteFinal = new ClienteFinal();
-        otroClienteFinal.agregarEditorial();
-        otroClienteFinal.anadirLibro();
+        otroClienteFinal.AnadirLibro();
+        otroClienteFinal.AnadirLibro();
 
-        Editorial editorialCliente = new EditorialCliente();
-        editorialCliente.agregarCliente(clienteFinal);
-        editorialCliente.agregarCliente(otroClienteFinal);
-        editorialCliente.anadirLibro();
+        Cliente editorialCliente = new EditorialCliente();
+        editorialCliente.AgregarEditorial(clienteFinal);
+        editorialCliente.AgregarEditorial(otroClienteFinal);
+        editorialCliente.AnadirLibro();
 
-        Console.WriteLine("$Total pedidos clientes: { editorialCliente.calcularPedido() }");
+        Console.WriteLine($"Total pedidos clientes: { editorialCliente.CalcularPedido() }");
 }
 ~~~
 
