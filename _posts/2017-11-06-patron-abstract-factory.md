@@ -11,36 +11,77 @@ Esto quiere decir, que, por poner un ejemplo, podríamos crear objetos de tipo B
 Tendríamos la clase factoría abstracta Book. Imaginemos que tenemos un sistema de venta de libros. De esta forma tenemos dos tipos de formatos uno de manera física y otro de manera electrónica.
 
 ~~~csharp
-public class PaperBook :  Book {
-    public PaperBook(string titulo, string autor, int añoPublicacion, FormatType formatType)
-    : base(titulo, autor, añoPublicacion, formatType) { }
-    public override void mostrarCaracteristicas() {
-        Console.WriteLine($"Datos del libro físico: {titulo} del autor: {autor} publicado el: {añoPublicacion} en formato: {formatType}");
-    }
-}
-
-public class MediaBook: Book {
+public class MediaBook : Book
+{
     public MediaBook(string titulo, string autor, int añoPublicacion, FormatType formatType)
-    : base(titulo, autor, añoPublicacion, formatType) {}
+        : base(titulo, autor, añoPublicacion, formatType) { }
 
-    public override void mostrarCaracteristicas() {
-        Console.WriteLine($"Datos del libro físico:{titulo} del autor: {autor} publicado el: {añoPublicacion} en formato: {formatType}");
-    }
+    public override void MostrarCaracteristicas() 
+        => Console.WriteLine($"Datos del libro físico:{_titulo} del autor: {_autor} publicado el: {_añoPublicacion} en formato: {_formatType}");
 }
 
+public class PaperBook : Book
+{
+    public PaperBook(string titulo, string autor, int añoPublicacion, FormatType formatType)
+        : base(titulo, autor, añoPublicacion, formatType) { }
+    public override void MostrarCaracteristicas()
+        => Console.WriteLine($"Datos del libro físico: {_titulo} del autor: {_autor} publicado el: {_añoPublicacion} en formato: {_formatType}");
+}
 
-
-public class GeneratePaperBook {
-    public PaperBook creaPaperBook(string titulo, string autor, int añoPublicacion, FormatType formatType)
+public class MediaMagazine : Magazine
+{
+    public MediaMagazine(string titulo, int añoPublicacion, FormatType formatType) 
+        : base(titulo, añoPublicacion, formatType)
     {
-        return new PaperBook(titulo,autor,añoPublicacion,formatType);
+    }
+
+    public override void MostrarCaracteristicas() 
+        => Console.WriteLine($"Magazine {_titulo} del año {_añoPublicacion} en formato {_formatType} ");
+}
+
+public class PaperMagazine :Magazine
+{
+    public PaperMagazine(string titulo, int añoPublicacion, FormatType formatType) : base(titulo, añoPublicacion, formatType)
+    {
+    }
+    public override void MostrarCaracteristicas() 
+        => Console.WriteLine($"Magazine {_titulo} del año {_añoPublicacion} en formato {_formatType} ");
+}
+
+
+public class Factory : IFactory
+{
+    public Book NewBook(string titulo, string autor, int añoPublicacion, FormatType formatType)
+    {
+        switch (formatType)
+        {
+            case FormatType.Media:
+                return new MediaBook(titulo, autor, añoPublicacion, formatType);
+            case FormatType.Paper:
+                return new PaperBook(titulo, autor, añoPublicacion, formatType);
+            default:
+                throw new ArgumentOutOfRangeException(nameof(formatType), formatType, null);
+        }
+    }
+
+    public Magazine NewMagazine(string titulo, int añoPublicacion, FormatType formatType)
+    {
+        switch (formatType)
+        {
+            case FormatType.Media:
+                return new MediaMagazine(titulo, añoPublicacion, formatType);
+            case FormatType.Paper:
+                return new PaperMagazine(titulo, añoPublicacion, formatType);
+            default:
+                throw new ArgumentOutOfRangeException(nameof(formatType), formatType, null);
+        }
     }
 }
 
-public class GenerateMediaBook {
-    public MediaBook creaMediaBook(string titulo, string autor, int añoPublicacion, FormatType formatType) {
-        return new MediaBook(titulo,autor,añoPublicacion,formatType);
-    }
+public interface IFactory
+{
+    Book NewBook(string titulo, string autor, int añoPublicacion, FormatType formatType);
+    Magazine NewMagazine(string titulo, int añoPublicacion, FormatType formatType);
 }
 ~~~
 
@@ -48,46 +89,72 @@ Hasta aquí tendríamos la implementación solicitada del ejemplo. Pero como sie
 
 ~~~csharp
 public abstract class Book {
-    protected string titulo;
-    protected string autor;
-    protected int añoPublicacion;
-    protected FormatType formatType;
-    public Book(string titulo, string autor, int añoPublicacion, FormatType formatType) {
-        this.titulo = titulo;
-        this.autor = autor;
-        this.añoPublicacion = añoPublicacion;
-        this.formatType = formatType;
+    protected string _titulo;
+    protected string _autor;
+    protected int _añoPublicacion;
+    protected FormatType _formatType;
+
+    protected Book(string titulo, string autor, int añoPublicacion, FormatType formatType)
+    {
+        _titulo = titulo;
+        _autor = autor;
+        _añoPublicacion = añoPublicacion;
+        _formatType = formatType;
     }
 
-    public abstract void mostrarCaracteristicas();
+    public abstract void MostrarCaracteristicas();
 }
 
-public class PaperMagazine: Book {
-    public PaperMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType)
-    : base(titulo, autor, añoPublicacion, formatType){}
+public abstract class Magazine
+{
+    protected string _titulo;
+    protected int _añoPublicacion;
+    protected FormatType _formatType;
 
-    public override void mostrarCaracteristicas() {
-        Console.WriteLine($"Datos de la Revista física: {titulo} del autor: {autor} publicada el: {añoPublicacion} de formato: {formatType}");
+    protected Magazine(string titulo, int añoPublicacion, FormatType formatType)
+    {
+        _titulo = titulo;
+        _añoPublicacion = añoPublicacion;
+        _formatType = formatType;
     }
+    public abstract void MostrarCaracteristicas();
 }
 
-public class MediaMagazine: Book {
-    public MediaMagazine(string titulo, string autor, int añoPublicacion, FormatType formatType)
-    : base(titulo, autor, añoPublicacion, formatType){}
-    public override void mostrarCaracteristicas() {
-        Console.WriteLine($"Datos de la Revista Electrónica: {titulo} del autor: {autor} publicada el: {añoPublicacion} de formato: {formatType}");
-    }
+public enum FormatType
+{
+    Media,
+    Paper
 }
+
+
 ~~~
 
 Y finalmente solo tendríamos que agregar a la interfaz los médotos de CreaMagazine:
 
 ~~~csharp
-public interface AbstractFactoryEditorial {
-    PaperBook creaPaperBook(string titulo, string autor, int añoPublicacion, FormatType formatType);
-    MediaBook creaMediaBook (string titulo, string autor, int añoPublicacion, FormatType formatType);
-    PaperMagazine creaPaperMagazine (string titulo, string autor, int añoPublicacion, FormatType formatType);
-    MediaMagazine creaMediaMagazine (string titulo, string autor, int añoPublicacion, FormatType formatType);
+public class AbstractFactoryEditorial {
+    int nBooks = 3;
+    int nMagazines = 2;
+
+    IFactory fabrica  = new Factory();
+    AbstractFactoryPattern.Book[] books = new AbstractFactoryPattern.Book[nBooks];
+    AbstractFactoryPattern.Magazine[] magazines = new AbstractFactoryPattern.Magazine [nMagazines];
+
+    for (int index = 0; index < nBooks; index++)
+    {
+        var formatType = index == 0 ? FormatType.Paper : FormatType.Media;
+        books[index] = fabrica.NewBook("Papel","Autor", 1980, formatType);
+    }
+
+    for (int index = 0; index < nMagazines; index++){
+        var formatType = index == 0 ? FormatType.Paper : FormatType.Media;
+        magazines[index] = fabrica.NewMagazine("Papel", 1981, formatType);
+    }
+
+    foreach (AbstractFactoryPattern.Book book in books)
+        book.MostrarCaracteristicas();
+    foreach (AbstractFactoryPattern.Magazine magazine in magazines)
+        magazine.MostrarCaracteristicas();
 }
 ~~~
 
