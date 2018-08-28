@@ -17,46 +17,34 @@ public interface IBook {
     void CargaDescripcion();
 }
 
-public class Descripcion : IBook {
-    public CargaDescripcion() { }
-
-    public void Renderiza() {
-        Console.WriteLine("Muestra Descripción");
-    }
-
-    public void CargaDescripcion() {
-        Console.WriteLine("Carga descripción");
-    }
-
-    public void MuestraDescripcion() {
-        Console.WriteLine("Mostrando Descripción");
-    }
-
-}
-
 public class DescripcionProxy : IBook {
-    protected IBook book = null;
-    protected string descripcion = "Mostrar descripción";
+    protected Datos book = null;
+    protected string descripcion = "Desccripción Simple";
 
-    public void CargaDescripcion() {
-        if(book = null) {
-            book = new book();
+    public void CargaDescripcion()
+    {
+        if (book == null)
+        {
+            book = new Datos();
             book.CargaDescripcion();
         }
-        book.MuestraDescripcion();
+        else { book.CargaDescripcion(); }
+
     }
 
-    public void Renderiza() {
-        if(book != null) {
+    public void Renderiza()
+    {
+        if (book != null)
+        {
             book.Renderiza();
-        }else {
+        }
+        else
+        {
             Renderiza(descripcion);
         }
     }
 
-    public void Renderiza(string descripcion) {
-        Console.WriteLine("Mostrando descripción");
-    }
+    public void Renderiza(string descripcion) => Console.WriteLine($"{descripcion}");
 }
 
 public class VistaBook
@@ -66,7 +54,6 @@ public class VistaBook
 
         book.Renderiza();
         book.CargaDescripcion();
-        book.Renderiza();
     }
 }
 ~~~
