@@ -34,20 +34,21 @@ O si creamos una nueva clase Editorial en la que inicializaremos los datos de la
 
 ~~~csharp
     public class Editorial {
-    public string nombreEditorial = { get; set; }
-    public string ubicacion = { get; set; }
-    public DateTime fechaEditorial = { get; set; }
-    private static Editorial _instance = null;  private Editorial() { }
-    public static Editorial Instance() {
-        if(_instance == null) {
-            _instance = new Editorial();
+        public string nombreEditorial  { get; set; }
+        public string ubicacion  { get; set; }
+        public DateTime fechaEditorial  { get; set; }
+        private static Editorial _instance = null;
+
+        private Editorial() { }
+        public static Editorial Instance()
+        {
+            return _instance ?? (_instance = new Editorial());
         }
-        return _instance;
-    }
-    public void Visualiza() {
-        Console.WriteLine( $"Editorial:  {nombreEditorial}");
-        Console.WriteLine( $"Ubicacion:  {ubicacion}");
-    }
+        public void Visualiza()
+        {
+            Console.WriteLine($"Editorial:  {nombreEditorial}");
+            Console.WriteLine($"Ubicacion:  {ubicacion}");
+        }
 }
 ~~~
 
@@ -61,6 +62,7 @@ Para ver la salida:
         laEditorial.ubicacion = "Barcelona";
         laEditorial.fechaEditorial = new DateTime.Year(1981);
     }
+    
     private static void Visualiza() {
         Editorial laEditorial = Editorial.Instance();
     }
