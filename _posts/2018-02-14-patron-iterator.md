@@ -17,20 +17,17 @@ public abstract class Item
         _descripcion = descripcion;
     }
 
-    public bool PalabraClaveValida(string palabraClave)
-    {
-        return _descripcion.Contains(palabraClave);
-    }
+    public bool PalabraClaveValida(string palabraClave) 
+        => _descripcion.IndexOf(palabraClave, StringComparison.Ordinal) != -1;
+
 }
 
 public class BookIterator : Item
 {
     public BookIterator(string descripcion) : base(descripcion) { }
 
-    public void Visualiza()
-    {
-        Console.WriteLine($"Descripción del Libro: { _descripcion}");
-    }
+    public void Visualiza() 
+        => Console.WriteLine($"Descripción del Libro: { _descripcion}");
 }
 
 public abstract class Iterador<TItem> where TItem : Item
