@@ -14,87 +14,102 @@ Vamos con la implementación.
 public interface Memento { }
 
 public class MementoImplementation : Memento {
-    protected IList<BookOptions> bookOptions = new List<BookOptions>();
+    protected IList<OpcionBook> _bookOptions = new List<OpcionBook>();
 
-    public IList<BookOptions> State
+    public IList<OpcionBook> State
     {
-        get { return bookOptions};
-        set {
-            bookOptions.Clear();
-            foreach (bookOptions bookOption in value) bookOptions.Add(bookOption);
+        get => _bookOptions;
+        set
+        {
+            _bookOptions.Clear();
+            foreach (OpcionBook bookOption in value)
+            {
+                _bookOptions.Add(bookOption);
+            }
         }
     }
 }
 
 public class CompraOpciones {
-    protected IList<BookOptions> bookOptions = new List<BookOptions>();
+    protected IList<OpcionBook> bookOptions = new List<OpcionBook>();
 
-    public Memento AgregaOpciones(BookOptions bookOption){
+    public IMemento AgregaOpciones(OpcionBook bookOption)
+    {
         MementoImplementation result = new MementoImplementation();
-        result.State = bookOption;
+        result.State = bookOptions;
 
-        IList<BookOptions> bookOptionsNotSupported = bookOption.bookOptionNotSupported;
+        IList<OpcionBook> bookOptionsNotSupported = bookOption.BookOptionsNotSupported;
 
-        foreach(BookOptions bookOption in bookOptionsNotSupported) {
-            bookOptions.Remove(bookOption);
+        foreach (OpcionBook bOption in bookOptionsNotSupported)
+        {
+            bookOptions.Remove(bOption);
         }
 
-        bookOptions.Add(bookOptions);
+        bookOptions.Add(bookOption);
 
         return result;
     }
 
-    public void Anula(Memento memento) {
-        MementoImplementation mementoImplementation = memento as MementoImplementation;
-        if(MementoImplementation == null) return
-        bookOptions = MementoImplementation.State;
+    public void Anula(IMemento memento)
+    {
+        if (!(memento is MementoImplementation mementoImplementation))
+        {
+            return;
+        }
+
+        bookOptions = mementoImplementation.State;
     }
 
-    public void Visualiza() {
-        Console.Writeline("Estados");
+    public void Visualiza()
+    {
+        Console.WriteLine("Estados:");
 
-        foreach (bookOptions bookOption in bookOptions) {
-            bookOption.Visualiza();
+        foreach (OpcionBook bookOption in bookOptions)
+        {
+            bookOption.Ver();
         }
     }
 }
 
 public class OpcionBook {
     protected string _nombre;
-    IList<BookOptions> bookOptionsNotSupported { get; protected set; }
+    public IList<OpcionBook> BookOptionsNotSupported { get; protected set; }
 
-    public OpcionBook(string nombre){
-        bookOptionsNotSupported = new List<BookOptions>();
+    public OpcionBook(string nombre)
+    {
+        BookOptionsNotSupported = new List<OpcionBook>();
         _nombre = nombre;
     }
 
-    public void agregaOpcionIncompatible(BookOption bookOptionIncompatible) {
-        if(!bookOptionsNotSupported.Contains(bookOptionIncompatible)){
-            bookOptionsNotSupported.Add(bookOptionIncompatible);
-            bookOptionIncompatible.agregaOpcionIncompatible(this);
+    public void AgregaOpcionIncompatible(OpcionBook bookOptionIncompatible)
+    {
+        if (!BookOptionsNotSupported.Contains(bookOptionIncompatible))
+        {
+            BookOptionsNotSupported.Add(bookOptionIncompatible);
+            bookOptionIncompatible.AgregaOpcionIncompatible(this);
         }
     }
 
-    public void Ver() {
-        Console.WriteLine($"opcion : {nombre}")
-    }
+    public void Ver() => Console.WriteLine($"opcion : {_nombre}");
 }
 
 public void Main() {
-    Memento memento;
+    IMemento memento;
 
-    OpcionBook op1 = new  OpcionBook("Tapa dura");
-    OpcionBook op2 = new  OpcionBook("Tapa Blanda");  
-    OpcionBook op3 = new  OpcionBook("Tapa Encuadernado");
+    OpcionBook op1 = new OpcionBook("Tapa dura");
+    OpcionBook op2 = new OpcionBook("Tapa Blanda");
+    OpcionBook op3 = new OpcionBook("Tapa Encuadernado");
 
-    op1.agregaOpcionIncompatible(op3);
-    op2.agregaOpcionIncompatible(op3);
+    op1.AgregaOpcionIncompatible(op3);
+    op2.AgregaOpcionIncompatible(op3);
 
     CompraOpciones compraOpciones = new CompraOpciones();
     compraOpciones.AgregaOpciones(op1);
     compraOpciones.AgregaOpciones(op2);
     compraOpciones.Visualiza();
 
+    memento = compraOpciones.AgregaOpciones(op3);
+    compraOpciones.Visualiza();
     compraOpciones.Anula(memento);
     compraOpciones.Visualiza();
 }
