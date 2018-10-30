@@ -67,6 +67,10 @@
 	  
 	    
 	  
+	    
+	  
+	    
+	  
     <!-- Nav links -->
 	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
 <a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
@@ -147,21 +151,20 @@
 
 <p>O si creamos una nueva clase Editorial en la que inicializaremos los datos de la editorial una vez y los recuperaremos siempre de esa misma instancia sin tener que generar una instancia cada vez que queramos recuperar los datos de la editorial:</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">public</span> <span class="k">class</span> <span class="nc">Editorial</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="kt">string</span> <span class="n">nombreEditorial</span> <span class="p">=</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">public</span> <span class="kt">string</span> <span class="n">ubicacion</span> <span class="p">=</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">public</span> <span class="n">DateTime</span> <span class="n">fechaEditorial</span> <span class="p">=</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">private</span> <span class="k">static</span> <span class="n">Editorial</span> <span class="n">_instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>  <span class="k">private</span> <span class="nf">Editorial</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="n">Editorial</span> <span class="nf">Instance</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">_instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">_instance</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Editorial</span><span class="p">();</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">public</span> <span class="k">class</span> <span class="nc">EditorialSingleton</span> <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">nombreEditorial</span>  <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">ubicacion</span>  <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="n">DateTime</span> <span class="n">fechaEditorial</span>  <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">private</span> <span class="k">static</span> <span class="n">EditorialSingleton</span> <span class="n">_instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+
+        <span class="k">private</span> <span class="nf">EditorialSingleton</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="n">EditorialSingleton</span> <span class="nf">Instance</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">_instance</span> <span class="p">??</span> <span class="p">(</span><span class="n">_instance</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EditorialSingleton</span><span class="p">());</span>
+
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Editorial:  </span><span class="p">{</span><span class="n">nombreEditorial</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Ubicacion:  </span><span class="p">{</span><span class="n">ubicacion</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="n">_instance</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span> <span class="s">$"Editorial:  </span><span class="p">{</span><span class="n">nombreEditorial</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span> <span class="s">$"Ubicacion:  </span><span class="p">{</span><span class="n">ubicacion</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
-    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -169,13 +172,13 @@
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">public</span> <span class="k">class</span> <span class="nc">TestEditorial</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Editorial</span> <span class="n">laEditorial</span> <span class="p">=</span> <span class="n">Editorial</span><span class="p">.</span><span class="nf">Instance</span><span class="p">();</span>
+        <span class="n">EditorialSingleton</span> <span class="n">laEditorial</span> <span class="p">=</span> <span class="n">EditorialSingleton</span><span class="p">.</span><span class="nf">Instance</span><span class="p">();</span>
         <span class="n">laEditorial</span><span class="p">.</span><span class="n">nombreEditorial</span> <span class="p">=</span> <span class="s">"JRRN Publicaciones"</span><span class="p">;</span>
         <span class="n">laEditorial</span><span class="p">.</span><span class="n">ubicacion</span> <span class="p">=</span> <span class="s">"Barcelona"</span><span class="p">;</span>
-        <span class="n">laEditorial</span><span class="p">.</span><span class="n">fechaEditorial</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="p">.</span><span class="nf">Year</span><span class="p">(</span><span class="m">1981</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Editorial</span> <span class="n">laEditorial</span> <span class="p">=</span> <span class="n">Editorial</span><span class="p">.</span><span class="nf">Instance</span><span class="p">();</span>
+        <span class="n">laEditorial</span><span class="p">.</span><span class="n">fechaEditorial</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DateTime</span><span class="p">(</span><span class="m">2018</span><span class="p">,</span><span class="m">05</span><span class="p">,</span><span class="m">11</span><span class="p">);</span>
+
+        <span class="n">EditorialSingleton</span> <span class="n">_laEditorial</span> <span class="p">=</span> <span class="n">EditorialSingleton</span><span class="p">.</span><span class="nf">Instance</span><span class="p">();</span>
+        <span class="n">_laEditorial</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>

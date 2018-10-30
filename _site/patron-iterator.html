@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="generator" content="Jekyll">
+
+	<title>Patrón Iterator</title>
+
+	<!-- CSS & fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/main.css">
+	
+	<!-- RSS -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+	
+	
+
+
+
+
+
+  	
+</head>
+
+
+<body>
+	<div id="wrap">
+	  	<!-- Navigation -->
+	  	<nav id="nav">
+	<div id="nav-list">
+		<a href="/">Home</a>
+		<!-- Nav pages -->
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	      <a href="/about" title="Sobre mí">Sobre mí</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+    <!-- Nav links -->
+	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
+<a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
+
+
+
+	</div>
+  
+  <!-- Nav footer -->
+	
+	  <span>version 1.0.0</span>
+
+
+
+
+
+	
+
+</nav>
+
+    <!-- Icon menu -->
+	  <a id="nav-menu">
+	  	<div id="menu"></div>
+	  </a>
+      <!-- Header -->
+      
+        <header id="header">
+	<a href="/">
+		<!-- <img src="/img/emerald.svg" alt="Emerald Logo"> -->
+	  <h1>JRRN Coding!</h1>
+	</a>
+</header>
+
+      
+
+    <!-- Main content -->
+	  <div id="container">
+      <div class="row">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-md-7 col-lg-7">
+          <main>
+            <article id="post-page">
+	<div>
+		<h2>Patrón Iterator</h2><span>[
+			
+				
+				<a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code>&nbsp;</a>
+			
+			]</span>	
+	<time datetime="2018-02-14T00:00:00+01:00" class="by-line">14 Feb 2018</time>
+	</div>
+		
+	<div class="content">
+		<p>El patrón <strong>iterator</strong> nos proporciona un mecanismo para recorrer colecciones de objetos de forma secuencial sin tener conocimiento de cómo están implementadas estas colecciones.</p>
+
+<p>Vamos con el ejemplo:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Item</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">_descripcion</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nf">Item</span><span class="p">(</span><span class="kt">string</span> <span class="n">descripcion</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_descripcion</span> <span class="p">=</span> <span class="n">descripcion</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="kt">bool</span> <span class="nf">PalabraClaveValida</span><span class="p">(</span><span class="kt">string</span> <span class="n">palabraClave</span><span class="p">)</span> 
+        <span class="p">=&gt;</span> <span class="n">_descripcion</span><span class="p">.</span><span class="nf">IndexOf</span><span class="p">(</span><span class="n">palabraClave</span><span class="p">,</span> <span class="n">StringComparison</span><span class="p">.</span><span class="n">Ordinal</span><span class="p">)</span> <span class="p">!=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">BookIterator</span> <span class="p">:</span> <span class="n">Item</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">BookIterator</span><span class="p">(</span><span class="kt">string</span> <span class="n">descripcion</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">descripcion</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span> 
+        <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Descripción del Libro: </span><span class="p">{</span> <span class="n">_descripcion</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Iterador</span><span class="p">&lt;</span><span class="n">TItem</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">TItem</span> <span class="p">:</span> <span class="n">Item</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">palabraClaveConsulta</span> <span class="p">{</span> <span class="k">protected</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">protected</span> <span class="kt">int</span> <span class="n">indice</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">TItem</span><span class="p">&gt;</span> <span class="n">contenido</span> <span class="p">{</span> <span class="k">protected</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Inicio</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">indice</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">length</span> <span class="p">=</span> <span class="n">contenido</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">indice</span> <span class="p">&lt;</span> <span class="n">length</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">contenido</span><span class="p">[</span><span class="n">indice</span><span class="p">].</span><span class="nf">PalabraClaveValida</span><span class="p">(</span><span class="n">palabraClaveConsulta</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">indice</span><span class="p">++;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Siguiente</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">length</span> <span class="p">=</span> <span class="n">contenido</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
+        <span class="n">indice</span><span class="p">++;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">indice</span> <span class="p">&lt;</span> <span class="n">length</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">contenido</span><span class="p">[</span><span class="n">indice</span><span class="p">].</span><span class="nf">PalabraClaveValida</span><span class="p">(</span><span class="n">palabraClaveConsulta</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">indice</span><span class="p">++;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">TItem</span> <span class="nf">item</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">indice</span> <span class="p">&lt;</span> <span class="n">contenido</span><span class="p">.</span><span class="n">Count</span> <span class="p">?</span> <span class="n">contenido</span><span class="p">[</span><span class="n">indice</span><span class="p">]</span> <span class="p">:</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">IteradorBook</span> <span class="p">:</span> <span class="n">Iterador</span><span class="p">&lt;</span><span class="n">BookIterator</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Catalogo</span><span class="p">&lt;</span><span class="n">TElemento</span><span class="p">,</span> <span class="n">TIterador</span><span class="p">&gt;</span>
+    <span class="k">where</span> <span class="n">TElemento</span> <span class="p">:</span> <span class="n">Item</span>
+    <span class="k">where</span> <span class="n">TIterador</span> <span class="p">:</span> <span class="n">Iterador</span><span class="p">&lt;</span><span class="n">TElemento</span><span class="p">&gt;,</span> <span class="k">new</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">TElemento</span><span class="p">&gt;</span> <span class="n">contenido</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">TElemento</span><span class="p">&gt;();</span>
+
+    <span class="k">public</span> <span class="n">TIterador</span> <span class="nf">Busqueda</span><span class="p">(</span><span class="kt">string</span> <span class="n">palabraClaveConsulta</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">TIterador</span> <span class="n">resultado</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TIterador</span>
+        <span class="p">{</span>
+            <span class="n">contenido</span> <span class="p">=</span> <span class="n">contenido</span><span class="p">,</span>
+            <span class="n">palabraClaveConsulta</span> <span class="p">=</span> <span class="n">palabraClaveConsulta</span>
+        <span class="p">};</span>
+
+        <span class="k">return</span> <span class="n">resultado</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CatalogoBook</span> <span class="p">:</span> <span class="n">Catalogo</span><span class="p">&lt;</span><span class="n">BookIterator</span><span class="p">,</span> <span class="n">IteradorBook</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">CatalogoBook</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">contenido</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">BookIterator</span><span class="p">(</span><span class="s">"Libro PDF"</span><span class="p">));</span>
+        <span class="n">contenido</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">BookIterator</span><span class="p">(</span><span class="s">"Gran libro en PDF"</span><span class="p">));</span>
+        <span class="n">contenido</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">BookIterator</span><span class="p">(</span><span class="s">"Libro de gran calidad"</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Usuario</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">CatalogoBook</span> <span class="n">catalogo</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CatalogoBook</span><span class="p">();</span>
+        <span class="n">IteradorBook</span> <span class="n">iterador</span> <span class="p">=</span> <span class="n">catalogo</span><span class="p">.</span><span class="nf">Busqueda</span><span class="p">(</span><span class="s">"PDF"</span><span class="p">);</span>
+        <span class="n">BookIterator</span> <span class="n">libro</span><span class="p">;</span>
+        <span class="n">iterador</span><span class="p">.</span><span class="nf">Inicio</span><span class="p">();</span>
+        <span class="n">libro</span> <span class="p">=</span> <span class="n">iterador</span><span class="p">.</span><span class="nf">item</span><span class="p">();</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">libro</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">libro</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
+            <span class="n">iterador</span><span class="p">.</span><span class="nf">Siguiente</span><span class="p">();</span>
+            <span class="n">libro</span> <span class="p">=</span> <span class="n">iterador</span><span class="p">.</span><span class="nf">item</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Descripción del Libro: Libro PDF
+Descripción del Libro: Gran libro en PDF</p>
+
+<p>Hasta la próxima.</p>
+
+	</div>
+</article>
+
+
+          </main>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <br/>
+<br/>
+<h5>Archivo </h5>
+
+
+
+  
+  
+  <a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code></a><br/>
+
+  
+  
+  <a href="/tag/MsIoT"><code class="highligher-rouge"><nobr>MsIoT</nobr></code></a><br/>
+
+  
+  
+  <a href="/tag/Git"><code class="highligher-rouge"><nobr>Git</nobr></code></a><br/>
+
+  
+  
+  <a href="/tag/Docker"><code class="highligher-rouge"><nobr>Docker</nobr></code></a><br/>
+
+  
+  
+  <a href="/tag/Azure"><code class="highligher-rouge"><nobr>Azure</nobr></code></a><br/>
+
+
+        </div>
+        <div class="col-md-1 col-lg-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 pull-center">
+		  <!-- Pagination links -->
+      
+      </div>
+      </div>
+    </div>
+    <br/><br/><br/>
+	    
+	    <!-- Footer -->
+	    <footer>
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10 pull-center">
+                <span>@2017 - JRRN</span>
+        </div>
+        <div class="col-md-1 pull-right">
+                <a href="https://github.com/jrrn" target="_blank">
+                    <img src="/img/icons/github_ico.jpg" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
+                </a>
+                <a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" target="_blank">
+                    <img src="/img/icons/linkedin_ico.jpg" class="socialLinksfooter" style="height: 30px;" alt="LinkedIn Logo">
+                </a>
+        </div>
+    </div>
+
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99774552-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-99774552-1');
+</script>
+
+	    <!-- Script -->
+      <script src="/js/main.js"></script>	
+
+
+  </div>
+</body>
+</html>

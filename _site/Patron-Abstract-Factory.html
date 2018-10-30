@@ -67,6 +67,10 @@
 	  
 	    
 	  
+	    
+	  
+	    
+	  
     <!-- Nav links -->
 	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
 <a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
@@ -124,87 +128,150 @@
 
 <p>Esto quiere decir, que, por poner un ejemplo, podríamos crear objetos de tipo Books sin tener que definir los tipos de books explícitamente. Mejor con un ejemplo, ¿no?</p>
 
-<p>Tendríamos la clase factoría abstracta Books. Imaginemos que tenemos un sistema de venta de libros. De esta forma tenemos dos tipos de formatos uno de manera física y otro de manera electrónica.</p>
+<p>Tendríamos la clase factoría abstracta Book. Imaginemos que tenemos un sistema de venta de libros. De esta forma tenemos dos tipos de formatos uno de manera física y otro de manera electrónica.</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">PaperBook</span> <span class="p">:</span>  <span class="n">Book</span> <span class="p">{</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">MediaBook</span> <span class="p">:</span> <span class="n">Book</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">MediaBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
+        <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">MostrarCaracteristicas</span><span class="p">()</span> 
+        <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos del libro físico:</span><span class="p">{</span><span class="n">_titulo</span><span class="p">}</span><span class="s"> del autor: </span><span class="p">{</span><span class="n">_autor</span><span class="p">}</span><span class="s"> publicado el: </span><span class="p">{</span><span class="n">_a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> en formato: </span><span class="p">{</span><span class="n">_formatType</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">PaperBook</span> <span class="p">:</span> <span class="n">Book</span>
+<span class="p">{</span>
     <span class="k">public</span> <span class="nf">PaperBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
-    <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">mostrarCaracteristicas</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos del libro físico: </span><span class="p">{</span><span class="n">titulo</span><span class="p">}</span><span class="s"> del autor: </span><span class="p">{</span><span class="n">autor</span><span class="p">}</span><span class="s"> publicado el: </span><span class="p">{</span><span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> en formato: </span><span class="p">{</span><span class="n">formatype</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
-    <span class="p">}</span>
+        <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">MostrarCaracteristicas</span><span class="p">()</span>
+        <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos del libro físico: </span><span class="p">{</span><span class="n">_titulo</span><span class="p">}</span><span class="s"> del autor: </span><span class="p">{</span><span class="n">_autor</span><span class="p">}</span><span class="s"> publicado el: </span><span class="p">{</span><span class="n">_a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> en formato: </span><span class="p">{</span><span class="n">_formatType</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">MediaBook</span><span class="p">:</span> <span class="n">Book</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nf">PaperBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
-    <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">)</span> <span class="p">{}</span>
-
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">mostrarCaracteristicas</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos del libro físico:</span><span class="p">{</span><span class="n">titulo</span><span class="p">}</span><span class="s"> del autor: </span><span class="p">{</span><span class="n">autor</span><span class="p">}</span><span class="s"> publicado el: </span><span class="p">{</span><span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> en formato: </span><span class="p">{</span><span class="n">formatype</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">interface</span> <span class="nc">GenerateBook</span> <span class="p">{</span>
-    <span class="n">PaperBook</span> <span class="nf">creaPaperBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">);</span>
-
-    <span class="n">MediaBook</span> <span class="nf">creaMediaBook</span> <span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">class</span> <span class="nc">GeneratePaperBook</span><span class="p">:</span> <span class="n">GenerateBook</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="n">PaperBook</span> <span class="nf">creaPaperBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">MediaMagazine</span> <span class="p">:</span> <span class="n">Magazine</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">MediaMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span> 
+        <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">PaperBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">MostrarCaracteristicas</span><span class="p">()</span> 
+        <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Magazine </span><span class="p">{</span><span class="n">_titulo</span><span class="p">}</span><span class="s"> del año </span><span class="p">{</span><span class="n">_a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> en formato </span><span class="p">{</span><span class="n">_formatType</span><span class="p">}</span><span class="s"> "</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">PaperMagazine</span> <span class="p">:</span><span class="n">Magazine</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">PaperMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">MostrarCaracteristicas</span><span class="p">()</span> 
+        <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Magazine </span><span class="p">{</span><span class="n">_titulo</span><span class="p">}</span><span class="s"> del año </span><span class="p">{</span><span class="n">_a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> en formato </span><span class="p">{</span><span class="n">_formatType</span><span class="p">}</span><span class="s"> "</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Factory</span> <span class="p">:</span> <span class="n">IFactory</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">Book</span> <span class="nf">NewBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">formatType</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">case</span> <span class="n">FormatType</span><span class="p">.</span><span class="n">Media</span><span class="p">:</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="nf">MediaBook</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">);</span>
+            <span class="k">case</span> <span class="n">FormatType</span><span class="p">.</span><span class="n">Paper</span><span class="p">:</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="nf">PaperBook</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">);</span>
+            <span class="k">default</span><span class="p">:</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentOutOfRangeException</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="n">formatType</span><span class="p">),</span> <span class="n">formatType</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">Magazine</span> <span class="nf">NewMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">formatType</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">case</span> <span class="n">FormatType</span><span class="p">.</span><span class="n">Media</span><span class="p">:</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="nf">MediaMagazine</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">);</span>
+            <span class="k">case</span> <span class="n">FormatType</span><span class="p">.</span><span class="n">Paper</span><span class="p">:</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="nf">PaperMagazine</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">);</span>
+            <span class="k">default</span><span class="p">:</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentOutOfRangeException</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="n">formatType</span><span class="p">),</span> <span class="n">formatType</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">GenerateMediaBook</span><span class="p">:</span> <span class="n">GenerateBook</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="n">MediaBook</span> <span class="nf">creaMediaBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">MediaBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="k">public</span> <span class="k">interface</span> <span class="nc">IFactory</span>
+<span class="p">{</span>
+    <span class="n">Book</span> <span class="nf">NewBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">);</span>
+    <span class="n">Magazine</span> <span class="nf">NewMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>Hasta aquí tendríamos la implementación solicitada del ejemplo. Pero como siempre, viene el PO y nos dice que ha tenido una grandiosa idea y que también esta pensando en revistas. Con nuestro patrón solo tendríamos que agregar ciertas clases y mantendríamos nuestro principio Abierto-Cerrado Intacto.</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Magazine</span> <span class="p">{</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Book</span> <span class="p">{</span>
     <span class="k">protected</span> <span class="kt">string</span> <span class="n">_titulo</span><span class="p">;</span>
     <span class="k">protected</span> <span class="kt">string</span> <span class="n">_autor</span><span class="p">;</span>
     <span class="k">protected</span> <span class="kt">int</span> <span class="n">_a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">;</span>
     <span class="k">protected</span> <span class="n">FormatType</span> <span class="n">_formatType</span><span class="p">;</span>
-    <span class="k">public</span> <span class="nf">Magazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">protected</span> <span class="nf">Book</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
+    <span class="p">{</span>
         <span class="n">_titulo</span> <span class="p">=</span> <span class="n">titulo</span><span class="p">;</span>
         <span class="n">_autor</span> <span class="p">=</span> <span class="n">autor</span><span class="p">;</span>
         <span class="n">_a</span><span class="err">ñ</span><span class="n">oPublicacion</span> <span class="p">=</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">;</span>
         <span class="n">_formatType</span> <span class="p">=</span> <span class="n">formatType</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">mostrarCaracteristicas</span><span class="p">();</span>
+    <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">MostrarCaracteristicas</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">PaperMagazine</span><span class="p">:</span> <span class="n">Magazine</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nf">PaperMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
-    <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">){}</span>
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Magazine</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">_titulo</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">int</span> <span class="n">_a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="n">FormatType</span> <span class="n">_formatType</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">mostrarCaracteristicas</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos de la Revista física: </span><span class="p">{</span><span class="n">titulo</span><span class="p">}</span><span class="s"> del autor: </span><span class="p">{</span><span class="n">autor</span><span class="p">}</span><span class="s"> publicada el: </span><span class="p">{</span><span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> de formato: </span><span class="p">{</span><span class="n">formatype</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">protected</span> <span class="nf">Magazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_titulo</span> <span class="p">=</span> <span class="n">titulo</span><span class="p">;</span>
+        <span class="n">_a</span><span class="err">ñ</span><span class="n">oPublicacion</span> <span class="p">=</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">;</span>
+        <span class="n">_formatType</span> <span class="p">=</span> <span class="n">formatType</span><span class="p">;</span>
     <span class="p">}</span>
+    <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">MostrarCaracteristicas</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">MediaMagazine</span><span class="p">:</span> <span class="n">Magazine</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nf">MediaMagazine</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">)</span>
-    <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">,</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">formatType</span><span class="p">){}</span>
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">mostrarCaracteristicas</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos de la Revista Electrónica: </span><span class="p">{</span><span class="n">titulo</span><span class="p">}</span><span class="s"> del autor: </span><span class="p">{</span><span class="n">autor</span><span class="p">}</span><span class="s"> publicada el: </span><span class="p">{</span><span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">}</span><span class="s"> de formato: </span><span class="p">{</span><span class="n">formatype</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="k">public</span> <span class="k">enum</span> <span class="n">FormatType</span>
+<span class="p">{</span>
+    <span class="n">Media</span><span class="p">,</span>
+    <span class="n">Paper</span>
 <span class="p">}</span>
+
+
 </code></pre></div></div>
 
 <p>Y finalmente solo tendríamos que agregar a la interfaz los médotos de CreaMagazine:</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">FabricaVehiculo</span> <span class="p">{</span>
-    <span class="n">PaperBook</span> <span class="nf">creaPaperBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">);</span>
-    <span class="n">MediaBook</span> <span class="nf">creaMediaBook</span> <span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">);</span>
-    <span class="n">PaperMagazine</span> <span class="nf">creaPaperMagazine</span> <span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">);</span>
-    <span class="n">MediaMagazine</span> <span class="nf">creaMediaMagazine</span> <span class="p">(</span><span class="kt">string</span> <span class="n">titulo</span><span class="p">,</span> <span class="kt">string</span> <span class="n">autor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="err">ñ</span><span class="n">oPublicacion</span><span class="p">,</span> <span class="n">FormatType</span> <span class="n">formatType</span><span class="p">);</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">AbstractFactoryEditorial</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">nBooks</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">nMagazines</span> <span class="p">=</span> <span class="m">2</span><span class="p">;</span>
+
+    <span class="n">IFactory</span> <span class="n">fabrica</span>  <span class="p">=</span> <span class="k">new</span> <span class="nf">Factory</span><span class="p">();</span>
+    <span class="n">AbstractFactoryPattern</span><span class="p">.</span><span class="n">Book</span><span class="p">[]</span> <span class="n">books</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AbstractFactoryPattern</span><span class="p">.</span><span class="n">Book</span><span class="p">[</span><span class="n">nBooks</span><span class="p">];</span>
+    <span class="n">AbstractFactoryPattern</span><span class="p">.</span><span class="n">Magazine</span><span class="p">[]</span> <span class="n">magazines</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AbstractFactoryPattern</span><span class="p">.</span><span class="n">Magazine</span> <span class="p">[</span><span class="n">nMagazines</span><span class="p">];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">index</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">index</span> <span class="p">&lt;</span> <span class="n">nBooks</span><span class="p">;</span> <span class="n">index</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">formatType</span> <span class="p">=</span> <span class="n">index</span> <span class="p">==</span> <span class="m">0</span> <span class="p">?</span> <span class="n">FormatType</span><span class="p">.</span><span class="n">Paper</span> <span class="p">:</span> <span class="n">FormatType</span><span class="p">.</span><span class="n">Media</span><span class="p">;</span>
+        <span class="n">books</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">fabrica</span><span class="p">.</span><span class="nf">NewBook</span><span class="p">(</span><span class="s">"Papel"</span><span class="p">,</span><span class="s">"Autor"</span><span class="p">,</span> <span class="m">1980</span><span class="p">,</span> <span class="n">formatType</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">index</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">index</span> <span class="p">&lt;</span> <span class="n">nMagazines</span><span class="p">;</span> <span class="n">index</span><span class="p">++){</span>
+        <span class="kt">var</span> <span class="n">formatType</span> <span class="p">=</span> <span class="n">index</span> <span class="p">==</span> <span class="m">0</span> <span class="p">?</span> <span class="n">FormatType</span><span class="p">.</span><span class="n">Paper</span> <span class="p">:</span> <span class="n">FormatType</span><span class="p">.</span><span class="n">Media</span><span class="p">;</span>
+        <span class="n">magazines</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">fabrica</span><span class="p">.</span><span class="nf">NewMagazine</span><span class="p">(</span><span class="s">"Papel"</span><span class="p">,</span> <span class="m">1981</span><span class="p">,</span> <span class="n">formatType</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">foreach</span> <span class="p">(</span><span class="n">AbstractFactoryPattern</span><span class="p">.</span><span class="n">Book</span> <span class="n">book</span> <span class="k">in</span> <span class="n">books</span><span class="p">)</span>
+        <span class="n">book</span><span class="p">.</span><span class="nf">MostrarCaracteristicas</span><span class="p">();</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="n">AbstractFactoryPattern</span><span class="p">.</span><span class="n">Magazine</span> <span class="n">magazine</span> <span class="k">in</span> <span class="n">magazines</span><span class="p">)</span>
+        <span class="n">magazine</span><span class="p">.</span><span class="nf">MostrarCaracteristicas</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div></div>
 

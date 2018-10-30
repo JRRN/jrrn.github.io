@@ -660,9 +660,6 @@ footer {
 .socialLinks :hover {
   background-color: #008A3C !important; }
 
-body {
-  text-align: justify; }
-
 .socialLinksfooter {
   max-width: 100%;
   display: initial !important;

@@ -67,6 +67,10 @@
 	  
 	    
 	  
+	    
+	  
+	    
+	  
     <!-- Nav links -->
 	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
 <a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
@@ -128,95 +132,125 @@
 
 <p>Veamos a ver cómo quedará el código:</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">DocumentoDigital</span> <span class="p">{</span>
-    <span class="k">protected</span> <span class="kt">string</span> <span class="n">_contenido</span> <span class="p">=</span> <span class="n">String</span><span class="p">.</span><span class="nf">Empty</span><span class="p">();</span>
-    <span class="k">public</span> <span class="n">DocumentoDigital</span> <span class="nf">Duplica</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">DocumentoDigital</span> <span class="n">resultado</span><span class="p">;</span>
-        <span class="n">resultado</span> <span class="p">=</span> <span class="p">(</span><span class="n">DocumentoDigital</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nf">MemberwiseClone</span><span class="p">();</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Documento</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">contenido</span> <span class="p">=</span> <span class="s">""</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="n">Documento</span> <span class="nf">Duplica</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">resultado</span> <span class="p">=</span> <span class="p">(</span><span class="n">Documento</span><span class="p">)</span><span class="nf">MemberwiseClone</span><span class="p">();</span>
         <span class="k">return</span> <span class="n">resultado</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Rellena</span><span class="p">(</span><span class="kt">string</span> <span class="n">contenido</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">_contenido</span> <span class="p">=</span> <span class="n">contenido</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Rellena</span><span class="p">(</span><span class="kt">string</span> <span class="n">informacion</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">contenido</span> <span class="p">=</span> <span class="n">informacion</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">();</span>
+    <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">DocumentoDigital</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">_contenido</span> <span class="p">=</span> <span class="n">String</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">DocumentoDigital</span> <span class="nf">Duplica</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">resultado</span> <span class="p">=</span> <span class="p">(</span><span class="n">DocumentoDigital</span><span class="p">)</span><span class="nf">MemberwiseClone</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">resultado</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Rellena</span><span class="p">(</span><span class="kt">string</span> <span class="n">contenido</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_contenido</span> <span class="p">=</span> <span class="n">contenido</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">Genera</span><span class="p">();</span>
     <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">Factura</span> <span class="p">:</span> <span class="n">Documento</span> <span class="p">{</span>
-        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">visualiza</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Factura: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Imprime Factura: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">Pedido</span> <span class="p">:</span> <span class="n">Documento</span> <span class="p">{</span>
-        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Pedido: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span>  <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Imprime Pedido: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">LibroDigital</span> <span class="p">:</span> <span class="n">Documento</span> <span class="p">{</span>
-        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"LibroDigital: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Imprime LibroDigital: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></div>
 
-<p>Una vez definidas las clases de cada uno de los objetos, definiremos la clase Documentos:</p>
-
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Documentos</span><span class="p">{</span>
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Documentos</span>
+<span class="p">{</span>
     <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;</span> <span class="n">documentos</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">protected</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
-<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Documentos</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;;</span>
-    <span class="n">documentos</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">protected</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">}</span>
-<span class="k">public</span> <span class="k">class</span> <span class="nc">DocumentosVacios</span> <span class="p">:</span> <span class="n">Documentos</span> <span class="p">{</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">DocumentosVacios</span> <span class="p">:</span> <span class="n">Documentos</span>
+<span class="p">{</span>
     <span class="k">public</span> <span class="k">static</span> <span class="n">DocumentosVacios</span> <span class="n">_instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
-    <span class="k">private</span> <span class="nf">DocumentosVacios</span><span class="p">()</span>  <span class="p">{</span>
+    <span class="k">private</span> <span class="nf">DocumentosVacios</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="n">documentos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;();</span>
     <span class="p">}</span>
-    <span class="c1">// Patrón Singleton</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="n">DocumentosVacios</span> <span class="nf">Instance</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">_instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">_instance</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentosVacios</span><span class="p">();</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">DocumentosVacios</span> <span class="nf">Instance</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">_instance</span> <span class="p">??</span> <span class="p">(</span><span class="n">_instance</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentosVacios</span><span class="p">());</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="n">_instance</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Incluye</span><span class="p">(</span><span class="n">Documento</span> <span class="n">doc</span><span class="p">)</span> <span class="p">{</span> <span class="n">documentos</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>  <span class="p">}</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Excluye</span><span class="p">(</span><span class="n">Documento</span> <span class="n">doc</span><span class="p">)</span> <span class="p">{</span> <span class="n">documentos</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>  <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Incluye</span><span class="p">(</span><span class="n">Documento</span> <span class="n">doc</span><span class="p">)</span> <span class="p">{</span> <span class="n">documentos</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Excluye</span><span class="p">(</span><span class="n">Documento</span> <span class="n">doc</span><span class="p">)</span> <span class="p">{</span> <span class="n">documentos</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></div>
 
-<p>Y ahora la clase DocumentosCliente:</p>
-
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">DocumentosCliente</span> <span class="p">:</span> <span class="n">Documentos</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nf">DocumentosCliente</span><span class="p">(</span><span class="kt">string</span> <span class="n">informacion</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">DocumentosCliente</span> <span class="p">:</span> <span class="n">Documentos</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">DocumentosCliente</span><span class="p">(</span><span class="kt">string</span> <span class="n">informacion</span><span class="p">)</span>
+    <span class="p">{</span>
         <span class="n">documentos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;();</span>
-        <span class="n">DocumentosVacios</span> <span class="n">documentosVacios</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DocumentosVacios</span><span class="p">.</span><span class="nf">Instance</span><span class="p">();</span>
-        <span class="n">IList</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;</span> <span class="n">documentosVacios</span> <span class="p">=</span> <span class="n">documentosVacios</span><span class="p">.</span><span class="n">documentos</span><span class="p">;</span>
+        <span class="n">DocumentosVacios</span> <span class="n">documentosVacios</span> <span class="p">=</span> <span class="n">DocumentosVacios</span><span class="p">.</span><span class="nf">Instance</span><span class="p">();</span>
+        <span class="n">IList</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;</span> <span class="n">documentoVacios</span> <span class="p">=</span> <span class="n">documentosVacios</span><span class="p">.</span><span class="n">documentos</span><span class="p">;</span>
 
-        <span class="k">foreach</span><span class="p">(</span><span class="n">Documento</span> <span class="n">documentos</span> <span class="k">in</span> <span class="n">documentosVacios</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">Documento</span> <span class="n">copioDocumento</span> <span class="p">=</span> <span class="n">documento</span><span class="p">.</span><span class="nf">Duplica</span><span class="p">();</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="n">Documento</span> <span class="n">docs</span> <span class="k">in</span> <span class="n">documentoVacios</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Documento</span> <span class="n">copioDocumento</span> <span class="p">=</span> <span class="n">docs</span><span class="p">.</span><span class="nf">Duplica</span><span class="p">();</span>
             <span class="n">copioDocumento</span><span class="p">.</span><span class="nf">Rellena</span><span class="p">(</span><span class="n">informacion</span><span class="p">);</span>
-            <span class="n">documentos</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">copioDocumento</span><span class="p">)</span>
+            <span class="n">documentos</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">copioDocumento</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">foreach</span><span class="p">(</span><span class="n">Documento</span> <span class="n">documento</span> <span class="k">in</span> <span class="n">documentos</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="n">Documento</span> <span class="n">documento</span> <span class="k">in</span> <span class="n">documentos</span><span class="p">)</span>
+        <span class="p">{</span>
             <span class="n">documento</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">foreach</span><span class="p">(</span><span class="n">Documento</span> <span class="n">documento</span> <span class="k">in</span> <span class="n">documentos</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">documento</span><span class="p">.</span><span class="nf">Imprime</span><span class="p">();}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="n">Documento</span> <span class="n">documento</span> <span class="k">in</span> <span class="n">documentos</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">documento</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
         <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">FacturaPrototype</span> <span class="p">:</span> <span class="n">Documento</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Factura: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Imprime Factura: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">LibroDigital</span> <span class="p">:</span> <span class="n">Documento</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"LibroDigital: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Imprime LibroDigital: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">PedidoPrototype</span> <span class="p">:</span> <span class="n">Documento</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Pedido: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Imprime Pedido: </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -226,13 +260,13 @@
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Usuario</span><span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>  <span class="p">{</span>
         <span class="n">DocumentosVacios</span> <span class="n">documentosVacios</span> <span class="p">=</span> <span class="n">DocumentosVacios</span><span class="p">.</span><span class="nf">Instance</span><span class="p">();</span>
-        <span class="n">documentosVacios</span><span class="p">.</span><span class="nf">Incluye</span><span class="p">(</span><span class="k">new</span> <span class="n">Pedido</span><span class="p">);</span>
-        <span class="n">documentosVacios</span><span class="p">.</span><span class="nf">Incluye</span><span class="p">(</span><span class="k">new</span> <span class="n">Factura</span><span class="p">);</span>
-        <span class="n">documentosVacios</span><span class="p">.</span><span class="nf">Incluye</span><span class="p">(</span><span class="k">new</span> <span class="n">LibroDigital</span><span class="p">);</span>
-        <span class="n">DocumentosCliente</span> <span class="n">JR</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentosCliente</span><span class="p">(</span><span class="s">"JR"</span><span class="p">);</span>
-        <span class="n">DocumentosCliente</span> <span class="n">RN</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentosCliente</span><span class="p">(</span><span class="s">"RN"</span><span class="p">);</span>
-        <span class="n">JR</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
-        <span class="n">RN</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
+        <span class="n">documentosVacios</span><span class="p">.</span><span class="nf">Incluye</span><span class="p">(</span><span class="k">new</span> <span class="nf">PedidoPrototype</span><span class="p">());</span>
+        <span class="n">documentosVacios</span><span class="p">.</span><span class="nf">Incluye</span><span class="p">(</span><span class="k">new</span> <span class="nf">FacturaPrototype</span><span class="p">());</span>
+        <span class="n">documentosVacios</span><span class="p">.</span><span class="nf">Incluye</span><span class="p">(</span><span class="k">new</span> <span class="nf">LibroDigital</span><span class="p">());</span>
+        <span class="n">DocumentosCliente</span> <span class="n">documentoCliente</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentosCliente</span><span class="p">(</span><span class="s">"Un usuario"</span><span class="p">);</span>
+        <span class="n">DocumentosCliente</span> <span class="n">documentoCliente2</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentosCliente</span><span class="p">(</span><span class="s">"Otro Usuario"</span><span class="p">);</span>
+        <span class="n">documentoCliente</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
+        <span class="n">documentoCliente2</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>

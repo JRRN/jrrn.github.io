@@ -67,6 +67,10 @@
 	  
 	    
 	  
+	    
+	  
+	    
+	  
     <!-- Nav links -->
 	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
 <a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
@@ -139,7 +143,7 @@
 <span class="p">}</span>
 
 <span class="k">public</span> <span class="k">interface</span> <span class="nc">IPedidosService</span> <span class="p">{</span>
-    <span class="k">void</span> <span class="nf">GetPedidoById</span><span class="p">(</span><span class="n">Guid</span> <span class="n">Pedido</span><span class="p">);</span>
+    <span class="k">void</span> <span class="nf">GetPedidoById</span><span class="p">(</span><span class="n">Guid</span> <span class="n">pedido</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="k">public</span> <span class="k">class</span> <span class="nc">CatalogoService</span> <span class="p">:</span> <span class="n">ICatalagoService</span> <span class="p">{</span>
@@ -186,17 +190,11 @@
 
 <span class="k">public</span> <span class="k">class</span> <span class="nc">Web</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">){</span>
-       <span class="n">IFacadeService</span> <span class="n">_facade</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">FacadeService</span><span class="p">();</span>
+        <span class="n">IFacadeService</span> <span class="n">_facade</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">FacadeService</span><span class="p">();</span>
 
-       <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Mostrando Catalago </span><span class="p">{</span><span class="n">_facade</span><span class="p">.</span><span class="n">GetCatalogo</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
-       <span class="kt">var</span> <span class="n">libro</span> <span class="p">=</span> <span class="n">_facade</span><span class="p">.</span><span class="nf">GetBookById</span><span class="p">(</span><span class="n">a2ddedc8</span><span class="p">-</span><span class="m">8232</span><span class="p">-</span><span class="m">4</span><span class="n">eab</span><span class="p">-</span><span class="m">9f</span><span class="n">a4</span><span class="p">-</span><span class="m">1761</span><span class="n">a7e3ba22</span><span class="p">);</span>
-
-       <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Libro : </span><span class="p">{</span><span class="n">libro</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
-
-       <span class="kt">var</span> <span class="n">pedido</span> <span class="p">=</span> <span class="n">_facade</span><span class="p">.</span><span class="nf">GetPedidoById</span><span class="p">(</span><span class="n">a2ddedc8</span><span class="p">-</span><span class="m">8232</span><span class="p">-</span><span class="m">4</span><span class="n">eab</span><span class="p">-</span><span class="m">9f</span><span class="n">a4</span><span class="p">-</span><span class="m">1761</span><span class="n">a7e3ba23</span><span class="p">)</span>
-
-       <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Pedido : </span><span class="p">{</span><span class="n">pedido</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
-
+        <span class="n">_facade</span><span class="p">.</span><span class="nf">GetCatalogo</span><span class="p">();</span>
+        <span class="n">_facade</span><span class="p">.</span><span class="nf">GetBookById</span><span class="p">(</span><span class="n">Guid</span><span class="p">.</span><span class="nf">NewGuid</span><span class="p">());</span>
+        <span class="n">_facade</span><span class="p">.</span><span class="nf">GetPedidoById</span><span class="p">(</span><span class="n">Guid</span><span class="p">.</span><span class="nf">NewGuid</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>

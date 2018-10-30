@@ -67,6 +67,10 @@
 	  
 	    
 	  
+	    
+	  
+	    
+	  
     <!-- Nav links -->
 	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
 <a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
@@ -130,49 +134,66 @@
 
 <p>¿Lo vemos con el ejemplo? Pues vamos.</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">ICatalago</span> <span class="p">{</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">ICatalogo</span>
+<span class="p">{</span>
     <span class="k">void</span> <span class="nf">VerDatosLibro</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">Books</span> <span class="p">:</span> <span class="n">ICatalago</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">VerDatosLibro</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Books</span> <span class="p">:</span> <span class="n">ICatalogo</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">VerDatosLibro</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Mostrando Libro"</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Decorador</span> <span class="p">:</span> <span class="n">ICatalago</span> <span class="p">{</span>
-    <span class="k">protected</span> <span class="n">ICatalago</span> <span class="n">_catalogo</span><span class="p">;</span>
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Decorador</span> <span class="p">:</span> <span class="n">ICatalogo</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="n">ICatalogo</span> <span class="n">_catalogo</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="nf">Decorador</span><span class="p">(</span><span class="n">ICatalogo</span> <span class="n">catalogo</span><span class="p">){</span>
+    <span class="k">protected</span> <span class="nf">Decorador</span><span class="p">(</span><span class="n">ICatalogo</span> <span class="n">catalogo</span><span class="p">)</span>
+    <span class="p">{</span>
         <span class="n">_catalogo</span> <span class="p">=</span> <span class="n">catalogo</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">VerCatalogo</span><span class="p">(){</span>
+    <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">VerCatalogo</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nf">VerDatosLibro</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">VerDatosLibro</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="n">_catalogo</span><span class="p">.</span><span class="nf">VerDatosLibro</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">EditorialTecnologicaDecorador</span> <span class="p">:</span> <span class="n">Decordor</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nf">EditorialTecnologicaDecorador</span><span class="p">(</span><span class="n">ICatalago</span> <span class="n">catalogo</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">catalogo</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">EditorialTecnologicaDecorador</span> <span class="p">:</span> <span class="n">Decorador</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">EditorialTecnologicaDecorador</span><span class="p">(</span><span class="n">ICatalogo</span> <span class="n">catalogo</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">catalogo</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 
-    <span class="k">protected</span> <span class="k">void</span> <span class="nf">VisualizaEditorialLibrosTecnicos</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="k">void</span> <span class="nf">VisualizaEditorialLibrosTecnicos</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Editorial libro técnico."</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">VerCatalogo</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">VerCatalogo</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="k">base</span><span class="p">.</span><span class="nf">VerDatosLibro</span><span class="p">();</span>
         <span class="nf">VisualizaEditorialLibrosTecnicos</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">AutorTecnologicoDecorador</span> <span class="p">:</span> <span class="n">Decordor</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nf">AutorTecnologicaDecorador</span><span class="p">(</span><span class="n">ICatalago</span> <span class="n">catalogo</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">catalogo</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">AutorTecnologicoDecorador</span> <span class="p">:</span> <span class="n">Decorador</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">AutorTecnologicoDecorador</span><span class="p">(</span><span class="n">ICatalogo</span> <span class="n">catalogo</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">catalogo</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 
-    <span class="k">protected</span> <span class="k">void</span> <span class="nf">VisualizaAutorLibrosTecnicos</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="k">void</span> <span class="nf">VisualizaAutorLibrosTecnicos</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Autor técnico."</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">VerCatalogo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">VerCatalogo</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="k">base</span><span class="p">.</span><span class="nf">VerDatosLibro</span><span class="p">();</span>
         <span class="nf">VisualizaAutorLibrosTecnicos</span><span class="p">();</span>
     <span class="p">}</span>
@@ -180,10 +201,11 @@
 
 <span class="k">public</span> <span class="k">class</span> <span class="nc">VistaCatalogo</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Book</span> <span class="n">libro</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Book</span><span class="p">();</span>
+        <span class="n">DecoratorPattern</span><span class="p">.</span><span class="n">Books</span> <span class="n">libro</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DecoratorPattern</span><span class="p">.</span><span class="nf">Books</span><span class="p">();</span>
         <span class="n">EditorialTecnologicaDecorador</span> <span class="n">editorialTechlDecorador</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EditorialTecnologicaDecorador</span><span class="p">(</span><span class="n">libro</span><span class="p">);</span>
-        <span class="n">AutorTecnologicaDecorador</span> <span class="n">autorTechDecorador</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">AutorTecnologicaDecorador</span><span class="p">(</span><span class="n">libro</span><span class="p">);</span>
-        <span class="n">autorTechDecorador</span><span class="p">.</span><span class="nf">VerDatosLibro</span><span class="p">();</span>
+        <span class="n">AutorTecnologicoDecorador</span> <span class="n">autorTechDecorador</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">AutorTecnologicoDecorador</span><span class="p">(</span><span class="n">libro</span><span class="p">);</span>
+        <span class="n">autorTechDecorador</span><span class="p">.</span><span class="nf">VerCatalogo</span><span class="p">();</span>
+        <span class="n">editorialTechlDecorador</span><span class="p">.</span><span class="nf">VerCatalogo</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 

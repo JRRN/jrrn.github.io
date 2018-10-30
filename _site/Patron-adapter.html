@@ -67,6 +67,10 @@
 	  
 	    
 	  
+	    
+	  
+	    
+	  
     <!-- Nav links -->
 	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
 <a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
@@ -126,30 +130,37 @@
 
 <p>En nuestro sistema de libros, crearemos una interfaz con los métodos para generar el libro, componerlo e imprimirlo.</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">IBook</span> <span class="p">{</span>
-    <span class="kt">string</span> <span class="n">contenido</span> <span class="p">{</span><span class="k">set</span><span class="p">;}</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">IBookAdapter</span>
+<span class="p">{</span>
+    <span class="kt">string</span> <span class="n">Contenido</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
     <span class="k">void</span> <span class="nf">Compone</span><span class="p">();</span>
     <span class="k">void</span> <span class="nf">Imprime</span><span class="p">();</span>
     <span class="k">void</span> <span class="nf">Enviar</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">PaperBook</span> <span class="p">:</span> <span class="n">IBook</span> <span class="p">{</span>
-    <span class="k">protected</span> <span class="kt">string</span> <span class="n">_contenido</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">PaperBook</span> <span class="p">:</span> <span class="n">IBookAdapter</span>
+<span class="p">{</span>
 
-    <span class="k">public</span> <span class="kt">string</span> <span class="n">contenido</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">_contenido</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Contenido</span>
+    <span class="p">{</span>
         <span class="k">protected</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_contenido</span><span class="p">;</span> <span class="p">}</span>
-        <span class="k">set</span> <span class="p">{</span> <span class="n">_contenido</span> <span class="p">=</span> <span class="k">value</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="n">_contenido</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Compone</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">contenido</span> <span class="p">=</span> <span class="nf">ComponerContenido</span><span class="p">(</span><span class="n">contenido</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Compone</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">content</span> <span class="p">=</span> <span class="n">Contenido</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Mandando a imprimir Contenido </span><span class="p">{</span><span class="n">contenido</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Mandando a imprimir Contenido </span><span class="p">{</span> <span class="n">_contenido</span> <span class="p">}</span><span class="s">"</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Enviar</span><span class="p">(){</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Enviar</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Enviar al cliente"</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -158,26 +169,32 @@
 <p>Sin embargo, ahora vamos a crear un libro no físico, sin embargo para este tipo de libros, el mecanismo es muy parecido pero no igual.
 Con lo que aquí entra en juego el patrón Adapter:</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">PdfBase</span> <span class="p">{</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">PdfBase</span>
+<span class="p">{</span>
     <span class="k">protected</span> <span class="kt">string</span> <span class="n">_contenido</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">PdfComponeContenido</span><span class="p">(</span><span class="kt">string</span> <span class="n">contenido</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">PdfComponeContenido</span><span class="p">(</span><span class="kt">string</span> <span class="n">contenido</span><span class="p">)</span>
+    <span class="p">{</span>
         <span class="n">_contenido</span> <span class="p">=</span> <span class="n">contenido</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">PdfPrevisualizar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">PdfPrevisualizar</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Previsualización de Contenido: </span><span class="p">{</span> <span class="n">_contenido</span> <span class="p">}</span><span class="s">"</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">PdfAlmacena</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Guardando de Book"</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">PdfAlmacena</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Guardando Book"</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">PdfImprimePorPantalla</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Imprime por pantall </span><span class="p">{</span> <span class="n">_contenido</span> <span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">PdfImprimePorPantalla</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Imprime por pantalla </span><span class="p">{</span> <span class="n">_contenido</span> <span class="p">}</span><span class="s">"</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">PdfEnviar</span><span class="p">(){</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">PdfEnviar</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Enviando link de descarga al cliente"</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -185,23 +202,28 @@ Con lo que aquí entra en juego el patrón Adapter:</p>
 
 <p>Como podemos ver la clase PdfBase es independiente a la jerarquía que hasta ahora tenemos. Sin embargo, podemos ver métodos que podrían pertenecer a la interfaz IBook, así que nos toca “adaptar” esta lógica para que acepte la jerarquía:</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">PdfBook</span> <span class="p">:</span> <span class="n">IBook</span> <span class="p">{</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">PdfBook</span> <span class="p">:</span> <span class="n">IBookAdapter</span>
+<span class="p">{</span>
     <span class="k">protected</span> <span class="n">PdfBase</span> <span class="n">_pdfBase</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">PdfBase</span><span class="p">();</span>
 
-    <span class="k">public</span> <span class="kt">string</span> <span class="n">contenido</span> <span class="p">{</span>
-        <span class="k">set</span> <span class="p">{</span> <span class="n">_pdfbase</span><span class="p">.</span><span class="nf">PdfComponeContenido</span><span class="p">(</span><span class="k">value</span><span class="p">);</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Contenido</span>
+    <span class="p">{</span>
+        <span class="k">set</span> <span class="p">=&gt;</span> <span class="n">_pdfBase</span><span class="p">.</span><span class="nf">PdfComponeContenido</span><span class="p">(</span><span class="k">value</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Compone</span><span class="p">(){</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Compone</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="n">_pdfBase</span><span class="p">.</span><span class="nf">PdfPrevisualizar</span><span class="p">();</span>
         <span class="n">_pdfBase</span><span class="p">.</span><span class="nf">PdfAlmacena</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">(){</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="n">_pdfBase</span><span class="p">.</span><span class="nf">PdfImprimePorPantalla</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Enviar</span><span class="p">(){</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Enviar</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="n">_pdfBase</span><span class="p">.</span><span class="nf">PdfEnviar</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -211,19 +233,15 @@ Con lo que aquí entra en juego el patrón Adapter:</p>
 
 <p>Finalmente, para generar una salida tendremos:</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Servicio</span><span class="p">{</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Servicio</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">){</span>
-        <span class="n">Ibook</span> <span class="n">paperBook</span><span class="p">,</span> <span class="n">mediaBook</span><span class="p">;</span>
+        <span class="n">IBookAdapter</span> <span class="n">paperBook</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PaperBook</span> <span class="p">{</span> <span class="n">Contenido</span> <span class="p">=</span> <span class="s">"Soy un libro físico"</span><span class="p">};</span>
+        <span class="n">paperBook</span><span class="p">.</span><span class="nf">Compone</span><span class="p">();</span>
+        <span class="n">paperBook</span><span class="p">.</span><span class="nf">Imprime</span><span class="p">();</span>
+        <span class="n">paperBook</span><span class="p">.</span><span class="nf">Enviar</span><span class="p">();</span>
 
-        <span class="n">paperBook</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">PaperBook</span><span class="p">();</span>
-        <span class="n">paperbook</span><span class="p">.</span><span class="n">contenido</span> <span class="p">=</span> <span class="s">"Soy un libro físico"</span><span class="p">;</span>
-        <span class="n">paperbook</span><span class="p">.</span><span class="nf">Componer</span><span class="p">();</span>
-        <span class="n">paperbook</span><span class="p">.</span><span class="nf">Imprime</span><span class="p">();</span>
-        <span class="n">paperbook</span><span class="p">.</span><span class="nf">Enviar</span><span class="p">();</span>
-
-        <span class="n">mediaBook</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">PdfBook</span><span class="p">();</span>
-        <span class="n">mediaBook</span><span class="p">.</span><span class="n">contenido</span> <span class="p">=</span> <span class="s">"Soy un libro digital"</span><span class="p">;</span>
-        <span class="n">mediaBook</span><span class="p">.</span><span class="nf">Componer</span><span class="p">();</span>
+        <span class="n">IBookAdapter</span> <span class="n">mediaBook</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PdfBook</span> <span class="p">{</span><span class="n">Contenido</span> <span class="p">=</span> <span class="s">"Soy un libro digital"</span><span class="p">};</span>
+        <span class="n">mediaBook</span><span class="p">.</span><span class="nf">Compone</span><span class="p">();</span>
         <span class="n">mediaBook</span><span class="p">.</span><span class="nf">Imprime</span><span class="p">();</span>
         <span class="n">mediaBook</span><span class="p">.</span><span class="nf">Enviar</span><span class="p">();</span>
     <span class="p">}</span>

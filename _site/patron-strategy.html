@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 	<meta name="generator" content="Jekyll">
 
-	<title>Patrón Proxy</title>
+	<title>Patrón Strategy</title>
 
 	<!-- CSS & fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
@@ -114,78 +114,76 @@
           <main>
             <article id="post-page">
 	<div>
-		<h2>Patrón Proxy</h2><span>[
+		<h2>Patrón Strategy</h2><span>[
 			
 				
 				<a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura</nobr></code>&nbsp;</a>
 			
 			]</span>	
-	<time datetime="2017-12-15T00:00:00+01:00" class="by-line">15 Dec 2017</time>
+	<time datetime="2018-08-16T00:00:00+02:00" class="by-line">16 Aug 2018</time>
 	</div>
 		
 	<div class="content">
-		<p>El patrón <strong>proxy</strong> se utiliza para diseñar un objeto que sustituye a otro objeto que controla su acceso. El objeto proxy es el que queda expuesto en la capa de servicios o presentación siendo idéntico y con mismo contrato que el original.</p>
+		<p>El patrón Strategy nos permite definir varios algoritmos para aplicar sobre un objeto según nos convenga. De esta forma, podemos definir posibles acciones sobre las que decidiremos cual es la más correcta para aplicar según ciertas variables.</p>
 
-<p>El claro ejemplo, son las entidades que solemos recoger de la capa de acceso a datos y que mapeamos contra la capa de negocio, dominio, etc…</p>
+<p>Aunque es un patrón bastante sencillo… Lo que realmente hace es definir algoritmos encapsulados en su clase.</p>
 
-<p>Para nuestro ejemplo de los libros, tenemos una página web con un listado de libros y que haciendo clic sobre cada título podemos ver una descripción más completa del libro seleccionado. En este caso, podríamos tener cargadas todas estas descripciones desde la primera carga, pero mejor, si las recuperamos cuando son solicitadas y las que son solicitadas.</p>
+<p>Veamos el ejemplo, en este ejemplo lo que haremos es definir varias estrategias para poder calcular el IVA según el país.</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="k">public</span> <span class="k">interface</span> <span class="nc">IBook</span> <span class="p">{</span>
-    <span class="k">void</span> <span class="nf">Renderiza</span><span class="p">();</span>
-    <span class="k">void</span> <span class="nf">CargaDescripcion</span><span class="p">();</span>
+<span class="k">public</span> <span class="k">interface</span> <span class="nc">IBookCalculaIva</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="nf">CalculaIva</span><span class="p">(</span><span class="kt">double</span> <span class="n">precio</span><span class="p">);</span>
+    <span class="k">void</span> <span class="nf">ImprimeResultado</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">DescripcionProxy</span> <span class="p">:</span> <span class="n">IBook</span> <span class="p">{</span>
-    <span class="k">protected</span> <span class="n">Datos</span> <span class="n">book</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
-    <span class="k">protected</span> <span class="kt">string</span> <span class="n">descripcion</span> <span class="p">=</span> <span class="s">"Desccripción Simple"</span><span class="p">;</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">CargaDescripcion</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">book</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">book</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Datos</span><span class="p">();</span>
-            <span class="n">book</span><span class="p">.</span><span class="nf">CargaDescripcion</span><span class="p">();</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="p">{</span> <span class="n">book</span><span class="p">.</span><span class="nf">CargaDescripcion</span><span class="p">();</span> <span class="p">}</span>
-
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Renderiza</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">book</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">book</span><span class="p">.</span><span class="nf">Renderiza</span><span class="p">();</span>
-        <span class="p">}</span>
-        <span class="k">else</span>
-        <span class="p">{</span>
-            <span class="nf">Renderiza</span><span class="p">(</span><span class="n">descripcion</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Renderiza</span><span class="p">(</span><span class="kt">string</span> <span class="n">descripcion</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"</span><span class="p">{</span><span class="n">descripcion</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">class</span> <span class="nc">VistaBook</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CalculaBookIvaEspa</span><span class="err">ñ</span><span class="n">a</span> <span class="p">:</span> <span class="n">IBookCalculaIva</span>
 <span class="p">{</span>
-    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">IBook</span> <span class="n">book</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DescripcionProxy</span><span class="p">();</span>
+    <span class="k">protected</span> <span class="kt">double</span> <span class="n">PrecioFinal</span><span class="p">;</span>
 
-        <span class="n">book</span><span class="p">.</span><span class="nf">Renderiza</span><span class="p">();</span>
-        <span class="n">book</span><span class="p">.</span><span class="nf">CargaDescripcion</span><span class="p">();</span>
+    <span class="k">public</span> <span class="kt">double</span> <span class="nf">CalculaIva</span><span class="p">(</span><span class="kt">double</span> <span class="n">precioBook</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">PrecioFinal</span> <span class="p">=</span> <span class="n">precioBook</span> <span class="p">+</span> <span class="n">precioBook</span> <span class="p">*</span> <span class="m">0.21</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">PrecioFinal</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ImprimeResultado</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">PrecioFinal</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CalculaBookIvaMexico</span> <span class="p">:</span> <span class="n">IBookCalculaIva</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">double</span> <span class="n">PrecioFinal</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="kt">double</span> <span class="nf">CalculaIva</span><span class="p">(</span><span class="kt">double</span> <span class="n">precioBook</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">PrecioFinal</span> <span class="p">=</span> <span class="n">precioBook</span> <span class="p">+</span> <span class="n">precioBook</span> <span class="p">*</span> <span class="m">0.16</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">PrecioFinal</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ImprimeResultado</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">PrecioFinal</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Usuario</span> <span class="p">{</span>
+
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">protected</span> <span class="n">IBookCalculaIVA</span> <span class="n">_calculaIVA</span><span class="p">;</span>
+
+        <span class="n">_calculaIva</span><span class="p">.</span><span class="nf">CalculaIva</span><span class="p">(</span><span class="k">new</span> <span class="n">CalculaBookIvaEspa</span><span class="err">ñ</span><span class="nf">a</span><span class="p">().</span><span class="nf">CalculaIva</span><span class="p">(</span><span class="m">10</span><span class="p">));</span>
+        <span class="n">_calculaIva</span><span class="p">.</span><span class="nf">ImprimeResultado</span><span class="p">();</span>
+
+        <span class="n">_calculaIva</span><span class="p">.</span><span class="nf">CalculaIva</span><span class="p">(</span><span class="k">new</span> <span class="nf">CalculaBookIvaMexico</span><span class="p">().</span><span class="nf">CalculaIva</span><span class="p">(</span><span class="m">10</span><span class="p">));</span>
+        <span class="n">_calculaIva</span><span class="p">.</span><span class="nf">ImprimeResultado</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
 </code></pre></div></div>
 
-<p>Así obtendríamos esta salida:</p>
-
-<p>Mostrar descripción
-Carga descripción
-Mostrando descripción
-Muestra Descripción</p>
-
 <p>Saludos.</p>
-
 
 	</div>
 </article>

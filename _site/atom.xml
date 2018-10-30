@@ -4,7 +4,7 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2018-02-26T20:06:32+01:00</updated>
+ <updated>2018-10-30T21:50:42+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
@@ -14,101 +14,101 @@
  
 
  <entry>
+   <title>Principios SOLID</title>
+   <link href="http://localhost:4000/solid"/>
+   <id>http://localhost:4000/solid</id>
+   <updated>2018-10-25T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;Hola hoy vengo con los principios SOLID. Aunque es un tema que conozco, el pasado sábado asistí a la &lt;a href=&quot;http://netconfbcn2018.azurewebsites.net/&quot;&gt;NET. Conf 2018&lt;/a&gt; y varias personas no tenían conocimiento sobre ellos y eso no se puede quedar así.&lt;/p&gt; &lt;p&gt;Los presentamos:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;strong&gt;S&lt;/strong&gt;ingle Responsability&lt;/li&gt; &lt;li&gt;&lt;strong&gt;O&lt;/strong&gt;pen Closed&lt;/li&gt; &lt;li&gt;&lt;strong&gt;L&lt;/strong&gt;iskow&lt;/li&gt; &lt;li&gt;&lt;strong&gt;I&lt;/strong&gt;nterface Segregation&lt;/li&gt; &lt;li&gt;&lt;strong&gt;D&lt;/strong&gt;ependency Injection&lt;/li&gt;...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Patrón Visitor</title>
+   <link href="http://localhost:4000/patron-visitor"/>
+   <id>http://localhost:4000/patron-visitor</id>
+   <updated>2018-08-19T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón Visitor nos permite agregar operaciones a objetos sin tener que modificar la clase concreta de estos objetos. Su uso se recomienda para pequeñas y pocas funcionalidades extra.&lt;/p&gt; &lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inteface&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Visitante&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Visita&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;EditorialSinFilial&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;editorialSinFilial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Patrón Template Method</title>
+   <link href="http://localhost:4000/patron-template-method"/>
+   <id>http://localhost:4000/patron-template-method</id>
+   <updated>2018-08-18T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón Template Method nos permite definir un esqueleto de métodos abstractos en los que cada clase concreta sobrecargará estos métodos para definir su comportamiento específico y cuya implementación difiera en algunos pasos.&lt;/p&gt; &lt;p&gt;De esta forma, definimos una clase con métodos abstractos como si fuera un contrato o interfaz, y...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Patrón State</title>
+   <link href="http://localhost:4000/patron-state"/>
+   <id>http://localhost:4000/patron-state</id>
+   <updated>2018-08-17T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón State nos ayuda a que un objeto se comporte de forma diferente según un flag de estado. De esta forma, según cual sea el flag de estado, el objeto se comportará de una forma o de otra.&lt;/p&gt; &lt;p&gt;El ejemplo más simple para entender este patrón, es en los...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Patrón Strategy</title>
+   <link href="http://localhost:4000/patron-strategy"/>
+   <id>http://localhost:4000/patron-strategy</id>
+   <updated>2018-08-16T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón Strategy nos permite definir varios algoritmos para aplicar sobre un objeto según nos convenga. De esta forma, podemos definir posibles acciones sobre las que decidiremos cual es la más correcta para aplicar según ciertas variables.&lt;/p&gt; &lt;p&gt;Aunque es un patrón bastante sencillo… Lo que realmente hace es definir algoritmos...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Patrón Observer</title>
+   <link href="http://localhost:4000/patron-observer"/>
+   <id>http://localhost:4000/patron-observer</id>
+   <updated>2018-08-15T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón Observer se usa para crear una dependencia entre el objeto y otros que estén anexados a él. De esta forma, cuando se realiza una modificación en el primer objeto, los objetos anexados a el, reciben esta actualización.&lt;/p&gt; &lt;p&gt;Aunque es clara la definición, lo que se trata es de...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Patrón Specification</title>
+   <link href="http://localhost:4000/patron-specification"/>
+   <id>http://localhost:4000/patron-specification</id>
+   <updated>2018-07-31T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón Specification es un patrón orientando a las aplicaciones con dominio. Es un patrón muy útil para validar queries y orientado a encapsular los objetos que pueden usarse en estas queries.&lt;/p&gt; &lt;p&gt;Es un patrón que separa la responsabilidad entre los objetos a recuperar y como los obtenemos.&lt;/p&gt; &lt;p&gt;Vamos con...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Patrón Memento</title>
+   <link href="http://localhost:4000/patron-memento"/>
+   <id>http://localhost:4000/patron-memento</id>
+   <updated>2018-07-25T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón memento previene en la encapsulación de un objeto el estado en que se encuentra en cada momento. De esta forma, si por algún motivo, necesitamos hacer un rollback de estos cambios del objeto, podamos restaurar sin romper nada.&lt;/p&gt; &lt;p&gt;Es como tener un pila de estados de como ha...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Patrón Mediator</title>
+   <link href="http://localhost:4000/patron-mediator"/>
+   <id>http://localhost:4000/patron-mediator</id>
+   <updated>2018-03-04T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;El patrón &lt;strong&gt;Mediator&lt;/strong&gt; nos ayuda a gestionar y controlar las interacciones entre un conjunto de objetos sin que deban conocerse entre ellos.&lt;/p&gt; &lt;p&gt;Para los mortales, se define un objeto que tiene las reglas de interacción entre los objetos que se van a comunicar.&lt;/p&gt; &lt;p&gt;¿Todavía no? Veámoslo con un ejemplo:&lt;/p&gt; &lt;p&gt;Esta...</content>
+ </entry>
+
+ 
+
+ <entry>
    <title>Sin retornos NULL con Maybe<T></title>
    <link href="http://localhost:4000/maybe"/>
    <id>http://localhost:4000/maybe</id>
    <updated>2018-02-25T00:00:00+01:00</updated>
    <content type="html">&lt;p&gt;Maybe es una estructura(Monad) que nos ayuda a no tener que trabajar con objetos NULL.&lt;/p&gt; &lt;p&gt;De esta forma, el objeto, hereda una propiedad HasValue para determinar si es NULO o no, ahorrándonos el típico if (a != null) que tan feo queda en nuestro código.&lt;/p&gt; &lt;p&gt;Así la estructura quedaría de...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Interpreter</title>
-   <link href="http://localhost:4000/patron-interpreter"/>
-   <id>http://localhost:4000/patron-interpreter</id>
-   <updated>2018-02-02T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón &lt;strong&gt;Interpreter&lt;/strong&gt; nos proporciona la utilidad de transformar, la gramática del lenguaje, de tal forma que podamos evaluar, condificando estas expresiones del lenguaje natural, en objetos.&lt;/p&gt; &lt;p&gt;En resumidas, nos da la facilidad de transformar el lenguaje que hablamos y con el que nos comunicamos, en lenguaje máquina.&lt;/p&gt; &lt;p&gt;Y no,...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Command</title>
-   <link href="http://localhost:4000/patron-command"/>
-   <id>http://localhost:4000/patron-command</id>
-   <updated>2018-01-23T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón &lt;strong&gt;Command&lt;/strong&gt; nos ayuda a transformar una solicitud en un objeto. Estas solicitudes tienen la propiedad de poder encolarse, ser borradas y actualizadas dentro de la cola de peticiones.&lt;/p&gt; &lt;p&gt;Volviendo a nuestro caso de libros, todos sabemos que ciertos libros en IT son altamente propensos a quedarse obsoletos, para...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Chain of Responsability</title>
-   <link href="http://localhost:4000/patron-chain-of-responsability"/>
-   <id>http://localhost:4000/patron-chain-of-responsability</id>
-   <updated>2018-01-14T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón &lt;strong&gt;Chain Of Responsability&lt;/strong&gt; nos ayuda a crear una secuencia de unión entre objetos tal que, si el objeto más interno de la cadena no es capaz de dar una respuesta, uno de los objetos de nivel superior será el encargado de darla. Esta respuesta será a nivel del...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Raspberry Pi 3, LCD Display, C# y MS IoT</title>
-   <link href="http://localhost:4000/RaspberryPi3-LCD-MS-IoT"/>
-   <id>http://localhost:4000/RaspberryPi3-LCD-MS IoT</id>
-   <updated>2018-01-03T00:00:00+01:00</updated>
-   <content type="html">&lt;h3 id=&quot;raspberry-pi-3-lcd-c-y-ms-iot&quot;&gt;Raspberry Pi 3, LCD, C# y MS IoT&lt;/h3&gt; &lt;p&gt;Hola, hará un año o así, compré una Raspeberry Pi 3.&lt;/p&gt; &lt;p&gt;Mi idea era jugar un poco con ella tanto en su versión modo PC/Servidor como su versión IoT.&lt;/p&gt; &lt;p&gt;Durante este año, he jugado con ella, he probado varias distribuciones Raspbian,...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrones de Comportamiento</title>
-   <link href="http://localhost:4000/patrones-de-comportamiento"/>
-   <id>http://localhost:4000/patrones-de-comportamiento</id>
-   <updated>2017-12-17T00:00:00+01:00</updated>
-   <content type="html">&lt;h3 id=&quot;patrones-de-comportamiento&quot;&gt;Patrones de comportamiento&lt;/h3&gt; &lt;p&gt;Los patrones de comportamiento, nos ayudan a solucionar los problemas con las estructuras de datos y los objetos. Nos proporcionan soluciones a para identificar y poder distribuir los algoritmos entre ellos y su proceso.&lt;/p&gt; &lt;p&gt;Mediante flujos de control y flujos de proceso se orquestan estos algoritmos...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Proxy</title>
-   <link href="http://localhost:4000/patron-proxy"/>
-   <id>http://localhost:4000/patron-proxy</id>
-   <updated>2017-12-15T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón &lt;strong&gt;proxy&lt;/strong&gt; se utiliza para diseñar un objeto que sustituye a otro objeto que controla su acceso. El objeto proxy es el que queda expuesto en la capa de servicios o presentación siendo idéntico y con mismo contrato que el original.&lt;/p&gt; &lt;p&gt;El claro ejemplo, son las entidades que solemos...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Flyweight</title>
-   <link href="http://localhost:4000/patron-flyweight"/>
-   <id>http://localhost:4000/patron-flyweight</id>
-   <updated>2017-12-06T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón &lt;strong&gt;Flyweight&lt;/strong&gt; está enfocado a resolver el problema de la granularidad de los objetos.&lt;/p&gt; &lt;p&gt;Recordemos que la granularidad en programación es la capacidad de definir objetos fragmentando en unidades más pequeñas la composición de este objeto de la forma más correcta.&lt;/p&gt; &lt;p&gt;En nuestro caso de libros, pongamos el ejemplo...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Facade</title>
-   <link href="http://localhost:4000/patron-facade"/>
-   <id>http://localhost:4000/patron-facade</id>
-   <updated>2017-12-03T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;La función del patrón &lt;strong&gt;facade&lt;/strong&gt; es resolver agrupando en una única interfaz como conjunto de objetos varias interfaces.&lt;/p&gt; &lt;p&gt;De esta forma el patrón facade encapsula las interfaces específicas y expone una única interfaz como punto de entrada.&lt;/p&gt; &lt;p&gt;Para los mortales, simplemente se trata de que toda petición entre por una...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Decorator</title>
-   <link href="http://localhost:4000/patron-decorator"/>
-   <id>http://localhost:4000/patron-decorator</id>
-   <updated>2017-11-29T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón &lt;strong&gt;decorator&lt;/strong&gt; nos permite agregar de forma dinámica funcionalidades suplementarias a un objeto sin tener que modificar la interfaz de un objeto y quedando de una forma transparente de cara al cliente.&lt;/p&gt; &lt;p&gt;Así, el patrón decorator es una forma más para poder crear una subclase y vitaminar un objeto...</content>
  </entry>
 
  

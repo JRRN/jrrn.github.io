@@ -67,6 +67,10 @@
 	  
 	    
 	  
+	    
+	  
+	    
+	  
     <!-- Nav links -->
 	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
 <a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
@@ -126,95 +130,115 @@
 
 <p>Estos documentos se pueden generar en pdf y/o en formato html para remitir por mail, por ejemplo. Con lo que obtendríamos los métodos constructorDocumentacionHtml y constructorDocumentacionPdf.</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Documentacion</span> <span class="p">{</span>
-    <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">contenido</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
-    <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">agregaDocumento</span><span class="p">(</span><span class="kt">string</span> <span class="n">documento</span><span class="p">);</span>
-    <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">imprime</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">class</span> <span class="nc">DocumentacionHtml</span> <span class="p">:</span> <span class="n">Documentacion</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">agregaDocumento</span><span class="p">(</span><span class="kt">string</span> <span class="n">documento</span><span class="p">)</span> <span class="p">{</span>
-       <span class="k">if</span> <span class="p">(</span><span class="n">document</span><span class="p">.</span><span class="nf">StartsWith</span><span class="p">(</span><span class="s">"HTML"</span><span class="p">))</span> <span class="n">contenido</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Documentacion</span>
+    <span class="p">{</span>
+        <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">contenido</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
+        <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">AgregaDocumento</span><span class="p">(</span><span class="kt">string</span> <span class="n">documento</span><span class="p">);</span>
+        <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">imprime</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Documentación HTML"</span><span class="p">);</span>
-        <span class="k">foreach</span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span> <span class="k">in</span> <span class="n">contenido</span><span class="p">)</span> <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">DocumentacionHtml</span> <span class="p">:</span> <span class="n">Documentacion</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">AgregaDocumento</span><span class="p">(</span><span class="kt">string</span> <span class="n">documento</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">documento</span><span class="p">.</span><span class="nf">StartsWith</span><span class="p">(</span><span class="s">"HTML"</span><span class="p">,</span> <span class="n">StringComparison</span><span class="p">.</span><span class="n">Ordinal</span><span class="p">))</span> <span class="n">contenido</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
+        <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">DocumentacionPdf</span> <span class="p">:</span> <span class="n">Documentacion</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">agregaDocumento</span><span class="p">(</span><span class="kt">string</span> <span class="n">documento</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">documento</span><span class="p">.</span><span class="nf">StartsWith</span><span class="p">(</span><span class="s">"PDF"</span><span class="p">))</span> <span class="n">contenido</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">imprime</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Documentación PDF"</span><span class="p">);</span>
-        <span class="k">foreach</span> <span class="p">(</span><span class="kt">string</span> <span class="n">s</span> <span class="k">in</span> <span class="n">contenido</span><span class="p">)</span>  <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">ConstructorDocumentacion</span> <span class="p">{</span>
-    <span class="k">protected</span> <span class="n">Documentacion</span> <span class="n">documentacion</span><span class="p">;</span>
-    <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">construyeSolicitudPedido</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreCliente</span><span class="p">);</span>
-    <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">construyeSolicitudFactura</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreSolicitante</span><span class="p">);</span>
-    <span class="k">public</span> <span class="n">Documentacion</span> <span class="nf">resultado</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">documentacion</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">class</span> <span class="nc">constructorDocumentacionHtml</span> <span class="p">:</span> <span class="n">ConstructorDocumentacion</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nf">ConstructorDocumentacionHtml</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">documentacion</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentacionHtml</span><span class="p">();</span>
+        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Documentación HTML"</span><span class="p">);</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">string</span> <span class="n">s</span> <span class="k">in</span> <span class="n">contenido</span><span class="p">)</span> <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">construyeSolicitudPedido</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreCliente</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">string</span> <span class="n">documento</span><span class="p">;</span>
-        <span class="n">documento</span> <span class="p">=</span> <span class="s">$"Solicitud de pedido Cliente: </span><span class="p">{</span><span class="n">nombreCliente</span><span class="p">}</span><span class="s"> HTML"</span><span class="p">;</span>
-        <span class="n">documentacion</span><span class="p">.</span><span class="nf">agregaDocumento</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">DocumentacionPdf</span> <span class="p">:</span> <span class="n">Documentacion</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">AgregaDocumento</span><span class="p">(</span><span class="kt">string</span> <span class="n">documento</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">documento</span><span class="p">.</span><span class="nf">StartsWith</span><span class="p">(</span><span class="s">"PDF"</span><span class="p">,</span> <span class="n">StringComparison</span><span class="p">.</span><span class="n">Ordinal</span><span class="p">))</span> <span class="n">contenido</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Imprime</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Documentación PDF"</span><span class="p">);</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">string</span> <span class="n">s</span> <span class="k">in</span> <span class="n">contenido</span><span class="p">)</span> <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">construyeSolicitudFactura</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreSolicitante</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">string</span> <span class="n">documento</span><span class="p">;</span>
-        <span class="n">documento</span> <span class="p">=</span>  <span class="s">$"HTML Solicitud de factura Solicitante:  </span><span class="p">{</span><span class="n">nombreSolicitante</span><span class="p">}</span><span class="s">"</span><span class="p">;</span>
-
-        <span class="n">documentacion</span><span class="p">.</span><span class="nf">agregaDocumento</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">class</span> <span class="nc">ConstructorDocumentacionPdf</span> <span class="p">:</span>  <span class="n">ConstructorDocumentacion</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nf">ConstructorDocumentacionPdf</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">documentacion</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentacionPdf</span><span class="p">();</span>
+    <span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">ConstructorDocumentacion</span>
+    <span class="p">{</span>
+        <span class="k">protected</span> <span class="n">Documentacion</span> <span class="n">documentacion</span><span class="p">;</span>
+        <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">construyeSolicitudPedido</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreCliente</span><span class="p">);</span>
+        <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">construyeSolicitudFactura</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreSolicitante</span><span class="p">);</span>
+        <span class="k">public</span> <span class="n">Documentacion</span> <span class="nf">resultado</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">documentacion</span><span class="p">;</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">construyeSolicitudPedido</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreCliente</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">string</span> <span class="n">documento</span><span class="p">;</span>
-        <span class="n">documento</span> <span class="p">=</span> <span class="s">"&lt;PDF&gt;Solicitud de pedido Cliente: "</span> <span class="p">+</span> <span class="n">nombreCliente</span> <span class="p">+</span> <span class="s">"&lt;/PDF&gt;"</span><span class="p">;</span>
-        <span class="n">documentacion</span><span class="p">.</span><span class="nf">agregaDocumento</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">ConstructorDocumentacionHtml</span> <span class="p">:</span> <span class="n">ConstructorDocumentacion</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="nf">ConstructorDocumentacionHtml</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">documentacion</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentacionHtml</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">ConstruyeSolicitudPedido</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreCliente</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">string</span> <span class="n">documento</span><span class="p">;</span>
+            <span class="n">documento</span> <span class="p">=</span> <span class="s">$"Solicitud de pedido Cliente: </span><span class="p">{</span><span class="n">nombreCliente</span><span class="p">}</span><span class="s"> HTML"</span><span class="p">;</span>
+            <span class="n">documentacion</span><span class="p">.</span><span class="nf">AgregaDocumento</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">ConstruyeSolicitudFactura</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreSolicitante</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">string</span> <span class="n">documento</span><span class="p">;</span>
+            <span class="n">documento</span> <span class="p">=</span> <span class="s">$"HTML Solicitud de factura Solicitante:  </span><span class="p">{</span><span class="n">nombreSolicitante</span><span class="p">}</span><span class="s">"</span><span class="p">;</span>
+
+            <span class="n">documentacion</span><span class="p">.</span><span class="nf">AgregaDocumento</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">construyeSolicitudFactura</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreSolicitante</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">string</span> <span class="n">documento</span><span class="p">;</span>
-        <span class="n">documento</span> <span class="p">=</span> <span class="s">"&lt;PDF&gt;Solicitud de factura Solicitante: "</span> <span class="p">+</span> <span class="n">nombreSolicitante</span> <span class="p">+</span> <span class="s">"&lt;/PDF&gt;"</span><span class="p">;</span>
-        <span class="n">documentacion</span><span class="p">.</span><span class="nf">agregaDocumento</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">ConstructorDocumentacionPdf</span> <span class="p">:</span> <span class="n">ConstructorDocumentacion</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="nf">ConstructorDocumentacionPdf</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">documentacion</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentacionPdf</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">ConstruyeSolicitudPedido</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreCliente</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">string</span> <span class="n">documento</span><span class="p">;</span>
+            <span class="n">documento</span> <span class="p">=</span> <span class="s">$"&lt;PDF&gt;Solicitud de pedido Cliente: </span><span class="p">{</span><span class="n">nombreCliente</span><span class="p">}</span><span class="s"> &lt;/PDF&gt;"</span><span class="p">;</span>
+            <span class="n">documentacion</span><span class="p">.</span><span class="nf">AgregaDocumento</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
+        <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">Vendedor</span> <span class="p">{</span>
-    <span class="k">protected</span> <span class="n">ConstructorDocumentacion</span> <span class="n">constructor</span><span class="p">;</span>
-    <span class="k">public</span> <span class="nf">Vendedor</span><span class="p">(</span><span class="n">ConstructorDocumentacionVehiculo</span> <span class="n">constructor</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="n">constructor</span> <span class="p">=</span> <span class="n">constructor</span><span class="p">;</span>
+        <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">ConstruyeSolicitudFactura</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreSolicitante</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">string</span> <span class="n">documento</span><span class="p">;</span>
+            <span class="n">documento</span> <span class="p">=</span> <span class="s">$"&lt;PDF&gt;Solicitud de factura Solicitante: </span><span class="p">{</span><span class="n">nombreSolicitante</span><span class="p">}</span><span class="s">&lt;/PDF&gt;"</span><span class="p">;</span>
+            <span class="n">documentacion</span><span class="p">.</span><span class="nf">AgregaDocumento</span><span class="p">(</span><span class="n">documento</span><span class="p">);</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="n">Documentacion</span> <span class="nf">construye</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreCliente</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">constructor</span><span class="p">.</span><span class="nf">construyeSolicitudPedido</span><span class="p">(</span><span class="n">nombreCliente</span><span class="p">);</span>
-        <span class="n">constructor</span><span class="p">.</span><span class="nf">construyeSolicitudFactura</span><span class="p">(</span><span class="n">nombreCliente</span><span class="p">);</span>
-        <span class="n">Documentacion</span> <span class="n">documentacion</span> <span class="p">=</span> <span class="n">constructor</span><span class="p">.</span><span class="nf">resultado</span><span class="p">();</span>
-        <span class="k">return</span> <span class="n">documentacion</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Vendedor</span>
+    <span class="p">{</span>
+        <span class="k">protected</span> <span class="n">ConstructorDocumentacion</span> <span class="n">constructor</span><span class="p">;</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">Cliente</span> <span class="p">{</span>
+        <span class="k">public</span> <span class="nf">Vendedor</span><span class="p">(</span><span class="n">ConstructorDocumentacion</span> <span class="n">constructor</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="n">constructor</span> <span class="p">=</span> <span class="n">constructor</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="n">Documentacion</span> <span class="nf">construye</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombreCliente</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">constructor</span><span class="p">.</span><span class="nf">construyeSolicitudPedido</span><span class="p">(</span><span class="n">nombreCliente</span><span class="p">);</span>
+            <span class="n">constructor</span><span class="p">.</span><span class="nf">construyeSolicitudFactura</span><span class="p">(</span><span class="n">nombreCliente</span><span class="p">);</span>
+            <span class="n">Documentacion</span> <span class="n">documentacion</span> <span class="p">=</span> <span class="n">constructor</span><span class="p">.</span><span class="nf">resultado</span><span class="p">();</span>
+            <span class="k">return</span> <span class="n">documentacion</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Usuario</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">ConstructorDocumentacion</span> <span class="n">constructor</span><span class="p">;</span>
         <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Desea generar "</span> <span class="p">+</span> <span class="s">"documentación HTML (1) o PDF (2):"</span><span class="p">);</span>
@@ -225,8 +249,8 @@
             <span class="n">constructor</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ConstructorDocumentacionPdf</span><span class="p">();</span>
         <span class="p">}</span>
         <span class="n">Vendedor</span> <span class="n">vendedor</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vendedor</span><span class="p">(</span><span class="n">constructor</span><span class="p">);</span>
-        <span class="n">Documentacion</span> <span class="n">documentacion</span> <span class="p">=</span> <span class="n">vendedor</span><span class="p">.</span><span class="nf">construye</span><span class="p">(</span><span class="s">"JRRN"</span><span class="p">);</span>
-        <span class="n">documentacion</span><span class="p">.</span><span class="nf">imprime</span><span class="p">();</span>
+        <span class="n">Documentacion</span> <span class="n">documentacion</span> <span class="p">=</span> <span class="n">vendedor</span><span class="p">.</span><span class="nf">Construye</span><span class="p">(</span><span class="s">"JRRN"</span><span class="p">);</span>
+        <span class="n">documentacion</span><span class="p">.</span><span class="nf">Imprime</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
