@@ -694,3 +694,6 @@ header h1 {
 
 #menu, #menu:after, #menu:before {
   background-color: white; }
+
+.content {
+  white-space: normal; }
