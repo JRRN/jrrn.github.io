@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="generator" content="Jekyll">
+
+	<title>Principios Grasp</title>
+
+	<!-- CSS & fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="shortcut icon" href="img/icons/favicon.ico">
+	<!-- RSS -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+	
+	
+
+
+
+
+
+  	
+</head>
+
+
+<body>
+	<div id="wrap">
+	  	<!-- Navigation -->
+	  	<nav id="nav">
+	<div id="nav-list">
+		<a href="/">Home</a>
+		<!-- Nav pages -->
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	      <a href="/about" title="Sobre mí">Sobre mí</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+    <!-- Nav links -->
+	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
+<a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
+
+
+
+	</div>
+  
+  <!-- Nav footer -->
+	
+	  <span>version 1.0.0</span>
+
+
+
+
+
+	
+
+</nav>
+
+    <!-- Icon menu -->
+	  <a id="nav-menu">
+	  	<div id="menu"></div>
+	  </a>
+      <!-- Header -->
+        <header id="header">
+	<div class="headerbackground"></div>
+	<a href="/">
+	  <h1>JRRN Coding!</h1>
+	</a>
+</header>
+
+    <!-- Main content -->
+	  <div id="container">
+      <div class="row">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-md-7 col-lg-7">
+          <main>
+            <article id="post-page">
+	<div>
+		<h2>Principios Grasp</h2><span>[
+			
+				
+				<a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura<nobr></code>&nbsp;</a>
+			
+			]</span>	
+	<time datetime="2018-11-11T00:00:00+01:00" class="by-line">11 Nov 2018</time>
+	</div>
+		
+	<div class="content">
+		<p>Hola de nuevo. Después de los principios <a href="./solid.html">SOLID</a>, vamos a dar un pasito más y vamos a tratar de explicar los principios GRASP (General Responsibility Assignment Software Patterns).</p>
+
+<p>GRASP describe 7 patrones que són:</p>
+
+<ol>
+  <li>Alta cohesión y bajo acoplamiento</li>
+  <li>Controlador</li>
+  <li>Creador</li>
+  <li>Experto en información</li>
+  <li>Fabricación pura</li>
+  <li>Indirección</li>
+  <li>Polimorfismo</li>
+  <li>Variaciones Protegidas</li>
+</ol>
+
+<h3 id="1--alta-cohesión-y-bajo-acoplamiento">1 . Alta cohesión y bajo acoplamiento</h3>
+
+<p><strong>Alta cohesión</strong>: es la información que almacena una clase, debe de ser coherente y debe estar relacionada con la clase. Podemos encontrar 7 tipos de cohesión:</p>
+
+<ol>
+  <li><strong>Cohesión coincidente</strong>: la clase tiene varios métodos sin relación entre ellos.</li>
+  <li><strong>Cohesión lógica</strong>: la clase tiene varios métodos relacionados, pero en ejecución sólo uno de ellos se utiliza.</li>
+  <li><strong>Cohesión temporal</strong>: la relación que tienen los métodos de la clase es que se ejecutan simultáneamente.</li>
+  <li><strong>Cohesión de procedimiento</strong>: la relación que tienes lo métodos es de la clase es que se ejecutan secuencialmente.</li>
+  <li><strong>Cohesión de comunicación</strong>: la relación que tienes lo métodos es de la clase es que se ejecutan secuencialmente y afectan a la misma entidad de datos.</li>
+  <li><strong>Cohesión de información</strong>: los métodos de una clase se ejecutan de forma no secuencial, los métodos son independientes entre ellos y tratan sobre la misma entidad.</li>
+  <li><strong>Cohesión funcional</strong>: El método de una clase solo realiza una tarea y solo entiende de una sola entidad.</li>
+</ol>
+
+<p><strong>Bajo Acoplamiento</strong>: es la idea de tener las clases lo menos ligadas entre sí, de esta forma si tuvieramos que modificar alguna de estas clases, el resto no debería tener ninguna afectación al cambio. Tenemos 3 tipos de acoplamiento:</p>
+
+<ol>
+  <li><strong>Acoplamiento de contenido</strong>: cuando una clase tiene una referencia directa con otra clase.</li>
+  <li><strong>Acoplamiento común</strong>: cuando dos clases acceden y modifican un mismo objeto global.</li>
+  <li><strong>Acoplamiento de control</strong>: cuando una clase le envía a otra que es lo que debe hacer y como comportarse.</li>
+</ol>
+
+<p>Veámos un ejemplo:</p>
+
+<p>Esta clase esta perfecta.</p>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Saludo</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="kt">string</span> <span class="n">_to</span><span class="p">;</span> 
+    <span class="k">private</span> <span class="kt">string</span> <span class="n">_message</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">Mensaje</span><span class="p">(</span><span class="kt">string</span> <span class="n">to</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_to</span> <span class="p">=</span> <span class="n">to</span><span class="p">;</span>
+        <span class="n">_message</span> <span class="p">=</span> <span class="n">message</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Saludar</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// imprime el saludo</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Sin embargo recibimos una nueva feature:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Saludo2</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="kt">string</span> <span class="n">_to</span><span class="p">;</span> 
+    <span class="k">private</span> <span class="kt">string</span> <span class="n">_message</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">Mensaje</span><span class="p">(</span><span class="kt">string</span> <span class="n">to</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_to</span> <span class="p">=</span> <span class="n">to</span><span class="p">;</span>
+        <span class="n">_message</span> <span class="p">=</span> <span class="n">message</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Saludar</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// imprime el saludo</span>
+    <span class="p">}</span> 
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Despedir</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//imprime la despedida</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>No vamos bien, lo suyo sería:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">ISaluda</span> <span class="p">{</span>
+    <span class="k">void</span> <span class="nf">Saludar</span><span class="p">(</span><span class="kt">string</span> <span class="n">to</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">);</span> 
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">interface</span> <span class="nc">IDespedida</span> <span class="p">{</span>
+    <span class="k">void</span> <span class="nf">Despedir</span><span class="p">(</span><span class="kt">string</span> <span class="n">to</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">User</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">ISaluda</span> <span class="n">_saluda</span><span class="p">;</span> 
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">IDespedida</span> <span class="n">_despedida</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nf">User</span><span class="p">(</span><span class="n">ISaluda</span> <span class="n">saluda</span><span class="p">,</span> <span class="n">IDespedida</span> <span class="n">despedida</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_saluda</span> <span class="p">=</span> <span class="n">saluda</span><span class="p">;</span>
+        <span class="n">_despedida</span> <span class="p">=</span> <span class="n">despedida</span><span class="p">;</span> 
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Educado</span><span class="p">()</span>
+    <span class="p">{</span>   <span class="c1">// Saluda y despedir:</span>
+        <span class="n">_saluda</span><span class="p">.</span><span class="nf">Saludar</span><span class="p">(</span><span class="s">"JRRN"</span><span class="p">,</span> <span class="s">"Hola!"</span><span class="p">)</span>
+        <span class="n">_despedida</span><span class="p">.</span><span class="nf">Despedir</span><span class="p">(</span><span class="s">"JRRN"</span><span class="p">,</span> <span class="s">"Adiós!"</span><span class="p">);</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="2-controlador">2. Controlador</h3>
+
+<p>Es el patrón que implementa MVC. Es un patrón que realiza la función de intermediario entre una determinada interfaz y la clase que la implementa. Así, es el controlador quien recibe los datos del usuario y quien los envía a las distintas clases según el método que se va usando, teniendo la lógica de negocio controlada y con la capacidad de ser reutilizada.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">BookView</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">BookPresenter</span> <span class="p">{</span>
+    <span class="n">BookView</span> <span class="n">_vista</span><span class="p">;</span> 
+    <span class="n">BookController</span> <span class="n">_controlador</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">AddTitle</span><span class="p">(</span><span class="kt">string</span> <span class="n">title</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_controlador</span><span class="p">.</span><span class="nf">AddTitle</span><span class="p">(</span><span class="n">title</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">BookController</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">AddTitle</span><span class="p">(</span><span class="kt">string</span> <span class="n">title</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Con Controlador:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">BookView</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">BookPresenter</span> <span class="p">{</span>
+    <span class="n">BookView</span> <span class="n">_vista</span><span class="p">;</span> 
+    <span class="n">BookController</span> <span class="n">_controlador</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Title</span><span class="p">(</span><span class="kt">string</span> <span class="n">title</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_controlador</span><span class="p">.</span><span class="nf">AddTitle</span><span class="p">(</span><span class="n">title</span><span class="p">);</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">BookController</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="n">BookRepository</span> <span class="n">_repository</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">AddTitle</span><span class="p">(</span><span class="kt">string</span> <span class="n">title</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">book</span> <span class="p">=</span> <span class="n">_repository</span><span class="p">.</span><span class="nf">GetById</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>  
+        <span class="n">book</span><span class="p">.</span><span class="nf">AddTitle</span><span class="p">(</span><span class="s">"title"</span><span class="p">);</span>
+        <span class="n">_repository</span><span class="p">.</span><span class="nf">Update</span><span class="p">(</span><span class="n">book</span><span class="p">);</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">BookRepository</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="n">Book</span> <span class="nf">GetById</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">(</span><span class="n">Book</span> <span class="n">book</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Book</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">AddTitle</span><span class="p">(</span><span class="kt">string</span> <span class="n">title</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="3-creador">3. Creador</h3>
+
+<p>El patrón creador nos dice quien es responsable de la creación o quien instancia nuevos objetos y/o clases.</p>
+
+<p>La nueva instancia podrá ser creada por una clase si:</p>
+<ul>
+  <li>Contiene o agrega la clase.</li>
+  <li>Almacena la instancia en algún sitio</li>
+  <li>Sabe como crear el objeto (es ‘Experta’)</li>
+  <li>Usa las instancias creadas del objeto</li>
+</ul>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">CatalogoPresenter</span>  <span class="p">{</span>
+    <span class="n">Catalogo</span> <span class="n">_catalogo_</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GetLibros</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Catalogo</span> <span class="p">{</span>
+    <span class="n">List</span><span class="p">&lt;</span><span class="n">Libro</span><span class="p">&gt;</span> <span class="n">_catalogo</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Libro</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Aplicando creador:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">CatalogoPresenter</span>
+<span class="p">{</span>
+    <span class="n">Catalogo</span> <span class="n">_catalogo</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GetLibros</span><span class="p">()</span> <span class="p">{</span>  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Catalogo</span> <span class="p">{</span>
+    <span class="n">Book</span> <span class="n">_book</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">Catalogo</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">_book</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Book</span><span class="p">();</span> 
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Eliminar</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">_book</span><span class="p">.</span><span class="nf">Eliminar</span><span class="p">();</span>  
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Actualizar</span><span class="p">(</span><span class="kt">string</span> <span class="n">title</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_book</span><span class="p">.</span><span class="nf">Actualizar</span><span class="p">();</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Book</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Eliminar</span><span class="p">(){}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Actualizar</span><span class="p">(</span><span class="kt">string</span> <span class="n">title</span><span class="p">){}</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="4-experto-en-información">4. Experto en información</h3>
+
+<p>La responsabilidad de crear un objeto o su implementación, debe realizarla la clase que sabe toda la información necesaria para hacerlo, de este modo obtenemos una mayor cohesión la información esta encapsulada disminuyendo el acoplamiento.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Catalogo</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Book</span><span class="p">&gt;</span> <span class="n">books</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> 
+<span class="p">}</span>
+    
+<span class="k">public</span> <span class="k">class</span> <span class="nc">View</span> <span class="p">{</span>
+    <span class="n">Catalogo</span> <span class="n">_catalogo</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">CalcularTotal</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">_catalogo</span><span class="p">.</span><span class="n">books</span><span class="p">.</span><span class="nf">Count</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Aplicando experto en información:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Catalogo</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="n">Book</span><span class="p">[]</span> <span class="n">_books</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">CalcularTotal</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">_books</span><span class="p">.</span><span class="nf">Count</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">View</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="n">Catalogo</span> <span class="n">_catalogo</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Total</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">_catalogo</span><span class="p">.</span><span class="nf">CalcularTotal</span><span class="p">();</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h3 id="5-fabricación-pura">5. Fabricación Pura</h3>
+
+<p>La fabricación pura es la práctica que ayuda con una clase poco cohesiva y no tiene otra clase donde implementar algunos métodos.</p>
+
+<p>Es decir que se crea una clase “inventada” o, pero que al añadirla mejora la estrucutura del sistema.</p>
+
+<p>Sin embargo, abusar de este patrón provoca clases función o algoritmo -&gt; Clases que tienen un solo método.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Coche</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Conduce</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Aparca</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Con fabricación pura:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Coche</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Conduce</span><span class="p">()</span> <span class="p">{</span>  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Automovil</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nf">Automovil</span><span class="p">(</span><span class="n">CocheView</span> <span class="n">view</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">view</span><span class="p">.</span><span class="nf">Aparca</span><span class="p">(</span><span class="k">new</span> <span class="nf">Coche</span><span class="p">());</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CocheView</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Aparca</span><span class="p">(</span><span class="n">Coche</span> <span class="n">coche</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="6-indirección">6. Indirección</h3>
+
+<p>El patrón de indirección nos permite mejorar el bajo acoplamiento entre dos clases.</p>
+
+<p>Para ello, se asigna la responsabilidad a una clase que medie entre las otras clases para proteger a unas de los posibles cambios de otras.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Logger</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">LogThis</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">new</span> <span class="nf">SysLog</span><span class="p">().</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Log this."</span><span class="p">);</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">SysLog</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Log</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Con indirección:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Class</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">LogThis</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">new</span> <span class="nf">Logger</span><span class="p">().</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Log this!"</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Logger</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Log</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">new</span> <span class="nf">SysLog</span><span class="p">().</span><span class="nf">Log</span><span class="p">(</span><span class="n">message</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">SysLog</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Log</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h3 id="7-polimorfismo">7. Polimorfismo</h3>
+
+<p>Polimorfismo es permitir que varias clases se comporten de manera distinta dependiendo del tipo que sean.</p>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">enum</span> <span class="n">ErrorType</span> <span class="p">{</span>
+    <span class="n">Info</span><span class="p">,</span>
+    <span class="n">Error</span> 
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Log</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Write</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">,</span> <span class="n">ErrorType</span> <span class="n">errorType</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">errorType</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="n">errorType</span><span class="p">.</span><span class="n">Info</span><span class="p">:</span> 
+                <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"[Info];{0}"</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">errorType</span><span class="p">.</span><span class="n">Error</span><span class="p">:</span> 
+                <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"[Error]:{0}"</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Logger</span> <span class="p">{</span>
+    <span class="n">Log</span> <span class="n">_log</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">WriteLog</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">_log</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Error."</span><span class="p">,</span> <span class="n">TipoDeLog</span><span class="p">.</span><span class="n">Error</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Y con polimorfismo:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">ILogMessage</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="n">Value</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Error</span> <span class="p">:</span> <span class="n">ILogMessage</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">_message</span><span class="p">;</span>
+    
+    <span class="k">public</span> <span class="nf">Error</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_message</span> <span class="p">=</span> <span class="n">message</span><span class="p">;</span> 
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Value</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> 
+            <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="nf">Format</span><span class="p">(</span><span class="s">"[Error];{0}"</span><span class="p">,</span> <span class="n">_message</span><span class="p">);</span>
+        <span class="p">}</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Info</span> <span class="p">:</span> <span class="n">ILogMessage</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">_message</span><span class="p">;</span>
+    
+    <span class="k">public</span> <span class="nf">Info</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_message</span> <span class="p">=</span> <span class="n">message</span><span class="p">;</span> 
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Value</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> 
+            <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="nf">Format</span><span class="p">(</span><span class="s">"[Info];{0}"</span><span class="p">,</span> <span class="n">_message</span><span class="p">);</span>
+        <span class="p">}</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Log</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Write</span><span class="p">(</span><span class="n">IMensajeDelLog</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">Valor</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Logger</span> <span class="p">{</span>
+    <span class="n">Log</span> <span class="n">_log</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Error</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">_log</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="k">new</span> <span class="nf">Error</span><span class="p">(</span><span class="s">"Error"</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Info</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">_log</span><span class="p">.</span><span class="nf">Registrar</span><span class="p">(</span><span class="k">new</span> <span class="nf">Info</span><span class="p">(</span><span class="s">"Info"</span><span class="p">));</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="8-variaciones-protegidas">8. Variaciones protegidas</h3>
+
+<p>Variaciones protegidas, es el principio fundamental de protegerse frente a nuevos requisitos.</p>
+
+<p>Así lo que podamos ver en un análisis previo y sea susceptible a modificaciones lo extraeremos a una interfaz para crear varias implementaciones y extender nuestro código todo lo posible sin que nuestro código sufra por la cohesión y el acoplamiento.</p>
+
+<p>De ésta forma, si nos entra un nuevo requisito, este debe repercutir lo mínimo. Este principio introduce el polimorfismo y la indirección.</p>
+
+<p>Tenemos una clase que cambia la calidad de MP3.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Mp3</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Convert</span><span class="p">(</span><span class="kt">int</span> <span class="n">quality</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Convert</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">QualitySongController</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ConvertirCalidad</span><span class="p">(</span><span class="n">Mp3</span> <span class="n">song</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">song</span><span class="p">.</span><span class="nf">Convert</span><span class="p">(</span><span class="m">128</span><span class="p">);</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Ahora nos piden que soporte cualquier formato de imagen:</p>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">ISong</span> <span class="p">{</span>
+    <span class="k">void</span> <span class="nf">Convert</span><span class="p">(</span><span class="kt">int</span> <span class="n">quality</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Mp3</span> <span class="p">:</span> <span class="n">ISong</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Convert</span><span class="p">(</span><span class="kt">int</span> <span class="n">nuevoAlto</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Convert</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Ogg</span> <span class="p">:</span> <span class="n">ISong</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Convert</span><span class="p">(</span><span class="kt">int</span> <span class="n">nuevoAlto</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Convert</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">MostrarImagenController</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ConvertirCalidad</span><span class="p">(</span><span class="n">ISong</span> <span class="n">song</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">song</span><span class="p">.</span><span class="nf">Convert</span><span class="p">(</span><span class="m">128</span><span class="p">);</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Saludos!</p>
+
+	</div>
+</article>
+
+
+          </main>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <br/>
+<br/>
+<h5>Archivo </h5>
+
+
+
+  
+  
+  <a href="/tag/Arquitectura"><code class="highligher-rouge">Arquitectura</code></a><br/>
+
+  
+  
+  <a href="/tag/MsIoT"><code class="highligher-rouge">MsIoT</code></a><br/>
+
+  
+  
+  <a href="/tag/Git"><code class="highligher-rouge">Git</code></a><br/>
+
+  
+  
+  <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
+
+  
+  
+  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
+
+
+        </div>
+        <div class="col-md-1 col-lg-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 pull-center">
+		  <!-- Pagination links -->
+      
+      </div>
+      </div>
+    </div>
+    <br/><br/><br/>
+	    
+	    <!-- Footer -->
+	    <footer>
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10 pull-center">
+                <span>@2017 - JRRN</span>
+        </div>
+        <div class="col-md-1 pull-right">
+                <a href="https://github.com/jrrn" target="_blank">
+                    <img src="/img/icons/github_ico.jpg" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
+                </a>
+                <a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" target="_blank">
+                    <img src="/img/icons/linkedin_ico.jpg" class="socialLinksfooter" style="height: 30px;" alt="LinkedIn Logo">
+                </a>
+        </div>
+    </div>
+
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99774552-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-99774552-1');
+</script>
+
+	    <!-- Script -->
+      <script src="/js/main.js"></script>	
+
+
+  </div>
+</body>
+</html>

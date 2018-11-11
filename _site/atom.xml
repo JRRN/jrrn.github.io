@@ -4,12 +4,22 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2018-11-08T21:40:56+01:00</updated>
+ <updated>2018-11-11T12:18:37+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
    <email></email>
  </author>
+
+ 
+
+ <entry>
+   <title>Principios Grasp</title>
+   <link href="http://localhost:4000/grasp"/>
+   <id>http://localhost:4000/grasp</id>
+   <updated>2018-11-11T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;Hola de nuevo. Después de los principios &lt;a href=&quot;./solid.html&quot;&gt;SOLID&lt;/a&gt;, vamos a dar un pasito más y vamos a tratar de explicar los principios GRASP (General Responsibility Assignment Software Patterns).&lt;/p&gt; &lt;p&gt;GRASP describe 7 patrones que són:&lt;/p&gt; &lt;ol&gt; &lt;li&gt;Alta cohesión y bajo acoplamiento&lt;/li&gt; &lt;li&gt;Controlador&lt;/li&gt; &lt;li&gt;Creador&lt;/li&gt; &lt;li&gt;Experto en información&lt;/li&gt; &lt;li&gt;Fabricación pura&lt;/li&gt; &lt;li&gt;Indirección&lt;/li&gt; &lt;li&gt;Polimorfismo&lt;/li&gt;...</content>
+ </entry>
 
  
 
@@ -99,16 +109,6 @@
    <id>http://localhost:4000/patron-mediator</id>
    <updated>2018-03-04T00:00:00+01:00</updated>
    <content type="html">&lt;p&gt;El patrón &lt;strong&gt;Mediator&lt;/strong&gt; nos ayuda a gestionar y controlar las interacciones entre un conjunto de objetos sin que deban conocerse entre ellos.&lt;/p&gt; &lt;p&gt;Para los mortales, se define un objeto que tiene las reglas de interacción entre los objetos que se van a comunicar.&lt;/p&gt; &lt;p&gt;¿Todavía no? Veámoslo con un ejemplo:&lt;/p&gt; &lt;p&gt;Esta...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Sin retornos NULL con Maybe<T></title>
-   <link href="http://localhost:4000/maybe"/>
-   <id>http://localhost:4000/maybe</id>
-   <updated>2018-02-25T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;Maybe es una estructura(Monad) que nos ayuda a no tener que trabajar con objetos NULL.&lt;/p&gt; &lt;p&gt;De esta forma, el objeto, hereda una propiedad HasValue para determinar si es NULO o no, ahorrándonos el típico if (a != null) que tan feo queda en nuestro código.&lt;/p&gt; &lt;p&gt;Así la estructura quedaría de...</content>
  </entry>
 
  
