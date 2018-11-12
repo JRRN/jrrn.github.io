@@ -4,7 +4,7 @@
  <title>JRRN Coding! | A simple Jekyll blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2018-11-11T12:18:37+01:00</updated>
+ <updated>2018-11-12T19:26:59+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
@@ -14,7 +14,17 @@
  
 
  <entry>
-   <title>Principios Grasp</title>
+   <title>Principios KISS - DRY - YAGNI - Red Green Refactor</title>
+   <link href="http://localhost:4000/kiss-dry-yagni"/>
+   <id>http://localhost:4000/kiss-dry-yagni</id>
+   <updated>2018-11-12T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;Hola de nuevo y para acabar una más de principios para el diseño de software:&lt;/p&gt; &lt;p&gt;&lt;br /&gt;&lt;/p&gt; &lt;p&gt;&lt;strong&gt;KISS&lt;/strong&gt; - (Mantenlo simple, estúpido): Esto es algo que se explica por sí mismo: siempre es más fácil evitar errores, mejorar el rendimiento, agregar funciones y mantener un software más simple.&lt;/p&gt; &lt;p&gt;Este principio...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Principios GRASP</title>
    <link href="http://localhost:4000/grasp"/>
    <id>http://localhost:4000/grasp</id>
    <updated>2018-11-11T00:00:00+01:00</updated>
@@ -99,16 +109,6 @@
    <id>http://localhost:4000/patron-memento</id>
    <updated>2018-07-25T00:00:00+02:00</updated>
    <content type="html">&lt;p&gt;El patrón memento previene en la encapsulación de un objeto el estado en que se encuentra en cada momento. De esta forma, si por algún motivo, necesitamos hacer un rollback de estos cambios del objeto, podamos restaurar sin romper nada.&lt;/p&gt; &lt;p&gt;Es como tener un pila de estados de como ha...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Mediator</title>
-   <link href="http://localhost:4000/patron-mediator"/>
-   <id>http://localhost:4000/patron-mediator</id>
-   <updated>2018-03-04T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;El patrón &lt;strong&gt;Mediator&lt;/strong&gt; nos ayuda a gestionar y controlar las interacciones entre un conjunto de objetos sin que deban conocerse entre ellos.&lt;/p&gt; &lt;p&gt;Para los mortales, se define un objeto que tiene las reglas de interacción entre los objetos que se van a comunicar.&lt;/p&gt; &lt;p&gt;¿Todavía no? Veámoslo con un ejemplo:&lt;/p&gt; &lt;p&gt;Esta...</content>
  </entry>
 
  
