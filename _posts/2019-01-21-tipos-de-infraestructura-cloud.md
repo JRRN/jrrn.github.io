@@ -1,7 +1,11 @@
 ---
 layout: post
 title: Tipos de Infraestructura en el Cloud
+<<<<<<< HEAD
 tags: azure, arquitectura
+=======
+tags: Azure
+>>>>>>> 90e0aef99553d49adfdfbc5d2cb33dfee47141a4
 ---
 
 
@@ -20,6 +24,7 @@ Estas infraestrucuturas nos ofrecen dos tipos de escalado, el vertical y el hori
    - El escalado horizontal es la adición de instancias.
 
 ![TiposEscalado](/img/tiposinfraestructuracloud/escalado.png "TiposEscalado")
+<<<<<<< HEAD
 
 Pensando en la infraestructura siempre tenemos que tener en cuenta que la arquitectura es la base del diseño de una aplicación. Una buena arquitectura nos proporcionará la confianza de que nuestra aplicación puede satisfacer las necesidades de nuestros clientes, tanto ahora como en el futuro.
 
@@ -31,3 +36,5 @@ Las prioridades de arquitectura y las necesidades de cada aplicación son difere
 - Eficiencia y operaciones: maximizar la facilidad de mantenimiento y asegurarse de que se cumplen los requisitos de supervisión.
 
 Saludos.
+=======
+>>>>>>> 90e0aef99553d49adfdfbc5d2cb33dfee47141a4
