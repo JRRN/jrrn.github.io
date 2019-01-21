@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Tipos de Infraestructura en el Cloud
-tags: azure
+tags: Azure
 ---
 
 
