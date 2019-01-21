@@ -6,7 +6,7 @@ tags: Azure
 
 En Azure Cloud, como en la mayoría de "Nubes" del mercado podemos encontrar una clasificación, según las responsabilidades que se quieran administrar. En la imagen siguiente, podemos observar las diferentes opciones que tenemos:
 
-![Infraestructura](/img/tiposinfraestructuracloud/iaaspaassaas.PNG "iaaspaassaas")
+![Infraestructura](/img/tiposinfraestructuracloud/iaaspaassaas.png "iaaspaassaas")
 
 Así, en un entorno local, nosotros somos los responsables de todo. 
 
@@ -18,7 +18,7 @@ Estas infraestrucuturas nos ofrecen dos tipos de escalado, el vertical y el hori
    - El escalado vertical es la acción de agregar más recursos a una sola instancia.
    - El escalado horizontal es la adición de instancias.
 
-![TiposEscalado](/img/tiposinfraestructuracloud/escalado.PNG "escalado")
+![TiposEscalado](/img/tiposinfraestructuracloud/escalado.png "escalado")
 
 Pensando en la infraestructura siempre tenemos que tener en cuenta que la arquitectura es la base del diseño de una aplicación. Una buena arquitectura nos proporcionará la confianza de que nuestra aplicación puede satisfacer las necesidades de nuestros clientes, tanto ahora como en el futuro.
 
