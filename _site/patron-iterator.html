@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<!-- Meta -->
@@ -25,8 +25,6 @@
 {"@type":"BlogPosting","url":"http://localhost:4000/patron-iterator","dateModified":"2018-02-14T00:00:00+01:00","datePublished":"2018-02-14T00:00:00+01:00","headline":"Patrón Iterator","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patron-iterator"},"author":{"@type":"Person","name":"JRRN"},"description":"El patrón iterator nos proporciona un mecanismo para recorrer colecciones de objetos de forma secuencial sin tener conocimiento de cómo están implementadas estas colecciones. Vamos con el ejemplo: public abstract class Item { protected string _descripcion; protected Item(string descripcion) { _descripcion = descripcion; } public bool PalabraClaveValida(string palabraClave) =&gt; _descripcion.IndexOf(palabraClave, StringComparison.Ordinal) != -1; } public class BookIterator : Item { public BookIterator(string descripcion) : base(descripcion) { } public void Visualiza() =&gt; Console.WriteLine($&quot;Descripción del Libro: { _descripcion}&quot;); } public abstract class Iterador&lt;TItem&gt; where TItem : Item { public string palabraClaveConsulta { protected get; set; } protected int indice; public IList&lt;TItem&gt; contenido { protected get; set; } public void Inicio() { indice = 0; int length = contenido.Count; while (indice &lt; length &amp;&amp; !contenido[indice].PalabraClaveValida(palabraClaveConsulta)) { indice++; } } public void Siguiente() { int length = contenido.Count; indice++; while (indice &lt; length &amp;&amp; !contenido[indice].PalabraClaveValida(palabraClaveConsulta)) { indice++; } } public TItem item() { return indice &lt; contenido.Count ? contenido[indice] : null; } } public class IteradorBook : Iterador&lt;BookIterator&gt; { } public abstract class Catalogo&lt;TElemento, TIterador&gt; where TElemento : Item where TIterador : Iterador&lt;TElemento&gt;, new() { protected IList&lt;TElemento&gt; contenido = new List&lt;TElemento&gt;(); public TIterador Busqueda(string palabraClaveConsulta) { TIterador resultado = new TIterador { contenido = contenido, palabraClaveConsulta = palabraClaveConsulta }; return resultado; } } public class CatalogoBook : Catalogo&lt;BookIterator, IteradorBook&gt; { public CatalogoBook() { contenido.Add(new BookIterator(&quot;Libro PDF&quot;)); contenido.Add(new BookIterator(&quot;Gran libro en PDF&quot;)); contenido.Add(new BookIterator(&quot;Libro de gran calidad&quot;)); } } public class Usuario { static void Main(string[] args) { CatalogoBook catalogo = new CatalogoBook(); IteradorBook iterador = catalogo.Busqueda(&quot;PDF&quot;); BookIterator libro; iterador.Inicio(); libro = iterador.item(); while (libro != null) { libro.Visualiza(); iterador.Siguiente(); libro = iterador.item(); } } } Descripción del Libro: Libro PDF Descripción del Libro: Gran libro en PDF Hasta la próxima.","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-	<!-- CSS & fonts -->
-	
 	<link rel="shortcut icon" href="img/icons/favicon.ico">
 	<!-- RSS -->
 	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />

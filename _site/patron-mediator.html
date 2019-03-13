@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<!-- Meta -->
@@ -25,8 +25,6 @@
 {"@type":"BlogPosting","url":"http://localhost:4000/patron-mediator","dateModified":"2018-03-04T00:00:00+01:00","datePublished":"2018-03-04T00:00:00+01:00","headline":"Patrón Mediator","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patron-mediator"},"author":{"@type":"Person","name":"JRRN"},"description":"El patrón Mediator nos ayuda a gestionar y controlar las interacciones entre un conjunto de objetos sin que deban conocerse entre ellos. Para los mortales, se define un objeto que tiene las reglas de interacción entre los objetos que se van a comunicar. ¿Todavía no? Veámoslo con un ejemplo: Esta vez dejaremos a un lado los recurrentes ejemplos de nuestros libros para cambiar por algo más adaptable a nuestro ejemplo, “Torre de control, ¿me recibe?” using System; using System.Threading.Tasks; public class Program { public class TorreDeControl { private bool _pistaLlena = false; private int _numero; public void RecibeMensaje(int numero) { while ((_pistaLlena == true)) { try { Task.Delay(2000); } catch (Exception e) { } } _pistaLlena = true; _numero = numero; } public int EnviaMensaje() { while ((_pistaLlena == false)) { try { Task.Delay(2000); } catch (Exception e) { } } _pistaLlena = false; return _numero; } } public class Productor { private TorreDeControl _torreControl; private int _id; private static int num = 1; public Productor(TorreDeControl torreControl) { _torreControl = torreControl; _id = num++; } public void Run() { int num; while (true) { num = new Random().Next(100, 999); _torreControl.RecibeMensaje(num); Console.WriteLine($&quot;Productor {_id}&quot;); } } } public class Consumidor { private TorreDeControl _torreControl; private int _id; private static int num = 1; public Consumidor(TorreDeControl torreControl) { _torreControl = torreControl; num++; _id = num; } public void Run() { while (true) { Console.WriteLine($&quot;Consumidor {_id} {_torreControl.EnviaMensaje()}&quot;); } } } public void Main(string[] args) { TorreDeControl torreControl = new TorreDeControl(); new Productor(torreControl).Run(); new Productor(torreControl).Run(); new Consumidor(torreControl).Run(); new Consumidor(torreControl).Run(); new Consumidor(torreControl).Run(); new Consumidor(torreControl).Run(); } } Saludos.","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-	<!-- CSS & fonts -->
-	
 	<link rel="shortcut icon" href="img/icons/favicon.ico">
 	<!-- RSS -->
 	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />

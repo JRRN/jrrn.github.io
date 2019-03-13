@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<!-- Meta -->
@@ -25,8 +25,6 @@
 {"@type":"BlogPosting","url":"http://localhost:4000/docker-pills","dateModified":"2017-11-19T00:00:00+01:00","datePublished":"2017-11-19T00:00:00+01:00","headline":"Docker Pills","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docker-pills"},"author":{"@type":"Person","name":"JRRN"},"description":"Docker Hola, nuevamente un recordatorio rápido de comandos docker para la lucha con contenedores. Show Containers: docker container ls Execute Commands: docker container exec [containerId or containerName] [command] Console on Container: docker container exec -it [containerId or containerName] /bin/bash Run Containers: docker container run [containerName] :[imageVersion] docker container run -p [hostPort]:[containerPort][containerName]:[imageVersion] Background Run: docker container run --detach -p [hostPort]:[containerPort][containerName]:[imageVersion] Copiar archivos : docker container cp [file] elegant_noether:[path] Ejecutar DockerFile: docker image build --tag [containerName]:[setNumVersion] . Volumen: docker run -d -p [hostPort]:[containerPort] -v /[myVolumeName] :[patFolderOnContainerHost] [containerName]:[imageVersion] DockerFile FROM [imageName:imageVersion] EXPOSE [port] RUN [shellCommand] COPY [file] [toPath] LABEL [KeyPairValuem{maintainer=\\&quot;moby-dock@example.com\\&quot;}] Saludos.","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-	<!-- CSS & fonts -->
-	
 	<link rel="shortcut icon" href="img/icons/favicon.ico">
 	<!-- RSS -->
 	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />

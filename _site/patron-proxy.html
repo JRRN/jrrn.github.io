@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<!-- Meta -->
@@ -25,8 +25,6 @@
 {"@type":"BlogPosting","url":"http://localhost:4000/patron-proxy","dateModified":"2017-12-15T00:00:00+01:00","datePublished":"2017-12-15T00:00:00+01:00","headline":"Patrón Proxy","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patron-proxy"},"author":{"@type":"Person","name":"JRRN"},"description":"El patrón proxy se utiliza para diseñar un objeto que sustituye a otro objeto que controla su acceso. El objeto proxy es el que queda expuesto en la capa de servicios o presentación siendo idéntico y con mismo contrato que el original. El claro ejemplo, son las entidades que solemos recoger de la capa de acceso a datos y que mapeamos contra la capa de negocio, dominio, etc… Para nuestro ejemplo de los libros, tenemos una página web con un listado de libros y que haciendo clic sobre cada título podemos ver una descripción más completa del libro seleccionado. En este caso, podríamos tener cargadas todas estas descripciones desde la primera carga, pero mejor, si las recuperamos cuando son solicitadas y las que son solicitadas. public interface IBook { void Renderiza(); void CargaDescripcion(); } public class DescripcionProxy : IBook { protected Datos book = null; protected string descripcion = &quot;Desccripción Simple&quot;; public void CargaDescripcion() { if (book == null) { book = new Datos(); book.CargaDescripcion(); } else { book.CargaDescripcion(); } } public void Renderiza() { if (book != null) { book.Renderiza(); } else { Renderiza(descripcion); } } public void Renderiza(string descripcion) =&gt; Console.WriteLine($&quot;{descripcion}&quot;); } public class VistaBook { static void Main(string[] args) { IBook book = new DescripcionProxy(); book.Renderiza(); book.CargaDescripcion(); } } Así obtendríamos esta salida: Mostrar descripción Carga descripción Mostrando descripción Muestra Descripción Saludos.","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-	<!-- CSS & fonts -->
-	
 	<link rel="shortcut icon" href="img/icons/favicon.ico">
 	<!-- RSS -->
 	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />

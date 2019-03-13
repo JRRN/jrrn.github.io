@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<!-- Meta -->
@@ -25,8 +25,6 @@
 {"@type":"BlogPosting","url":"http://localhost:4000/patron-singleton","dateModified":"2017-11-10T00:00:00+01:00","datePublished":"2017-11-10T00:00:00+01:00","headline":"Patrón Singleton","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patron-singleton"},"author":{"@type":"Person","name":"JRRN"},"description":"El patrón singleton tiene como objetivo asegurar que una clase sólo posee una instancia y proporciona un método de clase único que devuelve la instancia. Es un patrón simple y conocido. Si queremos que solo haya una instancia de un objeto y no se puedan generar más mientras haya una existente, este es nuestro patrón. Por ejemplo, si recordamos el patrón Abstract Factory, solo necesitamos una única instancia para ir generando los demás tipos de libros. En nuestro ejemplo de libros, gestionaremos las clases que deban tener una sola instancia: public class DocumentosVacios : Documentos { public static DocumentosVacios _instance = null; private DocumentosVacios() { documentos = new List&lt;Documento&gt;(); } public static DocumentosVacios Instance() { if(_instance == null) { _instance = new DocumentosVacios(); } } public void Incluye(Documento doc) { documentos.Add(doc); } public void Excluye(Documento doc) { documentos.Remove(doc); } } O si creamos una nueva clase Editorial en la que inicializaremos los datos de la editorial una vez y los recuperaremos siempre de esa misma instancia sin tener que generar una instancia cada vez que queramos recuperar los datos de la editorial: public class EditorialSingleton { public string nombreEditorial { get; set; } public string ubicacion { get; set; } public DateTime fechaEditorial { get; set; } private static EditorialSingleton _instance = null; private EditorialSingleton() { } public static EditorialSingleton Instance() =&gt; _instance ?? (_instance = new EditorialSingleton()); public void Visualiza() { Console.WriteLine($&quot;Editorial: {nombreEditorial}&quot;); Console.WriteLine($&quot;Ubicacion: {ubicacion}&quot;); } } Para ver la salida: public class TestEditorial { static void Main(string[] args) { EditorialSingleton laEditorial = EditorialSingleton.Instance(); laEditorial.nombreEditorial = &quot;JRRN Publicaciones&quot;; laEditorial.ubicacion = &quot;Barcelona&quot;; laEditorial.fechaEditorial = new DateTime(2018,05,11); EditorialSingleton _laEditorial = EditorialSingleton.Instance(); _laEditorial.Visualiza(); } }","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-	<!-- CSS & fonts -->
-	
 	<link rel="shortcut icon" href="img/icons/favicon.ico">
 	<!-- RSS -->
 	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />

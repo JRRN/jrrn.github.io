@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<!-- Meta -->
@@ -25,8 +25,6 @@
 {"@type":"BlogPosting","url":"http://localhost:4000/maybe","dateModified":"2018-02-25T00:00:00+01:00","datePublished":"2018-02-25T00:00:00+01:00","headline":"Sin retornos NULL con Maybe","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/maybe"},"author":{"@type":"Person","name":"JRRN"},"description":"Maybe es una estructura(Monad) que nos ayuda a no tener que trabajar con objetos NULL. De esta forma, el objeto, hereda una propiedad HasValue para determinar si es NULO o no, ahorrándonos el típico if (a != null) que tan feo queda en nuestro código. Así la estructura quedaría de la siguiente manera: using System; namespace OurNameSpace { public struct Maybe&lt;T&gt; { private readonly bool _hasValue; public bool HasValue =&gt; _hasValue; private readonly T _value; public T Value { get { if(!_hasValue) { throw new InvalidOperationException(); } return _value; } } public Maybe(T value) { _hasValue = true; _value = value; } public static implicit operator Maybe&lt;T&gt;(T value) { return new Maybe&lt;T&gt;(value); } } } Con lo que nuestras llamadas por ejemplo en un Reposity quedarían: public ReadOnlyCollection&lt;Maybe&lt;Libros&gt;&gt; GetLibros(); public Maybe&lt;Libro&gt;&gt; GetLibroById(); Y en nuestros servicios: var librosRepository = _librosService.GetLibros(); if (librosRepository.HasValue){ //TODO } Un saludo y hasta la próxima.","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-	<!-- CSS & fonts -->
-	
 	<link rel="shortcut icon" href="img/icons/favicon.ico">
 	<!-- RSS -->
 	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
