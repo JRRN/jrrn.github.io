@@ -8,6 +8,22 @@
 	<meta name="generator" content="Jekyll">
 
 	<title>Patrón Bridge</title>
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Patrón Bridge | JRRN Coding! A simple Jekyll blog</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Patrón Bridge" />
+<meta name="author" content="JRRN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="El patrón bridge es usado para separar la implementación de un objeto, de su representación y de su interfaz. Así, conseguimos que la implementación de este objeto quede intacta, mientras que la representación puede crecer de manera independiente sin que haya un acoplamiento y tengamos que hacer cambios en el objeto con estas nuevas ampliaciones. Tiene cierta similitud con el patrón adapter, dándole una vuelta más, donde adapter queda un poco limitado. Para ello, a través de una clase abstracta que hereda los métodos de la clase base, sobrecargaremos estos métodos en cada clase concreta de cada tipo de libro para darle su propia implementación sin que ello afecte a los objetos MediaBook y PaperBook. Sin más, vamos al ejemplo con el que se verá más claro su estructura y comportamiento: enum TipoLibroEnum{ Media, Paper }; public interface IBookBridge { void GenerarLibro(string contenido); TipoLibroEnum TipoDeLibro(); } public class MediaBook : IBookBridge{ public void GenerarLibro() { Console.WriteLine(&quot;Libro de Papel&quot;); } public TipoLibroEnum TipoDeLibro() { return TipoLibroEnum.Paper; } } public class PaperBook : IBookBridge { public void GenerarLibro() { Console.WriteLine(&quot;Libro de Papel&quot;); } public TipoLibroEnum TipoDeLibro() { return TipoLibroEnum.Paper; } } public abstract class GeneradorLibro { public TipoLibroEnum _tipoLibroEnum; public IBookBridge _book; protected GeneradorLibro(IBookBridge book) { _book = book; } public void Genera() { _book.GenerarLibro(); } public TipoLibroEnum TipoDeLibro() { return _book.TipoDeLibro(); } public abstract bool ControlTipoLibro(TipoLibroEnum tipoLibro); } public class GeneradorLibroPapel : GeneradorLibro { public GeneradorLibroPapel(IBookBridge book) : base(book) { } public override bool ControlTipoLibro(TipoLibroEnum tipoLibro) { return tipoLibro == TipoLibroEnum.Paper; } } public class GeneradorLibroElectronico : GeneradorLibro { public GeneradorLibroElectronico(IBookBridge book) : base(book) { } public override bool ControlTipoLibro(TipoLibroEnum tipoLibro) { return tipoLibro == TipoLibroEnum.Media; } } public class Libreria{ static void Main(string[] args){ GeneradorLibroElectronico libroElectronico = new GeneradorLibroElectronico(new BridgePattern.MediaBook()); Console.WriteLine(libroElectronico._tipoLibroEnum); if (libroElectronico.TipoDeLibro() == TipoLibroEnum.Media) { libroElectronico.Genera(); } GeneradorLibroPapel libroPapel = new GeneradorLibroPapel(new BridgePattern.PaperBook()); Console.WriteLine(libroPapel._tipoLibroEnum); if (libroPapel.TipoDeLibro() == TipoLibroEnum.Paper) { libroPapel.Genera(); } } } Como hemos dicho, en nuestro caso de los libros la clase GeneradorLibro podría extenderse sin tener que tocar las clases MediaBook y PaperBook. Saludos." />
+<meta property="og:description" content="El patrón bridge es usado para separar la implementación de un objeto, de su representación y de su interfaz. Así, conseguimos que la implementación de este objeto quede intacta, mientras que la representación puede crecer de manera independiente sin que haya un acoplamiento y tengamos que hacer cambios en el objeto con estas nuevas ampliaciones. Tiene cierta similitud con el patrón adapter, dándole una vuelta más, donde adapter queda un poco limitado. Para ello, a través de una clase abstracta que hereda los métodos de la clase base, sobrecargaremos estos métodos en cada clase concreta de cada tipo de libro para darle su propia implementación sin que ello afecte a los objetos MediaBook y PaperBook. Sin más, vamos al ejemplo con el que se verá más claro su estructura y comportamiento: enum TipoLibroEnum{ Media, Paper }; public interface IBookBridge { void GenerarLibro(string contenido); TipoLibroEnum TipoDeLibro(); } public class MediaBook : IBookBridge{ public void GenerarLibro() { Console.WriteLine(&quot;Libro de Papel&quot;); } public TipoLibroEnum TipoDeLibro() { return TipoLibroEnum.Paper; } } public class PaperBook : IBookBridge { public void GenerarLibro() { Console.WriteLine(&quot;Libro de Papel&quot;); } public TipoLibroEnum TipoDeLibro() { return TipoLibroEnum.Paper; } } public abstract class GeneradorLibro { public TipoLibroEnum _tipoLibroEnum; public IBookBridge _book; protected GeneradorLibro(IBookBridge book) { _book = book; } public void Genera() { _book.GenerarLibro(); } public TipoLibroEnum TipoDeLibro() { return _book.TipoDeLibro(); } public abstract bool ControlTipoLibro(TipoLibroEnum tipoLibro); } public class GeneradorLibroPapel : GeneradorLibro { public GeneradorLibroPapel(IBookBridge book) : base(book) { } public override bool ControlTipoLibro(TipoLibroEnum tipoLibro) { return tipoLibro == TipoLibroEnum.Paper; } } public class GeneradorLibroElectronico : GeneradorLibro { public GeneradorLibroElectronico(IBookBridge book) : base(book) { } public override bool ControlTipoLibro(TipoLibroEnum tipoLibro) { return tipoLibro == TipoLibroEnum.Media; } } public class Libreria{ static void Main(string[] args){ GeneradorLibroElectronico libroElectronico = new GeneradorLibroElectronico(new BridgePattern.MediaBook()); Console.WriteLine(libroElectronico._tipoLibroEnum); if (libroElectronico.TipoDeLibro() == TipoLibroEnum.Media) { libroElectronico.Genera(); } GeneradorLibroPapel libroPapel = new GeneradorLibroPapel(new BridgePattern.PaperBook()); Console.WriteLine(libroPapel._tipoLibroEnum); if (libroPapel.TipoDeLibro() == TipoLibroEnum.Paper) { libroPapel.Genera(); } } } Como hemos dicho, en nuestro caso de los libros la clase GeneradorLibro podría extenderse sin tener que tocar las clases MediaBook y PaperBook. Saludos." />
+<link rel="canonical" href="http://localhost:4000/patron-bridge" />
+<meta property="og:url" content="http://localhost:4000/patron-bridge" />
+<meta property="og:site_name" content="JRRN Coding! A simple Jekyll blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-11-16T00:00:00+01:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/patron-bridge","dateModified":"2017-11-16T00:00:00+01:00","datePublished":"2017-11-16T00:00:00+01:00","headline":"Patrón Bridge","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patron-bridge"},"author":{"@type":"Person","name":"JRRN"},"description":"El patrón bridge es usado para separar la implementación de un objeto, de su representación y de su interfaz. Así, conseguimos que la implementación de este objeto quede intacta, mientras que la representación puede crecer de manera independiente sin que haya un acoplamiento y tengamos que hacer cambios en el objeto con estas nuevas ampliaciones. Tiene cierta similitud con el patrón adapter, dándole una vuelta más, donde adapter queda un poco limitado. Para ello, a través de una clase abstracta que hereda los métodos de la clase base, sobrecargaremos estos métodos en cada clase concreta de cada tipo de libro para darle su propia implementación sin que ello afecte a los objetos MediaBook y PaperBook. Sin más, vamos al ejemplo con el que se verá más claro su estructura y comportamiento: enum TipoLibroEnum{ Media, Paper }; public interface IBookBridge { void GenerarLibro(string contenido); TipoLibroEnum TipoDeLibro(); } public class MediaBook : IBookBridge{ public void GenerarLibro() { Console.WriteLine(&quot;Libro de Papel&quot;); } public TipoLibroEnum TipoDeLibro() { return TipoLibroEnum.Paper; } } public class PaperBook : IBookBridge { public void GenerarLibro() { Console.WriteLine(&quot;Libro de Papel&quot;); } public TipoLibroEnum TipoDeLibro() { return TipoLibroEnum.Paper; } } public abstract class GeneradorLibro { public TipoLibroEnum _tipoLibroEnum; public IBookBridge _book; protected GeneradorLibro(IBookBridge book) { _book = book; } public void Genera() { _book.GenerarLibro(); } public TipoLibroEnum TipoDeLibro() { return _book.TipoDeLibro(); } public abstract bool ControlTipoLibro(TipoLibroEnum tipoLibro); } public class GeneradorLibroPapel : GeneradorLibro { public GeneradorLibroPapel(IBookBridge book) : base(book) { } public override bool ControlTipoLibro(TipoLibroEnum tipoLibro) { return tipoLibro == TipoLibroEnum.Paper; } } public class GeneradorLibroElectronico : GeneradorLibro { public GeneradorLibroElectronico(IBookBridge book) : base(book) { } public override bool ControlTipoLibro(TipoLibroEnum tipoLibro) { return tipoLibro == TipoLibroEnum.Media; } } public class Libreria{ static void Main(string[] args){ GeneradorLibroElectronico libroElectronico = new GeneradorLibroElectronico(new BridgePattern.MediaBook()); Console.WriteLine(libroElectronico._tipoLibroEnum); if (libroElectronico.TipoDeLibro() == TipoLibroEnum.Media) { libroElectronico.Genera(); } GeneradorLibroPapel libroPapel = new GeneradorLibroPapel(new BridgePattern.PaperBook()); Console.WriteLine(libroPapel._tipoLibroEnum); if (libroPapel.TipoDeLibro() == TipoLibroEnum.Paper) { libroPapel.Genera(); } } } Como hemos dicho, en nuestro caso de los libros la clase GeneradorLibro podría extenderse sin tener que tocar las clases MediaBook y PaperBook. Saludos.","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
 
 	<!-- CSS & fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
@@ -50,8 +66,6 @@
 	  
 	    
 	      <a href="/about" title="Sobre mí">Sobre mí</a>
-	    
-	  
 	    
 	  
 	    
@@ -251,6 +265,10 @@
 
   
   
+  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
+
+  
+  
   <a href="/tag/MsIoT"><code class="highligher-rouge">MsIoT</code></a><br/>
 
   
@@ -260,10 +278,6 @@
   
   
   <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
-
-  
-  
-  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
 
 
         </div>

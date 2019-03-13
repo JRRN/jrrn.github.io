@@ -8,6 +8,22 @@
 	<meta name="generator" content="Jekyll">
 
 	<title>Patrón Decorator</title>
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Patrón Decorator | JRRN Coding! A simple Jekyll blog</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Patrón Decorator" />
+<meta name="author" content="JRRN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="El patrón decorator nos permite agregar de forma dinámica funcionalidades suplementarias a un objeto sin tener que modificar la interfaz de un objeto y quedando de una forma transparente de cara al cliente. Así, el patrón decorator es una forma más para poder crear una subclase y vitaminar un objeto sin tener que tocar la clase principal de ese mismo objeto. En nuestro sistema de libros, podemos querer ver ciertas particularidades que tienen los libros de tecnología. Muchos pensaréis “pero si esto me lo da la herencia” y yo os contesto “la herencia es demasiado potente para esta banalidad y recordad que la herencia es un mecanismo estático” con lo que deberíamos ir tocando en todas las hereditarias si ampliamos la interfaz o el objeto Book. ¿Lo vemos con el ejemplo? Pues vamos. public interface ICatalogo { void VerDatosLibro(); } public class Books : ICatalogo { public void VerDatosLibro() { Console.WriteLine(&quot;Mostrando Libro&quot;); } } public abstract class Decorador : ICatalogo { protected ICatalogo _catalogo; protected Decorador(ICatalogo catalogo) { _catalogo = catalogo; } public virtual void VerCatalogo() { VerDatosLibro(); } public void VerDatosLibro() { _catalogo.VerDatosLibro(); } } public class EditorialTecnologicaDecorador : Decorador { public EditorialTecnologicaDecorador(ICatalogo catalogo) : base(catalogo) { } protected void VisualizaEditorialLibrosTecnicos() { Console.WriteLine(&quot;Editorial libro técnico.&quot;); } public override void VerCatalogo() { base.VerDatosLibro(); VisualizaEditorialLibrosTecnicos(); } } public class AutorTecnologicoDecorador : Decorador { public AutorTecnologicoDecorador(ICatalogo catalogo) : base(catalogo) { } protected void VisualizaAutorLibrosTecnicos() { Console.WriteLine(&quot;Autor técnico.&quot;); } public override void VerCatalogo() { base.VerDatosLibro(); VisualizaAutorLibrosTecnicos(); } } public class VistaCatalogo { static void Main(string[] args) { DecoratorPattern.Books libro = new DecoratorPattern.Books(); EditorialTecnologicaDecorador editorialTechlDecorador = new EditorialTecnologicaDecorador(libro); AutorTecnologicoDecorador autorTechDecorador = new AutorTecnologicoDecorador(libro); autorTechDecorador.VerCatalogo(); editorialTechlDecorador.VerCatalogo(); } } La salida sería: Mostrando Libro Editorial libro técnico. Autor técnico Saludos." />
+<meta property="og:description" content="El patrón decorator nos permite agregar de forma dinámica funcionalidades suplementarias a un objeto sin tener que modificar la interfaz de un objeto y quedando de una forma transparente de cara al cliente. Así, el patrón decorator es una forma más para poder crear una subclase y vitaminar un objeto sin tener que tocar la clase principal de ese mismo objeto. En nuestro sistema de libros, podemos querer ver ciertas particularidades que tienen los libros de tecnología. Muchos pensaréis “pero si esto me lo da la herencia” y yo os contesto “la herencia es demasiado potente para esta banalidad y recordad que la herencia es un mecanismo estático” con lo que deberíamos ir tocando en todas las hereditarias si ampliamos la interfaz o el objeto Book. ¿Lo vemos con el ejemplo? Pues vamos. public interface ICatalogo { void VerDatosLibro(); } public class Books : ICatalogo { public void VerDatosLibro() { Console.WriteLine(&quot;Mostrando Libro&quot;); } } public abstract class Decorador : ICatalogo { protected ICatalogo _catalogo; protected Decorador(ICatalogo catalogo) { _catalogo = catalogo; } public virtual void VerCatalogo() { VerDatosLibro(); } public void VerDatosLibro() { _catalogo.VerDatosLibro(); } } public class EditorialTecnologicaDecorador : Decorador { public EditorialTecnologicaDecorador(ICatalogo catalogo) : base(catalogo) { } protected void VisualizaEditorialLibrosTecnicos() { Console.WriteLine(&quot;Editorial libro técnico.&quot;); } public override void VerCatalogo() { base.VerDatosLibro(); VisualizaEditorialLibrosTecnicos(); } } public class AutorTecnologicoDecorador : Decorador { public AutorTecnologicoDecorador(ICatalogo catalogo) : base(catalogo) { } protected void VisualizaAutorLibrosTecnicos() { Console.WriteLine(&quot;Autor técnico.&quot;); } public override void VerCatalogo() { base.VerDatosLibro(); VisualizaAutorLibrosTecnicos(); } } public class VistaCatalogo { static void Main(string[] args) { DecoratorPattern.Books libro = new DecoratorPattern.Books(); EditorialTecnologicaDecorador editorialTechlDecorador = new EditorialTecnologicaDecorador(libro); AutorTecnologicoDecorador autorTechDecorador = new AutorTecnologicoDecorador(libro); autorTechDecorador.VerCatalogo(); editorialTechlDecorador.VerCatalogo(); } } La salida sería: Mostrando Libro Editorial libro técnico. Autor técnico Saludos." />
+<link rel="canonical" href="http://localhost:4000/patron-decorator" />
+<meta property="og:url" content="http://localhost:4000/patron-decorator" />
+<meta property="og:site_name" content="JRRN Coding! A simple Jekyll blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-11-29T00:00:00+01:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/patron-decorator","dateModified":"2017-11-29T00:00:00+01:00","datePublished":"2017-11-29T00:00:00+01:00","headline":"Patrón Decorator","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patron-decorator"},"author":{"@type":"Person","name":"JRRN"},"description":"El patrón decorator nos permite agregar de forma dinámica funcionalidades suplementarias a un objeto sin tener que modificar la interfaz de un objeto y quedando de una forma transparente de cara al cliente. Así, el patrón decorator es una forma más para poder crear una subclase y vitaminar un objeto sin tener que tocar la clase principal de ese mismo objeto. En nuestro sistema de libros, podemos querer ver ciertas particularidades que tienen los libros de tecnología. Muchos pensaréis “pero si esto me lo da la herencia” y yo os contesto “la herencia es demasiado potente para esta banalidad y recordad que la herencia es un mecanismo estático” con lo que deberíamos ir tocando en todas las hereditarias si ampliamos la interfaz o el objeto Book. ¿Lo vemos con el ejemplo? Pues vamos. public interface ICatalogo { void VerDatosLibro(); } public class Books : ICatalogo { public void VerDatosLibro() { Console.WriteLine(&quot;Mostrando Libro&quot;); } } public abstract class Decorador : ICatalogo { protected ICatalogo _catalogo; protected Decorador(ICatalogo catalogo) { _catalogo = catalogo; } public virtual void VerCatalogo() { VerDatosLibro(); } public void VerDatosLibro() { _catalogo.VerDatosLibro(); } } public class EditorialTecnologicaDecorador : Decorador { public EditorialTecnologicaDecorador(ICatalogo catalogo) : base(catalogo) { } protected void VisualizaEditorialLibrosTecnicos() { Console.WriteLine(&quot;Editorial libro técnico.&quot;); } public override void VerCatalogo() { base.VerDatosLibro(); VisualizaEditorialLibrosTecnicos(); } } public class AutorTecnologicoDecorador : Decorador { public AutorTecnologicoDecorador(ICatalogo catalogo) : base(catalogo) { } protected void VisualizaAutorLibrosTecnicos() { Console.WriteLine(&quot;Autor técnico.&quot;); } public override void VerCatalogo() { base.VerDatosLibro(); VisualizaAutorLibrosTecnicos(); } } public class VistaCatalogo { static void Main(string[] args) { DecoratorPattern.Books libro = new DecoratorPattern.Books(); EditorialTecnologicaDecorador editorialTechlDecorador = new EditorialTecnologicaDecorador(libro); AutorTecnologicoDecorador autorTechDecorador = new AutorTecnologicoDecorador(libro); autorTechDecorador.VerCatalogo(); editorialTechlDecorador.VerCatalogo(); } } La salida sería: Mostrando Libro Editorial libro técnico. Autor técnico Saludos.","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
 
 	<!-- CSS & fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
@@ -50,8 +66,6 @@
 	  
 	    
 	      <a href="/about" title="Sobre mí">Sobre mí</a>
-	    
-	  
 	    
 	  
 	    
@@ -238,6 +252,10 @@ Autor técnico
 
   
   
+  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
+
+  
+  
   <a href="/tag/MsIoT"><code class="highligher-rouge">MsIoT</code></a><br/>
 
   
@@ -247,10 +265,6 @@ Autor técnico
   
   
   <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
-
-  
-  
-  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
 
 
         </div>

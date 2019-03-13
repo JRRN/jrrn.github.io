@@ -8,6 +8,22 @@
 	<meta name="generator" content="Jekyll">
 
 	<title>Patrón Chain of Responsability</title>
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Patrón Chain of Responsability | JRRN Coding! A simple Jekyll blog</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Patrón Chain of Responsability" />
+<meta name="author" content="JRRN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="El patrón Chain Of Responsability nos ayuda a crear una secuencia de unión entre objetos tal que, si el objeto más interno de la cadena no es capaz de dar una respuesta, uno de los objetos de nivel superior será el encargado de darla. Esta respuesta será a nivel del contexto en que el objeto se encuentre y sea capaz de responder. Como siempre, mejor con un ejemplo, ¿no? Os acordáis de nuestro ejemplo de venta de libros… En él, tenemos libros, dentro de libros tenemos categoría de libros y dentro de la categoría de libros tenemos el libro en cuestión. Empezamos: public abstract class BaseLibro { public BaseLibro siguiente { protected get; set; } private string DescripcionBase() =&gt; &quot;Descripción base : Es un libro.&quot;; protected abstract string descripcion { get; } public string GetDescripcion() { var result = descripcion; if (result != null) { return result; } return siguiente != null ? siguiente.GetDescripcion() : DescripcionBase(); } } public class LibroCoR : BaseLibro { protected string _libroDescripcion; public LibroCoR(string descripcion) { _libroDescripcion = descripcion; } protected override string descripcion =&gt; _libroDescripcion; } public class LibroCategoriaDescripcion : BaseLibro { protected string _categoriaDescripcion; protected string _categoria; public LibroCategoriaDescripcion(string descripcion, string categoria) { _categoriaDescripcion = descripcion; _categoria = categoria; } protected override string descripcion =&gt; _categoriaDescripcion != null ? $&quot;La categoria {_categoria} : {_categoriaDescripcion}&quot; : null; } public class LibroDescripcion : BaseLibro { protected string _libroDescripcion; protected string _libro; public LibroDescripcion(string descripcion, string libro) { _libroDescripcion = descripcion; _libro = libro; } protected override string descripcion =&gt; _libroDescripcion != null ? $&quot;El libro {_libro} : {_libroDescripcion}&quot; : null; } public static void Show() { BaseLibro libroBase = new LibroCoR(&quot;Libro de IT de patrones&quot;); Console.WriteLine(libroBase.GetDescripcion()); BaseLibro modelo1 = new LibroCategoriaDescripcion(&quot;Libro IT&quot;, &quot;Libro para desarrolladores&quot;); BaseLibro libro2 = new LibroCoR(null); libro2.siguiente = modelo1; Console.WriteLine(libro2.GetDescripcion()); BaseLibro marca1 = new LibroDescripcion(&quot;Libro IT Tapa Dura&quot;, &quot;TIPO&quot;); BaseLibro modelo2 = new LibroCategoriaDescripcion(&quot;Tecnología&quot;, null); modelo2.siguiente = marca1; BaseLibro vehiculo3 = new LibroCoR(null); vehiculo3.siguiente = modelo2; Console.WriteLine(vehiculo3.GetDescripcion()); BaseLibro vehiculo4 = new LibroCoR(null); Console.WriteLine(vehiculo4.GetDescripcion()); } Saludos y hasta la próxima." />
+<meta property="og:description" content="El patrón Chain Of Responsability nos ayuda a crear una secuencia de unión entre objetos tal que, si el objeto más interno de la cadena no es capaz de dar una respuesta, uno de los objetos de nivel superior será el encargado de darla. Esta respuesta será a nivel del contexto en que el objeto se encuentre y sea capaz de responder. Como siempre, mejor con un ejemplo, ¿no? Os acordáis de nuestro ejemplo de venta de libros… En él, tenemos libros, dentro de libros tenemos categoría de libros y dentro de la categoría de libros tenemos el libro en cuestión. Empezamos: public abstract class BaseLibro { public BaseLibro siguiente { protected get; set; } private string DescripcionBase() =&gt; &quot;Descripción base : Es un libro.&quot;; protected abstract string descripcion { get; } public string GetDescripcion() { var result = descripcion; if (result != null) { return result; } return siguiente != null ? siguiente.GetDescripcion() : DescripcionBase(); } } public class LibroCoR : BaseLibro { protected string _libroDescripcion; public LibroCoR(string descripcion) { _libroDescripcion = descripcion; } protected override string descripcion =&gt; _libroDescripcion; } public class LibroCategoriaDescripcion : BaseLibro { protected string _categoriaDescripcion; protected string _categoria; public LibroCategoriaDescripcion(string descripcion, string categoria) { _categoriaDescripcion = descripcion; _categoria = categoria; } protected override string descripcion =&gt; _categoriaDescripcion != null ? $&quot;La categoria {_categoria} : {_categoriaDescripcion}&quot; : null; } public class LibroDescripcion : BaseLibro { protected string _libroDescripcion; protected string _libro; public LibroDescripcion(string descripcion, string libro) { _libroDescripcion = descripcion; _libro = libro; } protected override string descripcion =&gt; _libroDescripcion != null ? $&quot;El libro {_libro} : {_libroDescripcion}&quot; : null; } public static void Show() { BaseLibro libroBase = new LibroCoR(&quot;Libro de IT de patrones&quot;); Console.WriteLine(libroBase.GetDescripcion()); BaseLibro modelo1 = new LibroCategoriaDescripcion(&quot;Libro IT&quot;, &quot;Libro para desarrolladores&quot;); BaseLibro libro2 = new LibroCoR(null); libro2.siguiente = modelo1; Console.WriteLine(libro2.GetDescripcion()); BaseLibro marca1 = new LibroDescripcion(&quot;Libro IT Tapa Dura&quot;, &quot;TIPO&quot;); BaseLibro modelo2 = new LibroCategoriaDescripcion(&quot;Tecnología&quot;, null); modelo2.siguiente = marca1; BaseLibro vehiculo3 = new LibroCoR(null); vehiculo3.siguiente = modelo2; Console.WriteLine(vehiculo3.GetDescripcion()); BaseLibro vehiculo4 = new LibroCoR(null); Console.WriteLine(vehiculo4.GetDescripcion()); } Saludos y hasta la próxima." />
+<link rel="canonical" href="http://localhost:4000/patron-chain-of-responsability" />
+<meta property="og:url" content="http://localhost:4000/patron-chain-of-responsability" />
+<meta property="og:site_name" content="JRRN Coding! A simple Jekyll blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-01-14T00:00:00+01:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/patron-chain-of-responsability","dateModified":"2018-01-14T00:00:00+01:00","datePublished":"2018-01-14T00:00:00+01:00","headline":"Patrón Chain of Responsability","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patron-chain-of-responsability"},"author":{"@type":"Person","name":"JRRN"},"description":"El patrón Chain Of Responsability nos ayuda a crear una secuencia de unión entre objetos tal que, si el objeto más interno de la cadena no es capaz de dar una respuesta, uno de los objetos de nivel superior será el encargado de darla. Esta respuesta será a nivel del contexto en que el objeto se encuentre y sea capaz de responder. Como siempre, mejor con un ejemplo, ¿no? Os acordáis de nuestro ejemplo de venta de libros… En él, tenemos libros, dentro de libros tenemos categoría de libros y dentro de la categoría de libros tenemos el libro en cuestión. Empezamos: public abstract class BaseLibro { public BaseLibro siguiente { protected get; set; } private string DescripcionBase() =&gt; &quot;Descripción base : Es un libro.&quot;; protected abstract string descripcion { get; } public string GetDescripcion() { var result = descripcion; if (result != null) { return result; } return siguiente != null ? siguiente.GetDescripcion() : DescripcionBase(); } } public class LibroCoR : BaseLibro { protected string _libroDescripcion; public LibroCoR(string descripcion) { _libroDescripcion = descripcion; } protected override string descripcion =&gt; _libroDescripcion; } public class LibroCategoriaDescripcion : BaseLibro { protected string _categoriaDescripcion; protected string _categoria; public LibroCategoriaDescripcion(string descripcion, string categoria) { _categoriaDescripcion = descripcion; _categoria = categoria; } protected override string descripcion =&gt; _categoriaDescripcion != null ? $&quot;La categoria {_categoria} : {_categoriaDescripcion}&quot; : null; } public class LibroDescripcion : BaseLibro { protected string _libroDescripcion; protected string _libro; public LibroDescripcion(string descripcion, string libro) { _libroDescripcion = descripcion; _libro = libro; } protected override string descripcion =&gt; _libroDescripcion != null ? $&quot;El libro {_libro} : {_libroDescripcion}&quot; : null; } public static void Show() { BaseLibro libroBase = new LibroCoR(&quot;Libro de IT de patrones&quot;); Console.WriteLine(libroBase.GetDescripcion()); BaseLibro modelo1 = new LibroCategoriaDescripcion(&quot;Libro IT&quot;, &quot;Libro para desarrolladores&quot;); BaseLibro libro2 = new LibroCoR(null); libro2.siguiente = modelo1; Console.WriteLine(libro2.GetDescripcion()); BaseLibro marca1 = new LibroDescripcion(&quot;Libro IT Tapa Dura&quot;, &quot;TIPO&quot;); BaseLibro modelo2 = new LibroCategoriaDescripcion(&quot;Tecnología&quot;, null); modelo2.siguiente = marca1; BaseLibro vehiculo3 = new LibroCoR(null); vehiculo3.siguiente = modelo2; Console.WriteLine(vehiculo3.GetDescripcion()); BaseLibro vehiculo4 = new LibroCoR(null); Console.WriteLine(vehiculo4.GetDescripcion()); } Saludos y hasta la próxima.","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
 
 	<!-- CSS & fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
@@ -50,8 +66,6 @@
 	  
 	    
 	      <a href="/about" title="Sobre mí">Sobre mí</a>
-	    
-	  
 	    
 	  
 	    
@@ -238,6 +252,10 @@
 
   
   
+  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
+
+  
+  
   <a href="/tag/MsIoT"><code class="highligher-rouge">MsIoT</code></a><br/>
 
   
@@ -247,10 +265,6 @@
   
   
   <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
-
-  
-  
-  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
 
 
         </div>
