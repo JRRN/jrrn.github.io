@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<!-- Meta -->
@@ -8,12 +8,23 @@
 	<meta name="generator" content="Jekyll">
 
 	<title>Patrón Flyweight</title>
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Patrón Flyweight | JRRN Coding! A simple Jekyll blog</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Patrón Flyweight" />
+<meta name="author" content="JRRN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="El patrón Flyweight está enfocado a resolver el problema de la granularidad de los objetos. Recordemos que la granularidad en programación es la capacidad de definir objetos fragmentando en unidades más pequeñas la composición de este objeto de la forma más correcta. En nuestro caso de libros, pongamos el ejemplo de que a la hora de comprar un libro en formato papel, podemos elegir entre varias opciones, como por ejemplo que sea de tapa dura, de tapa blanda, que sea un libro de anillas, que el papel sea de 80 gramos, 90 gr o 100 gr (no tengo ni idea si estos valores son correctos). Seguimos con el ejemplo para traducirlo a código: enum TipoLibro { Anillas = 0, Encolado =1 } public class OpcionLibro { protected string _tapa; protected int _grosorPapel; protected TipoLibroEnum _tipoLibro; public OpcionLibro(TipoLibroEnum tipoLibro) { _tipoLibro = tipoLibro; _grosorPapel = getGrosorByTipoLibro((int)tipoLibro); _tapa = getTapaByTipoLibro((int)tipoLibro); } public void VerOpcionesLibro() { Console.WriteLine( $&quot;Libro con {_tapa} y grosor de papel {_grosorPapel} para el tipo de libro selecionado {_tipoLibro}&quot;); } private int getGrosorByTipoLibro(int tipoLibro) { switch (tipoLibro) { case 0: return 80; case 1: return 100; } return 90; //default } private string getTapaByTipoLibro(int tipoLibro) { switch (tipoLibro) { case 0: return &quot;blanda&quot;; case 1: return &quot;dura&quot;; } return &quot;blanda&quot;; //default } } public class DeterminaOpcion { protected IDictionary&lt;TipoLibroEnum, OpcionLibro&gt; opcionesLibro = new Dictionary&lt;TipoLibroEnum, OpcionLibro&gt;(); public static OpcionLibro GetOpcionesLibro(TipoLibroEnum tipoLibro) { return new OpcionLibro(tipoLibro); } } public class LibroPedido{ protected IList&lt;OpcionLibro&gt; opcionLibro = new List&lt;OpcionLibro&gt;(); protected IList&lt;int&gt; precioVenta = new List&lt;int&gt;(); public void agregaOpcionLibro(TipoLibroEnum tipoLibro, int precio, DeterminaOpcion opcion) { opcionLibro.Add(DeterminaOpcion.GetOpcionesLibro(tipoLibro)); precioVenta.Add(precio); } public void MuestraOpciones() { var tamaño = opcionLibro.Count; for (int indice = 0; indice &lt; tamaño; indice++) { opcionLibro[indice].VerOpcionesLibro(); Console.WriteLine(); } } } public class Cliente { static void Main(string[] args) { DeterminaOpcion opcion = new DeterminaOpcion(); LibroPedido libroPedido = new LibroPedido(); libropedido.agregaOpcionLibro(TipoLibro.Anillas, 10, opcion); libropedido.agregaOpcionLibro(TipoLibro.Encolado, 30, opcion); libroPedido.MuestraOpciones(); } } Como se puede apreciar Flyweigth nos permite granular el tipo de libro y, sobre este, calcular las propiedades específicas del libro, tales como el grosor del papel y el tipo de tapa sin tener que pasar ningún parámetro sobre estos en cada capa del servicio. Saludos." />
+<meta property="og:description" content="El patrón Flyweight está enfocado a resolver el problema de la granularidad de los objetos. Recordemos que la granularidad en programación es la capacidad de definir objetos fragmentando en unidades más pequeñas la composición de este objeto de la forma más correcta. En nuestro caso de libros, pongamos el ejemplo de que a la hora de comprar un libro en formato papel, podemos elegir entre varias opciones, como por ejemplo que sea de tapa dura, de tapa blanda, que sea un libro de anillas, que el papel sea de 80 gramos, 90 gr o 100 gr (no tengo ni idea si estos valores son correctos). Seguimos con el ejemplo para traducirlo a código: enum TipoLibro { Anillas = 0, Encolado =1 } public class OpcionLibro { protected string _tapa; protected int _grosorPapel; protected TipoLibroEnum _tipoLibro; public OpcionLibro(TipoLibroEnum tipoLibro) { _tipoLibro = tipoLibro; _grosorPapel = getGrosorByTipoLibro((int)tipoLibro); _tapa = getTapaByTipoLibro((int)tipoLibro); } public void VerOpcionesLibro() { Console.WriteLine( $&quot;Libro con {_tapa} y grosor de papel {_grosorPapel} para el tipo de libro selecionado {_tipoLibro}&quot;); } private int getGrosorByTipoLibro(int tipoLibro) { switch (tipoLibro) { case 0: return 80; case 1: return 100; } return 90; //default } private string getTapaByTipoLibro(int tipoLibro) { switch (tipoLibro) { case 0: return &quot;blanda&quot;; case 1: return &quot;dura&quot;; } return &quot;blanda&quot;; //default } } public class DeterminaOpcion { protected IDictionary&lt;TipoLibroEnum, OpcionLibro&gt; opcionesLibro = new Dictionary&lt;TipoLibroEnum, OpcionLibro&gt;(); public static OpcionLibro GetOpcionesLibro(TipoLibroEnum tipoLibro) { return new OpcionLibro(tipoLibro); } } public class LibroPedido{ protected IList&lt;OpcionLibro&gt; opcionLibro = new List&lt;OpcionLibro&gt;(); protected IList&lt;int&gt; precioVenta = new List&lt;int&gt;(); public void agregaOpcionLibro(TipoLibroEnum tipoLibro, int precio, DeterminaOpcion opcion) { opcionLibro.Add(DeterminaOpcion.GetOpcionesLibro(tipoLibro)); precioVenta.Add(precio); } public void MuestraOpciones() { var tamaño = opcionLibro.Count; for (int indice = 0; indice &lt; tamaño; indice++) { opcionLibro[indice].VerOpcionesLibro(); Console.WriteLine(); } } } public class Cliente { static void Main(string[] args) { DeterminaOpcion opcion = new DeterminaOpcion(); LibroPedido libroPedido = new LibroPedido(); libropedido.agregaOpcionLibro(TipoLibro.Anillas, 10, opcion); libropedido.agregaOpcionLibro(TipoLibro.Encolado, 30, opcion); libroPedido.MuestraOpciones(); } } Como se puede apreciar Flyweigth nos permite granular el tipo de libro y, sobre este, calcular las propiedades específicas del libro, tales como el grosor del papel y el tipo de tapa sin tener que pasar ningún parámetro sobre estos en cada capa del servicio. Saludos." />
+<link rel="canonical" href="http://localhost:4000/patron-flyweight" />
+<meta property="og:url" content="http://localhost:4000/patron-flyweight" />
+<meta property="og:site_name" content="JRRN Coding! A simple Jekyll blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-12-06T00:00:00+01:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/patron-flyweight","dateModified":"2017-12-06T00:00:00+01:00","datePublished":"2017-12-06T00:00:00+01:00","headline":"Patrón Flyweight","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patron-flyweight"},"author":{"@type":"Person","name":"JRRN"},"description":"El patrón Flyweight está enfocado a resolver el problema de la granularidad de los objetos. Recordemos que la granularidad en programación es la capacidad de definir objetos fragmentando en unidades más pequeñas la composición de este objeto de la forma más correcta. En nuestro caso de libros, pongamos el ejemplo de que a la hora de comprar un libro en formato papel, podemos elegir entre varias opciones, como por ejemplo que sea de tapa dura, de tapa blanda, que sea un libro de anillas, que el papel sea de 80 gramos, 90 gr o 100 gr (no tengo ni idea si estos valores son correctos). Seguimos con el ejemplo para traducirlo a código: enum TipoLibro { Anillas = 0, Encolado =1 } public class OpcionLibro { protected string _tapa; protected int _grosorPapel; protected TipoLibroEnum _tipoLibro; public OpcionLibro(TipoLibroEnum tipoLibro) { _tipoLibro = tipoLibro; _grosorPapel = getGrosorByTipoLibro((int)tipoLibro); _tapa = getTapaByTipoLibro((int)tipoLibro); } public void VerOpcionesLibro() { Console.WriteLine( $&quot;Libro con {_tapa} y grosor de papel {_grosorPapel} para el tipo de libro selecionado {_tipoLibro}&quot;); } private int getGrosorByTipoLibro(int tipoLibro) { switch (tipoLibro) { case 0: return 80; case 1: return 100; } return 90; //default } private string getTapaByTipoLibro(int tipoLibro) { switch (tipoLibro) { case 0: return &quot;blanda&quot;; case 1: return &quot;dura&quot;; } return &quot;blanda&quot;; //default } } public class DeterminaOpcion { protected IDictionary&lt;TipoLibroEnum, OpcionLibro&gt; opcionesLibro = new Dictionary&lt;TipoLibroEnum, OpcionLibro&gt;(); public static OpcionLibro GetOpcionesLibro(TipoLibroEnum tipoLibro) { return new OpcionLibro(tipoLibro); } } public class LibroPedido{ protected IList&lt;OpcionLibro&gt; opcionLibro = new List&lt;OpcionLibro&gt;(); protected IList&lt;int&gt; precioVenta = new List&lt;int&gt;(); public void agregaOpcionLibro(TipoLibroEnum tipoLibro, int precio, DeterminaOpcion opcion) { opcionLibro.Add(DeterminaOpcion.GetOpcionesLibro(tipoLibro)); precioVenta.Add(precio); } public void MuestraOpciones() { var tamaño = opcionLibro.Count; for (int indice = 0; indice &lt; tamaño; indice++) { opcionLibro[indice].VerOpcionesLibro(); Console.WriteLine(); } } } public class Cliente { static void Main(string[] args) { DeterminaOpcion opcion = new DeterminaOpcion(); LibroPedido libroPedido = new LibroPedido(); libropedido.agregaOpcionLibro(TipoLibro.Anillas, 10, opcion); libropedido.agregaOpcionLibro(TipoLibro.Encolado, 30, opcion); libroPedido.MuestraOpciones(); } } Como se puede apreciar Flyweigth nos permite granular el tipo de libro y, sobre este, calcular las propiedades específicas del libro, tales como el grosor del papel y el tipo de tapa sin tener que pasar ningún parámetro sobre estos en cada capa del servicio. Saludos.","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
 
-	<!-- CSS & fonts -->
-	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-	<link rel="stylesheet" href="/css/main.css">
 	<link rel="shortcut icon" href="img/icons/favicon.ico">
 	<!-- RSS -->
 	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
@@ -50,8 +61,6 @@
 	  
 	    
 	      <a href="/about" title="Sobre mí">Sobre mí</a>
-	    
-	  
 	    
 	  
 	    
@@ -251,6 +260,10 @@
 
   
   
+  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
+
+  
+  
   <a href="/tag/MsIoT"><code class="highligher-rouge">MsIoT</code></a><br/>
 
   
@@ -260,10 +273,6 @@
   
   
   <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
-
-  
-  
-  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
 
 
         </div>
@@ -288,15 +297,20 @@
         </div>
         <div class="col-md-1 pull-right">
                 <a href="https://github.com/jrrn" target="_blank">
-                    <img src="/img/icons/github_ico.jpg" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
+                    <img src="/img/icons/github_ico.jpg" title="Github" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
                 </a>
                 <a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" target="_blank">
-                    <img src="/img/icons/linkedin_ico.jpg" class="socialLinksfooter" style="height: 30px;" alt="LinkedIn Logo">
+                    <img src="/img/icons/linkedin_ico.jpg" tilte="LinkedIn" class="socialLinksfooter" style="height: 30px;" alt="LinkedIn Logo">
                 </a>
         </div>
     </div>
 
 </footer>
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/main.css">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

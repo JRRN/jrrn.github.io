@@ -1,7 +1,8 @@
 # Site settings
-title: JRRN Coding! | A simple Jekyll blog
-description: "A minimal blog template, build with Jekyll."
+title: JRRN Coding!
+description: "Blog de desarrollo .NET personal. Contiene artículos técnicos de programación, arquitectura y desarrollo."
 url: "https://jrrn.github.io"
+site_url : "https://jrrn.github.io"
 author:
   name: "JRRN"
   email: ""
@@ -36,6 +37,9 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
   - rouge
+  - jekyll-seo-tag
+  - jekyll-redirect-from
+  - jemoji
 
 # Custom variables
 version: "1.0.0"

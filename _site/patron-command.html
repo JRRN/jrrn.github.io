@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<!-- Meta -->
@@ -8,12 +8,23 @@
 	<meta name="generator" content="Jekyll">
 
 	<title>Patrón Command</title>
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Patrón Command | JRRN Coding! A simple Jekyll blog</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Patrón Command" />
+<meta name="author" content="JRRN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="El patrón Command nos ayuda a transformar una solicitud en un objeto. Estas solicitudes tienen la propiedad de poder encolarse, ser borradas y actualizadas dentro de la cola de peticiones. Volviendo a nuestro caso de libros, todos sabemos que ciertos libros en IT son altamente propensos a quedarse obsoletos, para ello, nuestra implementación de tienda, es capaz de emitir una rebaja para aquellos libros que no están teniendo la salida que queremos. Este proceso, se podría hacer manual con un campo de rebaja, pero queremos que sea el sistema el que emita esta rebaja según la premisa de que si no se vende rebájalo tantas veces como sea necesario hasta salir del stock. Para ello, el patrón command nos ayudará a no tener que efectuar este proceso por cada uno de los libros del stock. public class Book { protected string _nombre; protected DateTime _fechaEntradaStock; protected double _precioVenta; public Book(string nombre, DateTime fechaEntradaStock, double precioVenta) { _nombre = nombre; _fechaEntradaStock = fechaEntradaStock; _precioVenta = precioVenta; } public long TiempoStock(){ return (DateTime.Now - _fechaEntradaStock).Ticks; } public void ActualizaPrecio(double descuento) { _precioVenta = 0.01 * Math.Round(descuento) * _precioventa *100; } public void Ver() { Console.WriteLine($&quot;{nombre} tiene un precio {_precioVenta} entrada {_fechaEntradaStock}&quot;); } } public class AplicarRebaja { protected IList&lt;Book&gt; _stockLibros = new List&lt;Book&gt;(); protected long _hoy; protected long _tiempoStock; protected double _descuento; public AplicarRebaja(long tiempoStock, double descuento) { _hoy = DateTime.Now.Ticks; _tiempoStock = tiempoStock; _descuento = descuento; } public void Rebajar(IList&lt;Book&gt; Libros) { _stockLibros.Clear(); foreach(var libro in Libros) { if(libro.TiempoStock()) &gt;= _tiempoStock{ _stockLibros.Add(libro); } } foreach(var libroARebajar in _stockLibros){ libroARebajar.ActualizaPrecio(1.0 - descuento); } } public void Anular() { foreach(var libro in _stockLibros) { libro.ActualizaPrecio(1.0 / (1.0 - descuento)); } } public void Restablecer(){ foreach(var libro in _stockLibros) { libro.ActualizaPrecio(1.0 - descuento)); } } } public class Catalogo { protected IList&lt;Book&gt; _stockLibros = new List&lt;Book&gt;(); protected IList&lt;AplicarRebaja&gt; commands = new List&lt;AplicarRebaja&gt;(); public void commandRebaja(AplicarRebaja aplicarRebaja) { commands.Insert(0, aplicarRebaja); aplicarRebaja.Rebajar(_stockLibros); } public void commandAnulaRebaja(int commandNum){ commands[commandNum].Anular(); } public void restablecerSolicitudRebaja() { commands[commandNum].Restablecer(); } public void agrega(Book libro) { _stockLibros.Add(libro); } public void visualiza() { foreach (Book libro in _stockLibros) { libro.Ver(); } } }" />
+<meta property="og:description" content="El patrón Command nos ayuda a transformar una solicitud en un objeto. Estas solicitudes tienen la propiedad de poder encolarse, ser borradas y actualizadas dentro de la cola de peticiones. Volviendo a nuestro caso de libros, todos sabemos que ciertos libros en IT son altamente propensos a quedarse obsoletos, para ello, nuestra implementación de tienda, es capaz de emitir una rebaja para aquellos libros que no están teniendo la salida que queremos. Este proceso, se podría hacer manual con un campo de rebaja, pero queremos que sea el sistema el que emita esta rebaja según la premisa de que si no se vende rebájalo tantas veces como sea necesario hasta salir del stock. Para ello, el patrón command nos ayudará a no tener que efectuar este proceso por cada uno de los libros del stock. public class Book { protected string _nombre; protected DateTime _fechaEntradaStock; protected double _precioVenta; public Book(string nombre, DateTime fechaEntradaStock, double precioVenta) { _nombre = nombre; _fechaEntradaStock = fechaEntradaStock; _precioVenta = precioVenta; } public long TiempoStock(){ return (DateTime.Now - _fechaEntradaStock).Ticks; } public void ActualizaPrecio(double descuento) { _precioVenta = 0.01 * Math.Round(descuento) * _precioventa *100; } public void Ver() { Console.WriteLine($&quot;{nombre} tiene un precio {_precioVenta} entrada {_fechaEntradaStock}&quot;); } } public class AplicarRebaja { protected IList&lt;Book&gt; _stockLibros = new List&lt;Book&gt;(); protected long _hoy; protected long _tiempoStock; protected double _descuento; public AplicarRebaja(long tiempoStock, double descuento) { _hoy = DateTime.Now.Ticks; _tiempoStock = tiempoStock; _descuento = descuento; } public void Rebajar(IList&lt;Book&gt; Libros) { _stockLibros.Clear(); foreach(var libro in Libros) { if(libro.TiempoStock()) &gt;= _tiempoStock{ _stockLibros.Add(libro); } } foreach(var libroARebajar in _stockLibros){ libroARebajar.ActualizaPrecio(1.0 - descuento); } } public void Anular() { foreach(var libro in _stockLibros) { libro.ActualizaPrecio(1.0 / (1.0 - descuento)); } } public void Restablecer(){ foreach(var libro in _stockLibros) { libro.ActualizaPrecio(1.0 - descuento)); } } } public class Catalogo { protected IList&lt;Book&gt; _stockLibros = new List&lt;Book&gt;(); protected IList&lt;AplicarRebaja&gt; commands = new List&lt;AplicarRebaja&gt;(); public void commandRebaja(AplicarRebaja aplicarRebaja) { commands.Insert(0, aplicarRebaja); aplicarRebaja.Rebajar(_stockLibros); } public void commandAnulaRebaja(int commandNum){ commands[commandNum].Anular(); } public void restablecerSolicitudRebaja() { commands[commandNum].Restablecer(); } public void agrega(Book libro) { _stockLibros.Add(libro); } public void visualiza() { foreach (Book libro in _stockLibros) { libro.Ver(); } } }" />
+<link rel="canonical" href="http://localhost:4000/patron-command" />
+<meta property="og:url" content="http://localhost:4000/patron-command" />
+<meta property="og:site_name" content="JRRN Coding! A simple Jekyll blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-01-23T00:00:00+01:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/patron-command","dateModified":"2018-01-23T00:00:00+01:00","datePublished":"2018-01-23T00:00:00+01:00","headline":"Patrón Command","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patron-command"},"author":{"@type":"Person","name":"JRRN"},"description":"El patrón Command nos ayuda a transformar una solicitud en un objeto. Estas solicitudes tienen la propiedad de poder encolarse, ser borradas y actualizadas dentro de la cola de peticiones. Volviendo a nuestro caso de libros, todos sabemos que ciertos libros en IT son altamente propensos a quedarse obsoletos, para ello, nuestra implementación de tienda, es capaz de emitir una rebaja para aquellos libros que no están teniendo la salida que queremos. Este proceso, se podría hacer manual con un campo de rebaja, pero queremos que sea el sistema el que emita esta rebaja según la premisa de que si no se vende rebájalo tantas veces como sea necesario hasta salir del stock. Para ello, el patrón command nos ayudará a no tener que efectuar este proceso por cada uno de los libros del stock. public class Book { protected string _nombre; protected DateTime _fechaEntradaStock; protected double _precioVenta; public Book(string nombre, DateTime fechaEntradaStock, double precioVenta) { _nombre = nombre; _fechaEntradaStock = fechaEntradaStock; _precioVenta = precioVenta; } public long TiempoStock(){ return (DateTime.Now - _fechaEntradaStock).Ticks; } public void ActualizaPrecio(double descuento) { _precioVenta = 0.01 * Math.Round(descuento) * _precioventa *100; } public void Ver() { Console.WriteLine($&quot;{nombre} tiene un precio {_precioVenta} entrada {_fechaEntradaStock}&quot;); } } public class AplicarRebaja { protected IList&lt;Book&gt; _stockLibros = new List&lt;Book&gt;(); protected long _hoy; protected long _tiempoStock; protected double _descuento; public AplicarRebaja(long tiempoStock, double descuento) { _hoy = DateTime.Now.Ticks; _tiempoStock = tiempoStock; _descuento = descuento; } public void Rebajar(IList&lt;Book&gt; Libros) { _stockLibros.Clear(); foreach(var libro in Libros) { if(libro.TiempoStock()) &gt;= _tiempoStock{ _stockLibros.Add(libro); } } foreach(var libroARebajar in _stockLibros){ libroARebajar.ActualizaPrecio(1.0 - descuento); } } public void Anular() { foreach(var libro in _stockLibros) { libro.ActualizaPrecio(1.0 / (1.0 - descuento)); } } public void Restablecer(){ foreach(var libro in _stockLibros) { libro.ActualizaPrecio(1.0 - descuento)); } } } public class Catalogo { protected IList&lt;Book&gt; _stockLibros = new List&lt;Book&gt;(); protected IList&lt;AplicarRebaja&gt; commands = new List&lt;AplicarRebaja&gt;(); public void commandRebaja(AplicarRebaja aplicarRebaja) { commands.Insert(0, aplicarRebaja); aplicarRebaja.Rebajar(_stockLibros); } public void commandAnulaRebaja(int commandNum){ commands[commandNum].Anular(); } public void restablecerSolicitudRebaja() { commands[commandNum].Restablecer(); } public void agrega(Book libro) { _stockLibros.Add(libro); } public void visualiza() { foreach (Book libro in _stockLibros) { libro.Ver(); } } }","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
 
-	<!-- CSS & fonts -->
-	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-	<link rel="stylesheet" href="/css/main.css">
 	<link rel="shortcut icon" href="img/icons/favicon.ico">
 	<!-- RSS -->
 	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
@@ -50,8 +61,6 @@
 	  
 	    
 	      <a href="/about" title="Sobre mí">Sobre mí</a>
-	    
-	  
 	    
 	  
 	    
@@ -237,6 +246,10 @@
 
   
   
+  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
+
+  
+  
   <a href="/tag/MsIoT"><code class="highligher-rouge">MsIoT</code></a><br/>
 
   
@@ -246,10 +259,6 @@
   
   
   <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
-
-  
-  
-  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
 
 
         </div>
@@ -274,15 +283,20 @@
         </div>
         <div class="col-md-1 pull-right">
                 <a href="https://github.com/jrrn" target="_blank">
-                    <img src="/img/icons/github_ico.jpg" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
+                    <img src="/img/icons/github_ico.jpg" title="Github" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
                 </a>
                 <a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" target="_blank">
-                    <img src="/img/icons/linkedin_ico.jpg" class="socialLinksfooter" style="height: 30px;" alt="LinkedIn Logo">
+                    <img src="/img/icons/linkedin_ico.jpg" tilte="LinkedIn" class="socialLinksfooter" style="height: 30px;" alt="LinkedIn Logo">
                 </a>
         </div>
     </div>
 
 </footer>
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/main.css">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
