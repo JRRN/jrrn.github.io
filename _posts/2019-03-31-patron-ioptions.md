@@ -4,7 +4,7 @@ title: Patrón de Opciones
 tags: Arquitectura
 ---
 
-¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montando más de una vez para albergar en un clase todas las settings de nuestra aplicación y no tener desparramado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y se replicaba en todo el contexto de la aplicación)?
+¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montado más de una vez para albergar en un clase todas las settings de nuestra aplicación y no tener desparramado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y se replicaba en todo el contexto de la aplicación)?
 
 ¿Qué no sabes de lo que te hablo?:
 
