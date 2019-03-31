@@ -4,7 +4,7 @@ title: Patrón de Opciones
 tags: Arquitectura
 ---
 
-¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montando más de una vez para albergar en un clase todas las settings de nuetra aplicación y no tener desparamado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y se replicaba en todo el contexto de la apliación)?
+¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montando más de una vez para albergar en un clase todas las settings de nuestra aplicación y no tener desparramado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y se replicaba en todo el contexto de la aplicación)?
 
 ¿Qué no sabes de lo que te hablo?:
 
@@ -41,30 +41,24 @@ Appsettings.json
 }
 
 ~~~csharp
-public class MyOptions
+public class MySettings
 {
-    public MySettings()
-    {
-        // Set default value.
-        Option1 = "value1_from_ctor";
-    }
-    
-    public string Option1 { get; set; }
-    public int Option2 { get; set; } = 5;
+    public string StringSetting { get; set; }
+    public int IntSetting { get; set; }
 }
 ~~~
 
-Por otro lado registramos en el contenedor de servicios la clase que hemos definido anteriormente, aquí esta la magía:
+Por otro lado registramos en el contenedor de servicios la clase que hemos definido anteriormente, aquí esta la magia:
 
 ~~~csharp
-services.Configure<MySettings>(Configuration);
+    services.Configure<MySettings>(options => Configuration.GetSection("MySettings").Bind(options));
 ~~~
 
 En este punto al levantar la aplicación el gestiona el contenedor de dependencias y lee el archivo appsettings registrando una instancia de la clase MySettings.
 
 Y ya.
 
-A partir de aquí en las clases que necesitemos acceder a la configuración simplemente inyectaremos una interfaz Ioptions<MyOptions> y podremos acceder al servicio que se registro en el contendor de depencias:
+A partir de aquí en las clases que necesitemos acceder a la configuración simplemente inyectaremos una interfaz IOptions<MySettings> y podremos acceder al servicio que se registro en el contenedor de dependencias:
 
 ~~~csharp
 public class HomeController : Controller
@@ -84,10 +78,12 @@ Lo mejor de todo es podemos inyectar esta configuración en páginas razor:
 @page
 @model IndexModel
 @using Microsoft.Extensions.Options
-@inject IOptionsMonitor<MyOptions> OptionsAccessor
+@inject IOptionsMonitor<MySettings> _settings
 @{
-    ViewData["Option1"] = OptionsAccessor.Option1;
+    ViewData["StringSetting"] = _settings.StringSetting;
 }
 
-<h1>@ViewData["Option1"]</h1>
+<h1>@ViewData["StringSetting"]</h1>
 ~~~
+
+Saludos.
