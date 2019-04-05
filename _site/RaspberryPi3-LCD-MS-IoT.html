@@ -9,20 +9,20 @@
 
 	<title>Raspberry Pi 3, LCD Display, C# y MS IoT</title>
 	<!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Raspberry Pi 3, LCD Display, C# y MS IoT | JRRN Coding! A simple Jekyll blog</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<title>Raspberry Pi 3, LCD Display, C# y MS IoT | JRRN Coding!</title>
+<meta name="generator" content="Jekyll v3.8.4" />
 <meta property="og:title" content="Raspberry Pi 3, LCD Display, C# y MS IoT" />
 <meta name="author" content="JRRN" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Raspberry Pi 3, LCD, C# y MS IoT Hola, hará un año o así, compré una Raspeberry Pi 3. Mi idea era jugar un poco con ella tanto en su versión modo PC/Servidor como su versión IoT. Durante este año, he jugado con ella, he probado varias distribuciones Raspbian, Arch Linux, Suse y Fedora, buscando cual era la más cómoda, me ofrecía más prestaciones, etc… En su día, este blog estuvo alojado con un nginx + PhP + postgreSQL + Wordpress, finalmente un día, se me quedó frita, y aunque tenía documentado paso por paso como levantarlo otra vez, decidí migrar a Github Pages. Después de esta gran anécdota, decidí comprar un par de starter kits de Elegoo, el Fun Kit y 37 Sensor Kit v 2.0 y ver si Microsoft había avanzado en esta línea, que en sus comienzos era como una piedra, o la tenías de adorno o se la tirabas a alguien a la cabeza. Me sorprende que los sistemas Linux hayan podido montar todo el SO y Microsoft no, pero eso es otra charla, un ¿NANO Server? En definitiva, os adjunto, el código y el esquema para poder enviar texto sobre una pantalla LCD desde la RPi3. Esquema: Por otro lado, el esquema en Fritzing, que si no lo conocéis, es un programa de código abierto que te permite crear los esquemas y diagramas con un montón de componentes. FritzingFile Y finalmente el código fuente: public sealed partial class MainPage : Page { CharacterLCD lcd = null; public MainPage() { InitializeComponent(); Unloaded += MainPage_Unloaded; lcd = new CharacterLCD(); lcd.WriteLCD(&quot;Welcome MS IoT 2 Plain Concepts!&quot;); } private void MainPage_Unloaded(object sender, RoutedEventArgs e) { lcd.Dispose(); } private void WriteLCD_Click(object sender, RoutedEventArgs e) { lcd.WriteLCD(txtWriteLCD.Text); } } LCD Nos vemos." />
-<meta property="og:description" content="Raspberry Pi 3, LCD, C# y MS IoT Hola, hará un año o así, compré una Raspeberry Pi 3. Mi idea era jugar un poco con ella tanto en su versión modo PC/Servidor como su versión IoT. Durante este año, he jugado con ella, he probado varias distribuciones Raspbian, Arch Linux, Suse y Fedora, buscando cual era la más cómoda, me ofrecía más prestaciones, etc… En su día, este blog estuvo alojado con un nginx + PhP + postgreSQL + Wordpress, finalmente un día, se me quedó frita, y aunque tenía documentado paso por paso como levantarlo otra vez, decidí migrar a Github Pages. Después de esta gran anécdota, decidí comprar un par de starter kits de Elegoo, el Fun Kit y 37 Sensor Kit v 2.0 y ver si Microsoft había avanzado en esta línea, que en sus comienzos era como una piedra, o la tenías de adorno o se la tirabas a alguien a la cabeza. Me sorprende que los sistemas Linux hayan podido montar todo el SO y Microsoft no, pero eso es otra charla, un ¿NANO Server? En definitiva, os adjunto, el código y el esquema para poder enviar texto sobre una pantalla LCD desde la RPi3. Esquema: Por otro lado, el esquema en Fritzing, que si no lo conocéis, es un programa de código abierto que te permite crear los esquemas y diagramas con un montón de componentes. FritzingFile Y finalmente el código fuente: public sealed partial class MainPage : Page { CharacterLCD lcd = null; public MainPage() { InitializeComponent(); Unloaded += MainPage_Unloaded; lcd = new CharacterLCD(); lcd.WriteLCD(&quot;Welcome MS IoT 2 Plain Concepts!&quot;); } private void MainPage_Unloaded(object sender, RoutedEventArgs e) { lcd.Dispose(); } private void WriteLCD_Click(object sender, RoutedEventArgs e) { lcd.WriteLCD(txtWriteLCD.Text); } } LCD Nos vemos." />
+<meta name="description" content="Raspberry Pi 3, LCD, C# y MS IoT" />
+<meta property="og:description" content="Raspberry Pi 3, LCD, C# y MS IoT" />
 <link rel="canonical" href="http://localhost:4000/RaspberryPi3-LCD-MS-IoT" />
 <meta property="og:url" content="http://localhost:4000/RaspberryPi3-LCD-MS-IoT" />
-<meta property="og:site_name" content="JRRN Coding! A simple Jekyll blog" />
+<meta property="og:site_name" content="JRRN Coding!" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-01-03T00:00:00+01:00" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"http://localhost:4000/RaspberryPi3-LCD-MS-IoT","dateModified":"2018-01-03T00:00:00+01:00","datePublished":"2018-01-03T00:00:00+01:00","headline":"Raspberry Pi 3, LCD Display, C# y MS IoT","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/RaspberryPi3-LCD-MS-IoT"},"author":{"@type":"Person","name":"JRRN"},"description":"Raspberry Pi 3, LCD, C# y MS IoT Hola, hará un año o así, compré una Raspeberry Pi 3. Mi idea era jugar un poco con ella tanto en su versión modo PC/Servidor como su versión IoT. Durante este año, he jugado con ella, he probado varias distribuciones Raspbian, Arch Linux, Suse y Fedora, buscando cual era la más cómoda, me ofrecía más prestaciones, etc… En su día, este blog estuvo alojado con un nginx + PhP + postgreSQL + Wordpress, finalmente un día, se me quedó frita, y aunque tenía documentado paso por paso como levantarlo otra vez, decidí migrar a Github Pages. Después de esta gran anécdota, decidí comprar un par de starter kits de Elegoo, el Fun Kit y 37 Sensor Kit v 2.0 y ver si Microsoft había avanzado en esta línea, que en sus comienzos era como una piedra, o la tenías de adorno o se la tirabas a alguien a la cabeza. Me sorprende que los sistemas Linux hayan podido montar todo el SO y Microsoft no, pero eso es otra charla, un ¿NANO Server? En definitiva, os adjunto, el código y el esquema para poder enviar texto sobre una pantalla LCD desde la RPi3. Esquema: Por otro lado, el esquema en Fritzing, que si no lo conocéis, es un programa de código abierto que te permite crear los esquemas y diagramas con un montón de componentes. FritzingFile Y finalmente el código fuente: public sealed partial class MainPage : Page { CharacterLCD lcd = null; public MainPage() { InitializeComponent(); Unloaded += MainPage_Unloaded; lcd = new CharacterLCD(); lcd.WriteLCD(&quot;Welcome MS IoT 2 Plain Concepts!&quot;); } private void MainPage_Unloaded(object sender, RoutedEventArgs e) { lcd.Dispose(); } private void WriteLCD_Click(object sender, RoutedEventArgs e) { lcd.WriteLCD(txtWriteLCD.Text); } } LCD Nos vemos.","@context":"http://schema.org"}</script>
+{"description":"Raspberry Pi 3, LCD, C# y MS IoT","author":{"@type":"Person","name":"JRRN"},"@type":"BlogPosting","url":"http://localhost:4000/RaspberryPi3-LCD-MS-IoT","headline":"Raspberry Pi 3, LCD Display, C# y MS IoT","dateModified":"2018-01-03T00:00:00+01:00","datePublished":"2018-01-03T00:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/RaspberryPi3-LCD-MS-IoT"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 	<link rel="shortcut icon" href="img/icons/favicon.ico">
@@ -60,7 +60,13 @@
 	    
 	  
 	    
+	  
+	    
 	      <a href="/about" title="Sobre mí">Sobre mí</a>
+	    
+	  
+	    
+	  
 	    
 	  
 	    
@@ -216,6 +222,10 @@
   
   
   <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
+
+  
+  
+  <a href="/tag/Conferences"><code class="highligher-rouge">Conferences</code></a><br/>
 
 
         </div>

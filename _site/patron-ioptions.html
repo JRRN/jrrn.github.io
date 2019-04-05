@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="generator" content="Jekyll">
+
+	<title>Patrón de Opciones</title>
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Patrón de Opciones | JRRN Coding!</title>
+<meta name="generator" content="Jekyll v3.8.4" />
+<meta property="og:title" content="Patrón de Opciones" />
+<meta name="author" content="JRRN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montado más de una vez para albergar en un clase todas las settings de nuestra aplicación y no tener desparramado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y se replicaba en todo el contexto de la aplicación)?" />
+<meta property="og:description" content="¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montado más de una vez para albergar en un clase todas las settings de nuestra aplicación y no tener desparramado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y se replicaba en todo el contexto de la aplicación)?" />
+<link rel="canonical" href="http://localhost:4000/patron-ioptions" />
+<meta property="og:url" content="http://localhost:4000/patron-ioptions" />
+<meta property="og:site_name" content="JRRN Coding!" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-03-31T00:00:00+01:00" />
+<script type="application/ld+json">
+{"description":"¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montado más de una vez para albergar en un clase todas las settings de nuestra aplicación y no tener desparramado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y se replicaba en todo el contexto de la aplicación)?","author":{"@type":"Person","name":"JRRN"},"@type":"BlogPosting","url":"http://localhost:4000/patron-ioptions","headline":"Patrón de Opciones","dateModified":"2019-03-31T00:00:00+01:00","datePublished":"2019-03-31T00:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patron-ioptions"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+	<link rel="shortcut icon" href="img/icons/favicon.ico">
+	<!-- RSS -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+	
+	
+
+
+
+
+
+  	
+</head>
+
+
+<body>
+	<div id="wrap">
+	  	<!-- Navigation -->
+	  	<nav id="nav">
+	<div id="nav-list">
+		<a href="/">Home</a>
+		<!-- Nav pages -->
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	      <a href="/about" title="Sobre mí">Sobre mí</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+    <!-- Nav links -->
+	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
+<a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
+
+
+
+	</div>
+  
+  <!-- Nav footer -->
+	
+	  <span>version 1.0.0</span>
+
+
+
+
+
+	
+
+</nav>
+
+    <!-- Icon menu -->
+	  <a id="nav-menu">
+	  	<div id="menu"></div>
+	  </a>
+      <!-- Header -->
+        <header id="header">
+	<div class="headerbackground"></div>
+	<a href="/">
+	  <h1>JRRN Coding!</h1>
+	</a>
+</header>
+
+    <!-- Main content -->
+	  <div id="container">
+      <div class="row">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-md-7 col-lg-7">
+          <main>
+            <article id="post-page">
+	<div>
+		<h2>Patrón de Opciones</h2><span>[
+			
+				
+				<a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura<nobr></code>&nbsp;</a>
+			
+			]</span>	
+	<time datetime="2019-03-31T00:00:00+01:00" class="by-line">31 Mar 2019</time>
+	</div>
+		
+	<div class="content">
+		<p>¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montado más de una vez para albergar en un clase todas las settings de nuestra aplicación y no tener desparramado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y se replicaba en todo el contexto de la aplicación)?</p>
+
+<p>¿Qué no sabes de lo que te hablo?:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">ConfigProvider</span> <span class="p">{</span>  
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Usuario</span> <span class="p">=</span> <span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">"User"</span><span class="p">];</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Password</span> <span class="p">=</span> <span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">"Password"</span><span class="p">];</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Reintentos</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsLoginActive</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+
+    <span class="n">etc</span><span class="p">.</span>
+    <span class="n">etc</span><span class="p">.</span>
+    <span class="n">etc</span><span class="p">.</span>            
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kt">var</span> <span class="n">config</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ConfigProvider</span><span class="p">();</span>
+
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">Usuario</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Sin embargo, con Net Core, se lo han currado un poco más y ahora queda centralizado a la hora de registrar la dependencias.</p>
+
+<p>Primero de todo generamos una clase para la sección de las appsettings o para todo el appsettings, recordemos que si hacemos esta última, será accesible desde cualquier punto de la aplicación.</p>
+
+<p>Appsettings.json
+{
+  “MySettings”: {
+    “StringSetting”: “My Value”,
+    “IntSetting”: 23 
+  }
+}</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">MySettings</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">StringSetting</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">IntSetting</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Por otro lado registramos en el contenedor de servicios la clase que hemos definido anteriormente, aquí esta la magia:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">services</span><span class="p">.</span><span class="n">Configure</span><span class="p">&lt;</span><span class="n">MySettings</span><span class="p">&gt;(</span><span class="n">options</span> <span class="p">=&gt;</span> <span class="n">Configuration</span><span class="p">.</span><span class="nf">GetSection</span><span class="p">(</span><span class="s">"MySettings"</span><span class="p">).</span><span class="nf">Bind</span><span class="p">(</span><span class="n">options</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>En este punto al levantar la aplicación el gestiona el contenedor de dependencias y lee el archivo appsettings registrando una instancia de la clase MySettings.</p>
+
+<p>Y ya.</p>
+
+<p>A partir de aquí en las clases que necesitemos acceder a la configuración simplemente inyectaremos una interfaz IOptions<MySettings> y podremos acceder al servicio que se registro en el contenedor de dependencias:</MySettings></p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">HomeController</span> <span class="p">:</span> <span class="n">Controller</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="n">MySettings</span> <span class="n">_settings</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nf">HomeController</span><span class="p">(</span><span class="n">IOptions</span><span class="p">&lt;</span><span class="n">MySettings</span><span class="p">&gt;</span> <span class="n">settings</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_settings</span> <span class="p">=</span> <span class="n">settings</span><span class="p">.</span><span class="n">Value</span>
+        <span class="c1">// _settings.StringSetting == "My Value";</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Lo mejor de todo es podemos inyectar esta configuración en páginas razor:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@page</span>
+<span class="n">@model</span> <span class="n">IndexModel</span>
+<span class="n">@using</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">Extensions</span><span class="p">.</span><span class="n">Options</span>
+<span class="n">@inject</span> <span class="n">IOptionsMonitor</span><span class="p">&lt;</span><span class="n">MySettings</span><span class="p">&gt;</span> <span class="n">_settings</span>
+<span class="err">@</span><span class="p">{</span>
+    <span class="n">ViewData</span><span class="p">[</span><span class="s">"StringSetting"</span><span class="p">]</span> <span class="p">=</span> <span class="n">_settings</span><span class="p">.</span><span class="n">StringSetting</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">&lt;</span><span class="n">h1</span><span class="p">&gt;</span><span class="n">@ViewData</span><span class="p">[</span><span class="s">"StringSetting"</span><span class="p">]&lt;/</span><span class="n">h1</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>Saludos.</p>
+
+	</div>
+</article>
+
+
+          </main>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <br/>
+<br/>
+<h5>Archivo </h5>
+
+
+
+  
+  
+  <a href="/tag/Arquitectura"><code class="highligher-rouge">Arquitectura</code></a><br/>
+
+  
+  
+  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
+
+  
+  
+  <a href="/tag/MsIoT"><code class="highligher-rouge">MsIoT</code></a><br/>
+
+  
+  
+  <a href="/tag/Git"><code class="highligher-rouge">Git</code></a><br/>
+
+  
+  
+  <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
+
+  
+  
+  <a href="/tag/Conferences"><code class="highligher-rouge">Conferences</code></a><br/>
+
+
+        </div>
+        <div class="col-md-1 col-lg-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 pull-center">
+		  <!-- Pagination links -->
+      
+      </div>
+      </div>
+    </div>
+    <br/><br/><br/>
+	    
+	    <!-- Footer -->
+	    <footer>
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10 pull-center">
+                <span>@2017 - JRRN</span>
+        </div>
+        <div class="col-md-1 pull-right">
+                <a href="https://github.com/jrrn" target="_blank">
+                    <img src="/img/icons/github_ico.jpg" title="Github" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
+                </a>
+                <a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" target="_blank">
+                    <img src="/img/icons/linkedin_ico.jpg" tilte="LinkedIn" class="socialLinksfooter" style="height: 30px;" alt="LinkedIn Logo">
+                </a>
+        </div>
+    </div>
+
+</footer>
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/main.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99774552-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-99774552-1');
+</script>
+
+	    <!-- Script -->
+      <script src="/js/main.js"></script>	
+
+
+  </div>
+</body>
+</html>
