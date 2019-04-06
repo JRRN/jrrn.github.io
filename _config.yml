@@ -19,7 +19,7 @@ kramdown:
 source: .
 destination: ./_site
 permalink: /:title
-paginate: 8
+paginate: 5
 paginate_path: /page:num/
 
 # Default values

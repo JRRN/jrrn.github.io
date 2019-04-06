@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-05T19:09:46+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JRRN Coding!</title><subtitle>Blog de desarrollo .NET personal. Contiene artículos técnicos de programación, arquitectura y desarrollo.</subtitle><author><name>JRRN</name><email></email></author><entry><title type="html">Conferencia Azure Bootcamp Barcelona 2019</title><link href="http://localhost:4000/catazurebootcamp" rel="alternate" type="text/html" title="Conferencia Azure Bootcamp Barcelona 2019" /><published>2019-04-01T00:00:00+02:00</published><updated>2019-04-01T00:00:00+02:00</updated><id>http://localhost:4000/catazurebootcamp</id><content type="html" xml:base="http://localhost:4000/catazurebootcamp">&lt;p&gt;Hola a todos. Simplemente comentar que nos han aceptado la charla en la conferencia Azure Bootcamp Barcelona 2019, que daremos &lt;a href=&quot;http://www.marcalmontserrat.com&quot;&gt;&lt;strong&gt;Marçcal Montserrat&lt;/strong&gt;&lt;/a&gt; y un servidor. Estamos ilusionados y con muchas ganas de dar lo mejor y que la gente salga de ella encantada.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-06T08:40:41+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JRRN Coding!</title><subtitle>Blog de desarrollo .NET personal. Contiene artículos técnicos de programación, arquitectura y desarrollo.</subtitle><author><name>JRRN</name><email></email></author><entry><title type="html">Conferencia Azure Bootcamp Barcelona 2019</title><link href="http://localhost:4000/catazurebootcamp" rel="alternate" type="text/html" title="Conferencia Azure Bootcamp Barcelona 2019" /><published>2019-04-01T00:00:00+02:00</published><updated>2019-04-01T00:00:00+02:00</updated><id>http://localhost:4000/catazurebootcamp</id><content type="html" xml:base="http://localhost:4000/catazurebootcamp">&lt;p&gt;Hola a todos. Simplemente comentar que nos han aceptado la charla en la conferencia Azure Bootcamp Barcelona 2019, que daremos &lt;a href=&quot;http://www.marcalmontserrat.com&quot;&gt;&lt;strong&gt;Marçcal Montserrat&lt;/strong&gt;&lt;/a&gt; y un servidor. Estamos ilusionados y con muchas ganas de dar lo mejor y que la gente salga de ella encantada.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://catazurebootcamp.azurewebsites.net#agenda&quot;&gt;Agenda&lt;/a&gt;&lt;/p&gt;
 
@@ -21,7 +21,7 @@ El síndrome del ratón es la afección del túnel carpiano por el constante y c
 
     &lt;span class=&quot;n&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;            
+    &lt;span class=&quot;n&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Main&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -33,7 +33,7 @@ El síndrome del ratón es la afección del túnel carpiano por el constante y c
 
 &lt;p&gt;Sin embargo, con Net Core, se lo han currado un poco más y ahora queda centralizado a la hora de registrar la dependencias.&lt;/p&gt;
 
-&lt;p&gt;Primero de todo generamos una clase para la sección de las appsettings o para todo el appsettings, recordemos que si hacemos esta última, será accesible desde cualquier punto de la aplicación.&lt;/p&gt;
+&lt;p&gt;Primero de todo, generamos una clase para la sección de las appsettings o para todo el appsettings, recordemos que si hacemos esta última, será accesible desde cualquier punto de la aplicación.&lt;/p&gt;
 
 &lt;p&gt;Appsettings.json
 {
@@ -50,16 +50,16 @@ El síndrome del ratón es la afección del túnel carpiano por el constante y c
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Por otro lado registramos en el contenedor de servicios la clase que hemos definido anteriormente, aquí esta la magia:&lt;/p&gt;
+&lt;p&gt;Por otro lado, registramos en el contenedor de servicios la clase que hemos definido anteriormente… aquí está la magia:&lt;/p&gt;
 
 &lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Configure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MySettings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetSection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;MySettings&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;En este punto al levantar la aplicación el gestiona el contenedor de dependencias y lee el archivo appsettings registrando una instancia de la clase MySettings.&lt;/p&gt;
+&lt;p&gt;En este punto, al levantar la aplicación, el gestiona el contenedor de dependencias y lee el archivo appsettings registrando una instancia de la clase MySettings.&lt;/p&gt;
 
 &lt;p&gt;Y ya.&lt;/p&gt;
 
-&lt;p&gt;A partir de aquí en las clases que necesitemos acceder a la configuración simplemente inyectaremos una interfaz IOptions&lt;MySettings&gt; y podremos acceder al servicio que se registro en el contenedor de dependencias:&lt;/MySettings&gt;&lt;/p&gt;
+&lt;p&gt;A partir de aquí, en las clases que necesitemos acceder a la configuración, simplemente inyectaremos una interfaz IOptions&lt;MySettings&gt; y podremos acceder al servicio que se registró en el contenedor de dependencias:&lt;/MySettings&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HomeController&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Controller&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -72,7 +72,7 @@ El síndrome del ratón es la afección del túnel carpiano por el constante y c
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Lo mejor de todo es podemos inyectar esta configuración en páginas razor:&lt;/p&gt;
+&lt;p&gt;Lo mejor de todo, es que podemos inyectar esta configuración en páginas razor:&lt;/p&gt;
 
 &lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;@page&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;@model&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IndexModel&lt;/span&gt;
