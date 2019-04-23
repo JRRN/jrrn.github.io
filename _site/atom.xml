@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>JRRN Coding! | A simple Jekyll blog</title>
+ <title>JRRN Coding!</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2019-03-13T13:19:34+01:00</updated>
+ <updated>2019-04-06T08:40:41+02:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
    <email></email>
  </author>
+
+ 
+
+ <entry>
+   <title>Conferencia Azure Bootcamp Barcelona 2019</title>
+   <link href="http://localhost:4000/catazurebootcamp"/>
+   <id>http://localhost:4000/catazurebootcamp</id>
+   <updated>2019-04-01T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;Hola a todos. Simplemente comentar que nos han aceptado la charla en la conferencia Azure Bootcamp Barcelona 2019, que daremos &lt;a href=&quot;http://www.marcalmontserrat.com&quot;&gt;&lt;strong&gt;Marçcal Montserrat&lt;/strong&gt;&lt;/a&gt; y un servidor. Estamos ilusionados y con muchas ganas de dar lo mejor y que la gente salga de ella encantada.&lt;/p&gt; &lt;p&gt;&lt;a href=&quot;http://catazurebootcamp.azurewebsites.net#agenda&quot;&gt;Agenda&lt;/a&gt;&lt;/p&gt; &lt;blockquote&gt; &lt;p&gt;&lt;strong&gt;De 0 a...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Patrón de Opciones</title>
+   <link href="http://localhost:4000/patron-ioptions"/>
+   <id>http://localhost:4000/patron-ioptions</id>
+   <updated>2019-03-31T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montado más de una vez para albergar en un clase todas las settings de nuestra aplicación y no tener desparramado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y...</content>
+ </entry>
 
  
 
@@ -89,26 +109,6 @@
    <id>http://localhost:4000/patron-strategy</id>
    <updated>2018-08-16T00:00:00+02:00</updated>
    <content type="html">&lt;p&gt;El patrón Strategy nos permite definir varios algoritmos para aplicar sobre un objeto según nos convenga. De esta forma, podemos definir posibles acciones sobre las que decidiremos cual es la más correcta para aplicar según ciertas variables.&lt;/p&gt; &lt;p&gt;Aunque es un patrón bastante sencillo… Lo que realmente hace es definir algoritmos...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Observer</title>
-   <link href="http://localhost:4000/patron-observer"/>
-   <id>http://localhost:4000/patron-observer</id>
-   <updated>2018-08-15T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;El patrón Observer se usa para crear una dependencia entre el objeto y otros que estén anexados a él. De esta forma, cuando se realiza una modificación en el primer objeto, los objetos anexados a el, reciben esta actualización.&lt;/p&gt; &lt;p&gt;Aunque es clara la definición, lo que se trata es de...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Specification</title>
-   <link href="http://localhost:4000/patron-specification"/>
-   <id>http://localhost:4000/patron-specification</id>
-   <updated>2018-07-31T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;El patrón Specification es un patrón orientando a las aplicaciones con dominio. Es un patrón muy útil para validar queries y orientado a encapsular los objetos que pueden usarse en estas queries.&lt;/p&gt; &lt;p&gt;Es un patrón que separa la responsabilidad entre los objetos a recuperar y como los obtenemos.&lt;/p&gt; &lt;p&gt;Vamos con...</content>
  </entry>
 
  

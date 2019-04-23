@@ -9,20 +9,20 @@
 
 	<title>Patrón Specification</title>
 	<!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Patrón Specification | JRRN Coding! A simple Jekyll blog</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<title>Patrón Specification | JRRN Coding!</title>
+<meta name="generator" content="Jekyll v3.8.4" />
 <meta property="og:title" content="Patrón Specification" />
 <meta name="author" content="JRRN" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="El patrón Specification es un patrón orientando a las aplicaciones con dominio. Es un patrón muy útil para validar queries y orientado a encapsular los objetos que pueden usarse en estas queries. Es un patrón que separa la responsabilidad entre los objetos a recuperar y como los obtenemos. Vamos con el ejemplo, que siempre es más claro: public interface ISpecification&lt;TEntity&gt; { bool IsSatisfiedBy(TEntity candidate); } public abstract class Specification&lt;TEntity&gt; : ISpecification&lt;TEntity&gt; { public abstract bool IsSatisfiedBy(TEntity candidate); } public class LibrosPorTemaSpecification : Specification&lt;Book&gt; { public override bool IsSatisfiedBy(Book candidate) { return (candidate.Tema.Any(x =&gt; x.Tema)); } } public Book { public bool ContainsLibrosPorTema { get; set;} } public class Main { public bool HayLibroDeEsteTema(string tema){ var book = new Book{ Tema = tema }; List&lt;Books&gt; repositoryBooks = new bookRepository().GetAll(); if (repositoryBooks.Any(item =&gt; item.ContainsLibrosPorTema)) { return true; } return false; } } Como vemos lo que hemos hecho es encapsular el Linq que generaríamos de forma que pasando el objeto y el método, obtenemos el resultado." />
-<meta property="og:description" content="El patrón Specification es un patrón orientando a las aplicaciones con dominio. Es un patrón muy útil para validar queries y orientado a encapsular los objetos que pueden usarse en estas queries. Es un patrón que separa la responsabilidad entre los objetos a recuperar y como los obtenemos. Vamos con el ejemplo, que siempre es más claro: public interface ISpecification&lt;TEntity&gt; { bool IsSatisfiedBy(TEntity candidate); } public abstract class Specification&lt;TEntity&gt; : ISpecification&lt;TEntity&gt; { public abstract bool IsSatisfiedBy(TEntity candidate); } public class LibrosPorTemaSpecification : Specification&lt;Book&gt; { public override bool IsSatisfiedBy(Book candidate) { return (candidate.Tema.Any(x =&gt; x.Tema)); } } public Book { public bool ContainsLibrosPorTema { get; set;} } public class Main { public bool HayLibroDeEsteTema(string tema){ var book = new Book{ Tema = tema }; List&lt;Books&gt; repositoryBooks = new bookRepository().GetAll(); if (repositoryBooks.Any(item =&gt; item.ContainsLibrosPorTema)) { return true; } return false; } } Como vemos lo que hemos hecho es encapsular el Linq que generaríamos de forma que pasando el objeto y el método, obtenemos el resultado." />
+<meta name="description" content="El patrón Specification es un patrón orientando a las aplicaciones con dominio. Es un patrón muy útil para validar queries y orientado a encapsular los objetos que pueden usarse en estas queries." />
+<meta property="og:description" content="El patrón Specification es un patrón orientando a las aplicaciones con dominio. Es un patrón muy útil para validar queries y orientado a encapsular los objetos que pueden usarse en estas queries." />
 <link rel="canonical" href="http://localhost:4000/patron-specification" />
 <meta property="og:url" content="http://localhost:4000/patron-specification" />
-<meta property="og:site_name" content="JRRN Coding! A simple Jekyll blog" />
+<meta property="og:site_name" content="JRRN Coding!" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-07-31T00:00:00+02:00" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"http://localhost:4000/patron-specification","dateModified":"2018-07-31T00:00:00+02:00","datePublished":"2018-07-31T00:00:00+02:00","headline":"Patrón Specification","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patron-specification"},"author":{"@type":"Person","name":"JRRN"},"description":"El patrón Specification es un patrón orientando a las aplicaciones con dominio. Es un patrón muy útil para validar queries y orientado a encapsular los objetos que pueden usarse en estas queries. Es un patrón que separa la responsabilidad entre los objetos a recuperar y como los obtenemos. Vamos con el ejemplo, que siempre es más claro: public interface ISpecification&lt;TEntity&gt; { bool IsSatisfiedBy(TEntity candidate); } public abstract class Specification&lt;TEntity&gt; : ISpecification&lt;TEntity&gt; { public abstract bool IsSatisfiedBy(TEntity candidate); } public class LibrosPorTemaSpecification : Specification&lt;Book&gt; { public override bool IsSatisfiedBy(Book candidate) { return (candidate.Tema.Any(x =&gt; x.Tema)); } } public Book { public bool ContainsLibrosPorTema { get; set;} } public class Main { public bool HayLibroDeEsteTema(string tema){ var book = new Book{ Tema = tema }; List&lt;Books&gt; repositoryBooks = new bookRepository().GetAll(); if (repositoryBooks.Any(item =&gt; item.ContainsLibrosPorTema)) { return true; } return false; } } Como vemos lo que hemos hecho es encapsular el Linq que generaríamos de forma que pasando el objeto y el método, obtenemos el resultado.","@context":"http://schema.org"}</script>
+{"description":"El patrón Specification es un patrón orientando a las aplicaciones con dominio. Es un patrón muy útil para validar queries y orientado a encapsular los objetos que pueden usarse en estas queries.","author":{"@type":"Person","name":"JRRN"},"@type":"BlogPosting","url":"http://localhost:4000/patron-specification","headline":"Patrón Specification","dateModified":"2018-07-31T00:00:00+02:00","datePublished":"2018-07-31T00:00:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patron-specification"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 	<link rel="shortcut icon" href="img/icons/favicon.ico">
@@ -60,7 +60,19 @@
 	    
 	  
 	    
+	  
+	    
 	      <a href="/about" title="Sobre mí">Sobre mí</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
 	    
 	  
 	    
@@ -210,6 +222,10 @@
   
   
   <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
+
+  
+  
+  <a href="/tag/Conferences"><code class="highligher-rouge">Conferences</code></a><br/>
 
 
         </div>
