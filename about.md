@@ -194,7 +194,7 @@ title: Sobre mí
         <p> Personalmente, me apasiona cualquier cosa que me tenga enfrascado
         un buen rato, que inicialmente, me llame la atención y me frustre y que
         finalmente llegue a entender y poder decir, “esto lo he hecho yo y así
-        lo he hecho. Mejorémoslo”. No todo es código, y aunque mi profesión es
+        lo he hecho. Mejorémoslo”. No todo es código, aunque mi profesión es
         mi hobbie.</p> 
         <p>También disfruto caminando, con mis guitarras, la horticultura/jardinería,
         cocinando, leyendo, la música o haciendo algún que otro amigurumi. Con
