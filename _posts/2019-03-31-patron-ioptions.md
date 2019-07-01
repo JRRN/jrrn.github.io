@@ -17,7 +17,7 @@ public static class ConfigProvider {
 
     etc.
     etc.
-    etc.
+    etc.            
 }
 
 public static class Main {
@@ -29,13 +29,13 @@ public static class Main {
 
 Sin embargo, con Net Core, se lo han currado un poco más y ahora queda centralizado a la hora de registrar la dependencias.
 
-Primero de todo, generamos una clase para la sección de las appsettings o para todo el appsettings, recordemos que si hacemos esta última, será accesible desde cualquier punto de la aplicación.
+Primero de todo generamos una clase para la sección de las appsettings o para todo el appsettings, recordemos que si hacemos esta última, será accesible desde cualquier punto de la aplicación.
 
 Appsettings.json
 {
   "MySettings": {
     "StringSetting": "My Value",
-    "IntSetting": 23 
+    "IntSetting": 23
   }
 }
 
@@ -47,17 +47,19 @@ public class MySettings
 }
 ~~~
 
-Por otro lado, registramos en el contenedor de servicios la clase que hemos definido anteriormente... aquí está la magia:
+Por otro lado registramos en el contenedor de servicios la clase que hemos definido anteriormente, aquí esta la magia:
 
 ~~~csharp
-    services.Configure<MySettings>(options => Configuration.GetSection("MySettings").Bind(options));
+    services.Configure<MySettings>(
+        options => Configuration.GetSection("MySettings")
+        .Bind(options));
 ~~~
 
-En este punto, al levantar la aplicación, el gestiona el contenedor de dependencias y lee el archivo appsettings registrando una instancia de la clase MySettings.
+En este punto al levantar la aplicación ésta gestiona el contenedor de dependencias y lee el archivo appsettings registrando una instancia de la clase MySettings.
 
 Y ya.
 
-A partir de aquí, en las clases que necesitemos acceder a la configuración, simplemente inyectaremos una interfaz IOptions<MySettings> y podremos acceder al servicio que se registró en el contenedor de dependencias:
+A partir de aquí en las clases que necesitemos acceder a la configuración simplemente inyectaremos una interfaz IOptions<MySettings> y podremos acceder al servicio que se registro en el contenedor de dependencias:
 
 ~~~csharp
 public class HomeController : Controller
@@ -71,7 +73,7 @@ public class HomeController : Controller
 }
 ~~~
 
-Lo mejor de todo, es que podemos inyectar esta configuración en páginas razor:
+Lo mejor de todo es que podemos inyectar esta configuración en páginas razor:
 
 ~~~csharp
 @page

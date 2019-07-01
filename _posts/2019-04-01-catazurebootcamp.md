@@ -4,7 +4,7 @@ title: Conferencia Azure Bootcamp Barcelona 2019
 tags: Conferences
 ---
 
-Hola a todos. Simplemente comentar que nos han aceptado la charla en la conferencia Azure Bootcamp Barcelona 2019, que daremos [**Marçcal Montserrat**](http://www.marcalmontserrat.com) y un servidor. Estamos ilusionados y con muchas ganas de dar lo mejor y que la gente salga de ella encantada.
+Hola a todos. Simplemente comentar que nos han aceptado la charla en la conferencia Azure Bootcamp Barcelona 2019, que daremos [**Marçal Montserrat**](http://www.marcalmontserrat.com) y un servidor. Estamos ilusionados y con muchas ganas de dar lo mejor y que la gente salga de ella encantada.
 
 [Agenda](http://catazurebootcamp.azurewebsites.net#agenda)
 
