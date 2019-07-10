@@ -10,7 +10,7 @@
 	<title>Patrón de Opciones</title>
 	<!-- Begin Jekyll SEO tag v2.5.0 -->
 <title>Patrón de Opciones | JRRN Coding!</title>
-<meta name="generator" content="Jekyll v3.8.4" />
+<meta name="generator" content="Jekyll v3.8.6" />
 <meta property="og:title" content="Patrón de Opciones" />
 <meta name="author" content="JRRN" />
 <meta property="og:locale" content="en_US" />
@@ -46,6 +46,8 @@
 	<div id="nav-list">
 		<a href="/">Home</a>
 		<!-- Nav pages -->
+	  
+	    
 	  
 	    
 	  
@@ -155,7 +157,7 @@
 
     <span class="n">etc</span><span class="p">.</span>
     <span class="n">etc</span><span class="p">.</span>
-    <span class="n">etc</span><span class="p">.</span>
+    <span class="n">etc</span><span class="p">.</span>            
 <span class="p">}</span>
 
 <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Main</span> <span class="p">{</span>
@@ -167,13 +169,13 @@
 
 <p>Sin embargo, con Net Core, se lo han currado un poco más y ahora queda centralizado a la hora de registrar la dependencias.</p>
 
-<p>Primero de todo, generamos una clase para la sección de las appsettings o para todo el appsettings, recordemos que si hacemos esta última, será accesible desde cualquier punto de la aplicación.</p>
+<p>Primero de todo generamos una clase para la sección de las appsettings o para todo el appsettings, recordemos que si hacemos esta última, será accesible desde cualquier punto de la aplicación.</p>
 
 <p>Appsettings.json
 {
   “MySettings”: {
     “StringSetting”: “My Value”,
-    “IntSetting”: 23 
+    “IntSetting”: 23
   }
 }</p>
 
@@ -184,16 +186,18 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Por otro lado, registramos en el contenedor de servicios la clase que hemos definido anteriormente… aquí está la magia:</p>
+<p>Por otro lado registramos en el contenedor de servicios la clase que hemos definido anteriormente, aquí esta la magia:</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">services</span><span class="p">.</span><span class="n">Configure</span><span class="p">&lt;</span><span class="n">MySettings</span><span class="p">&gt;(</span><span class="n">options</span> <span class="p">=&gt;</span> <span class="n">Configuration</span><span class="p">.</span><span class="nf">GetSection</span><span class="p">(</span><span class="s">"MySettings"</span><span class="p">).</span><span class="nf">Bind</span><span class="p">(</span><span class="n">options</span><span class="p">));</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">services</span><span class="p">.</span><span class="n">Configure</span><span class="p">&lt;</span><span class="n">MySettings</span><span class="p">&gt;(</span>
+        <span class="n">options</span> <span class="p">=&gt;</span> <span class="n">Configuration</span><span class="p">.</span><span class="nf">GetSection</span><span class="p">(</span><span class="s">"MySettings"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nf">Bind</span><span class="p">(</span><span class="n">options</span><span class="p">));</span>
 </code></pre></div></div>
 
-<p>En este punto, al levantar la aplicación, el gestiona el contenedor de dependencias y lee el archivo appsettings registrando una instancia de la clase MySettings.</p>
+<p>En este punto al levantar la aplicación ésta gestiona el contenedor de dependencias y lee el archivo appsettings registrando una instancia de la clase MySettings.</p>
 
 <p>Y ya.</p>
 
-<p>A partir de aquí, en las clases que necesitemos acceder a la configuración, simplemente inyectaremos una interfaz IOptions<MySettings> y podremos acceder al servicio que se registró en el contenedor de dependencias:</MySettings></p>
+<p>A partir de aquí en las clases que necesitemos acceder a la configuración simplemente inyectaremos una interfaz IOptions<MySettings> y podremos acceder al servicio que se registro en el contenedor de dependencias:</MySettings></p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">HomeController</span> <span class="p">:</span> <span class="n">Controller</span>
 <span class="p">{</span>
@@ -206,7 +210,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Lo mejor de todo, es que podemos inyectar esta configuración en páginas razor:</p>
+<p>Lo mejor de todo es que podemos inyectar esta configuración en páginas razor:</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@page</span>
 <span class="n">@model</span> <span class="n">IndexModel</span>
@@ -258,6 +262,10 @@
   
   <a href="/tag/Conferences"><code class="highligher-rouge">Conferences</code></a><br/>
 
+  
+  
+  <a href="/tag/Code"><code class="highligher-rouge">Code</code></a><br/>
+
 
         </div>
         <div class="col-md-1 col-lg-1"></div>
@@ -274,12 +282,15 @@
 	    <!-- Footer -->
 	    <footer>
     <div class="row">
-        <div class="col-md-1">
+        <div class="col-md-2">
         </div>
-        <div class="col-md-10 pull-center">
+        <div class="col-md-8 pull-center">
                 <span>@2017 - JRRN</span>
         </div>
-        <div class="col-md-1 pull-right">
+        <div class="col-md-2 pull-right">
+                <a href="https://sessionize.com/j-rafa-ramon/" target="_blank">
+                    <img src="/img/icons/iu.png" title="Sessionize" class="socialLinksfooter" style="height: 30px;" alt="Sessionize Logo">
+                </a>
                 <a href="https://github.com/jrrn" target="_blank">
                     <img src="/img/icons/github_ico.jpg" title="Github" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
                 </a>
