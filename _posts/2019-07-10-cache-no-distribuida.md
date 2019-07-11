@@ -55,7 +55,7 @@ Este tipo de caché funciona hasta que se llena. Es decir si nos liamos a pedir 
 
 Ooooooooh!!! Pero tranquis, que es configurable.
 
-Seteamos la vida de la caché, FromSeconds; FromMinutes..., con esta propiedad la cache se destruye en x tiempo:
+Seteamos la vida de la caché, FromSeconds; FromMinutes..., con esta propiedad la caché se destruye en x tiempo:
 
 ~~~csharp
 var users =  await _cache._cache.GetOrCreateAsync(cacheKey, entry =>
