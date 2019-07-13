@@ -47,7 +47,7 @@ public class NuestroController : Controller
 }
 ~~~
 
-Y voilá, ya tenemos una caché montada en memoria. La caché que se forma, es usuarios por país. Así, si en la primera llamada pedimos los usuarios de España, accederemos hasta el repositorio, nos traeremos los datos y en la salida creará una caché con la clave users-es con los usuarios de España. Si volvemos a ejecutar la llamada al controller, la llamada ya no bajará hasta el repository sino que será la caché quien nos devuelva los usuarios. Sin embargo, si solicitamos los usuarios de México, se volverá el acceder al repositorio y se añadirá a la caché de usuarios con la clave users-mx.
+Y voilà, ya tenemos una caché montada en memoria. La caché que se forma, es usuarios por país. Así, si en la primera llamada pedimos los usuarios de España, accederemos hasta el repositorio, nos traeremos los datos y en la salida creará una caché con la clave users-es con los usuarios de España. Si volvemos a ejecutar la llamada al controller, la llamada ya no bajará hasta el repository sino que será la caché quien nos devuelva los usuarios. Sin embargo, si solicitamos los usuarios de México, se volverá el acceder al repositorio y se añadirá a la caché de usuarios con la clave users-mx.
 
 Vale, ¿que fácil no? Pues la verdad que sí. Decir que la IMemoryCaché se limita por un [algoritmo LRU](https://es.wikipedia.org/wiki/Algoritmo_de_caché) que nos permite usar el 20% de la RAM de la instancia como máximo.
 
