@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="generator" content="Jekyll">
+
+	<title>Caché no distribuida en Net Core</title>
+	<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Caché no distribuida en Net Core | JRRN Coding!</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Caché no distribuida en Net Core" />
+<meta name="author" content="JRRN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria." />
+<meta property="og:description" content="Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria." />
+<link rel="canonical" href="http://localhost:4000/cache-no-distribuida" />
+<meta property="og:url" content="http://localhost:4000/cache-no-distribuida" />
+<meta property="og:site_name" content="JRRN Coding!" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-10T00:00:00+02:00" />
+<script type="application/ld+json">
+{"description":"Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria.","author":{"@type":"Person","name":"JRRN"},"@type":"BlogPosting","url":"http://localhost:4000/cache-no-distribuida","headline":"Caché no distribuida en Net Core","dateModified":"2019-07-10T00:00:00+02:00","datePublished":"2019-07-10T00:00:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/cache-no-distribuida"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+	<link rel="shortcut icon" href="img/icons/favicon.ico">
+	<!-- RSS -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+	
+	
+
+
+
+
+
+  	
+</head>
+
+
+<body>
+	<div id="wrap">
+	  	<!-- Navigation -->
+	  	<nav id="nav">
+	<div id="nav-list">
+		<a href="/">Home</a>
+		<!-- Nav pages -->
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	      <a href="/about" title="Sobre mí">Sobre mí</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+    <!-- Nav links -->
+	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
+<a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
+
+
+
+	</div>
+  
+  <!-- Nav footer -->
+	
+	  <span>version 1.0.0</span>
+
+
+
+
+
+	
+
+</nav>
+
+    <!-- Icon menu -->
+	  <a id="nav-menu">
+	  	<div id="menu"></div>
+	  </a>
+      <!-- Header -->
+        <header id="header">
+	<div class="headerbackground"></div>
+	<a href="/">
+	  <h1>JRRN Coding!</h1>
+	</a>
+</header>
+
+    <!-- Main content -->
+	  <div id="container">
+      <div class="row">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-md-7 col-lg-7">
+          <main>
+            <article id="post-page">
+	<div>
+		<h2>Caché no distribuida en Net Core</h2><span>[
+			
+				
+				<a href="/tag/Code"><code class="highligher-rouge"><nobr>Code<nobr></code>&nbsp;</a>
+			
+			]</span>	
+	<time datetime="2019-07-10T00:00:00+02:00" class="by-line">10 Jul 2019</time>
+	</div>
+		
+	<div class="content">
+		<p>Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria.</p>
+
+<p>Este tipo de caché, como redis, memcaché, etc… se diferencia que no es una caché persistida y distribuida. Esto quiere decir que esta caché se crea en memoria y en cada instancia de servidor de la aplicación, donde tenemos una caché diferente.</p>
+
+<p>Para ello, simplemente necesitamos añadir el servicio en la inyección de dependencias y el paquete nuget <strong>Microsoft.Extensions.Caching.Memory</strong>:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">void</span> <span class="nf">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+    <span class="n">services</span><span class="p">.</span><span class="nf">AddMemoryCache</span><span class="p">();</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Inyectado nuestro servicio, ahora ya podemos usar la Interfaz IMemoryCache y generar cachés de nuestros servicios:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">NuestroController</span> <span class="p">:</span> <span class="n">Controller</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="n">IMemoryCache</span> <span class="n">_cache</span><span class="p">;</span>
+    <span class="k">private</span> <span class="n">IUserRepository</span> <span class="n">_userRepository</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">NuestroController</span><span class="p">(</span><span class="n">IMemoryCache</span> <span class="n">memoryCache</span><span class="p">,</span>
+                             <span class="n">IUserRepository</span> <span class="n">userRepository</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_cache</span> <span class="p">=</span> <span class="n">memoryCache</span><span class="p">;</span>
+        <span class="n">_userRepository</span> <span class="p">=</span> <span class="n">userRepository</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="p">[</span><span class="n">HttpGet</span><span class="p">]</span>
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Usuarios</span><span class="p">&gt;&gt;</span> <span class="nf">GetUsersByCountry</span><span class="p">(</span><span class="kt">string</span> <span class="n">country</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">cacheKey</span> <span class="p">=</span> <span class="s">$"users-</span><span class="p">{</span><span class="n">country</span><span class="p">}</span><span class="s">"</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">users</span> <span class="p">=</span>  <span class="k">await</span> <span class="n">_cache</span><span class="p">.</span><span class="n">_cache</span><span class="p">.</span><span class="nf">GetOrCreateAsync</span><span class="p">(</span><span class="n">cacheKey</span><span class="p">,</span> <span class="n">entry</span> <span class="p">=&gt;</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="k">await</span> <span class="n">_userRepository</span><span class="p">.</span><span class="nf">GetUsersByCountry</span><span class="p">(</span><span class="n">country</span><span class="p">);</span>
+        <span class="p">});</span>
+        <span class="k">return</span> <span class="n">users</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Y voilà, ya tenemos una caché montada en memoria. La caché que se forma, es usuarios por país. Así, si en la primera llamada pedimos los usuarios de España, accederemos hasta el repositorio, nos traeremos los datos y en la salida creará una caché con la clave users-es con los usuarios de España. Si volvemos a ejecutar la llamada al controller, la llamada ya no bajará hasta el repository sino que será la caché quien nos devuelva los usuarios. Sin embargo, si solicitamos los usuarios de México, se volverá el acceder al repositorio y se añadirá a la caché de usuarios con la clave users-mx.</p>
+
+<p>Vale, ¿que fácil no? Pues la verdad que sí. Decir que la IMemoryCaché se limita por un <a href="https://es.wikipedia.org/wiki/Algoritmo_de_caché">algoritmo LRU</a> que nos permite usar el 20% de la RAM de la instancia como máximo.</p>
+
+<p>Este tipo de caché funciona hasta que se llena. Es decir si nos liamos a pedir usuarios de países se generaran tantas cachekeys como nos quepan en ese 20%. Las demás irán a repositorio mientras no entre a funcionar el algoritmo LRU.</p>
+
+<p>Ooooooooh!!! Pero tranquis, que es configurable.</p>
+
+<p>Seteamos la vida de la caché, FromSeconds; FromMinutes…, con esta propiedad la caché se destruye en x tiempo:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">users</span> <span class="p">=</span>  <span class="k">await</span> <span class="n">_cache</span><span class="p">.</span><span class="n">_cache</span><span class="p">.</span><span class="nf">GetOrCreateAsync</span><span class="p">(</span><span class="n">cacheKey</span><span class="p">,</span> <span class="n">entry</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+    <span class="n">entry</span><span class="p">.</span><span class="n">SlidingExpiration</span> <span class="p">=</span> <span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromMinutes</span><span class="p">(</span><span class="m">60</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">_userRepository</span><span class="p">.</span><span class="nf">GetUsersByCountry</span><span class="p">(</span><span class="n">country</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Seteamos la capacidad de la caché a 50 megas <strong>ojito con los cálculos a ojo cubero que nos podemos comer la memoria si nuestro equipo empieza a crear caches en los diferentes servicios sin control</strong>:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">users</span> <span class="p">=</span>  <span class="k">await</span> <span class="n">_cache</span><span class="p">.</span><span class="n">_cache</span><span class="p">.</span><span class="nf">GetOrCreateAsync</span><span class="p">(</span><span class="n">cacheKey</span><span class="p">,</span> <span class="n">entry</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+    <span class="n">entry</span><span class="p">.</span><span class="n">Size</span> <span class="p">=</span> <span class="m">50</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">_userRepository</span><span class="p">.</span><span class="nf">GetUsersByCountry</span><span class="p">(</span><span class="n">country</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Y de momento eso es todo.</p>
+
+<p>Un saludo y hasta la próxima.</p>
+
+	</div>
+</article>
+
+
+          </main>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <br/>
+<br/>
+<h5>Archivo </h5>
+
+
+
+  
+  
+  <a href="/tag/Arquitectura"><code class="highligher-rouge">Arquitectura</code></a><br/>
+
+  
+  
+  <a href="/tag/Conferences"><code class="highligher-rouge">Conferences</code></a><br/>
+
+  
+  
+  <a href="/tag/Code"><code class="highligher-rouge">Code</code></a><br/>
+
+  
+  
+  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
+
+  
+  
+  <a href="/tag/MsIoT"><code class="highligher-rouge">MsIoT</code></a><br/>
+
+  
+  
+  <a href="/tag/ML"><code class="highligher-rouge">ML</code></a><br/>
+
+  
+  
+  <a href="/tag/Git"><code class="highligher-rouge">Git</code></a><br/>
+
+  
+  
+  <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
+
+
+        </div>
+        <div class="col-md-1 col-lg-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 pull-center">
+		  <!-- Pagination links -->
+      
+      </div>
+      </div>
+    </div>
+    <br/><br/><br/>
+	    
+	    <!-- Footer -->
+	    <footer>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 pull-center">
+                <span>@2017 - JRRN</span>
+        </div>
+        <div class="col-md-2 pull-right">
+                <a href="https://sessionize.com/j-rafa-ramon/" target="_blank">
+                    <img src="/img/icons/iu.png" title="Sessionize" class="socialLinksfooter" style="height: 30px;" alt="Sessionize Logo">
+                </a>
+                <a href="https://github.com/jrrn" target="_blank">
+                    <img src="/img/icons/github_ico.jpg" title="Github" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
+                </a>
+                <a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" target="_blank">
+                    <img src="/img/icons/linkedin_ico.jpg" tilte="LinkedIn" class="socialLinksfooter" style="height: 30px;" alt="LinkedIn Logo">
+                </a>
+        </div>
+    </div>
+
+</footer>
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/main.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99774552-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-99774552-1');
+</script>
+
+	    <!-- Script -->
+      <script src="/js/main.js"></script>	
+
+
+  </div>
+</body>
+</html>

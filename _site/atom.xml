@@ -4,12 +4,42 @@
  <title>JRRN Coding!</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2019-07-10T22:00:41+02:00</updated>
+ <updated>2019-07-13T20:36:36+02:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
    <email></email>
  </author>
+
+ 
+
+ <entry>
+   <title>ML.Net con modelo ONNX</title>
+   <link href="http://localhost:4000/ml-net"/>
+   <id>http://localhost:4000/ml-net</id>
+   <updated>2019-07-13T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;Hola! Hoy vengo a presentaros una POC en la que llevo un tiempo trabajando.&lt;/p&gt; &lt;p&gt;Me picaba la curiosidad jugar un poco con Machine Learning y ver que nos podía ofrecer. Después de leer y situarme un poco sobre el tema, coincidió que Microsoft, había implementado un nuevo Framework de integración...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Conferencia Net Core Conference 2019</title>
+   <link href="http://localhost:4000/netcoreconfgalicia"/>
+   <id>http://localhost:4000/netcoreconfgalicia</id>
+   <updated>2019-07-10T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;Hola a todos. Esta vez nos vemos en Galicia, Santiago de Compostela. Mi compañero &lt;a href=&quot;http://www.marcalmontserrat.com&quot;&gt;&lt;strong&gt;Marçal Montserrat&lt;/strong&gt;&lt;/a&gt; no nos acompañará esta vez. De nuevo, muchas gracias por confiar en nosotros y darnos la oportunidad de aportar a la comunidad.&lt;/p&gt; &lt;p&gt;&lt;a href=&quot;https://galicia.netcoreconf.com&quot;&gt;Agenda&lt;/a&gt;&lt;/p&gt; &lt;blockquote&gt; &lt;p&gt;&lt;strong&gt;De 0 a 100 en ARM segundos:&lt;/strong&gt; El...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Caché no distribuida en Net Core</title>
+   <link href="http://localhost:4000/cache-no-distribuida"/>
+   <id>http://localhost:4000/cache-no-distribuida</id>
+   <updated>2019-07-10T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria.&lt;/p&gt; &lt;p&gt;Este tipo de caché, como redis, memcaché, etc… se diferencia que no es una caché persistida y distribuida. Esto quiere decir que esta caché se crea en memoria...</content>
+ </entry>
 
  
 
@@ -79,36 +109,6 @@
    <id>http://localhost:4000/solid</id>
    <updated>2018-10-25T00:00:00+02:00</updated>
    <content type="html">&lt;p&gt;Hola hoy vengo con los principios SOLID. Aunque es un tema que conozco, el pasado sábado asistí a la &lt;a href=&quot;http://netconfbcn2018.azurewebsites.net/&quot;&gt;NET. Conf 2018&lt;/a&gt; y varias personas no tenían conocimiento sobre ellos y eso no se puede quedar así.&lt;/p&gt; &lt;p&gt;Los presentamos:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;strong&gt;S&lt;/strong&gt;ingle Responsability&lt;/li&gt; &lt;li&gt;&lt;strong&gt;O&lt;/strong&gt;pen Closed&lt;/li&gt; &lt;li&gt;&lt;strong&gt;L&lt;/strong&gt;iskow&lt;/li&gt; &lt;li&gt;&lt;strong&gt;I&lt;/strong&gt;nterface Segregation&lt;/li&gt; &lt;li&gt;&lt;strong&gt;D&lt;/strong&gt;ependency Injection&lt;/li&gt;...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Visitor</title>
-   <link href="http://localhost:4000/patron-visitor"/>
-   <id>http://localhost:4000/patron-visitor</id>
-   <updated>2018-08-19T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;El patrón Visitor nos permite agregar operaciones a objetos sin tener que modificar la clase concreta de estos objetos. Su uso se recomienda para pequeñas y pocas funcionalidades extra.&lt;/p&gt; &lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inteface&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Visitante&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Visita&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;EditorialSinFilial&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;editorialSinFilial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón Template Method</title>
-   <link href="http://localhost:4000/patron-template-method"/>
-   <id>http://localhost:4000/patron-template-method</id>
-   <updated>2018-08-18T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;El patrón Template Method nos permite definir un esqueleto de métodos abstractos en los que cada clase concreta sobrecargará estos métodos para definir su comportamiento específico y cuya implementación difiera en algunos pasos.&lt;/p&gt; &lt;p&gt;De esta forma, definimos una clase con métodos abstractos como si fuera un contrato o interfaz, y...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón State</title>
-   <link href="http://localhost:4000/patron-state"/>
-   <id>http://localhost:4000/patron-state</id>
-   <updated>2018-08-17T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;El patrón State nos ayuda a que un objeto se comporte de forma diferente según un flag de estado. De esta forma, según cual sea el flag de estado, el objeto se comportará de una forma o de otra.&lt;/p&gt; &lt;p&gt;El ejemplo más simple para entender este patrón, es en los...</content>
  </entry>
 
  

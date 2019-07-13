@@ -161,6 +161,18 @@
 <lastmod>2019-04-23T00:00:00+02:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/cache-no-distribuida</loc>
+<lastmod>2019-07-10T00:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/netcoreconfgalicia</loc>
+<lastmod>2019-07-10T00:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/ml-net</loc>
+<lastmod>2019-07-13T00:00:00+02:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/404</loc>
 </url>
 <url>
@@ -180,6 +192,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/tag/Git</loc>
+</url>
+<url>
+<loc>http://localhost:4000/tag/ML</loc>
 </url>
 <url>
 <loc>http://localhost:4000/tag/MsIoT</loc>
@@ -210,5 +225,8 @@
 </url>
 <url>
 <loc>http://localhost:4000/page8/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/page9/</loc>
 </url>
 </urlset>
