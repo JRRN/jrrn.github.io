@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Patrón de diseño Cloud
+title: Patrones de diseño Cloud
 tags: Arquitectura
 ---
 
