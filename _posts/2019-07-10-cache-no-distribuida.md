@@ -38,7 +38,7 @@ public class NuestroController : Controller
     public async Task<IEnumerable<Usuarios>> GetUsersByCountry(string country)
     {
         var cacheKey = $"users-{country}";
-        var users =  await _cache._cache.GetOrCreateAsync(cacheKey, entry =>
+        var users =  await _cache.GetOrCreateAsync(cacheKey, entry =>
         {
             return await _userRepository.GetUsersByCountry(country);
         });
@@ -51,14 +51,14 @@ Y voilà, ya tenemos una caché montada en memoria. La caché que se forma, es u
 
 Vale, ¿que fácil no? Pues la verdad que sí. Decir que la IMemoryCaché se limita por un [algoritmo LRU](https://es.wikipedia.org/wiki/Algoritmo_de_caché) que nos permite usar el 20% de la RAM de la instancia como máximo.
 
-Este tipo de caché funciona hasta que se llena. Es decir si nos liamos a pedir usuarios de países se generaran tantas cachekeys como nos quepan en ese 20%. Las demás irán a repositorio mientras no entre a funcionar el algoritmo LRU.
+Este tipo de caché funciona hasta que se llena. Es decir si nos ligit adamos a pedir usuarios de países se generaran tantas cachekeys como nos quepan en ese 20%. Las demás irán a repositorio mientras no entre a funcionar el algoritmo LRU.
 
 Ooooooooh!!! Pero tranquis, que es configurable.
 
 Seteamos la vida de la caché, FromSeconds; FromMinutes..., con esta propiedad la caché se destruye en x tiempo:
 
 ~~~csharp
-var users =  await _cache._cache.GetOrCreateAsync(cacheKey, entry =>
+var users =  await _cache.GetOrCreateAsync(cacheKey, entry =>
 {
     entry.SlidingExpiration = TimeSpan.FromMinutes(60);
     return await _userRepository.GetUsersByCountry(country);
@@ -68,7 +68,7 @@ var users =  await _cache._cache.GetOrCreateAsync(cacheKey, entry =>
 Seteamos la capacidad de la caché a 50 megas **ojito con los cálculos a ojo cubero que nos podemos comer la memoria si nuestro equipo empieza a crear caches en los diferentes servicios sin control**:
 
 ~~~csharp
-var users =  await _cache._cache.GetOrCreateAsync(cacheKey, entry =>
+var users =  await _cache.GetOrCreateAsync(cacheKey, entry =>
 {
     entry.Size = 50;
     return await _userRepository.GetUsersByCountry(country);
