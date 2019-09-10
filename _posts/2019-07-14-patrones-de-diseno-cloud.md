@@ -11,7 +11,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 ### Patrones de Disponibilidad ###
 
 - [Monitor de salud](health-endpoint-monitoring "Monitor de salud")
-- Queue-Based Load Leveling
+- [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
 - Throttling
 
 ### Patrones de Administración de datos ###
