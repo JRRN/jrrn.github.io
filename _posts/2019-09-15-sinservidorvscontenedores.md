@@ -42,19 +42,19 @@ Por otro, esta infraestructura configura eventos que activan la ejecución de nu
 
 Según Docker, la idea, es crear contenedores ligeros y portables para las aplicaciones software que puedan ejecutarse en cualquier máquina con Docker instalado, independientemente del sistema operativo que la máquina tenga por debajo, facilitando así también los despliegues.
 
-Es decir, son aplicaciones que contienen todo lo necesarios para ejecutarse sin necesitar dependencias, ni librerías, etc...
+Es decir, son aplicaciones que contienen todo lo necesario para ejecutarse sin necesitar dependencias, ni librerías, etc...
 
 **Ventajas de los contenedores**
 
-- Portabilidad. Al tener todo lo necesario en un paquete es más fácil moverse entre proveedores Cloud.
+- Portabilidad. Al tener todo lo necesario en un paquete, es más fácil moverse entre proveedores Cloud.
 
 - Se tiene control total sobre su aplicación. Puedes administrar todos los recursos, establecer todas las políticas, supervisar la seguridad y determinar cómo se implementa y se comporta su aplicación, etc...
 
-- Pueden ser tan grandes y complejas como las necesite, ya que no hay limitaciones de memoria o de tiempo de ejecución como ocurre en serverless.
+- Pueden ser tan grandes y complejas como las necesites, ya que no hay limitaciones de memoria o de tiempo de ejecución, como ocurre en serverless.
 
 **Inconvenientes de contenedores**
 
-- Requieren  más trabajo para configurar y administrar. Y en cada cambio de la aplicación hay que saber en que contenedor esta, redesplegarlo, etc...
+- Requieren más trabajo para configurar y administrar. Y en cada cambio de la aplicación hay que saber en que contenedor esta, redesplegarlo, etc...
 
 - Necesitan una ubicación. Con los contenedores, se necesita una o varias instancias de servidor y se debe pagar por el uso del servidor aunque estén inactivos.
 
@@ -62,7 +62,7 @@ Es decir, son aplicaciones que contienen todo lo necesarios para ejecutarse sin 
 
 - No hay persistencia de datos cuando los contenedores se vuelven a configurar o se destruyen.
 
-Con estas premisas, ya te puedes hacer una idea de cuando sí y cuando no, debes usar cada tecnología en tu arquitectura/infraestrucutura. Sin embargo, también puedes optar por algo híbrido, ya que puedes tener partes en contenedores y para en serverless, según las necesidades y complejidad de tu aplicación.
+Con estas premisas, ya te puedes hacer una idea de cuando sí y cuando no, debes usar cada tecnología en tu arquitectura/infraestrucutura. Sin embargo, también puedes optar por algo híbrido, ya que puedes tener servicios en contenedores y servicios en serverless, según las necesidades y complejidad de tu aplicación.
 
 Realmente, son tecnologías complementarias más que enfrentadas.
 
