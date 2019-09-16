@@ -32,7 +32,7 @@ Por otro, esta infraestructura configura eventos que activan la ejecución de nu
 
 - Desarrollar en un y para un Cloud específico, nos limita a ese proveedor.
 
-- Esta enfocado a aplicaciones de corta duración, no más de 15 minutos.
+- Esta enfocado a aplicaciones de corta duración, no más de 5 minutos.
 
 - No hay control sobre el servidor que ejecuta la aplicación, podemos configurar el/los tipo/s de core/s, memoria, etc... pero no customizarlo.
 
