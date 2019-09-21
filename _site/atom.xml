@@ -4,7 +4,7 @@
  <title>JRRN Coding!</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2019-09-11T10:01:29+02:00</updated>
+ <updated>2019-09-21T10:53:31+02:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
@@ -14,12 +14,21 @@
  
 
  <entry>
+   <title>Sin Servidor vs Contenedores</title>
+   <link href="http://localhost:4000/sinservidorvscontenedores"/>
+   <id>http://localhost:4000/sinservidorvscontenedores</id>
+   <updated>2019-09-15T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;&lt;strong&gt;¿Qué es sin servidor?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Sin servidor (Serverless) es un enfoque de desarrollo que no basa su infraestructura en máquinas virtuales sino que como servicio Saas, demanda acceso para su ejecución y lo libera después de su uso.&lt;/p&gt; &lt;p&gt;Esto no quiere decir que por detrás de las aplicaciones sin servidor no...</content>
+ </entry>
+
+ 
+
+ <entry>
    <title>Throttling</title>
    <link href="http://localhost:4000/throttling"/>
    <id>http://localhost:4000/throttling</id>
    <updated>2019-09-11T00:00:00+02:00</updated>
-   <content type="html">
-</content>
+   <content type="html">&lt;p&gt;El patrón Throttling (estrangulamiento) nos permite controlar el consumo de recursos utilizados por una instancia de una aplicación.&lt;/p&gt; &lt;p&gt;Con este control solventamos la necesidad de que nuestro sistema siga funcionando, cuando el escalado no es lo suficientemente rápido aprovisionando, mientras nuestra aplicación recibe una carga masiva de peticiones, evitando una...</content>
  </entry>
 
  
@@ -100,16 +109,6 @@
    <id>http://localhost:4000/catazurebootcamp</id>
    <updated>2019-04-01T00:00:00+02:00</updated>
    <content type="html">&lt;p&gt;Hola a todos. Simplemente comentar que nos han aceptado la charla en la conferencia Azure Bootcamp Barcelona 2019, que daremos &lt;a href=&quot;http://www.marcalmontserrat.com&quot;&gt;&lt;strong&gt;Marçal Montserrat&lt;/strong&gt;&lt;/a&gt; y un servidor. Estamos ilusionados y con muchas ganas de dar lo mejor y que la gente salga de ella encantada.&lt;/p&gt; &lt;p&gt;&lt;a href=&quot;http://catazurebootcamp.azurewebsites.net#agenda&quot;&gt;Agenda&lt;/a&gt;&lt;/p&gt; &lt;blockquote&gt; &lt;p&gt;&lt;strong&gt;De 0 a...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Patrón de Opciones</title>
-   <link href="http://localhost:4000/patron-ioptions"/>
-   <id>http://localhost:4000/patron-ioptions</id>
-   <updated>2019-03-31T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montado más de una vez para albergar en un clase todas las settings de nuestra aplicación y no tener desparramado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y...</content>
  </entry>
 
  
