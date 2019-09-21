@@ -4,12 +4,53 @@
  <title>JRRN Coding!</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2019-07-13T20:36:36+02:00</updated>
+ <updated>2019-09-11T10:01:29+02:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
    <email></email>
  </author>
+
+ 
+
+ <entry>
+   <title>Throttling</title>
+   <link href="http://localhost:4000/throttling"/>
+   <id>http://localhost:4000/throttling</id>
+   <updated>2019-09-11T00:00:00+02:00</updated>
+   <content type="html">
+</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Queue-Based Load Leveling</title>
+   <link href="http://localhost:4000/queue-based-load-leveling"/>
+   <id>http://localhost:4000/queue-based-load-leveling</id>
+   <updated>2019-09-10T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón Queue-Based Load Leveling, es un patrón que se utiliza para controlar y enumerar la carga masiva sobre un servicio.&lt;/p&gt; &lt;p&gt;Imaginemos que tenemos una api, esta api tiene una llamada que nuestra aplicación usa de forma masiva cuando los usuarios usan nuestra aplicación. Imaginemos, también, que esa petición recibe...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Health Endpoint Monitoring</title>
+   <link href="http://localhost:4000/health-endpoint-monitoring"/>
+   <id>http://localhost:4000/health-endpoint-monitoring</id>
+   <updated>2019-07-21T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;Health Endpoint Monitoring es un patrón de disponibilidad el cual nos permite verificar la salud de nuestros servicios exponiendo un servicio que monitorizamos cada x tiempo.&lt;/p&gt; &lt;p&gt;Básicamente, lo que hacemos es llamar a un/os servicio/s y que esto/s nos vaya/n respondiendo la pregunta ¿Sigues vivo? (Keep Alive).&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/health-endpoint-monitoring.png&quot; alt=&quot;health-endpoint-monitoring&quot;...</content>
+ </entry>
+
+ 
+
+ <entry>
+   <title>Patrones de diseño Cloud</title>
+   <link href="http://localhost:4000/patrones-de-diseno-cloud"/>
+   <id>http://localhost:4000/patrones-de-diseno-cloud</id>
+   <updated>2019-07-14T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;Hola de nuevo. Volviendo al tema de las arquitecturas, esta vez revisaremos los patrones de diseño orientados al Cloud. A diferencia de los patrones de diseño, un mismo patrón nos puede ofrecer varias soluciones para los principales problemas comunes en nuestras arquitectura cloud.&lt;/p&gt; &lt;p&gt;Para ello, dividiremos los patrones cloud según...</content>
+ </entry>
 
  
 
@@ -69,46 +110,6 @@
    <id>http://localhost:4000/patron-ioptions</id>
    <updated>2019-03-31T00:00:00+01:00</updated>
    <content type="html">&lt;p&gt;¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montado más de una vez para albergar en un clase todas las settings de nuestra aplicación y no tener desparramado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Tipos de Infraestructura en el Cloud</title>
-   <link href="http://localhost:4000/tipos-de-infraestructura-cloud"/>
-   <id>http://localhost:4000/tipos-de-infraestructura-cloud</id>
-   <updated>2019-01-21T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;En Azure Cloud, como en la mayoría de “Nubes” del mercado podemos encontrar una clasificación, según las responsabilidades que se quieran administrar. En la imagen siguiente, podemos observar las diferentes opciones que tenemos:&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;/img/tiposinfraestructuracloud/iaaspaassaas.png&quot; alt=&quot;Infraestructura&quot; title=&quot;iaaspaassaas&quot; /&gt;&lt;/p&gt; &lt;p&gt;Así, en un entorno local, nosotros somos los responsables de todo.&lt;/p&gt; &lt;p&gt;A...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Principios KISS - DRY - YAGNI - Red Green Refactor</title>
-   <link href="http://localhost:4000/kiss-dry-yagni"/>
-   <id>http://localhost:4000/kiss-dry-yagni</id>
-   <updated>2018-11-12T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;Hola de nuevo, para acabar una más de principios para el diseño de software:&lt;/p&gt; &lt;p&gt;&lt;br /&gt;&lt;/p&gt; &lt;p&gt;&lt;strong&gt;KISS&lt;/strong&gt; - (Mantenlo simple, estúpido): Esto es algo que se explica por sí mismo: siempre es más fácil evitar errores, mejorar el rendimiento, agregar funciones y mantener un software más simple que algo complicado....</content>
- </entry>
-
- 
-
- <entry>
-   <title>Principios GRASP</title>
-   <link href="http://localhost:4000/grasp"/>
-   <id>http://localhost:4000/grasp</id>
-   <updated>2018-11-11T00:00:00+01:00</updated>
-   <content type="html">&lt;p&gt;Hola de nuevo. Después de los principios &lt;a href=&quot;./solid.html&quot;&gt;SOLID&lt;/a&gt;, vamos a dar un pasito más y vamos a tratar de explicar los principios GRASP (General Responsibility Assignment Software Patterns).&lt;/p&gt; &lt;p&gt;GRASP describe 7 patrones que són:&lt;/p&gt; &lt;ol&gt; &lt;li&gt;Alta cohesión y bajo acoplamiento&lt;/li&gt; &lt;li&gt;Controlador&lt;/li&gt; &lt;li&gt;Creador&lt;/li&gt; &lt;li&gt;Experto en información&lt;/li&gt; &lt;li&gt;Fabricación pura&lt;/li&gt; &lt;li&gt;Indirección&lt;/li&gt; &lt;li&gt;Polimorfismo&lt;/li&gt;...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Principios SOLID</title>
-   <link href="http://localhost:4000/solid"/>
-   <id>http://localhost:4000/solid</id>
-   <updated>2018-10-25T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;Hola hoy vengo con los principios SOLID. Aunque es un tema que conozco, el pasado sábado asistí a la &lt;a href=&quot;http://netconfbcn2018.azurewebsites.net/&quot;&gt;NET. Conf 2018&lt;/a&gt; y varias personas no tenían conocimiento sobre ellos y eso no se puede quedar así.&lt;/p&gt; &lt;p&gt;Los presentamos:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;strong&gt;S&lt;/strong&gt;ingle Responsability&lt;/li&gt; &lt;li&gt;&lt;strong&gt;O&lt;/strong&gt;pen Closed&lt;/li&gt; &lt;li&gt;&lt;strong&gt;L&lt;/strong&gt;iskow&lt;/li&gt; &lt;li&gt;&lt;strong&gt;I&lt;/strong&gt;nterface Segregation&lt;/li&gt; &lt;li&gt;&lt;strong&gt;D&lt;/strong&gt;ependency Injection&lt;/li&gt;...</content>
  </entry>
 
  

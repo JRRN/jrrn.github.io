@@ -7,22 +7,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 	<meta name="generator" content="Jekyll">
 
-	<title>Patrones de Estructura</title>
+	<title>Queue-Based Load Leveling</title>
 	<!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Patrones de Estructura | JRRN Coding!</title>
+<title>Queue-Based Load Leveling | JRRN Coding!</title>
 <meta name="generator" content="Jekyll v3.8.6" />
-<meta property="og:title" content="Patrones de Estructura" />
+<meta property="og:title" content="Queue-Based Load Leveling" />
 <meta name="author" content="JRRN" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Patrones de estructura" />
-<meta property="og:description" content="Patrones de estructura" />
-<link rel="canonical" href="http://localhost:4000/patrones-de-estructura" />
-<meta property="og:url" content="http://localhost:4000/patrones-de-estructura" />
+<meta name="description" content="El patrón Queue-Based Load Leveling, es un patrón que se utiliza para controlar y enumerar la carga masiva sobre un servicio." />
+<meta property="og:description" content="El patrón Queue-Based Load Leveling, es un patrón que se utiliza para controlar y enumerar la carga masiva sobre un servicio." />
+<link rel="canonical" href="http://localhost:4000/queue-based-load-leveling" />
+<meta property="og:url" content="http://localhost:4000/queue-based-load-leveling" />
 <meta property="og:site_name" content="JRRN Coding!" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2017-11-13T00:00:00+01:00" />
+<meta property="article:published_time" content="2019-09-10T00:00:00+02:00" />
 <script type="application/ld+json">
-{"description":"Patrones de estructura","author":{"@type":"Person","name":"JRRN"},"@type":"BlogPosting","url":"http://localhost:4000/patrones-de-estructura","headline":"Patrones de Estructura","dateModified":"2017-11-13T00:00:00+01:00","datePublished":"2017-11-13T00:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/patrones-de-estructura"},"@context":"http://schema.org"}</script>
+{"description":"El patrón Queue-Based Load Leveling, es un patrón que se utiliza para controlar y enumerar la carga masiva sobre un servicio.","author":{"@type":"Person","name":"JRRN"},"@type":"BlogPosting","url":"http://localhost:4000/queue-based-load-leveling","headline":"Queue-Based Load Leveling","dateModified":"2019-09-10T00:00:00+02:00","datePublished":"2019-09-10T00:00:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/queue-based-load-leveling"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 	<link rel="shortcut icon" href="img/icons/favicon.ico">
@@ -148,32 +148,33 @@
           <main>
             <article id="post-page">
 	<div>
-		<h2>Patrones de Estructura</h2><span>[
+		<h2>Queue-Based Load Leveling</h2><span>[
 			
 				
 				<a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura<nobr></code>&nbsp;</a>
 			
 			]</span>	
-	<time datetime="2017-11-13T00:00:00+01:00" class="by-line">13 Nov 2017</time>
+	<time datetime="2019-09-10T00:00:00+02:00" class="by-line">10 Sep 2019</time>
 	</div>
 		
 	<div class="content">
-		<h3 id="patrones-de-estructura">Patrones de estructura</h3>
+		<p>El patrón Queue-Based Load Leveling, es un patrón que se utiliza para controlar y enumerar la carga masiva sobre un servicio.</p>
 
-<p>Los patrones de estructura tienen el objetivo de facilitar la separación de la interfaz de un objeto o varios de sus implementaciones.</p>
+<p>Imaginemos que tenemos una api, esta api tiene una llamada que nuestra aplicación usa de forma masiva cuando los usuarios usan nuestra aplicación. Imaginemos, también, que esa petición recibe cada día a las 9 de la mañana la solicitud de “dame las noticias para hoy”, y aún más, imaginemos que nos lo solicitan los terrícolas y los <a href="https://es.wikipedia.org/wiki/Klingon" title="Klingons">Klingons</a>, porque quieren saber como va el IBEX35… Con este nivel de peticiones, nuestro servicio por muy escalado que estuviera, recibiría un impacto de solicitudes que tardaría en procesar (penalizaríamos en rendimiento) o nos tumbaría en disponibilidad.</p>
 
-<p>De esta forma se proporciona de un mecanismo de encapsulación de objetos donde se aumenta la abstracción dentro de la aplicación. Y el mecanismo que queda público y con acceso son estas interfaces.</p>
+<p><img src="/img/cloudpatterns/NoQueue-BasedLoadLeveling.png" alt="NoQueue-BasedLoadLeveling" title="NoQueue-BasedLoadLeveling" /></p>
 
-<ul>
-  <li><a href="patron-adapter" title="Patrón Adapter">Patrón Adapter</a></li>
-  <li><a href="patron-bridge" title="Patrón Bridge">Patrón Bridge</a></li>
-  <li><a href="patron-composite" title="Patrón Composite">Patrón Composite</a></li>
-  <li><a href="patron-decorator" title="Patrón Decorator">Patrón Decorator</a></li>
-  <li><a href="patron-facade" title="Patrón Facade">Patrón Facade</a></li>
-  <li><a href="patron-flyweight" title="Patrón Flyweight">Patrón Flyweight</a></li>
-  <li><a href="patron-proxy" title="Patrón Proxy">Patrón Proxy</a></li>
-</ul>
+<p>Con Queue-Based Load Leveling lo que hacemos es refactorizar lo que sería una llamada clásica sobre un método de la api, donde el controlador llamaría al servicio y éste ejecutaría el código de acceso a los datos, en un mensaje sobre una cola, donde el servicio procesaría, por orden de entrada, los mensajes que van entrando.</p>
 
+<p>De esta forma, a pesar de que el servicio tiene que responder muchas peticiones, nuestro rendimiento y nuestra disponibilidad no se vería tan afectada.</p>
+
+<p><img src="/img/cloudpatterns/Queue-BasedLoadLeveling.png" alt="Queue-BasedLoadLeveling" title="Queue-BasedLoadLeveling" /></p>
+
+<p>Pero… No todo el monte es orégano.</p>
+
+<p>Sabemos que este patrón nos ayuda con la sobrecarga y la disponibilidad de la infraestructura, pero no siempre podremos implementar este patrón, ya que para usarlo deberemos implementar y adaptar nuestro código a obtener respuestas con una latencia superior. Sí, que tardaremos más en responder las solicitudes, con lo que no podremos tener peticiones y respuestas de una forma síncrona como suele ocurrir en una api. Pero tranquilos, que esta tecnología existe, tenemos por ejemplo <a href="https://docs.microsoft.com/es-es/aspnet/signalr/overview/getting-started/introduction-to-signalr" title="SignalR">SignalR</a> entre otras.</p>
+
+<p>Un saludo y hasta la próxima.</p>
 
 	</div>
 </article>

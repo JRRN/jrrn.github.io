@@ -99,6 +99,8 @@
 	  
 	    
 	  
+	    
+	  
     <!-- Nav links -->
 	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
 <a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
@@ -129,6 +131,13 @@
 	<a href="/">
 	  <h1>JRRN Coding!</h1>
 	</a>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({
+			google_ad_client: "ca-pub-4171359147847443",
+			enable_page_level_ads: true
+		});
+	</script>
 </header>
 
     <!-- Main content -->
@@ -181,7 +190,7 @@
     <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Usuarios</span><span class="p">&gt;&gt;</span> <span class="nf">GetUsersByCountry</span><span class="p">(</span><span class="kt">string</span> <span class="n">country</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="kt">var</span> <span class="n">cacheKey</span> <span class="p">=</span> <span class="s">$"users-</span><span class="p">{</span><span class="n">country</span><span class="p">}</span><span class="s">"</span><span class="p">;</span>
-        <span class="kt">var</span> <span class="n">users</span> <span class="p">=</span>  <span class="k">await</span> <span class="n">_cache</span><span class="p">.</span><span class="n">_cache</span><span class="p">.</span><span class="nf">GetOrCreateAsync</span><span class="p">(</span><span class="n">cacheKey</span><span class="p">,</span> <span class="n">entry</span> <span class="p">=&gt;</span>
+        <span class="kt">var</span> <span class="n">users</span> <span class="p">=</span>  <span class="k">await</span> <span class="n">_cache</span><span class="p">.</span><span class="nf">GetOrCreateAsync</span><span class="p">(</span><span class="n">cacheKey</span><span class="p">,</span> <span class="n">entry</span> <span class="p">=&gt;</span>
         <span class="p">{</span>
             <span class="k">return</span> <span class="k">await</span> <span class="n">_userRepository</span><span class="p">.</span><span class="nf">GetUsersByCountry</span><span class="p">(</span><span class="n">country</span><span class="p">);</span>
         <span class="p">});</span>
@@ -194,13 +203,13 @@
 
 <p>Vale, ¿que fácil no? Pues la verdad que sí. Decir que la IMemoryCaché se limita por un <a href="https://es.wikipedia.org/wiki/Algoritmo_de_caché">algoritmo LRU</a> que nos permite usar el 20% de la RAM de la instancia como máximo.</p>
 
-<p>Este tipo de caché funciona hasta que se llena. Es decir si nos liamos a pedir usuarios de países se generaran tantas cachekeys como nos quepan en ese 20%. Las demás irán a repositorio mientras no entre a funcionar el algoritmo LRU.</p>
+<p>Este tipo de caché funciona hasta que se llena. Es decir si nos ligit adamos a pedir usuarios de países se generaran tantas cachekeys como nos quepan en ese 20%. Las demás irán a repositorio mientras no entre a funcionar el algoritmo LRU.</p>
 
 <p>Ooooooooh!!! Pero tranquis, que es configurable.</p>
 
 <p>Seteamos la vida de la caché, FromSeconds; FromMinutes…, con esta propiedad la caché se destruye en x tiempo:</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">users</span> <span class="p">=</span>  <span class="k">await</span> <span class="n">_cache</span><span class="p">.</span><span class="n">_cache</span><span class="p">.</span><span class="nf">GetOrCreateAsync</span><span class="p">(</span><span class="n">cacheKey</span><span class="p">,</span> <span class="n">entry</span> <span class="p">=&gt;</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">users</span> <span class="p">=</span>  <span class="k">await</span> <span class="n">_cache</span><span class="p">.</span><span class="nf">GetOrCreateAsync</span><span class="p">(</span><span class="n">cacheKey</span><span class="p">,</span> <span class="n">entry</span> <span class="p">=&gt;</span>
 <span class="p">{</span>
     <span class="n">entry</span><span class="p">.</span><span class="n">SlidingExpiration</span> <span class="p">=</span> <span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromMinutes</span><span class="p">(</span><span class="m">60</span><span class="p">);</span>
     <span class="k">return</span> <span class="k">await</span> <span class="n">_userRepository</span><span class="p">.</span><span class="nf">GetUsersByCountry</span><span class="p">(</span><span class="n">country</span><span class="p">);</span>
@@ -209,7 +218,7 @@
 
 <p>Seteamos la capacidad de la caché a 50 megas <strong>ojito con los cálculos a ojo cubero que nos podemos comer la memoria si nuestro equipo empieza a crear caches en los diferentes servicios sin control</strong>:</p>
 
-<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">users</span> <span class="p">=</span>  <span class="k">await</span> <span class="n">_cache</span><span class="p">.</span><span class="n">_cache</span><span class="p">.</span><span class="nf">GetOrCreateAsync</span><span class="p">(</span><span class="n">cacheKey</span><span class="p">,</span> <span class="n">entry</span> <span class="p">=&gt;</span>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">users</span> <span class="p">=</span>  <span class="k">await</span> <span class="n">_cache</span><span class="p">.</span><span class="nf">GetOrCreateAsync</span><span class="p">(</span><span class="n">cacheKey</span><span class="p">,</span> <span class="n">entry</span> <span class="p">=&gt;</span>
 <span class="p">{</span>
     <span class="n">entry</span><span class="p">.</span><span class="n">Size</span> <span class="p">=</span> <span class="m">50</span><span class="p">;</span>
     <span class="k">return</span> <span class="k">await</span> <span class="n">_userRepository</span><span class="p">.</span><span class="nf">GetUsersByCountry</span><span class="p">(</span><span class="n">country</span><span class="p">);</span>
