@@ -17,7 +17,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 ### Patrones de Administración de datos ###
 
 - [Cache Aside](cahe-aside "Cache Aside")
-- CQRS
+- [CQRS](cqrs "CQRS")
 - Event Sourcing
 - Index Table
 - Materialized View
