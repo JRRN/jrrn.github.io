@@ -4,12 +4,22 @@
  <title>JRRN Coding!</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2019-09-21T10:53:31+02:00</updated>
+ <updated>2019-09-21T12:12:13+02:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
    <email></email>
  </author>
+
+ 
+
+ <entry>
+   <title>Caché Aside</title>
+   <link href="http://localhost:4000/cahe-aside"/>
+   <id>http://localhost:4000/cahe-aside</id>
+   <updated>2019-09-21T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón Cache Aside nos permite devolver datos en una petición sin tener la necesidad de ir a la base de datos a buscarlos. Con este patrón reducimos el tiempo de acceso a los datos, reducimos el uso de recursos lo que hace que mejoremos el rendimiento de nuestra aplicación.&lt;/p&gt;...</content>
+ </entry>
 
  
 
@@ -99,16 +109,6 @@
    <id>http://localhost:4000/refit</id>
    <updated>2019-04-23T00:00:00+02:00</updated>
    <content type="html">&lt;p&gt;Hola de nuevo. Hoy vengo a presentaros un Nuget que me recomendó mi compañero &lt;a href=&quot;https://es.linkedin.com/in/josep-vilches-fernandez-752b522a&quot;&gt;@Vilches&lt;/a&gt; y que desde ese momento he usado para las llamadas rest a third parties o en api gateways.&lt;/p&gt; &lt;p&gt;&lt;a href=&quot;https://reactiveui.github.io/refit/&quot;&gt;Refit&lt;/a&gt; es un nuget que nos permite convertir nuestra Api Rest en un contrato (interface).&lt;/p&gt;...</content>
- </entry>
-
- 
-
- <entry>
-   <title>Conferencia Azure Bootcamp Barcelona 2019</title>
-   <link href="http://localhost:4000/catazurebootcamp"/>
-   <id>http://localhost:4000/catazurebootcamp</id>
-   <updated>2019-04-01T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;Hola a todos. Simplemente comentar que nos han aceptado la charla en la conferencia Azure Bootcamp Barcelona 2019, que daremos &lt;a href=&quot;http://www.marcalmontserrat.com&quot;&gt;&lt;strong&gt;Marçal Montserrat&lt;/strong&gt;&lt;/a&gt; y un servidor. Estamos ilusionados y con muchas ganas de dar lo mejor y que la gente salga de ella encantada.&lt;/p&gt; &lt;p&gt;&lt;a href=&quot;http://catazurebootcamp.azurewebsites.net#agenda&quot;&gt;Agenda&lt;/a&gt;&lt;/p&gt; &lt;blockquote&gt; &lt;p&gt;&lt;strong&gt;De 0 a...</content>
  </entry>
 
  

@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-21T10:53:31+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JRRN Coding!</title><subtitle>Blog de desarrollo .NET personal. Contiene artículos técnicos de programación, arquitectura y desarrollo.</subtitle><author><name>JRRN</name><email></email></author><entry><title type="html">Sin Servidor vs Contenedores</title><link href="http://localhost:4000/sinservidorvscontenedores" rel="alternate" type="text/html" title="Sin Servidor vs Contenedores" /><published>2019-09-15T00:00:00+02:00</published><updated>2019-09-15T00:00:00+02:00</updated><id>http://localhost:4000/sinservidorvscontenedores</id><content type="html" xml:base="http://localhost:4000/sinservidorvscontenedores">&lt;p&gt;&lt;strong&gt;¿Qué es sin servidor?&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-21T12:12:13+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JRRN Coding!</title><subtitle>Blog de desarrollo .NET personal. Contiene artículos técnicos de programación, arquitectura y desarrollo.</subtitle><author><name>JRRN</name><email></email></author><entry><title type="html">Caché Aside</title><link href="http://localhost:4000/cahe-aside" rel="alternate" type="text/html" title="Caché Aside" /><published>2019-09-21T00:00:00+02:00</published><updated>2019-09-21T00:00:00+02:00</updated><id>http://localhost:4000/cahe-aside</id><content type="html" xml:base="http://localhost:4000/cahe-aside">&lt;p&gt;El patrón Cache Aside nos permite devolver datos en una petición sin tener la necesidad de ir a la base de datos a buscarlos. Con este patrón reducimos el tiempo de acceso a los datos, reducimos el uso de recursos lo que hace que mejoremos el rendimiento de nuestra aplicación.&lt;/p&gt;
+
+&lt;p&gt;Una de las formas de aplicar este patrón la vimos en el artículo de como usar la &lt;a href=&quot;cache-no-distribuida&quot; title=&quot;caché no distribuida&quot;&gt;caché no distribuida&lt;/a&gt; en NetCore.&lt;/p&gt;
+
+&lt;p&gt;Aunque lo recomendable para grandes infraestructuras en centralizar esta caché de forma distribuida.&lt;/p&gt;
+
+&lt;p&gt;Para ello, lo que propone este patrón lo representaremos en un diagrama:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/cache-aside.png&quot; alt=&quot;cache aside&quot; title=&quot;cache aside&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Como vemos tanto las peticiones realizadas por nuestra app o por nuestro site, se centralizan en nuestra api, esta emite una llamada sobre la caché redis, en la que si esta no contesta, baja a la base de datos a buscar los datos, los incorpora en la caché y los devuelve (marcadas las llamadas en azul), sin embargo, si la caché es capaz de procesar la solicitud, será esta quien responda (marcado como naranja) sin tener que acceder a la base de datos.&lt;/p&gt;
+
+&lt;p&gt;Sin embargo, antes de implementar este patrón se debe tener en cuenta:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Determinar el tiempo validez de nuestros datos en la caché. Tenemos que pensar bien, que necesidad tenemos en que los datos sean lo más veraces, coherentes y consistentes posibles, aunque hay mecanismos de control en las cachés, puede ser que la respuesta que nos este dando no contenga los datos más actualizados que hay en la base de datos.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Con el punto anterior se suma el tiempo de regeneración de la caché, esto quiere decir, cada cuanto tiempo la destruimos y la volvemos a regenerar. Para ello, debemos analizar que datos tiene mayor inmutabilidad y cuales menos.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;El tamaño de la caché, no debemos tener una caché que contenga la base de datos entera, esto no tiene sentido y no nos aportará ningún beneficio.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Un saludo.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El patrón Cache Aside nos permite devolver datos en una petición sin tener la necesidad de ir a la base de datos a buscarlos. Con este patrón reducimos el tiempo de acceso a los datos, reducimos el uso de recursos lo que hace que mejoremos el rendimiento de nuestra aplicación.</summary></entry><entry><title type="html">Sin Servidor vs Contenedores</title><link href="http://localhost:4000/sinservidorvscontenedores" rel="alternate" type="text/html" title="Sin Servidor vs Contenedores" /><published>2019-09-15T00:00:00+02:00</published><updated>2019-09-15T00:00:00+02:00</updated><id>http://localhost:4000/sinservidorvscontenedores</id><content type="html" xml:base="http://localhost:4000/sinservidorvscontenedores">&lt;p&gt;&lt;strong&gt;¿Qué es sin servidor?&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Sin servidor (Serverless) es un enfoque de desarrollo que no basa su infraestructura en máquinas virtuales sino que como servicio Saas, demanda acceso para su ejecución y lo libera después de su uso.&lt;/p&gt;
 
@@ -151,7 +177,7 @@
 &lt;h3 id=&quot;patrones-de-administración-de-datos&quot;&gt;Patrones de Administración de datos&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Cache-Aside&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;Cache-Aside&quot; title=&quot;Cache Aside&quot;&gt;Cache Aside&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;CQRS&lt;/li&gt;
   &lt;li&gt;Event Sourcing&lt;/li&gt;
   &lt;li&gt;Index Table&lt;/li&gt;
@@ -323,7 +349,19 @@
 
 &lt;p&gt;Os dejo el &lt;a href=&quot;https://github.com/JRRN/Pabi&quot;&gt;código&lt;/a&gt; (Se adminten PR’s)&lt;/p&gt;
 
-&lt;p&gt;Un saludo y hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="ML" /><summary type="html">Hola! Hoy vengo a presentaros una POC en la que llevo un tiempo trabajando.</summary></entry><entry><title type="html">Caché no distribuida en Net Core</title><link href="http://localhost:4000/cache-no-distribuida" rel="alternate" type="text/html" title="Caché no distribuida en Net Core" /><published>2019-07-10T00:00:00+02:00</published><updated>2019-07-10T00:00:00+02:00</updated><id>http://localhost:4000/cache-no-distribuida</id><content type="html" xml:base="http://localhost:4000/cache-no-distribuida">&lt;p&gt;Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria.&lt;/p&gt;
+&lt;p&gt;Un saludo y hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="ML" /><summary type="html">Hola! Hoy vengo a presentaros una POC en la que llevo un tiempo trabajando.</summary></entry><entry><title type="html">Conferencia Net Core Conference 2019</title><link href="http://localhost:4000/netcoreconfgalicia" rel="alternate" type="text/html" title="Conferencia Net Core Conference 2019" /><published>2019-07-10T00:00:00+02:00</published><updated>2019-07-10T00:00:00+02:00</updated><id>http://localhost:4000/netcoreconfgalicia</id><content type="html" xml:base="http://localhost:4000/netcoreconfgalicia">&lt;p&gt;Hola a todos. Esta vez nos vemos en Galicia, Santiago de Compostela. Mi compañero &lt;a href=&quot;http://www.marcalmontserrat.com&quot;&gt;&lt;strong&gt;Marçal Montserrat&lt;/strong&gt;&lt;/a&gt; no nos acompañará esta vez.
+De nuevo, muchas gracias por confiar en nosotros y darnos la oportunidad de aportar a la comunidad.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://galicia.netcoreconf.com&quot;&gt;Agenda&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;De 0 a 100 en ARM segundos:&lt;/strong&gt;
+El síndrome del ratón es la afección del túnel carpiano por el constante y continúo ejercicio de clicks sobre el ratón. Si conoces un DevOps con este síndrome, huye corriendo, porque es la señal de que se pasa su vida montando infraestructura a golpe de ratón y todavía no ha descubierto ARM. La forma “fácil” de montar toda una infraestructura en segundos.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Nos vemos en la conf.&lt;/p&gt;
+
+&lt;p&gt;Saludos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Conferences" /><summary type="html">Hola a todos. Esta vez nos vemos en Galicia, Santiago de Compostela. Mi compañero Marçal Montserrat no nos acompañará esta vez. De nuevo, muchas gracias por confiar en nosotros y darnos la oportunidad de aportar a la comunidad.</summary></entry><entry><title type="html">Caché no distribuida en Net Core</title><link href="http://localhost:4000/cache-no-distribuida" rel="alternate" type="text/html" title="Caché no distribuida en Net Core" /><published>2019-07-10T00:00:00+02:00</published><updated>2019-07-10T00:00:00+02:00</updated><id>http://localhost:4000/cache-no-distribuida</id><content type="html" xml:base="http://localhost:4000/cache-no-distribuida">&lt;p&gt;Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria.&lt;/p&gt;
 
 &lt;p&gt;Este tipo de caché, como redis, memcaché, etc… se diferencia que no es una caché persistida y distribuida. Esto quiere decir que esta caché se crea en memoria y en cada instancia de servidor de la aplicación, donde tenemos una caché diferente.&lt;/p&gt;
 
@@ -392,19 +430,7 @@
 
 &lt;p&gt;Y de momento eso es todo.&lt;/p&gt;
 
-&lt;p&gt;Un saludo y hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Code" /><summary type="html">Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria.</summary></entry><entry><title type="html">Conferencia Net Core Conference 2019</title><link href="http://localhost:4000/netcoreconfgalicia" rel="alternate" type="text/html" title="Conferencia Net Core Conference 2019" /><published>2019-07-10T00:00:00+02:00</published><updated>2019-07-10T00:00:00+02:00</updated><id>http://localhost:4000/netcoreconfgalicia</id><content type="html" xml:base="http://localhost:4000/netcoreconfgalicia">&lt;p&gt;Hola a todos. Esta vez nos vemos en Galicia, Santiago de Compostela. Mi compañero &lt;a href=&quot;http://www.marcalmontserrat.com&quot;&gt;&lt;strong&gt;Marçal Montserrat&lt;/strong&gt;&lt;/a&gt; no nos acompañará esta vez.
-De nuevo, muchas gracias por confiar en nosotros y darnos la oportunidad de aportar a la comunidad.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://galicia.netcoreconf.com&quot;&gt;Agenda&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;De 0 a 100 en ARM segundos:&lt;/strong&gt;
-El síndrome del ratón es la afección del túnel carpiano por el constante y continúo ejercicio de clicks sobre el ratón. Si conoces un DevOps con este síndrome, huye corriendo, porque es la señal de que se pasa su vida montando infraestructura a golpe de ratón y todavía no ha descubierto ARM. La forma “fácil” de montar toda una infraestructura en segundos.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Nos vemos en la conf.&lt;/p&gt;
-
-&lt;p&gt;Saludos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Conferences" /><summary type="html">Hola a todos. Esta vez nos vemos en Galicia, Santiago de Compostela. Mi compañero Marçal Montserrat no nos acompañará esta vez. De nuevo, muchas gracias por confiar en nosotros y darnos la oportunidad de aportar a la comunidad.</summary></entry><entry><title type="html">Refit</title><link href="http://localhost:4000/refit" rel="alternate" type="text/html" title="Refit" /><published>2019-04-23T00:00:00+02:00</published><updated>2019-04-23T00:00:00+02:00</updated><id>http://localhost:4000/refit</id><content type="html" xml:base="http://localhost:4000/refit">&lt;p&gt;Hola de nuevo. Hoy vengo a presentaros un Nuget que me recomendó mi compañero &lt;a href=&quot;https://es.linkedin.com/in/josep-vilches-fernandez-752b522a&quot;&gt;@Vilches&lt;/a&gt; y que desde ese momento he usado para las llamadas rest a third parties o en api gateways.&lt;/p&gt;
+&lt;p&gt;Un saludo y hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Code" /><summary type="html">Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria.</summary></entry><entry><title type="html">Refit</title><link href="http://localhost:4000/refit" rel="alternate" type="text/html" title="Refit" /><published>2019-04-23T00:00:00+02:00</published><updated>2019-04-23T00:00:00+02:00</updated><id>http://localhost:4000/refit</id><content type="html" xml:base="http://localhost:4000/refit">&lt;p&gt;Hola de nuevo. Hoy vengo a presentaros un Nuget que me recomendó mi compañero &lt;a href=&quot;https://es.linkedin.com/in/josep-vilches-fernandez-752b522a&quot;&gt;@Vilches&lt;/a&gt; y que desde ese momento he usado para las llamadas rest a third parties o en api gateways.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://reactiveui.github.io/refit/&quot;&gt;Refit&lt;/a&gt; es un nuget que nos permite convertir nuestra Api Rest en un contrato (interface).&lt;/p&gt;
 
@@ -447,17 +473,4 @@ El síndrome del ratón es la afección del túnel carpiano por el constante y c
 
 &lt;p&gt;Simple, fácil, bueno y completito, ¿no?&lt;/p&gt;
 
-&lt;p&gt;Un saludo.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Code" /><summary type="html">Hola de nuevo. Hoy vengo a presentaros un Nuget que me recomendó mi compañero @Vilches y que desde ese momento he usado para las llamadas rest a third parties o en api gateways.</summary></entry><entry><title type="html">Conferencia Azure Bootcamp Barcelona 2019</title><link href="http://localhost:4000/catazurebootcamp" rel="alternate" type="text/html" title="Conferencia Azure Bootcamp Barcelona 2019" /><published>2019-04-01T00:00:00+02:00</published><updated>2019-04-01T00:00:00+02:00</updated><id>http://localhost:4000/catazurebootcamp</id><content type="html" xml:base="http://localhost:4000/catazurebootcamp">&lt;p&gt;Hola a todos. Simplemente comentar que nos han aceptado la charla en la conferencia Azure Bootcamp Barcelona 2019, que daremos &lt;a href=&quot;http://www.marcalmontserrat.com&quot;&gt;&lt;strong&gt;Marçal Montserrat&lt;/strong&gt;&lt;/a&gt; y un servidor. Estamos ilusionados y con muchas ganas de dar lo mejor y que la gente salga de ella encantada.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://catazurebootcamp.azurewebsites.net#agenda&quot;&gt;Agenda&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;De 0 a 100 en ARM segundos:&lt;/strong&gt;
-El síndrome del ratón es la afección del túnel carpiano por el constante y continúo ejercicio de clicks sobre el ratón. Si conoces un DevOps con este síndrome, huye corriendo, porque es la señal de que se pasa su vida montando infraestructura a golpe de ratón y todavía no ha descubierto ARM. La forma “fácil” de montar toda una infraestructura en segundos.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Nos vemos en la conf.&lt;/p&gt;
-
-&lt;p&gt;Saludos.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/JRRN/Conferences&quot;&gt;Código&lt;/a&gt;&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Conferences" /><summary type="html">Hola a todos. Simplemente comentar que nos han aceptado la charla en la conferencia Azure Bootcamp Barcelona 2019, que daremos Marçal Montserrat y un servidor. Estamos ilusionados y con muchas ganas de dar lo mejor y que la gente salga de ella encantada.</summary></entry></feed>
+&lt;p&gt;Un saludo.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Code" /><summary type="html">Hola de nuevo. Hoy vengo a presentaros un Nuget que me recomendó mi compañero @Vilches y que desde ese momento he usado para las llamadas rest a third parties o en api gateways.</summary></entry></feed>
