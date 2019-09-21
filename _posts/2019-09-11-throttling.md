@@ -18,10 +18,10 @@ Supongamos también que nuestra aplicación tiene un limite de 150 peticiones an
 
 Con Throttling lo que podríamos hacer es utilizar la estrategia de procesamiento de 50 peticiones de los procesos B y C para reducir la carga de A, no colapsar el servidor y esperar a que el aprovisionamiento del escalado llegue a tiempo antes de una caiga de todo el sistema.
 
-Veamos como simulariamos la misma tabla pero con Throttling:
+Veamos como simularíamos la misma tabla pero con Throttling:
 
 ![con-Throttling](/img/cloudpatterns/CasoConThrottling.png "con-Throttling")
 
-Como podemos ver, incluso si aplicaciones la estrategia de estrangular los procesos B y C en ciertos tiempos, no tendríamos la necesidad de escalar la máquina porque esta es capaz de satisfacer todas la peticiones de una forma liviana.
+Como podemos ver, incluso si aplicamos la estrategia de estrangular los procesos B y C en ciertos tiempos, no tendríamos la necesidad de escalar la máquina porque esta es capaz de satisfacer todas la peticiones de una forma liviana.
 
 Saludos y hasta la próxima.
