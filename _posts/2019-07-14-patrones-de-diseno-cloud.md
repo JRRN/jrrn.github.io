@@ -18,7 +18,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 
 - [Cache Aside](cahe-aside "Cache Aside")
 - [CQRS](cqrs "CQRS")
-- Event Sourcing
+- [Event Sourcing](event-sourcing "Event Sourcing")
 - Index Table
 - Materialized View
 - Sharding
