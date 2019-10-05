@@ -10,7 +10,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 
 ### Patrones de Disponibilidad ###
 
-- [Monitor de salud](health-endpoint-monitoring "Monitor de salud")
+- [Health EndPoint Monitoring](health-endpoint-monitoring "Health EndPoint Monitoring")
 - [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
 - [Throttling](throttling "Throttling")
 
@@ -19,7 +19,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - [Cache Aside](cahe-aside "Cache Aside")
 - [CQRS](cqrs "CQRS")
 - [Event Sourcing](event-sourcing "Event Sourcing")
-- Index Table
+- [Index Table](index-table "Index Table")
 - Materialized View
 - Sharding
 - Static Content Hosting
@@ -30,7 +30,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - Ambassador
 - Anti-Corruption Layer
 - Backends for Frontends
-- CQRS
+- [CQRS](cqrs "CQRS")
 - Compute Resource Consolidation
 - External Configuration Store
 - Gateway Aggregation
@@ -49,7 +49,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - Pipes and Filters
 - Priority Queue
 - Publisher-Subscriber
-- Queue-Based Load Leveling
+- [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
 - Scheduler Agent Supervisor
 
 ### Patrones de Administración y supervisión ###
@@ -60,31 +60,32 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - Gateway Aggregation
 - Gateway Offloading
 - Gateway Routing
-- Health Endpoint
+- [Health EndPoint Monitoring](health-endpoint-monitoring "Health EndPoint Monitoring")
 - Sidecar
 - Strangler
 
 ### Patrones de Rendimiento y escalabilidad ###
 
-- Cache-Aside
-- CQRS
-- Event Sourcing
-- Index Table
+- [Cache Aside](cahe-aside "Cache Aside")
+- [CQRS](cqrs "CQRS")
+- [Event Sourcing](event-sourcing "Event Sourcing")
+- [Index Table](index-table "Index Table")
 - Materialized View
 - Priority Queue
-- Queue-Based Load Leveling
+- [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
 - Sharding
 - Static Content Hosting
-- Throttling
+- [Throttling](throttling "Throttling")
+
 
 ### Patrones de Resistencia ###
 
 - Bulkhead
 - Circuit Breaker
 - Compensating Transaction
-- Health Endpoint Monitoring
+- [Health EndPoint Monitoring](health-endpoint-monitoring "Health EndPoint Monitoring")
 - Leader Election
-- Queue-Based Load Leveling
+- [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
 - Retry
 - Scheduler Agent Supervisor
 
