@@ -28,6 +28,7 @@ Con lo que obtendríamos con un buen rendimiento:
 |:-:|:-:|:-:|:-:|
 |1|Patatas|1| 2|
 
+
 Sin embargo, no siempre tenemos porque conocer el identificador de lo que estamos buscando en base de datos y esto nos penaliza si buscamos por "Patatas".
 
     SELECT * from TABLE Where producto = "Patatas"
@@ -49,6 +50,7 @@ La primera de ellas (romper la 1ª Forma Normal, 2ªFN, 3ªFN ...), recomendable
 |Carne|3|2|6|
 |Pescado|4|3|5|
 |Plátanos|5|4|3|
+
 
 Si volviéramos a ejecutar la consulta:
 
@@ -76,6 +78,7 @@ relación (*)id_producto = id_producto
 |Pescado|4|
 |Plátanos|5|
 
+
 De esta forma si quisiéramos obtener el precio de las patatas:
 
     @Id = SELECT id  from TABLE_PRODUCTS_NAME WHERE producto = "Patatas"
@@ -85,8 +88,8 @@ Lo malo, sí, como vemos tenemos que tirar dos queries. ¿¿Y la JOIN?? Pensad e
 
 La tercera estrategía, es una mezcla entre la primera y la segunda, es decir, duplicar... las tablas normalizadas pero con los índices que queramos y en función de la SELECT hacer un switch a la tabla que contiene el índice por el WHERE que estamos buscando:
 
-
 TABLE PRIMARY KEY PRODUCT_ID
+
 |(*) id_producto|producto|tipo_producto|precio|
 |:-:|:-:|:-:|:-:|
 |1|Patatas|1| 2|
@@ -96,6 +99,7 @@ TABLE PRIMARY KEY PRODUCT_ID
 |5|Plátanos|4|3|
 
 TABLE PRIMARY KEY PRODUCT_NAME
+
 |(*) producto|id_producto|tipo_producto|precio|
 |:-:|:-:|:-:|:-:|
 |Patatas|1|1| 2|
