@@ -78,7 +78,6 @@ relación (*)id_producto = id_producto
 |Pescado|4|
 |Plátanos|5|
 
-
 De esta forma si quisiéramos obtener el precio de las patatas:
 
     @Id = SELECT id  from TABLE_PRODUCTS_NAME WHERE producto = "Patatas"
