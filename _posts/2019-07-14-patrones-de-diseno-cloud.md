@@ -20,7 +20,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - [CQRS](cqrs "CQRS")
 - [Event Sourcing](event-sourcing "Event Sourcing")
 - [Index Table](index-table "Index Table")
-- Materialized View
+- [Materialized View](materialized-view "Materialized View")
 - Sharding
 - Static Content Hosting
 - Valet Key
@@ -70,7 +70,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - [CQRS](cqrs "CQRS")
 - [Event Sourcing](event-sourcing "Event Sourcing")
 - [Index Table](index-table "Index Table")
-- Materialized View
+- [Materialized View](materialized-view "Materialized View")
 - Priority Queue
 - [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
 - Sharding
