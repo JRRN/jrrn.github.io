@@ -1,16 +1,15 @@
 ---
 layout: post
-title: Conferencia Net Core Conference 2019
+title: Conferencia .NET Conf Barcelona 2019
 tags: Conferences
 ---
 
-Hola a todos. Esta vez nos vemos en Galicia, Santiago de Compostela. Mi compañero [**Marçal Montserrat**](http://www.marcalmontserrat.com) no nos acompañará esta vez.
-De nuevo, muchas gracias por confiar en nosotros y darnos la oportunidad de aportar a la comunidad.
+Hola a todos. Preparado para las .NET Conf Barcelona 2019 con Machine Learning .NET visión de aproximación.
 
-[Agenda](https://galicia.netcoreconf.com)
+[Site](https://netconfbcn.azurewebsites.net/)
 
->**De 0 a 100 en ARM segundos:**
-El síndrome del ratón es la afección del túnel carpiano por el constante y continúo ejercicio de clicks sobre el ratón. Si conoces un DevOps con este síndrome, huye corriendo, porque es la señal de que se pasa su vida montando infraestructura a golpe de ratón y todavía no ha descubierto ARM. La forma "fácil" de montar toda una infraestructura en segundos.
+>**Machine Learning .NET visión de aproximación:**
+ML.Net es el nuevo framework de Microsoft que nos permite usar código c# en nuestros proyectos de Machine Learning. En esta charla profundizaremos un poquito, veremos sus características y una demo que permite reconocer objetos.
 
 Nos vemos en la conf.
 
