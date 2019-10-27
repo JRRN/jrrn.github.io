@@ -21,7 +21,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - [Event Sourcing](event-sourcing "Event Sourcing")
 - [Index Table](index-table "Index Table")
 - [Materialized View](materialized-view "Materialized View")
-- Sharding
+- [Sharding](sharding "Sharding")
 - Static Content Hosting
 - Valet Key
 
@@ -73,7 +73,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - [Materialized View](materialized-view "Materialized View")
 - Priority Queue
 - [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
-- Sharding
+- [Sharding](sharding "Sharding")
 - Static Content Hosting
 - [Throttling](throttling "Throttling")
 
