@@ -23,7 +23,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - [Materialized View](materialized-view "Materialized View")
 - [Sharding](sharding "Sharding")
 - [Static Content Hosting](static-content-hosting "Static Content Hosting")
-- Valet Key
+- [Valet Key](valet-key "Valet Key")
 
 ### Patrones de Diseño e implementación ###
 
@@ -77,7 +77,6 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - [Static Content Hosting](static-content-hosting "Static Content Hosting")
 - [Throttling](throttling "Throttling")
 
-
 ### Patrones de Resistencia ###
 
 - Bulkhead
@@ -93,7 +92,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 
 - Federated Identity
 - Gatekeeper
-- Valet Key
+- [Valet Key](valet-key "Valet Key")
 
 Nos vemos en breve y empezamos.
 
