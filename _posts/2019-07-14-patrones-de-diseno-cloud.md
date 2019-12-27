@@ -22,7 +22,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - [Index Table](index-table "Index Table")
 - [Materialized View](materialized-view "Materialized View")
 - [Sharding](sharding "Sharding")
-- Static Content Hosting
+- [Static Content Hosting](static-content-hosting "Static Content Hosting")
 - Valet Key
 
 ### Patrones de Diseño e implementación ###
@@ -39,7 +39,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - Leader Election
 - Pipes and Filters
 - Sidecar
-- Static Content Hosting
+- [Static Content Hosting](static-content-hosting "Static Content Hosting")
 - Strangler
 
 ### Patrones de Mensajería ###
@@ -74,7 +74,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - Priority Queue
 - [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
 - [Sharding](sharding "Sharding")
-- Static Content Hosting
+- [Static Content Hosting](static-content-hosting "Static Content Hosting")
 - [Throttling](throttling "Throttling")
 
 
