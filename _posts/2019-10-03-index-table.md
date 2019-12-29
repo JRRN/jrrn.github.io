@@ -27,7 +27,8 @@ Con lo que obtendríamos con un buen rendimiento:
 |(*) id_producto|producto|tipo_producto|precio|
 |:-:|:-:|:-:|:-:|
 |1|Patatas|1| 2|
-\
+
+
 Sin embargo, no siempre tenemos porque conocer el identificador de lo que estamos buscando en base de datos y esto nos penaliza si buscamos por "Patatas".
 
     SELECT * from TABLE Where producto = "Patatas"
@@ -49,7 +50,8 @@ La primera de ellas (romper la 1ª Forma Normal, 2ªFN, 3ªFN ...), recomendable
 |Carne|3|2|6|
 |Pescado|4|3|5|
 |Plátanos|5|4|3|
-\
+
+
 Si volviéramos a ejecutar la consulta:
 
     SELECT * from TABLE_PRODUCT_NAME Where producto = "Patatas"
@@ -65,7 +67,7 @@ La segunda estrategia sería crear tablas con referencias a otras tablas formali
 |3|Carne|2|6|
 |4|Pescado|3|5|
 |5|Plátanos|4|3|
-\
+
 relación (*)id_producto = id_producto
 
 |(*) producto|id_producto|
@@ -75,7 +77,7 @@ relación (*)id_producto = id_producto
 |Carne|3|
 |Pescado|4|
 |Plátanos|5|
-\
+
 De esta forma si quisiéramos obtener el precio de las patatas:
 
     @Id = SELECT id  from TABLE_PRODUCTS_NAME WHERE producto = "Patatas"
@@ -94,7 +96,7 @@ TABLE PRIMARY KEY PRODUCT_ID
 |3|Carne|2|6|
 |4|Pescado|3|5|
 |5|Plátanos|4|3|
-\
+
 TABLE PRIMARY KEY PRODUCT_NAME
 
 |(*) producto|id_producto|tipo_producto|precio|
@@ -104,7 +106,7 @@ TABLE PRIMARY KEY PRODUCT_NAME
 |Carne|3|2|6|
 |Pescado|4|3|5|
 |Plátanos|5|4|3|
-\
+
 Que buscamos "Patatas" pues atacamos a TABLE PRIMARY KEY PRODUCT_NAME, en cambio si buscamos por id atacaremos a TABLE PRIMARY KEY PRODUCT_ID.
 
 > Si buscáramos por nombre de producto y por tipo de producto una solución es crear una tabla concatenado los estos parámetros como clave primaria en la tabla resultante TABLE PRIMARY KEY PRODUCT_NAME+PRODUCT_TYPE.

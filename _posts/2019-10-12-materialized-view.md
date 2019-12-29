@@ -20,7 +20,6 @@ TABLA USUARIOS
 |4|Pitufo|Inteligente|
 |5|Pitufo|Burlón|
 
-\
 TABLA USUARIO CABELLERA
 
 |(*) id_cabellera|id_user|color|
@@ -31,7 +30,6 @@ TABLA USUARIO CABELLERA
 |4|4|moreno|
 |5|5|castaño|
 
-\
 Si quisieramos obtener el color de pelo de los usuarios deríamos hacer una join entre usuarios y cabellera. Imaginemos que, esta consulta fuera muy costosa. La solución pasa por tener una vista materializada precalculada, como si fuera una caché, con este resultado almacenado y simplemente ejecutar nuestra consulta sobre esta vista:
 
 VISTA USUARIO-CABELLERA
@@ -44,7 +42,6 @@ VISTA USUARIO-CABELLERA
 |4|Pitufo|Inteligente|4|moreno|
 |5|Pitufo|Burlón|5|castaño|
 
-\
 Esta solución, nos brinda la capacidad de realizar esta acción de mejora en datos que no se actualizan con frecuencia. Si por el contrario, estos datos cambian constantemente, esto nos obligaría a recalcular o regenerar las vista y podría penalizarnos en vez de ayudarnos.
 
 Sin más, hasta la próxima.
