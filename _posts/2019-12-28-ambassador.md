@@ -10,6 +10,6 @@ Pongamos el caso, tenemos un servicio que nos devuelve las facturas de un usuari
 
 En este momento, entraría en juego nuestro patrón Ambassador, donde colocariamos un un servicio Proxy/Middleware entre el servicio de factoras y nuestra aplicaciones, donde, este middleware tendría aplicadas todas estas soluciones que presentábamos.
 
-![Ambassador](/img/cloudpatterns/ambassador.png "Ambasaddor")
+![Ambassador](/img/cloudpatterns/ambassador.png "Ambassador")
 
 Saludos y hasta la próxima.
