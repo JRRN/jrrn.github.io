@@ -27,7 +27,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 
 ### Patrones de Diseño e implementación ###
 
-- Ambassador
+- [Ambassador](ambassador "Ambassador")
 - Anti-Corruption Layer
 - Backends for Frontends
 - [CQRS](cqrs "CQRS")
@@ -54,7 +54,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 
 ### Patrones de Administración y supervisión ###
 
-- Ambassador
+- [Ambassador](ambassador "Ambassador")
 - Anti-Corruption Layer
 - External Configuration Store
 - Gateway Aggregation
