@@ -1,0 +1,39 @@
+I"ﬂ<h3 id="docker">Docker</h3>
+
+<p>Hola, nuevamente un recordatorio r√°pido de comandos docker para la lucha con contenedores.</p>
+
+<p>Show Containers:
+<code>docker container ls</code></p>
+
+<p>Execute Commands:
+<code>docker container exec [containerId or containerName] [command]</code></p>
+
+<p>Console on Container:
+<code>docker container exec -it [containerId or containerName] /bin/bash</code></p>
+
+<p>Run  Containers:
+<code>docker container run [containerName] :[imageVersion]</code>
+<code>docker container run -p [hostPort]:[containerPort][containerName]:[imageVersion]</code></p>
+
+<p>Background Run:
+<code>docker container run --detach -p [hostPort]:[containerPort][containerName]:[imageVersion]</code></p>
+
+<p>Copiar archivos :
+<code>docker container cp [file] elegant_noether:[path]</code></p>
+
+<p>Ejecutar DockerFile:
+<code>docker image build --tag [containerName]:[setNumVersion] .</code></p>
+
+<p>Volumen:
+<code>docker run -d -p [hostPort]:[containerPort] -v /[myVolumeName] :[patFolderOnContainerHost] [containerName]:[imageVersion]</code></p>
+
+<p><code>
+DockerFile FROM [imageName:imageVersion]
+EXPOSE [port]
+RUN [shellCommand]
+COPY [file] [toPath]
+LABEL [KeyPairValuem{maintainer=\"moby-dock@example.com\"}]
+</code></p>
+
+<p>Saludos.</p>
+:ET

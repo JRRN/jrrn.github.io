@@ -1,0 +1,110 @@
+I"p<p>Hola de nuevo. Volviendo al tema de las arquitecturas, esta vez revisaremos los patrones de diseño orientados al Cloud. A diferencia de los patrones de diseño, un mismo patrón nos puede ofrecer varias soluciones para los principales problemas comunes en nuestras arquitectura cloud.</p>
+
+<p>Para ello, dividiremos los patrones cloud según el enfoque al que están orientados. Pasamos a enumerarlos:</p>
+
+<h3 id="patrones-de-disponibilidad">Patrones de Disponibilidad</h3>
+
+<ul>
+  <li><a href="health-endpoint-monitoring" title="Health EndPoint Monitoring">Health EndPoint Monitoring</a></li>
+  <li><a href="queue-based-load-leveling" title="Queue-Based Load Leveling">Queue-Based Load Leveling</a></li>
+  <li><a href="throttling" title="Throttling">Throttling</a></li>
+</ul>
+
+<h3 id="patrones-de-administración-de-datos">Patrones de Administración de datos</h3>
+
+<ul>
+  <li><a href="cahe-aside" title="Cache Aside">Cache Aside</a></li>
+  <li><a href="cqrs" title="CQRS">CQRS</a></li>
+  <li><a href="event-sourcing" title="Event Sourcing">Event Sourcing</a></li>
+  <li><a href="index-table" title="Index Table">Index Table</a></li>
+  <li><a href="materialized-view" title="Materialized View">Materialized View</a></li>
+  <li><a href="sharding" title="Sharding">Sharding</a></li>
+  <li><a href="static-content-hosting" title="Static Content Hosting">Static Content Hosting</a></li>
+  <li><a href="valet-key" title="Valet Key">Valet Key</a></li>
+</ul>
+
+<h3 id="patrones-de-diseño-e-implementación">Patrones de Diseño e implementación</h3>
+
+<ul>
+  <li><a href="ambassador" title="Ambassador">Ambassador</a></li>
+  <li><a href="anti-corruption-layer" title="Anti-Corruption Layer]">Anti-Corruption Layer</a></li>
+  <li><a href="backend-for-frontends" title="Backends for Frontends">Backends for Frontends</a></li>
+  <li><a href="cqrs" title="CQRS">CQRS</a></li>
+  <li>Compute Resource Consolidation</li>
+  <li>External Configuration Store</li>
+  <li>Gateway Aggregation</li>
+  <li>Gateway Offloading</li>
+  <li>Gateway Routing</li>
+  <li>Leader Election</li>
+  <li>Pipes and Filters</li>
+  <li>Sidecar</li>
+  <li><a href="static-content-hosting" title="Static Content Hosting">Static Content Hosting</a></li>
+  <li>Strangler</li>
+</ul>
+
+<h3 id="patrones-de-mensajería">Patrones de Mensajería</h3>
+
+<ul>
+  <li>Comprobación de notificaciones</li>
+  <li>Competing Consumers</li>
+  <li>Pipes and Filters</li>
+  <li>Priority Queue</li>
+  <li>Publisher-Subscriber</li>
+  <li><a href="queue-based-load-leveling" title="Queue-Based Load Leveling">Queue-Based Load Leveling</a></li>
+  <li>Scheduler Agent Supervisor</li>
+</ul>
+
+<h3 id="patrones-de-administración-y-supervisión">Patrones de Administración y supervisión</h3>
+
+<ul>
+  <li><a href="ambassador" title="Ambassador">Ambassador</a></li>
+  <li><a href="anti-corruption-layer" title="Anti-Corruption Layer]">Anti-Corruption Layer</a></li>
+  <li>External Configuration Store</li>
+  <li>Gateway Aggregation</li>
+  <li>Gateway Offloading</li>
+  <li>Gateway Routing</li>
+  <li><a href="health-endpoint-monitoring" title="Health EndPoint Monitoring">Health EndPoint Monitoring</a></li>
+  <li>Sidecar</li>
+  <li>Strangler</li>
+</ul>
+
+<h3 id="patrones-de-rendimiento-y-escalabilidad">Patrones de Rendimiento y escalabilidad</h3>
+
+<ul>
+  <li><a href="cahe-aside" title="Cache Aside">Cache Aside</a></li>
+  <li><a href="cqrs" title="CQRS">CQRS</a></li>
+  <li><a href="event-sourcing" title="Event Sourcing">Event Sourcing</a></li>
+  <li><a href="index-table" title="Index Table">Index Table</a></li>
+  <li><a href="materialized-view" title="Materialized View">Materialized View</a></li>
+  <li>Priority Queue</li>
+  <li><a href="queue-based-load-leveling" title="Queue-Based Load Leveling">Queue-Based Load Leveling</a></li>
+  <li><a href="sharding" title="Sharding">Sharding</a></li>
+  <li><a href="static-content-hosting" title="Static Content Hosting">Static Content Hosting</a></li>
+  <li><a href="throttling" title="Throttling">Throttling</a></li>
+</ul>
+
+<h3 id="patrones-de-resistencia">Patrones de Resistencia</h3>
+
+<ul>
+  <li>Bulkhead</li>
+  <li>Circuit Breaker</li>
+  <li>Compensating Transaction</li>
+  <li><a href="health-endpoint-monitoring" title="Health EndPoint Monitoring">Health EndPoint Monitoring</a></li>
+  <li>Leader Election</li>
+  <li><a href="queue-based-load-leveling" title="Queue-Based Load Leveling">Queue-Based Load Leveling</a></li>
+  <li>Retry</li>
+  <li>Scheduler Agent Supervisor</li>
+</ul>
+
+<h3 id="patrones-de-seguridad">Patrones de Seguridad</h3>
+
+<ul>
+  <li>Federated Identity</li>
+  <li>Gatekeeper</li>
+  <li><a href="valet-key" title="Valet Key">Valet Key</a></li>
+</ul>
+
+<p>Nos vemos en breve y empezamos.</p>
+
+<p>Saludos.</p>
+:ET

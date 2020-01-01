@@ -1,0 +1,14 @@
+I"�<p>Los patrones de construcción tienen como misión abstraer los mecanismos de creación de objetos, volviéndose independiente de la forma en que se crean los objetos y los mecanismos de instanciación de las clases concretas.</p>
+
+<p>Estos patrones encapsulan el uso de clases concretas y favorecen el uso de interfaces en las relaciones con los objetos, posibilitando una mayor abstracción en el diseño global.</p>
+
+<h3 id="patrones-de-construcción">Patrones de construcción</h3>
+
+<ul>
+  <li><a href="patron-abstract-factory" title="Patrón Abstract Factory">Patrón Abstract Factory</a></li>
+  <li><a href="patron-builder" title="Patrón Builder">Patrón Builder</a></li>
+  <li><a href="patron-factory-method" title="Patrón Factory Method">Patrón Factory Method</a></li>
+  <li><a href="patron-prototype" title="Patrón Prototype">Patrón Prototype</a></li>
+  <li><a href="patron-singleton" title="Patrón Singleton">Patrón Singleton</a></li>
+</ul>
+:ET

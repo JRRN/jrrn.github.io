@@ -1,0 +1,96 @@
+I"�/<p>El patrón <strong>Command</strong> nos ayuda a transformar una solicitud en un objeto. Estas solicitudes tienen la propiedad de poder encolarse, ser borradas y actualizadas dentro de la cola de peticiones.</p>
+
+<p>Volviendo a nuestro caso de libros, todos sabemos que ciertos libros en IT son altamente propensos a quedarse obsoletos, para ello, nuestra implementación de tienda, es capaz de emitir una rebaja para aquellos libros que no están teniendo la salida que queremos. Este proceso, se podría hacer manual con un campo de rebaja, pero queremos que sea el sistema el que emita esta rebaja según la premisa de que si no se vende rebájalo tantas veces como sea necesario hasta salir del stock.</p>
+
+<p>Para ello, el patrón command nos ayudará a no tener que efectuar este proceso por cada uno de los libros del stock.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Book</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">_nombre</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="n">DateTime</span> <span class="n">_fechaEntradaStock</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">double</span> <span class="n">_precioVenta</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">Book</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">DateTime</span> <span class="n">fechaEntradaStock</span><span class="p">,</span> <span class="kt">double</span> <span class="n">precioVenta</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_nombre</span> <span class="p">=</span> <span class="n">nombre</span><span class="p">;</span>
+        <span class="n">_fechaEntradaStock</span> <span class="p">=</span> <span class="n">fechaEntradaStock</span><span class="p">;</span>
+        <span class="n">_precioVenta</span> <span class="p">=</span> <span class="n">precioVenta</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="kt">long</span> <span class="nf">TiempoStock</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span> <span class="p">-</span> <span class="n">_fechaEntradaStock</span><span class="p">).</span><span class="n">Ticks</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ActualizaPrecio</span><span class="p">(</span><span class="kt">double</span> <span class="n">descuento</span><span class="p">)</span><span class="err"> </span><span class="p">{</span>
+            <span class="n">_precioVenta</span> <span class="p">=</span> <span class="m">0.01</span> <span class="p">*</span> <span class="n">Math</span><span class="p">.</span><span class="nf">Round</span><span class="p">(</span><span class="n">descuento</span><span class="p">)</span> <span class="p">*</span> <span class="n">_precioventa</span> <span class="p">*</span><span class="m">100</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Ver</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"</span><span class="p">{</span><span class="n">nombre</span><span class="p">}</span><span class="s"> tiene un precio </span><span class="p">{</span><span class="n">_precioVenta</span><span class="p">}</span><span class="s"> entrada </span><span class="p">{</span><span class="n">_fechaEntradaStock</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">AplicarRebaja</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">Book</span><span class="p">&gt;</span> <span class="n">_stockLibros</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Book</span><span class="p">&gt;();</span>
+    <span class="k">protected</span> <span class="kt">long</span> <span class="n">_hoy</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">long</span> <span class="n">_tiempoStock</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">double</span> <span class="n">_descuento</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">AplicarRebaja</span><span class="p">(</span><span class="kt">long</span> <span class="n">tiempoStock</span><span class="p">,</span> <span class="kt">double</span> <span class="n">descuento</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_hoy</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="n">Ticks</span><span class="p">;</span>
+        <span class="n">_tiempoStock</span> <span class="p">=</span> <span class="n">tiempoStock</span><span class="p">;</span>
+        <span class="n">_descuento</span> <span class="p">=</span> <span class="n">descuento</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Rebajar</span><span class="p">(</span><span class="n">IList</span><span class="p">&lt;</span><span class="n">Book</span><span class="p">&gt;</span> <span class="n">Libros</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_stockLibros</span><span class="p">.</span><span class="nf">Clear</span><span class="p">();</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">libro</span> <span class="k">in</span> <span class="n">Libros</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">libro</span><span class="p">.</span><span class="nf">TiempoStock</span><span class="p">())</span> <span class="p">&gt;=</span> <span class="n">_tiempoStock</span><span class="p">{</span>
+                <span class="n">_stockLibros</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">libro</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">libroARebajar</span> <span class="k">in</span> <span class="n">_stockLibros</span><span class="p">){</span>
+            <span class="n">libroARebajar</span><span class="p">.</span><span class="nf">ActualizaPrecio</span><span class="p">(</span><span class="m">1.0</span> <span class="p">-</span> <span class="n">descuento</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Anular</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">libro</span> <span class="k">in</span> <span class="n">_stockLibros</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">libro</span><span class="p">.</span><span class="nf">ActualizaPrecio</span><span class="p">(</span><span class="m">1.0</span> <span class="p">/</span> <span class="p">(</span><span class="m">1.0</span> <span class="p">-</span> <span class="n">descuento</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Restablecer</span><span class="p">(){</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">libro</span> <span class="k">in</span> <span class="n">_stockLibros</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">libro</span><span class="p">.</span><span class="nf">ActualizaPrecio</span><span class="p">(</span><span class="m">1.0</span> <span class="p">-</span> <span class="n">descuento</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Catalogo</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">Book</span><span class="p">&gt;</span> <span class="n">_stockLibros</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Book</span><span class="p">&gt;();</span>
+    <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">AplicarRebaja</span><span class="p">&gt;</span> <span class="n">commands</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">AplicarRebaja</span><span class="p">&gt;();</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">commandRebaja</span><span class="p">(</span><span class="n">AplicarRebaja</span> <span class="n">aplicarRebaja</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">commands</span><span class="p">.</span><span class="nf">Insert</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">aplicarRebaja</span><span class="p">);</span>
+        <span class="n">aplicarRebaja</span><span class="p">.</span><span class="nf">Rebajar</span><span class="p">(</span><span class="n">_stockLibros</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">commandAnulaRebaja</span><span class="p">(</span><span class="kt">int</span> <span class="n">commandNum</span><span class="p">){</span>
+        <span class="n">commands</span><span class="p">[</span><span class="n">commandNum</span><span class="p">].</span><span class="nf">Anular</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">restablecerSolicitudRebaja</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">commands</span><span class="p">[</span><span class="n">commandNum</span><span class="p">].</span><span class="nf">Restablecer</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">agrega</span><span class="p">(</span><span class="n">Book</span> <span class="n">libro</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_stockLibros</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">libro</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">visualiza</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="n">Book</span> <span class="n">libro</span> <span class="k">in</span> <span class="n">_stockLibros</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">libro</span><span class="p">.</span><span class="nf">Ver</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

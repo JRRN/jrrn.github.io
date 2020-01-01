@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="generator" content="Jekyll">
+
+	<title>Index Table</title>
+	<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Index Table | JRRN Coding!</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Index Table" />
+<meta name="author" content="JRRN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="El patrón Index Table se utiliza para crear índices secundarios sobre consultas, que la aplicación necesita, en campos que no son una primary key y así tener un acceso a los datos con una aceptable optimización. Situémonos, tenemos una tabla de productos, donde como es habitual, tenemos un id_producto como primary key, el campo nombre de producto, el tipo de producto y el precio. (*) id_producto producto tipo_producto precio 1 Patatas 1 2 2 Zanahorias 1 3 3 Carne 2 6 4 Pescado 3 5 5 Plátanos 4 3 Primary Key En nuestra aplicación para buscar patatas ejecutaríamos la query: SELECT * from TABLE Where id_producto = 1 Con lo que obtendríamos con un buen rendimiento: (*) id_producto producto tipo_producto precio 1 Patatas 1 2 Sin embargo, no siempre tenemos porque conocer el identificador de lo que estamos buscando en base de datos y esto nos penaliza si buscamos por “Patatas”. SELECT * from TABLE Where producto = &quot;Patatas&quot; A pesar de que lo encuentra, si tuviéramos una base de datos con bastante peso, esta query podría penalizar al rendimiento de la aplicación o incluso darnos un timeout en la query, cosa que no sería necesario si implementáramos Index Table. Aunque existen motores de bases de datos, SQL Server lo permite, en los que puedes crear índices secundarios, puede ser una buena práctica no crear estos índices y usar este patrón. Por otro lado, para aquellos motores NO-SQL en los que los índices “no existen” (lo pongo entre comillas antes de que os tiréis al cuello) este patrón se ajusta bastante bien. Al lío. Tenemos varias estrategias según cuantos índices secundarios necesitamos: La primera de ellas (romper la 1ª Forma Normal, 2ªFN, 3ªFN …), recomendable cuando nuestros datos no se actualizan con frecuencia, duplicando la tabla pero cambiando la primary key: (*) producto id_producto tipo_producto precio Patatas 1 1 2 Zanahorias 2 1 3 Carne 3 2 6 Pescado 4 3 5 Plátanos 5 4 3 Si volviéramos a ejecutar la consulta: SELECT * from TABLE_PRODUCT_NAME Where producto = &quot;Patatas&quot; El rendimiento de nuestra query estaría optimizado. La segunda estrategia sería crear tablas con referencias a otras tablas formalizadas con los índices secundarios. Más vale un a imagen que mil palabras: (*) id_producto producto tipo_producto precio 1 Patatas 1 2 2 Zanahorias 1 3 3 Carne 2 6 4 Pescado 3 5 5 Plátanos 4 3 relación (*)id_producto = id_producto (*) producto id_producto Patatas 1 Zanahorias 2 Carne 3 Pescado 4 Plátanos 5 De esta forma si quisiéramos obtener el precio de las patatas: @Id = SELECT id from TABLE_PRODUCTS_NAME WHERE producto = &quot;Patatas&quot; SELECT prices from TABLE_PRODUCTS WHERE id = &quot;@Id&quot; Lo malo, sí, como vemos tenemos que tirar dos queries. ¿¿Y la JOIN?? Pensad en grandes bases de datos… La tercera estrategía, es una mezcla entre la primera y la segunda, es decir, duplicar… las tablas normalizadas pero con los índices que queramos y en función de la SELECT hacer un switch a la tabla que contiene el índice por el WHERE que estamos buscando: TABLE PRIMARY KEY PRODUCT_ID (*) id_producto producto tipo_producto precio 1 Patatas 1 2 2 Zanahorias 1 3 3 Carne 2 6 4 Pescado 3 5 5 Plátanos 4 3 TABLE PRIMARY KEY PRODUCT_NAME (*) producto id_producto tipo_producto precio Patatas 1 1 2 Zanahorias 2 1 3 Carne 3 2 6 Pescado 4 3 5 Plátanos 5 4 3 Que buscamos “Patatas” pues atacamos a TABLE PRIMARY KEY PRODUCT_NAME, en cambio si buscamos por id atacaremos a TABLE PRIMARY KEY PRODUCT_ID. Si buscáramos por nombre de producto y por tipo de producto una solución es crear una tabla concatenado los estos parámetros como clave primaria en la tabla resultante TABLE PRIMARY KEY PRODUCT_NAME+PRODUCT_TYPE. Un saludo." />
+<meta property="og:description" content="El patrón Index Table se utiliza para crear índices secundarios sobre consultas, que la aplicación necesita, en campos que no son una primary key y así tener un acceso a los datos con una aceptable optimización. Situémonos, tenemos una tabla de productos, donde como es habitual, tenemos un id_producto como primary key, el campo nombre de producto, el tipo de producto y el precio. (*) id_producto producto tipo_producto precio 1 Patatas 1 2 2 Zanahorias 1 3 3 Carne 2 6 4 Pescado 3 5 5 Plátanos 4 3 Primary Key En nuestra aplicación para buscar patatas ejecutaríamos la query: SELECT * from TABLE Where id_producto = 1 Con lo que obtendríamos con un buen rendimiento: (*) id_producto producto tipo_producto precio 1 Patatas 1 2 Sin embargo, no siempre tenemos porque conocer el identificador de lo que estamos buscando en base de datos y esto nos penaliza si buscamos por “Patatas”. SELECT * from TABLE Where producto = &quot;Patatas&quot; A pesar de que lo encuentra, si tuviéramos una base de datos con bastante peso, esta query podría penalizar al rendimiento de la aplicación o incluso darnos un timeout en la query, cosa que no sería necesario si implementáramos Index Table. Aunque existen motores de bases de datos, SQL Server lo permite, en los que puedes crear índices secundarios, puede ser una buena práctica no crear estos índices y usar este patrón. Por otro lado, para aquellos motores NO-SQL en los que los índices “no existen” (lo pongo entre comillas antes de que os tiréis al cuello) este patrón se ajusta bastante bien. Al lío. Tenemos varias estrategias según cuantos índices secundarios necesitamos: La primera de ellas (romper la 1ª Forma Normal, 2ªFN, 3ªFN …), recomendable cuando nuestros datos no se actualizan con frecuencia, duplicando la tabla pero cambiando la primary key: (*) producto id_producto tipo_producto precio Patatas 1 1 2 Zanahorias 2 1 3 Carne 3 2 6 Pescado 4 3 5 Plátanos 5 4 3 Si volviéramos a ejecutar la consulta: SELECT * from TABLE_PRODUCT_NAME Where producto = &quot;Patatas&quot; El rendimiento de nuestra query estaría optimizado. La segunda estrategia sería crear tablas con referencias a otras tablas formalizadas con los índices secundarios. Más vale un a imagen que mil palabras: (*) id_producto producto tipo_producto precio 1 Patatas 1 2 2 Zanahorias 1 3 3 Carne 2 6 4 Pescado 3 5 5 Plátanos 4 3 relación (*)id_producto = id_producto (*) producto id_producto Patatas 1 Zanahorias 2 Carne 3 Pescado 4 Plátanos 5 De esta forma si quisiéramos obtener el precio de las patatas: @Id = SELECT id from TABLE_PRODUCTS_NAME WHERE producto = &quot;Patatas&quot; SELECT prices from TABLE_PRODUCTS WHERE id = &quot;@Id&quot; Lo malo, sí, como vemos tenemos que tirar dos queries. ¿¿Y la JOIN?? Pensad en grandes bases de datos… La tercera estrategía, es una mezcla entre la primera y la segunda, es decir, duplicar… las tablas normalizadas pero con los índices que queramos y en función de la SELECT hacer un switch a la tabla que contiene el índice por el WHERE que estamos buscando: TABLE PRIMARY KEY PRODUCT_ID (*) id_producto producto tipo_producto precio 1 Patatas 1 2 2 Zanahorias 1 3 3 Carne 2 6 4 Pescado 3 5 5 Plátanos 4 3 TABLE PRIMARY KEY PRODUCT_NAME (*) producto id_producto tipo_producto precio Patatas 1 1 2 Zanahorias 2 1 3 Carne 3 2 6 Pescado 4 3 5 Plátanos 5 4 3 Que buscamos “Patatas” pues atacamos a TABLE PRIMARY KEY PRODUCT_NAME, en cambio si buscamos por id atacaremos a TABLE PRIMARY KEY PRODUCT_ID. Si buscáramos por nombre de producto y por tipo de producto una solución es crear una tabla concatenado los estos parámetros como clave primaria en la tabla resultante TABLE PRIMARY KEY PRODUCT_NAME+PRODUCT_TYPE. Un saludo." />
+<link rel="canonical" href="http://localhost:4000/index-table" />
+<meta property="og:url" content="http://localhost:4000/index-table" />
+<meta property="og:site_name" content="JRRN Coding!" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-10-03T00:00:00+02:00" />
+<script type="application/ld+json">
+{"datePublished":"2019-10-03T00:00:00+02:00","headline":"Index Table","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/index-table"},"url":"http://localhost:4000/index-table","author":{"@type":"Person","name":"JRRN"},"description":"El patrón Index Table se utiliza para crear índices secundarios sobre consultas, que la aplicación necesita, en campos que no son una primary key y así tener un acceso a los datos con una aceptable optimización. Situémonos, tenemos una tabla de productos, donde como es habitual, tenemos un id_producto como primary key, el campo nombre de producto, el tipo de producto y el precio. (*) id_producto producto tipo_producto precio 1 Patatas 1 2 2 Zanahorias 1 3 3 Carne 2 6 4 Pescado 3 5 5 Plátanos 4 3 Primary Key En nuestra aplicación para buscar patatas ejecutaríamos la query: SELECT * from TABLE Where id_producto = 1 Con lo que obtendríamos con un buen rendimiento: (*) id_producto producto tipo_producto precio 1 Patatas 1 2 Sin embargo, no siempre tenemos porque conocer el identificador de lo que estamos buscando en base de datos y esto nos penaliza si buscamos por “Patatas”. SELECT * from TABLE Where producto = &quot;Patatas&quot; A pesar de que lo encuentra, si tuviéramos una base de datos con bastante peso, esta query podría penalizar al rendimiento de la aplicación o incluso darnos un timeout en la query, cosa que no sería necesario si implementáramos Index Table. Aunque existen motores de bases de datos, SQL Server lo permite, en los que puedes crear índices secundarios, puede ser una buena práctica no crear estos índices y usar este patrón. Por otro lado, para aquellos motores NO-SQL en los que los índices “no existen” (lo pongo entre comillas antes de que os tiréis al cuello) este patrón se ajusta bastante bien. Al lío. Tenemos varias estrategias según cuantos índices secundarios necesitamos: La primera de ellas (romper la 1ª Forma Normal, 2ªFN, 3ªFN …), recomendable cuando nuestros datos no se actualizan con frecuencia, duplicando la tabla pero cambiando la primary key: (*) producto id_producto tipo_producto precio Patatas 1 1 2 Zanahorias 2 1 3 Carne 3 2 6 Pescado 4 3 5 Plátanos 5 4 3 Si volviéramos a ejecutar la consulta: SELECT * from TABLE_PRODUCT_NAME Where producto = &quot;Patatas&quot; El rendimiento de nuestra query estaría optimizado. La segunda estrategia sería crear tablas con referencias a otras tablas formalizadas con los índices secundarios. Más vale un a imagen que mil palabras: (*) id_producto producto tipo_producto precio 1 Patatas 1 2 2 Zanahorias 1 3 3 Carne 2 6 4 Pescado 3 5 5 Plátanos 4 3 relación (*)id_producto = id_producto (*) producto id_producto Patatas 1 Zanahorias 2 Carne 3 Pescado 4 Plátanos 5 De esta forma si quisiéramos obtener el precio de las patatas: @Id = SELECT id from TABLE_PRODUCTS_NAME WHERE producto = &quot;Patatas&quot; SELECT prices from TABLE_PRODUCTS WHERE id = &quot;@Id&quot; Lo malo, sí, como vemos tenemos que tirar dos queries. ¿¿Y la JOIN?? Pensad en grandes bases de datos… La tercera estrategía, es una mezcla entre la primera y la segunda, es decir, duplicar… las tablas normalizadas pero con los índices que queramos y en función de la SELECT hacer un switch a la tabla que contiene el índice por el WHERE que estamos buscando: TABLE PRIMARY KEY PRODUCT_ID (*) id_producto producto tipo_producto precio 1 Patatas 1 2 2 Zanahorias 1 3 3 Carne 2 6 4 Pescado 3 5 5 Plátanos 4 3 TABLE PRIMARY KEY PRODUCT_NAME (*) producto id_producto tipo_producto precio Patatas 1 1 2 Zanahorias 2 1 3 Carne 3 2 6 Pescado 4 3 5 Plátanos 5 4 3 Que buscamos “Patatas” pues atacamos a TABLE PRIMARY KEY PRODUCT_NAME, en cambio si buscamos por id atacaremos a TABLE PRIMARY KEY PRODUCT_ID. Si buscáramos por nombre de producto y por tipo de producto una solución es crear una tabla concatenado los estos parámetros como clave primaria en la tabla resultante TABLE PRIMARY KEY PRODUCT_NAME+PRODUCT_TYPE. Un saludo.","@type":"BlogPosting","dateModified":"2019-10-03T00:00:00+02:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+	<link rel="shortcut icon" href="img/icons/favicon.ico">
+	<!-- RSS -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+	
+	
+
+
+
+
+
+  	
+</head>
+
+
+<body>
+	<div id="wrap">
+	  	<!-- Navigation -->
+	  	<nav id="nav">
+	<div id="nav-list">
+		<a href="/">Home</a>
+		<!-- Nav pages -->
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	      <a href="/about" title="Sobre mí">Sobre mí</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+    <!-- Nav links -->
+	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
+<a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
+
+
+
+	</div>
+  
+  <!-- Nav footer -->
+	
+	  <span>version 1.0.0</span>
+
+
+
+
+
+	
+
+</nav>
+
+    <!-- Icon menu -->
+	  <a id="nav-menu">
+	  	<div id="menu"></div>
+	  </a>
+      <!-- Header -->
+        <header id="header">
+	<div class="headerbackground"></div>
+	<a href="/">
+	  <h1>JRRN Coding!</h1>
+	</a>
+</header>
+
+    <!-- Main content -->
+	  <div id="container">
+      <div class="row">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-md-7 col-lg-7">
+          <main>
+            <article id="post-page">
+	<div>
+		<h2>Index Table</h2><span>[
+			
+				
+				<a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura<nobr></code>&nbsp;</a>
+			
+			]</span>	
+	<time datetime="2019-10-03T00:00:00+02:00" class="by-line">03 Oct 2019</time>
+	</div>
+		
+	<div class="content">
+		<p>El patrón Index Table se utiliza para crear índices secundarios sobre consultas, que la aplicación necesita, en campos que no son una primary key y así tener un acceso a los datos con una aceptable optimización.</p>
+
+<p>Situémonos, tenemos una tabla de productos, donde como es habitual, tenemos un id_producto como primary key, el campo nombre de producto, el tipo de producto y el precio.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">(*) id_producto</th>
+      <th style="text-align: center">producto</th>
+      <th style="text-align: center">tipo_producto</th>
+      <th style="text-align: center">precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">Patatas</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">Zanahorias</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">Carne</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">Pescado</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">Plátanos</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">3</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Primary Key</li>
+</ul>
+
+<p>En nuestra aplicación para buscar patatas ejecutaríamos la query:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT * from TABLE Where id_producto = 1
+</code></pre></div></div>
+
+<p>Con lo que obtendríamos con un buen rendimiento:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">(*) id_producto</th>
+      <th style="text-align: center">producto</th>
+      <th style="text-align: center">tipo_producto</th>
+      <th style="text-align: center">precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">Patatas</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Sin embargo, no siempre tenemos porque conocer el identificador de lo que estamos buscando en base de datos y esto nos penaliza si buscamos por “Patatas”.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT * from TABLE Where producto = "Patatas"
+</code></pre></div></div>
+
+<p>A pesar de que lo encuentra, si tuviéramos una base de datos con bastante peso, esta query podría penalizar al rendimiento de la aplicación o incluso darnos un timeout en la query, cosa que no sería necesario si implementáramos Index Table.</p>
+
+<p>Aunque existen motores de bases de datos, SQL Server lo permite, en los que puedes crear índices secundarios, puede ser una buena práctica no crear estos índices y usar este patrón. Por otro lado, para aquellos motores NO-SQL en los que los índices “no existen” (lo pongo entre comillas antes de que os tiréis al cuello) este patrón se ajusta bastante bien.</p>
+
+<p>Al lío.</p>
+
+<p>Tenemos varias estrategias según cuantos índices secundarios necesitamos:</p>
+
+<p>La primera de ellas (romper la 1ª Forma Normal, 2ªFN, 3ªFN …), recomendable cuando nuestros datos no se actualizan con frecuencia, duplicando la tabla pero cambiando la primary key:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">(*) producto</th>
+      <th style="text-align: center">id_producto</th>
+      <th style="text-align: center">tipo_producto</th>
+      <th style="text-align: center">precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Patatas</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Zanahorias</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Carne</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Pescado</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Plátanos</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Si volviéramos a ejecutar la consulta:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT * from TABLE_PRODUCT_NAME Where producto = "Patatas"
+</code></pre></div></div>
+
+<p>El rendimiento de nuestra query estaría optimizado.</p>
+
+<p>La segunda estrategia sería crear tablas con referencias a otras tablas formalizadas con los índices secundarios. Más vale un a imagen que mil palabras:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">(*) id_producto</th>
+      <th style="text-align: center">producto</th>
+      <th style="text-align: center">tipo_producto</th>
+      <th style="text-align: center">precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">Patatas</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">Zanahorias</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">Carne</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">Pescado</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">Plátanos</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>relación (*)id_producto = id_producto</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">(*) producto</th>
+      <th style="text-align: center">id_producto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Patatas</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Zanahorias</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Carne</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Pescado</td>
+      <td style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Plátanos</td>
+      <td style="text-align: center">5</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>De esta forma si quisiéramos obtener el precio de las patatas:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Id = SELECT id  from TABLE_PRODUCTS_NAME WHERE producto = "Patatas"
+SELECT prices from TABLE_PRODUCTS WHERE id = "@Id"
+</code></pre></div></div>
+
+<p>Lo malo, sí, como vemos tenemos que tirar dos queries. ¿¿Y la JOIN?? Pensad en grandes bases de datos…</p>
+
+<p>La tercera estrategía, es una mezcla entre la primera y la segunda, es decir, duplicar… las tablas normalizadas pero con los índices que queramos y en función de la SELECT hacer un switch a la tabla que contiene el índice por el WHERE que estamos buscando:</p>
+
+<p>TABLE PRIMARY KEY PRODUCT_ID</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">(*) id_producto</th>
+      <th style="text-align: center">producto</th>
+      <th style="text-align: center">tipo_producto</th>
+      <th style="text-align: center">precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">Patatas</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">Zanahorias</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">Carne</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">Pescado</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">Plátanos</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>TABLE PRIMARY KEY PRODUCT_NAME</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">(*) producto</th>
+      <th style="text-align: center">id_producto</th>
+      <th style="text-align: center">tipo_producto</th>
+      <th style="text-align: center">precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Patatas</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Zanahorias</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Carne</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Pescado</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Plátanos</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Que buscamos “Patatas” pues atacamos a TABLE PRIMARY KEY PRODUCT_NAME, en cambio si buscamos por id atacaremos a TABLE PRIMARY KEY PRODUCT_ID.</p>
+
+<blockquote>
+  <p>Si buscáramos por nombre de producto y por tipo de producto una solución es crear una tabla concatenado los estos parámetros como clave primaria en la tabla resultante TABLE PRIMARY KEY PRODUCT_NAME+PRODUCT_TYPE.</p>
+</blockquote>
+
+<p>Un saludo.</p>
+
+	</div>
+</article>
+
+
+          </main>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <br/>
+<br/>
+<h5>Archivo </h5>
+
+
+
+  
+  
+  <a href="/tag/Arquitectura"><code class="highligher-rouge">Arquitectura</code></a><br/>
+
+  
+  
+  <a href="/tag/Conferences"><code class="highligher-rouge">Conferences</code></a><br/>
+
+  
+  
+  <a href="/tag/Code"><code class="highligher-rouge">Code</code></a><br/>
+
+  
+  
+  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
+
+  
+  
+  <a href="/tag/MsIoT"><code class="highligher-rouge">MsIoT</code></a><br/>
+
+  
+  
+  <a href="/tag/ML"><code class="highligher-rouge">ML</code></a><br/>
+
+  
+  
+  <a href="/tag/Git"><code class="highligher-rouge">Git</code></a><br/>
+
+  
+  
+  <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
+
+
+        </div>
+        <div class="col-md-1 col-lg-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 pull-center">
+		  <!-- Pagination links -->
+      
+      </div>
+      </div>
+    </div>
+    <br/><br/><br/>
+	    
+	    <!-- Footer -->
+	    <footer>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 pull-center">
+                <span>@2017 - JRRN</span>
+        </div>
+        <div class="col-md-2 pull-right">
+                <a href="https://sessionize.com/j-rafa-ramon/" target="_blank">
+                    <img src="/img/icons/iu.png" title="Sessionize" class="socialLinksfooter" style="height: 30px;" alt="Sessionize Logo">
+                </a>
+                <a href="https://github.com/jrrn" target="_blank">
+                    <img src="/img/icons/github_ico.jpg" title="Github" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
+                </a>
+                <a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" target="_blank">
+                    <img src="/img/icons/linkedin_ico.jpg" tilte="LinkedIn" class="socialLinksfooter" style="height: 30px;" alt="LinkedIn Logo">
+                </a>
+        </div>
+    </div>
+
+</footer>
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/main.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99774552-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-99774552-1');
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-4171359147847443",
+          enable_page_level_ads: true
+     });
+</script>
+
+	    <!-- Script -->
+      <script src="/js/main.js"></script>	
+
+
+  </div>
+</body>
+</html>

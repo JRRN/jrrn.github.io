@@ -1,0 +1,112 @@
+I"�,<p>El patrón memento previene en la encapsulación de un objeto el estado en que se encuentra en cada momento. De esta forma, si por algún motivo, necesitamos hacer un rollback de estos cambios del objeto, podamos restaurar sin romper nada.</p>
+
+<p>Es como tener un pila de estados de como ha ido cambiando el objeto y si es necesario, poder volver a un punto determinado.</p>
+
+<p>Vamos con la implementación.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">Memento</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">MementoImplementation</span> <span class="p">:</span> <span class="n">Memento</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">OpcionBook</span><span class="p">&gt;</span> <span class="n">_bookOptions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">OpcionBook</span><span class="p">&gt;();</span>
+
+    <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">OpcionBook</span><span class="p">&gt;</span> <span class="n">State</span>
+    <span class="p">{</span>
+        <span class="k">get</span> <span class="p">=&gt;</span> <span class="n">_bookOptions</span><span class="p">;</span>
+        <span class="k">set</span>
+        <span class="p">{</span>
+            <span class="n">_bookOptions</span><span class="p">.</span><span class="nf">Clear</span><span class="p">();</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="n">OpcionBook</span> <span class="n">bookOption</span> <span class="k">in</span> <span class="k">value</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">_bookOptions</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">bookOption</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CompraOpciones</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">OpcionBook</span><span class="p">&gt;</span> <span class="n">bookOptions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">OpcionBook</span><span class="p">&gt;();</span>
+
+    <span class="k">public</span> <span class="n">IMemento</span> <span class="nf">AgregaOpciones</span><span class="p">(</span><span class="n">OpcionBook</span> <span class="n">bookOption</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">MementoImplementation</span> <span class="n">result</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">MementoImplementation</span><span class="p">();</span>
+        <span class="n">result</span><span class="p">.</span><span class="n">State</span> <span class="p">=</span> <span class="n">bookOptions</span><span class="p">;</span>
+
+        <span class="n">IList</span><span class="p">&lt;</span><span class="n">OpcionBook</span><span class="p">&gt;</span> <span class="n">bookOptionsNotSupported</span> <span class="p">=</span> <span class="n">bookOption</span><span class="p">.</span><span class="n">BookOptionsNotSupported</span><span class="p">;</span>
+
+        <span class="k">foreach</span> <span class="p">(</span><span class="n">OpcionBook</span> <span class="n">bOption</span> <span class="k">in</span> <span class="n">bookOptionsNotSupported</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">bookOptions</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="n">bOption</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">bookOptions</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">bookOption</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Anula</span><span class="p">(</span><span class="n">IMemento</span> <span class="n">memento</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(!(</span><span class="n">memento</span> <span class="k">is</span> <span class="n">MementoImplementation</span> <span class="n">mementoImplementation</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">bookOptions</span> <span class="p">=</span> <span class="n">mementoImplementation</span><span class="p">.</span><span class="n">State</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Estados:"</span><span class="p">);</span>
+
+        <span class="k">foreach</span> <span class="p">(</span><span class="n">OpcionBook</span> <span class="n">bookOption</span> <span class="k">in</span> <span class="n">bookOptions</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">bookOption</span><span class="p">.</span><span class="nf">Ver</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">OpcionBook</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">_nombre</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">OpcionBook</span><span class="p">&gt;</span> <span class="n">BookOptionsNotSupported</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">protected</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="nf">OpcionBook</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombre</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">BookOptionsNotSupported</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">OpcionBook</span><span class="p">&gt;();</span>
+        <span class="n">_nombre</span> <span class="p">=</span> <span class="n">nombre</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">AgregaOpcionIncompatible</span><span class="p">(</span><span class="n">OpcionBook</span> <span class="n">bookOptionIncompatible</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(!</span><span class="n">BookOptionsNotSupported</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="n">bookOptionIncompatible</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">BookOptionsNotSupported</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">bookOptionIncompatible</span><span class="p">);</span>
+            <span class="n">bookOptionIncompatible</span><span class="p">.</span><span class="nf">AgregaOpcionIncompatible</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Ver</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"opcion : </span><span class="p">{</span><span class="n">_nombre</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">IMemento</span> <span class="n">memento</span><span class="p">;</span>
+
+    <span class="n">OpcionBook</span> <span class="n">op1</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">OpcionBook</span><span class="p">(</span><span class="s">"Tapa dura"</span><span class="p">);</span>
+    <span class="n">OpcionBook</span> <span class="n">op2</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">OpcionBook</span><span class="p">(</span><span class="s">"Tapa Blanda"</span><span class="p">);</span>
+    <span class="n">OpcionBook</span> <span class="n">op3</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">OpcionBook</span><span class="p">(</span><span class="s">"Tapa Encuadernado"</span><span class="p">);</span>
+
+    <span class="n">op1</span><span class="p">.</span><span class="nf">AgregaOpcionIncompatible</span><span class="p">(</span><span class="n">op3</span><span class="p">);</span>
+    <span class="n">op2</span><span class="p">.</span><span class="nf">AgregaOpcionIncompatible</span><span class="p">(</span><span class="n">op3</span><span class="p">);</span>
+
+    <span class="n">CompraOpciones</span> <span class="n">compraOpciones</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CompraOpciones</span><span class="p">();</span>
+    <span class="n">compraOpciones</span><span class="p">.</span><span class="nf">AgregaOpciones</span><span class="p">(</span><span class="n">op1</span><span class="p">);</span>
+    <span class="n">compraOpciones</span><span class="p">.</span><span class="nf">AgregaOpciones</span><span class="p">(</span><span class="n">op2</span><span class="p">);</span>
+    <span class="n">compraOpciones</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
+
+    <span class="n">memento</span> <span class="p">=</span> <span class="n">compraOpciones</span><span class="p">.</span><span class="nf">AgregaOpciones</span><span class="p">(</span><span class="n">op3</span><span class="p">);</span>
+    <span class="n">compraOpciones</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
+    <span class="n">compraOpciones</span><span class="p">.</span><span class="nf">Anula</span><span class="p">(</span><span class="n">memento</span><span class="p">);</span>
+    <span class="n">compraOpciones</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Saludos.</p>
+:ET

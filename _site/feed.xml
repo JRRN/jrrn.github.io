@@ -1,476 +1,630 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-21T12:12:13+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JRRN Coding!</title><subtitle>Blog de desarrollo .NET personal. Contiene artículos técnicos de programación, arquitectura y desarrollo.</subtitle><author><name>JRRN</name><email></email></author><entry><title type="html">Caché Aside</title><link href="http://localhost:4000/cahe-aside" rel="alternate" type="text/html" title="Caché Aside" /><published>2019-09-21T00:00:00+02:00</published><updated>2019-09-21T00:00:00+02:00</updated><id>http://localhost:4000/cahe-aside</id><content type="html" xml:base="http://localhost:4000/cahe-aside">&lt;p&gt;El patrón Cache Aside nos permite devolver datos en una petición sin tener la necesidad de ir a la base de datos a buscarlos. Con este patrón reducimos el tiempo de acceso a los datos, reducimos el uso de recursos lo que hace que mejoremos el rendimiento de nuestra aplicación.&lt;/p&gt;
-
-&lt;p&gt;Una de las formas de aplicar este patrón la vimos en el artículo de como usar la &lt;a href=&quot;cache-no-distribuida&quot; title=&quot;caché no distribuida&quot;&gt;caché no distribuida&lt;/a&gt; en NetCore.&lt;/p&gt;
-
-&lt;p&gt;Aunque lo recomendable para grandes infraestructuras en centralizar esta caché de forma distribuida.&lt;/p&gt;
-
-&lt;p&gt;Para ello, lo que propone este patrón lo representaremos en un diagrama:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/cache-aside.png&quot; alt=&quot;cache aside&quot; title=&quot;cache aside&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Como vemos tanto las peticiones realizadas por nuestra app o por nuestro site, se centralizan en nuestra api, esta emite una llamada sobre la caché redis, en la que si esta no contesta, baja a la base de datos a buscar los datos, los incorpora en la caché y los devuelve (marcadas las llamadas en azul), sin embargo, si la caché es capaz de procesar la solicitud, será esta quien responda (marcado como naranja) sin tener que acceder a la base de datos.&lt;/p&gt;
-
-&lt;p&gt;Sin embargo, antes de implementar este patrón se debe tener en cuenta:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Determinar el tiempo validez de nuestros datos en la caché. Tenemos que pensar bien, que necesidad tenemos en que los datos sean lo más veraces, coherentes y consistentes posibles, aunque hay mecanismos de control en las cachés, puede ser que la respuesta que nos este dando no contenga los datos más actualizados que hay en la base de datos.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Con el punto anterior se suma el tiempo de regeneración de la caché, esto quiere decir, cada cuanto tiempo la destruimos y la volvemos a regenerar. Para ello, debemos analizar que datos tiene mayor inmutabilidad y cuales menos.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;El tamaño de la caché, no debemos tener una caché que contenga la base de datos entera, esto no tiene sentido y no nos aportará ningún beneficio.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Un saludo.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El patrón Cache Aside nos permite devolver datos en una petición sin tener la necesidad de ir a la base de datos a buscarlos. Con este patrón reducimos el tiempo de acceso a los datos, reducimos el uso de recursos lo que hace que mejoremos el rendimiento de nuestra aplicación.</summary></entry><entry><title type="html">Sin Servidor vs Contenedores</title><link href="http://localhost:4000/sinservidorvscontenedores" rel="alternate" type="text/html" title="Sin Servidor vs Contenedores" /><published>2019-09-15T00:00:00+02:00</published><updated>2019-09-15T00:00:00+02:00</updated><id>http://localhost:4000/sinservidorvscontenedores</id><content type="html" xml:base="http://localhost:4000/sinservidorvscontenedores">&lt;p&gt;&lt;strong&gt;¿Qué es sin servidor?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Sin servidor (Serverless) es un enfoque de desarrollo que no basa su infraestructura en máquinas virtuales sino que como servicio Saas, demanda acceso para su ejecución y lo libera después de su uso.&lt;/p&gt;
-
-&lt;p&gt;Esto no quiere decir que por detrás de las aplicaciones sin servidor no exista una infraestructura, sino que esta es transparente para las aplicaciones sin servidor ya que es el proveedor el que administra estos servidores y no tienen porque estar en ejecución.&lt;/p&gt;
-
-&lt;p&gt;Por otro, esta infraestructura configura eventos que activan la ejecución de nuestras aplicaciones sin servidor hasta que finaliza, quedando en un estado de inactividad hasta la siguiente petición o evento.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Ventajas de sin servidor&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Sólo se paga por el tiempo de ejecución. Como se mencionó anteriormente, el servidor solo se ejecuta cuando un evento lo activa, por lo que solo pagará por el corto tiempo cuando el servidor está activo.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Permite elasticidad. Se puede escalar automáticamente para muchas peticiones  concurrentes y volver a desescalar cuando éstas disminuyen.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;No necesita administrar servidores. El aprovisionamiento de la infraestructura corre a cuenta del proveedor Cloud (AWS, Azure, Google).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Con lo que sumado al punto anterior, reducimos el tiempo de desarrollo, ya que nos focalizamos en desarrollar.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Encaja muy bien con microservicios, donde los desarrolladores construyen partes más pequeñas e independientes de toda la arquitectura.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;No necesitan una ubicación, no necesitas conocer los servidores en la nube donde albergara nuestras aplicaciones.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-01T12:24:19+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">JRRN Coding!</title><subtitle>Blog de desarrollo .NET personal. Contiene artículos técnicos de programación, arquitectura y desarrollo.</subtitle><author><name>JRRN</name><email></email></author><entry><title type="html">Backend for FrontEnds</title><link href="http://localhost:4000/backend-for-frontends" rel="alternate" type="text/html" title="Backend for FrontEnds" /><published>2020-01-01T00:00:00+01:00</published><updated>2020-01-01T00:00:00+01:00</updated><id>http://localhost:4000/backend-for-frontends</id><content type="html" xml:base="http://localhost:4000/backend-for-frontends">&lt;p&gt;¡Hola de nuevo! ¡Feliz año a todos! Hoy presentaremos el patrón de implementación Backends para Frontends. Este patrón está basado en el concepto “S” de SOLID de separación de responsabilidades.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Inconvenientes de sin servidor&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Lo que viene a decir es, teniendo una api que es consumida tanto por un aplicación móvil, cómo por una aplicación web deberiamos separar las llamadas que realiza la app mobil de las llamadas que realiza la aplicación web.&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Tienen algo de latencia en las primeras peticiones si el servidor está inactivo.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Desarrollar en un y para un Cloud específico, nos limita a ese proveedor.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Esta enfocado a aplicaciones de corta duración, no más de 5 minutos.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;No hay control sobre el servidor que ejecuta la aplicación, podemos configurar el/los tipo/s de core/s, memoria, etc… pero no customizarlo.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Las aplicaciones complejas pueden ser difíciles de construir usando una arquitectura sin servidor. Las dependencias entre aplicaciones deben estar muy bien coordinadas.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Una imagen vale más que mil palabras:&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;¿Qué es un contenedor?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/backforfront.png&quot; alt=&quot;Backend for Frontend&quot; title=&quot;Backend for Frontend&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Según Docker, la idea, es crear contenedores ligeros y portables para las aplicaciones software que puedan ejecutarse en cualquier máquina con Docker instalado, independientemente del sistema operativo que la máquina tenga por debajo, facilitando así también los despliegues.&lt;/p&gt;
+&lt;p&gt;Ahora, porqué esta aproximación es mucho mejor y coherente con nuestra infraestructura cloud?&lt;/p&gt;
 
-&lt;p&gt;Es decir, son aplicaciones que contienen todo lo necesario para ejecutarse sin necesitar dependencias, ni librerías, etc…&lt;/p&gt;
+&lt;p&gt;En primer lugar, teniendo separados los servicios, estos se pueden escalar independientemente según su tráfico.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Ventajas de los contenedores&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Por otro lado, aunque puedan tener llamadas iguales en nuestras apis, las dimensiones y cantidad de información a mostrar en cada dispositivo es diferente, con lo que nos señala que los modelos a devolver en nuestra llamadas son, en la parte web con muchas más propiedades y en la parte mobile, con muchas menos propiedades. Esta misma simplificación nos ayuda a reducir el peso de las llamadas en nuestros dispositivos móviles.&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Portabilidad. Al tener todo lo necesario en un paquete, es más fácil moverse entre proveedores Cloud.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Se tiene control total sobre su aplicación. Puedes administrar todos los recursos, establecer todas las políticas, supervisar la seguridad y determinar cómo se implementa y se comporta su aplicación, etc…&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Pueden ser tan grandes y complejas como las necesites, ya que no hay limitaciones de memoria o de tiempo de ejecución, como ocurre en serverless.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Un saludos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">¡Hola de nuevo! ¡Feliz año a todos! Hoy presentaremos el patrón de implementación Backends para Frontends. Este patrón está basado en el concepto “S” de SOLID de separación de responsabilidades.</summary></entry><entry><title type="html">Anti-Corruption Layer</title><link href="http://localhost:4000/anti-corruption-layer" rel="alternate" type="text/html" title="Anti-Corruption Layer" /><published>2019-12-29T00:00:00+01:00</published><updated>2019-12-29T00:00:00+01:00</updated><id>http://localhost:4000/anti-corruption-layer</id><content type="html" xml:base="http://localhost:4000/anti-corruption-layer">&lt;p&gt;Hola de nuevo. Lo primero, presta mucha atención a este patrón si estáis trabajando con microservicios o con Arquitecturas DDD (Domain Driven Design).&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Inconvenientes de contenedores&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Anti-Corruption Layer nos recomienda crear una capa de aislamiento que permita a los clientes trabajar con sus modelos de negocio y desacoplar estos modelos en nuestra lógica de negocio. Los sistemas se comunican entre ellos mediante los contratos establecidos (interfaces), y anti-corruption layer lo que nos proporciona es una mínima o nula modificación en las aplicaciones conectadas entre los sistemas. Internamente, la capa se traduce en ambas direcciones según sea necesario entre los dos modelos.&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Requieren más trabajo para configurar y administrar. Y en cada cambio de la aplicación hay que saber en que contenedor esta, redesplegarlo, etc…&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Necesitan una ubicación. Con los contenedores, se necesita una o varias instancias de servidor y se debe pagar por el uso del servidor aunque estén inactivos.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Se pueden tener problemas de escalabilidad, ya que se escalan los contenedores y no las aplicaciones. El tener controlado, donde están exactamente, requiere monitorizarlos y dependiendo de nuestra arquitectura, es buscar una aguja en un pajar.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;No hay persistencia de datos cuando los contenedores se vuelven a configurar o se destruyen.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Eric Evans, fue el que acuñó este concepto en su libro sobre &lt;a href=&quot;https://dddcommunity.org/book/evans_2003/&quot; title=&quot;Domain Driven Design&quot;&gt;DDD&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Con estas premisas, ya te puedes hacer una idea de cuando sí y cuando no, debes usar cada tecnología en tu arquitectura/infraestrucutura. Sin embargo, también puedes optar por algo híbrido, ya que puedes tener servicios en contenedores y servicios en serverless, según las necesidades y complejidad de tu aplicación.&lt;/p&gt;
+&lt;p&gt;Así no reinventaremos la rueda y usaremos el ejemplo que usaba en su libro:&lt;/p&gt;
 
-&lt;p&gt;Realmente, son tecnologías complementarias más que enfrentadas.&lt;/p&gt;
+&lt;p&gt;Imaginemos que una aplicación depende de Google Calendar para programar y recordar eventos. Para sincronizar los datos desde y hacia Google Calendar, necesitaremos asignar los datos entre los dos sistemas, es decir, nuestra aplicación y Google Calendar. Esto se debe a que los modelos de datos y la estructura serán diferentes en estos sistemas. Con el patrón anti-corruption layer, lo que haremos es usar un proxy/middleware que traducza los contratos entre Google Calendar y los contratos que usemos en nuestra aplicaciones.&lt;/p&gt;
 
-&lt;p&gt;Un saludo y hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">¿Qué es sin servidor?</summary></entry><entry><title type="html">Throttling</title><link href="http://localhost:4000/throttling" rel="alternate" type="text/html" title="Throttling" /><published>2019-09-11T00:00:00+02:00</published><updated>2019-09-11T00:00:00+02:00</updated><id>http://localhost:4000/throttling</id><content type="html" xml:base="http://localhost:4000/throttling">&lt;p&gt;El patrón Throttling (estrangulamiento) nos permite controlar el consumo de recursos utilizados por una instancia de una aplicación.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/anti-corruption-layer.png&quot; alt=&quot;Anti-Corruption Layer&quot; title=&quot;Anti-Corruption Layer&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Con este control solventamos la necesidad de que nuestro sistema siga funcionando, cuando el escalado no es lo suficientemente rápido aprovisionando, mientras nuestra aplicación recibe una carga masiva de peticiones, evitando una ralentización de nuestro sistema o una denegación de servicio por que el sistema se colapse.&lt;/p&gt;
+&lt;p&gt;Un saludo.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">Hola de nuevo. Lo primero, presta mucha atención a este patrón si estáis trabajando con microservicios o con Arquitecturas DDD (Domain Driven Design). Anti-Corruption Layer nos recomienda crear una capa de aislamiento que permita a los clientes trabajar con sus modelos de negocio y desacoplar estos modelos en nuestra lógica de negocio. Los sistemas se comunican entre ellos mediante los contratos establecidos (interfaces), y anti-corruption layer lo que nos proporciona es una mínima o nula modificación en las aplicaciones conectadas entre los sistemas. Internamente, la capa se traduce en ambas direcciones según sea necesario entre los dos modelos. Eric Evans, fue el que acuñó este concepto en su libro sobre DDD. Así no reinventaremos la rueda y usaremos el ejemplo que usaba en su libro: Imaginemos que una aplicación depende de Google Calendar para programar y recordar eventos. Para sincronizar los datos desde y hacia Google Calendar, necesitaremos asignar los datos entre los dos sistemas, es decir, nuestra aplicación y Google Calendar. Esto se debe a que los modelos de datos y la estructura serán diferentes en estos sistemas. Con el patrón anti-corruption layer, lo que haremos es usar un proxy/middleware que traducza los contratos entre Google Calendar y los contratos que usemos en nuestra aplicaciones. Un saludo.</summary></entry><entry><title type="html">Ambassador</title><link href="http://localhost:4000/ambassador" rel="alternate" type="text/html" title="Ambassador" /><published>2019-12-28T00:00:00+01:00</published><updated>2019-12-28T00:00:00+01:00</updated><id>http://localhost:4000/ambassador</id><content type="html" xml:base="http://localhost:4000/ambassador">&lt;p&gt;Hola! El patrón Ambassador nos sirve para colocar antes de otros servicios un “proxy” que nos de más control de comunicaciones sobre estas aplicaciones de terceros, pudiendo aplicar muchos de los patrones que estamos aprendiendo.&lt;/p&gt;
 
-&lt;p&gt;En este punto podríamos aplicar Throttling rechazando a usuarios específicos que realizan muchas peticiones iguales en un periodo corto de tiempo, degradar servicios secundarios que no son tan importantes para nuestra aplicación, ejecutar las acciones prioritarias para el servicio, retrasando las acciones menos prioritarias para su procesamiento cuando la carga sea menor, etc…&lt;/p&gt;
+&lt;p&gt;Pongamos el caso, tenemos un servicio que nos devuelve las facturas de un usuario. Sin embargo, este servicio se codificó junto a las tablas de Moisés. Cada vez que abrimos ese código, en el caso de tenerlo, pensamos que lo mejor es rehacerlo porque no hay por donde meterle mano. Sin embargo, funciona tan bien que seguimos la regla “no sé cómo lo hace pero funciona, ni lo mires”. Sin embargo, necesitamos aplicar los patrones de valet key, throttling, circuit breaker y alguno más para adaptarnos a nuestra infraestructura.&lt;/p&gt;
 
-&lt;p&gt;Imaginemos que tenemos una instancia de una aplicación:&lt;/p&gt;
+&lt;p&gt;En este momento, entraría en juego nuestro patrón Ambassador, donde colocariamos un un servicio Proxy/Middleware entre el servicio de factoras y nuestra aplicaciones, donde, este middleware tendría aplicadas todas estas soluciones que presentábamos.&lt;/p&gt;
 
-&lt;p&gt;Supongamos también que nuestra aplicación tiene un limite de 150 peticiones antes de que lleguemos al colapso del servidor y que somos capaces de procesar 50 peticiones en una unidad de tiempo. En la tabla siguiente podemos ver como el proceso A llegado al t3 se colapsa y pone en peligro nuestra aplicación pudiendo perjudicar a los procesos B y procesos C que están correctamente escalados.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/ambassador.png&quot; alt=&quot;Ambassador&quot; title=&quot;Ambassador&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/CasoSinThrottling.png&quot; alt=&quot;sin-Throttling&quot; title=&quot;sin-Throttling&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Saludos y hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">Hola! El patrón Ambassador nos sirve para colocar antes de otros servicios un “proxy” que nos de más control de comunicaciones sobre estas aplicaciones de terceros, pudiendo aplicar muchos de los patrones que estamos aprendiendo. Pongamos el caso, tenemos un servicio que nos devuelve las facturas de un usuario. Sin embargo, este servicio se codificó junto a las tablas de Moisés. Cada vez que abrimos ese código, en el caso de tenerlo, pensamos que lo mejor es rehacerlo porque no hay por donde meterle mano. Sin embargo, funciona tan bien que seguimos la regla “no sé cómo lo hace pero funciona, ni lo mires”. Sin embargo, necesitamos aplicar los patrones de valet key, throttling, circuit breaker y alguno más para adaptarnos a nuestra infraestructura. En este momento, entraría en juego nuestro patrón Ambassador, donde colocariamos un un servicio Proxy/Middleware entre el servicio de factoras y nuestra aplicaciones, donde, este middleware tendría aplicadas todas estas soluciones que presentábamos. Saludos y hasta la próxima.</summary></entry><entry><title type="html">Valet Key</title><link href="http://localhost:4000/valet-key" rel="alternate" type="text/html" title="Valet Key" /><published>2019-12-27T00:00:00+01:00</published><updated>2019-12-27T00:00:00+01:00</updated><id>http://localhost:4000/valet-key</id><content type="html" xml:base="http://localhost:4000/valet-key">&lt;p&gt;Hola a todos. El patrón Valet Key nos ayuda a validar al usuario a la hora de acceder a contenido o recursos que no necesiten una autenticación de usuario, es decir, es ofrecer la posibilidad de consumir ciertos datos o recursos a usuarios anónimos que usan nuestra aplicación como pasarela para consumirlos.&lt;/p&gt;
 
-&lt;p&gt;Con Throttling lo que podríamos hacer es utilizar la estrategia de procesamiento de 50 peticiones de los procesos B y C para reducir la carga de A, no colapsar el servidor y esperar a que el aprovisionamiento del escalado llegue a tiempo antes de una caiga de todo el sistema.&lt;/p&gt;
+&lt;p&gt;Vamos con el ejemplo.&lt;/p&gt;
 
-&lt;p&gt;Veamos como simulariamos la misma tabla pero con Throttling:&lt;/p&gt;
+&lt;p&gt;Imaginemos que tenemos una api en la que exponemos los resultados de fútbol de la jornada a los usuarios de nuestra aplicación. Nuestra aplicación front no requiere que el usuario esté registrado para poder saber los resultados de la jornada. La manera fácil, es crear un end point [anonymous] que devuelva estos resultados.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/CasoConThrottling.png&quot; alt=&quot;con-Throttling&quot; title=&quot;con-Throttling&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Sin embargo, al realizar esta acción lo que estamos permitiendo es que cualquiera pueda realizar esta llamada, consumir nuestros servicio y por lo tanto tener un coste mayor de procesamiento ya que el diario deportivo mundial, se ha dado cuenta que este servicio lo puede consumir sin ningún coste adicional y obtener los resultados deportivos. Para nosotros, podría ser un problema si todos los forofos del fútbol del mundo están pendientes del resultado del partido más importante de la jornada. A final de mes, nos llevariamos una buena torta en la facturación de nuestra infraestructura por el coste de las llamadas, el escalado para aguantar el tráfico, etc…&lt;/p&gt;
 
-&lt;p&gt;Como podemos ver, incluso si aplicaciones la estrategia de estrangular los procesos B y C en ciertos tiempos, no tendríamos la necesidad de escalar la máquina porque esta es capaz de satisfacer todas la peticiones de una forma liviana.&lt;/p&gt;
+&lt;p&gt;Sin embargo, con el patrón valet key, podemos mitigar este desafortunado incidente para nuestro bolsillo.&lt;/p&gt;
 
-&lt;p&gt;Saludos y hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El patrón Throttling (estrangulamiento) nos permite controlar el consumo de recursos utilizados por una instancia de una aplicación.</summary></entry><entry><title type="html">Queue-Based Load Leveling</title><link href="http://localhost:4000/queue-based-load-leveling" rel="alternate" type="text/html" title="Queue-Based Load Leveling" /><published>2019-09-10T00:00:00+02:00</published><updated>2019-09-10T00:00:00+02:00</updated><id>http://localhost:4000/queue-based-load-leveling</id><content type="html" xml:base="http://localhost:4000/queue-based-load-leveling">&lt;p&gt;El patrón Queue-Based Load Leveling, es un patrón que se utiliza para controlar y enumerar la carga masiva sobre un servicio.&lt;/p&gt;
+&lt;p&gt;Valet Key, lo que nos permite desde nuestra aplicación front es obtener un key con la que los usuarios anónimos podrán acceder al servicio de consulta de los resultados de la jornada, mientras lo realicen por la pasarela de nuestra aplicación. Mientras que si la llamada se origina fuera de nuestra aplicación, aseguraremos un 401.&lt;/p&gt;
 
-&lt;p&gt;Imaginemos que tenemos una api, esta api tiene una llamada que nuestra aplicación usa de forma masiva cuando los usuarios usan nuestra aplicación. Imaginemos, también, que esa petición recibe cada día a las 9 de la mañana la solicitud de “dame las noticias para hoy”, y aún más, imaginemos que nos lo solicitan los terrícolas y los &lt;a href=&quot;https://es.wikipedia.org/wiki/Klingon&quot; title=&quot;Klingons&quot;&gt;Klingons&lt;/a&gt;, porque quieren saber como va el IBEX35… Con este nivel de peticiones, nuestro servicio por muy escalado que estuviera, recibiría un impacto de solicitudes que tardaría en procesar (penalizaríamos en rendimiento) o nos tumbaría en disponibilidad.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/valet-key.png&quot; alt=&quot;Valet Key&quot; title=&quot;Valet Key&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/NoQueue-BasedLoadLeveling.png&quot; alt=&quot;NoQueue-BasedLoadLeveling&quot; title=&quot;NoQueue-BasedLoadLeveling&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;De esta forma, nuestro coste reflejará el consumo real de nuestros usuarios.&lt;/p&gt;
 
-&lt;p&gt;Con Queue-Based Load Leveling lo que hacemos es refactorizar lo que sería una llamada clásica sobre un método de la api, donde el controlador llamaría al servicio y éste ejecutaría el código de acceso a los datos, en un mensaje sobre una cola, donde el servicio procesaría, por orden de entrada, los mensajes que van entrando.&lt;/p&gt;
+&lt;p&gt;Además, dando una vuelta más de tuerca, podremos dar keys que nos den información a nuestras aplicaciones back, para poder clasificar a estos usuarios en roles y según su rol, poder dar más o menos privilegios a estos usuario anónimos.&lt;/p&gt;
 
-&lt;p&gt;De esta forma, a pesar de que el servicio tiene que responder muchas peticiones, nuestro rendimiento y nuestra disponibilidad no se vería tan afectada.&lt;/p&gt;
+&lt;p&gt;Un saludo.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">Hola a todos. El patrón Valet Key nos ayuda a validar al usuario a la hora de acceder a contenido o recursos que no necesiten una autenticación de usuario, es decir, es ofrecer la posibilidad de consumir ciertos datos o recursos a usuarios anónimos que usan nuestra aplicación como pasarela para consumirlos. Vamos con el ejemplo. Imaginemos que tenemos una api en la que exponemos los resultados de fútbol de la jornada a los usuarios de nuestra aplicación. Nuestra aplicación front no requiere que el usuario esté registrado para poder saber los resultados de la jornada. La manera fácil, es crear un end point [anonymous] que devuelva estos resultados. Sin embargo, al realizar esta acción lo que estamos permitiendo es que cualquiera pueda realizar esta llamada, consumir nuestros servicio y por lo tanto tener un coste mayor de procesamiento ya que el diario deportivo mundial, se ha dado cuenta que este servicio lo puede consumir sin ningún coste adicional y obtener los resultados deportivos. Para nosotros, podría ser un problema si todos los forofos del fútbol del mundo están pendientes del resultado del partido más importante de la jornada. A final de mes, nos llevariamos una buena torta en la facturación de nuestra infraestructura por el coste de las llamadas, el escalado para aguantar el tráfico, etc… Sin embargo, con el patrón valet key, podemos mitigar este desafortunado incidente para nuestro bolsillo. Valet Key, lo que nos permite desde nuestra aplicación front es obtener un key con la que los usuarios anónimos podrán acceder al servicio de consulta de los resultados de la jornada, mientras lo realicen por la pasarela de nuestra aplicación. Mientras que si la llamada se origina fuera de nuestra aplicación, aseguraremos un 401. De esta forma, nuestro coste reflejará el consumo real de nuestros usuarios. Además, dando una vuelta más de tuerca, podremos dar keys que nos den información a nuestras aplicaciones back, para poder clasificar a estos usuarios en roles y según su rol, poder dar más o menos privilegios a estos usuario anónimos. Un saludo.</summary></entry><entry><title type="html">Static Content Hosting</title><link href="http://localhost:4000/static-content-hosting" rel="alternate" type="text/html" title="Static Content Hosting" /><published>2019-10-27T00:00:00+02:00</published><updated>2019-10-27T00:00:00+02:00</updated><id>http://localhost:4000/static-content-hosting</id><content type="html" xml:base="http://localhost:4000/static-content-hosting">&lt;p&gt;El objetivo de este patrón es reducir el coste de llamadas que no necesiten pasar por una lógica o servicio devolviendo el contenido o recurso requerido de la forma más rápida posible.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/Queue-BasedLoadLeveling.png&quot; alt=&quot;Queue-BasedLoadLeveling&quot; title=&quot;Queue-BasedLoadLeveling&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Imaginemos que nuestra web tiene varios documentos PDF donde le explicamos al usuario como vamos a tratar su datos mientras los stalkeamos en su navegación por el site. Podríamos pensar que, cuando el usuario inicia esta solicitud, nos llama a la controller, voy al servicio que devuelve el contenido del pdf en base64 y que el navegador renderiza por las cabeceras en una nueva tab como pdf. Sí, ¿no? Pues no, justamente este patrón lo que nos recomienda es que le devolvamos el pdf desde la url del storage que apunta al pdf de gestion_datos.pdf.&lt;/p&gt;
 
-&lt;p&gt;Pero… No todo el monte es orégano.&lt;/p&gt;
+&lt;p&gt;De esta forma, reducimos el procesamiento en nuestra/s instancia/s, que valen dinerito y usamos un storage que es más baratito.&lt;/p&gt;
 
-&lt;p&gt;Sabemos que este patrón nos ayuda con la sobrecarga y la disponibilidad de la infraestructura, pero no siempre podremos implementar este patrón, ya que para usarlo deberemos implementar y adaptar nuestro código a obtener respuestas con una latencia superior. Sí, que tardaremos más en responder las solicitudes, con lo que no podremos tener peticiones y respuestas de una forma síncrona como suele ocurrir en una api. Pero tranquilos, que esta tecnología existe, tenemos por ejemplo &lt;a href=&quot;https://docs.microsoft.com/es-es/aspnet/signalr/overview/getting-started/introduction-to-signalr&quot; title=&quot;SignalR&quot;&gt;SignalR&lt;/a&gt; entre otras.&lt;/p&gt;
+&lt;p&gt;El truco, es pensar en este tipo de contenido y en su viabilidad de si sería aconsejable meterlo en un cdn.&lt;/p&gt;
 
-&lt;p&gt;Un saludo y hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El patrón Queue-Based Load Leveling, es un patrón que se utiliza para controlar y enumerar la carga masiva sobre un servicio.</summary></entry><entry><title type="html">Health Endpoint Monitoring</title><link href="http://localhost:4000/health-endpoint-monitoring" rel="alternate" type="text/html" title="Health Endpoint Monitoring" /><published>2019-07-21T00:00:00+02:00</published><updated>2019-07-21T00:00:00+02:00</updated><id>http://localhost:4000/health-endpoint-monitoring</id><content type="html" xml:base="http://localhost:4000/health-endpoint-monitoring">&lt;p&gt;Health Endpoint Monitoring es un patrón de disponibilidad el cual nos permite verificar la salud de nuestros servicios exponiendo un servicio que monitorizamos cada x tiempo.&lt;/p&gt;
+&lt;p&gt;Saludos y hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El objetivo de este patrón es reducir el coste de llamadas que no necesiten pasar por una lógica o servicio devolviendo el contenido o recurso requerido de la forma más rápida posible. Imaginemos que nuestra web tiene varios documentos PDF donde le explicamos al usuario como vamos a tratar su datos mientras los stalkeamos en su navegación por el site. Podríamos pensar que, cuando el usuario inicia esta solicitud, nos llama a la controller, voy al servicio que devuelve el contenido del pdf en base64 y que el navegador renderiza por las cabeceras en una nueva tab como pdf. Sí, ¿no? Pues no, justamente este patrón lo que nos recomienda es que le devolvamos el pdf desde la url del storage que apunta al pdf de gestion_datos.pdf. De esta forma, reducimos el procesamiento en nuestra/s instancia/s, que valen dinerito y usamos un storage que es más baratito. El truco, es pensar en este tipo de contenido y en su viabilidad de si sería aconsejable meterlo en un cdn. Saludos y hasta la próxima.</summary></entry><entry><title type="html">Conferencia .NET Conf Barcelona 2019</title><link href="http://localhost:4000/netconfbarcelona" rel="alternate" type="text/html" title="Conferencia .NET Conf Barcelona 2019" /><published>2019-10-22T00:00:00+02:00</published><updated>2019-10-22T00:00:00+02:00</updated><id>http://localhost:4000/netconfbarcelona</id><content type="html" xml:base="http://localhost:4000/netconfbarcelona">&lt;p&gt;Hola a todos. Preparado para las .NET Conf Barcelona 2019 con Machine Learning .NET visión de aproximación.&lt;/p&gt;
 
-&lt;p&gt;Básicamente, lo que hacemos es llamar a un/os servicio/s y que esto/s nos vaya/n respondiendo la pregunta ¿Sigues vivo? (Keep Alive).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/health-endpoint-monitoring.png&quot; alt=&quot;health-endpoint-monitoring&quot; title=&quot;health-endpoint-monitoring&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Como se puede apreciar en el gráfico, en esta infraestructura se monitorizan tanto los servicios web, los servicios de datos y los servicios background.&lt;/p&gt;
-
-&lt;p&gt;Decir que, para este patrón podemos afinar todo lo que necesitemos y que no solo podemos saber el estado del servicio (vivo o muerto), sigo que podemos monitorizar otras métricas como el tiempo de respuesta, validar la respuesta, caducidad de certificados, latencia de DNS, etc…&lt;/p&gt;
-
-&lt;p&gt;Finalmente, os dejo un link del repositorio de Microsoft, donde implementa este patrón con código &lt;a href=&quot;https://github.com/mspnp/cloud-design-patterns/tree/master/health-endpoint-monitoring&quot;&gt;Repo Health EndPoint Monitor&lt;/a&gt;.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">Health Endpoint Monitoring es un patrón de disponibilidad el cual nos permite verificar la salud de nuestros servicios exponiendo un servicio que monitorizamos cada x tiempo.</summary></entry><entry><title type="html">Patrones de diseño Cloud</title><link href="http://localhost:4000/patrones-de-diseno-cloud" rel="alternate" type="text/html" title="Patrones de diseño Cloud" /><published>2019-07-14T00:00:00+02:00</published><updated>2019-07-14T00:00:00+02:00</updated><id>http://localhost:4000/patrones-de-diseno-cloud</id><content type="html" xml:base="http://localhost:4000/patrones-de-diseno-cloud">&lt;p&gt;Hola de nuevo. Volviendo al tema de las arquitecturas, esta vez revisaremos los patrones de diseño orientados al Cloud. A diferencia de los patrones de diseño, un mismo patrón nos puede ofrecer varias soluciones para los principales problemas comunes en nuestras arquitectura cloud.&lt;/p&gt;
-
-&lt;p&gt;Para ello, dividiremos los patrones cloud según el enfoque al que están orientados. Pasamos a enumerarlos:&lt;/p&gt;
-
-&lt;h3 id=&quot;patrones-de-disponibilidad&quot;&gt;Patrones de Disponibilidad&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;health-endpoint-monitoring&quot; title=&quot;Monitor de salud&quot;&gt;Monitor de salud&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;queue-based-load-leveling&quot; title=&quot;Queue-Based Load Leveling&quot;&gt;Queue-Based Load Leveling&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;throttling&quot; title=&quot;Throttling&quot;&gt;Throttling&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;patrones-de-administración-de-datos&quot;&gt;Patrones de Administración de datos&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;Cache-Aside&quot; title=&quot;Cache Aside&quot;&gt;Cache Aside&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;CQRS&lt;/li&gt;
-  &lt;li&gt;Event Sourcing&lt;/li&gt;
-  &lt;li&gt;Index Table&lt;/li&gt;
-  &lt;li&gt;Materialized View&lt;/li&gt;
-  &lt;li&gt;Sharding&lt;/li&gt;
-  &lt;li&gt;Static Content Hosting&lt;/li&gt;
-  &lt;li&gt;Valet Key&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;patrones-de-diseño-e-implementación&quot;&gt;Patrones de Diseño e implementación&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Ambassador&lt;/li&gt;
-  &lt;li&gt;Anti-Corruption Layer&lt;/li&gt;
-  &lt;li&gt;Backends for Frontends&lt;/li&gt;
-  &lt;li&gt;CQRS&lt;/li&gt;
-  &lt;li&gt;Compute Resource Consolidation&lt;/li&gt;
-  &lt;li&gt;External Configuration Store&lt;/li&gt;
-  &lt;li&gt;Gateway Aggregation&lt;/li&gt;
-  &lt;li&gt;Gateway Offloading&lt;/li&gt;
-  &lt;li&gt;Gateway Routing&lt;/li&gt;
-  &lt;li&gt;Leader Election&lt;/li&gt;
-  &lt;li&gt;Pipes and Filters&lt;/li&gt;
-  &lt;li&gt;Sidecar&lt;/li&gt;
-  &lt;li&gt;Static Content Hosting&lt;/li&gt;
-  &lt;li&gt;Strangler&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;patrones-de-mensajería&quot;&gt;Patrones de Mensajería&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Comprobación de notificaciones&lt;/li&gt;
-  &lt;li&gt;Competing Consumers&lt;/li&gt;
-  &lt;li&gt;Pipes and Filters&lt;/li&gt;
-  &lt;li&gt;Priority Queue&lt;/li&gt;
-  &lt;li&gt;Publisher-Subscriber&lt;/li&gt;
-  &lt;li&gt;Queue-Based Load Leveling&lt;/li&gt;
-  &lt;li&gt;Scheduler Agent Supervisor&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;patrones-de-administración-y-supervisión&quot;&gt;Patrones de Administración y supervisión&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Ambassador&lt;/li&gt;
-  &lt;li&gt;Anti-Corruption Layer&lt;/li&gt;
-  &lt;li&gt;External Configuration Store&lt;/li&gt;
-  &lt;li&gt;Gateway Aggregation&lt;/li&gt;
-  &lt;li&gt;Gateway Offloading&lt;/li&gt;
-  &lt;li&gt;Gateway Routing&lt;/li&gt;
-  &lt;li&gt;Health Endpoint&lt;/li&gt;
-  &lt;li&gt;Sidecar&lt;/li&gt;
-  &lt;li&gt;Strangler&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;patrones-de-rendimiento-y-escalabilidad&quot;&gt;Patrones de Rendimiento y escalabilidad&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Cache-Aside&lt;/li&gt;
-  &lt;li&gt;CQRS&lt;/li&gt;
-  &lt;li&gt;Event Sourcing&lt;/li&gt;
-  &lt;li&gt;Index Table&lt;/li&gt;
-  &lt;li&gt;Materialized View&lt;/li&gt;
-  &lt;li&gt;Priority Queue&lt;/li&gt;
-  &lt;li&gt;Queue-Based Load Leveling&lt;/li&gt;
-  &lt;li&gt;Sharding&lt;/li&gt;
-  &lt;li&gt;Static Content Hosting&lt;/li&gt;
-  &lt;li&gt;Throttling&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;patrones-de-resistencia&quot;&gt;Patrones de Resistencia&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Bulkhead&lt;/li&gt;
-  &lt;li&gt;Circuit Breaker&lt;/li&gt;
-  &lt;li&gt;Compensating Transaction&lt;/li&gt;
-  &lt;li&gt;Health Endpoint Monitoring&lt;/li&gt;
-  &lt;li&gt;Leader Election&lt;/li&gt;
-  &lt;li&gt;Queue-Based Load Leveling&lt;/li&gt;
-  &lt;li&gt;Retry&lt;/li&gt;
-  &lt;li&gt;Scheduler Agent Supervisor&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;patrones-de-seguridad&quot;&gt;Patrones de Seguridad&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Federated Identity&lt;/li&gt;
-  &lt;li&gt;Gatekeeper&lt;/li&gt;
-  &lt;li&gt;Valet Key&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Nos vemos en breve y empezamos.&lt;/p&gt;
-
-&lt;p&gt;Saludos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">Hola de nuevo. Volviendo al tema de las arquitecturas, esta vez revisaremos los patrones de diseño orientados al Cloud. A diferencia de los patrones de diseño, un mismo patrón nos puede ofrecer varias soluciones para los principales problemas comunes en nuestras arquitectura cloud.</summary></entry><entry><title type="html">ML.Net con modelo ONNX</title><link href="http://localhost:4000/ml-net" rel="alternate" type="text/html" title="ML.Net con modelo ONNX" /><published>2019-07-13T00:00:00+02:00</published><updated>2019-07-13T00:00:00+02:00</updated><id>http://localhost:4000/ml-net</id><content type="html" xml:base="http://localhost:4000/ml-net">&lt;p&gt;Hola! Hoy vengo a presentaros una POC en la que llevo un tiempo trabajando.&lt;/p&gt;
-
-&lt;p&gt;Me picaba la curiosidad jugar un poco con Machine Learning y ver que nos podía ofrecer. Después de leer y situarme un poco sobre el tema, coincidió que Microsoft, había implementado un nuevo Framework de integración para machine learning (&lt;a href=&quot;https://dotnet.microsoft.com/apps/machinelearning-ai/ml-dotnet&quot;&gt;ML.Net&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;Y la verdad, que es más sencillo de lo que parece.&lt;/p&gt;
-
-&lt;p&gt;En esta POC hemos jugado con una aplicación UWP (Universal Windows Platform), la idea era picar e integrar la aplicación con Rasperry Pi 3, en ello estamos pero el hardware es una pasta…&lt;/p&gt;
-
-&lt;p&gt;Lo primero de todo, decir que no he entrenado el modelo. Simplemente en el repositorio de &lt;a href=&quot;https://github.com/onnx/models&quot;&gt;ONNX&lt;/a&gt;, tenéis modelos entrenados para hacer vuestros primeros pinitos y posteriormente ya veremos como entrenar un modelo, porque para ello, depende como, se necesita máquina, bastante máquina, aunque he encontrado una alternativa que parece viable &lt;a href=&quot;https://www.customvision.ai/&quot;&gt;CustomVision&lt;/a&gt;, sigo pensando que entrenar un modelo al 100% para lo que tu quieras no debería ser con alternativas cómo esta.&lt;/p&gt;
-
-&lt;p&gt;Primero definimos la vista XAML con una Grid, control:CameraPreview (Nuget Microsoft.Toolkit.Uwp.UI.Controls;
-), un textblock y un canvas (para renderizar el resultado de lo que va detectando):&lt;/p&gt;
-
-&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Grid&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;BlueViolet&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;controls&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CameraPreview&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;CameraPreview&quot;&lt;/span&gt; 
-                                &lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;500&quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;300&quot;&lt;/span&gt; 
-                                &lt;span class=&quot;n&quot;&gt;HorizontalAlignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Left&quot;&lt;/span&gt; 
-                                &lt;span class=&quot;n&quot;&gt;VerticalAlignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Top&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;controls&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CameraPreview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Canvas&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;YoloCanvas&quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;500&quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;300&quot;&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;Grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HorizontalAlignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Left&quot;&lt;/span&gt; 
-                &lt;span class=&quot;n&quot;&gt;VerticalAlignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Top&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TextBlock&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;500&quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;300&quot;&lt;/span&gt; 
-                   &lt;span class=&quot;n&quot;&gt;HorizontalAlignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Right&quot;&lt;/span&gt; 
-                   &lt;span class=&quot;n&quot;&gt;VerticalAlignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Top&quot;&lt;/span&gt;
-                   &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;TextBlockInformation&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TextBlock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;En la clase MainPage definimos el evento para capturar las imágenes de la cámara:&lt;/p&gt;
-
-&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;OnNavigatedTo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NavigationEventArgs&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;_model&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LearningModelYolo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;CreateFromStreamAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;_cameraModel&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CameraModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetCameraSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CameraPreview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CameraPreview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;StartAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;CameraPreview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CameraHelper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FrameArrived&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CameraHelper_FrameArrived&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Y a partir de aquí, ya podemos empezar a procesar los frames de la cámara para su análisis:&lt;/p&gt;
-
-&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CameraHelper_FrameArrived&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Microsoft&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Toolkit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Uwp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Helpers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FrameEventArgs&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;VideoFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SoftwareBitmap&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;_stopwatch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Stopwatch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;StartNew&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;ImageFeatureValue&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_image&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ImageFeatureValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;CreateFromVideoFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;VideoFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Yolov2Input&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_image&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-
-    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;EvaluateAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetAwaiter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetResult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;_stopwatch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Stop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;IReadOnlyList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vectorImage&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetAsVectorView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;IList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imageList&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vectorImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ToList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;_boxes&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_parser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ParseOutputs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vectorImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ToArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-
-    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;maxIndex&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imageList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;IndexOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dispatcher&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;RunAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CoreDispatcherPriority&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;TextBlockInformation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1000f&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_stopwatch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ElapsedMilliseconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; fps on Width &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_cameraModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; x Height &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_cameraModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;nf&quot;&gt;DrawOverlays&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;VideoFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Decir que si instalamos el framework, ML.Net al importar el modelo ONNX, nos genera la clase para poder acceder a él automáticamente.&lt;/p&gt;
-
-&lt;p&gt;Por último, lo que más me ha costado ha sido situar el canvas y situarlo más o menos en el punto que reconoce algo en el frame que le pasamos.&lt;/p&gt;
-
-&lt;p&gt;De momento, es todo lo que he conseguido. Ahora lo siguiente, es entrenar mi propio modelo para que identifique personas.&lt;/p&gt;
-
-&lt;p&gt;Os seguiré contando los avances.&lt;/p&gt;
-
-&lt;p&gt;Os dejo el &lt;a href=&quot;https://github.com/JRRN/Pabi&quot;&gt;código&lt;/a&gt; (Se adminten PR’s)&lt;/p&gt;
-
-&lt;p&gt;Un saludo y hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="ML" /><summary type="html">Hola! Hoy vengo a presentaros una POC en la que llevo un tiempo trabajando.</summary></entry><entry><title type="html">Conferencia Net Core Conference 2019</title><link href="http://localhost:4000/netcoreconfgalicia" rel="alternate" type="text/html" title="Conferencia Net Core Conference 2019" /><published>2019-07-10T00:00:00+02:00</published><updated>2019-07-10T00:00:00+02:00</updated><id>http://localhost:4000/netcoreconfgalicia</id><content type="html" xml:base="http://localhost:4000/netcoreconfgalicia">&lt;p&gt;Hola a todos. Esta vez nos vemos en Galicia, Santiago de Compostela. Mi compañero &lt;a href=&quot;http://www.marcalmontserrat.com&quot;&gt;&lt;strong&gt;Marçal Montserrat&lt;/strong&gt;&lt;/a&gt; no nos acompañará esta vez.
-De nuevo, muchas gracias por confiar en nosotros y darnos la oportunidad de aportar a la comunidad.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://galicia.netcoreconf.com&quot;&gt;Agenda&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://netconfbcn.azurewebsites.net/&quot;&gt;Site&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;De 0 a 100 en ARM segundos:&lt;/strong&gt;
-El síndrome del ratón es la afección del túnel carpiano por el constante y continúo ejercicio de clicks sobre el ratón. Si conoces un DevOps con este síndrome, huye corriendo, porque es la señal de que se pasa su vida montando infraestructura a golpe de ratón y todavía no ha descubierto ARM. La forma “fácil” de montar toda una infraestructura en segundos.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Machine Learning .NET visión de aproximación:&lt;/strong&gt;
+ML.Net es el nuevo framework de Microsoft que nos permite usar código c# en nuestros proyectos de Machine Learning. En esta charla profundizaremos un poquito, veremos sus características y una demo que permite reconocer objetos.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Nos vemos en la conf.&lt;/p&gt;
 
-&lt;p&gt;Saludos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Conferences" /><summary type="html">Hola a todos. Esta vez nos vemos en Galicia, Santiago de Compostela. Mi compañero Marçal Montserrat no nos acompañará esta vez. De nuevo, muchas gracias por confiar en nosotros y darnos la oportunidad de aportar a la comunidad.</summary></entry><entry><title type="html">Caché no distribuida en Net Core</title><link href="http://localhost:4000/cache-no-distribuida" rel="alternate" type="text/html" title="Caché no distribuida en Net Core" /><published>2019-07-10T00:00:00+02:00</published><updated>2019-07-10T00:00:00+02:00</updated><id>http://localhost:4000/cache-no-distribuida</id><content type="html" xml:base="http://localhost:4000/cache-no-distribuida">&lt;p&gt;Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria.&lt;/p&gt;
+&lt;p&gt;Saludos.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Conferences" /><summary type="html">Hola a todos. Preparado para las .NET Conf Barcelona 2019 con Machine Learning .NET visión de aproximación.</summary></entry><entry><title type="html">Sharding</title><link href="http://localhost:4000/sharding" rel="alternate" type="text/html" title="Sharding" /><published>2019-10-17T00:00:00+02:00</published><updated>2019-10-17T00:00:00+02:00</updated><id>http://localhost:4000/sharding</id><content type="html" xml:base="http://localhost:4000/sharding">&lt;p&gt;El patrón de Sharding o particionamiento es un patrón orientado a los datos; tiene especial consideración en la forma en que accedemos y almacenamos la información.&lt;/p&gt;
 
-&lt;p&gt;Este tipo de caché, como redis, memcaché, etc… se diferencia que no es una caché persistida y distribuida. Esto quiere decir que esta caché se crea en memoria y en cada instancia de servidor de la aplicación, donde tenemos una caché diferente.&lt;/p&gt;
+&lt;p&gt;La cuestión de todo esto es crear particiones de nuestros datos de forma distribuida en particiones. De esta forma, podremos balancear el acceso y recuperación de los datos de una forma más óptima accediendo al bloque al que estamos interesados. Por otro lado, esta misma técnica la podemos realizar particionando bases de datos extensas en bases de datos separadas y más pequeñas.&lt;/p&gt;
 
-&lt;p&gt;Para ello, simplemente necesitamos añadir el servicio en la inyección de dependencias y el paquete nuget &lt;strong&gt;Microsoft.Extensions.Caching.Memory&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Así, el escalado de las particiones es más rápido y podríamos escalar, como si fueran servicios independientes, las partes que necesitamos y en las que recurrimos más habitualmente a ellas.&lt;/p&gt;
 
-&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConfigureServices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IServiceCollection&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;AddMemoryCache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;p&gt;Venga en texto plano, ¿Qué es más manejable, una roca de 1 tonelada o 1000 rocas de 1 kilo? …&lt;/p&gt;
+
+&lt;p&gt;Ahora transpolemos de esta pregunta las virtudes de este patrón.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Necesitaría ser un monstruo de máquina para mover la tonelada de piedra, mientras que en 1000 viajes, yo mismo, podría mover esa tonelada.&lt;/li&gt;
+  &lt;li&gt;Si tuviera que mover dos veces la tonelada de datos, sería más fácil, que llamara a mi sobrina de 3 años y la liara por un par chucherías, que encontrar otro monstruo de máquina para mover la tonelada.&lt;/li&gt;
+  &lt;li&gt;Podría repartir la tonelada de datos según las necesidades de las peticiones, de esta tonelada podría enviar el kilo que me solicita cada petición, mientras que si no lo tuviera particionado, tendría que llevar esa tonelada a la primera petición que tomara lo que necesita y seguidamente, llevar esa tonelada a la siguiente petición para que nuevamente, tomara lo que necesita.&lt;/li&gt;
+  &lt;li&gt;Me sería más fácil hacer dos piedras de un kilo que dos piedras de una tonelada.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Parece sencillo verdad, sin embargo, la complejidad de este patrón, es tener muy claro el modelo de datos y saber que estrategia de particionado nos beneficia más en nuestra aplicación.&lt;/p&gt;
+
+&lt;p&gt;Por ello según el tipo de particionado podemos encontrar las estrategias:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;De Búsqueda: Las entidades se organizan en particiones donde esta deberá contener todos los datos de la entidad buscada. Como ejemplo, si tuviéramos todos los libros del mundo con sus datos relacionados, significaría que deberíamos tener en la misma partición, con sus tablas relacionadas, los libros de Matilde Asensi en la tabla autores y la relacionada de sus libros. De esta forma, a la hora de buscar los libros de Matilde Asensi, no saltaríamos de partición para recuperar estos datos.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;De Rango: Las entidades directamente relacionadas, se agrupan en la misma partición y se ordenan por sus claves primarias. Como ejemplo podríamos particionar la base de datos de todos los libros del mundo según el apellido del autor, de esta forma accederíamos a particiones diferentes si buscamos un libro de Rice, Anne o un libro de Coates, Ta-Nemisi.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;De Hash: En este caso definimos un cálculo único para identificar en que partición almacenamos la información o la recuperamos. En el ejemplo de todos los libros del mundo, podríamos generar un hash a partir del nombre y apellidos de los autores:&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Autor&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Hash&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Partición&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Anne Rice&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;41:6e:6e:65:20:52:69:63:65&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Matilde Asensi&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4d:61:74:69:6c:64:65:20:41:73:65:6e:73:69&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;14&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ta-Nemisi Coates&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;54:61:2d:4e:65:6d:69:73:69:20:43:6f:61:74:65:73&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;16&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;
+Como se puede ver según nuestros requisitos, deberíamos tener muy presente cual de las estrategias se asimila a nuestro modelo de datos y cual deberíamos aplicar mejor.&lt;/p&gt;
+
+&lt;p&gt;Un saludo y hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El patrón de Sharding o particionamiento es un patrón orientado a los datos; tiene especial consideración en la forma en que accedemos y almacenamos la información. La cuestión de todo esto es crear particiones de nuestros datos de forma distribuida en particiones. De esta forma, podremos balancear el acceso y recuperación de los datos de una forma más óptima accediendo al bloque al que estamos interesados. Por otro lado, esta misma técnica la podemos realizar particionando bases de datos extensas en bases de datos separadas y más pequeñas. Así, el escalado de las particiones es más rápido y podríamos escalar, como si fueran servicios independientes, las partes que necesitamos y en las que recurrimos más habitualmente a ellas. Venga en texto plano, ¿Qué es más manejable, una roca de 1 tonelada o 1000 rocas de 1 kilo? … Ahora transpolemos de esta pregunta las virtudes de este patrón. Necesitaría ser un monstruo de máquina para mover la tonelada de piedra, mientras que en 1000 viajes, yo mismo, podría mover esa tonelada. Si tuviera que mover dos veces la tonelada de datos, sería más fácil, que llamara a mi sobrina de 3 años y la liara por un par chucherías, que encontrar otro monstruo de máquina para mover la tonelada. Podría repartir la tonelada de datos según las necesidades de las peticiones, de esta tonelada podría enviar el kilo que me solicita cada petición, mientras que si no lo tuviera particionado, tendría que llevar esa tonelada a la primera petición que tomara lo que necesita y seguidamente, llevar esa tonelada a la siguiente petición para que nuevamente, tomara lo que necesita. Me sería más fácil hacer dos piedras de un kilo que dos piedras de una tonelada. Parece sencillo verdad, sin embargo, la complejidad de este patrón, es tener muy claro el modelo de datos y saber que estrategia de particionado nos beneficia más en nuestra aplicación. Por ello según el tipo de particionado podemos encontrar las estrategias: De Búsqueda: Las entidades se organizan en particiones donde esta deberá contener todos los datos de la entidad buscada. Como ejemplo, si tuviéramos todos los libros del mundo con sus datos relacionados, significaría que deberíamos tener en la misma partición, con sus tablas relacionadas, los libros de Matilde Asensi en la tabla autores y la relacionada de sus libros. De esta forma, a la hora de buscar los libros de Matilde Asensi, no saltaríamos de partición para recuperar estos datos. De Rango: Las entidades directamente relacionadas, se agrupan en la misma partición y se ordenan por sus claves primarias. Como ejemplo podríamos particionar la base de datos de todos los libros del mundo según el apellido del autor, de esta forma accederíamos a particiones diferentes si buscamos un libro de Rice, Anne o un libro de Coates, Ta-Nemisi. De Hash: En este caso definimos un cálculo único para identificar en que partición almacenamos la información o la recuperamos. En el ejemplo de todos los libros del mundo, podríamos generar un hash a partir del nombre y apellidos de los autores: Autor Hash Partición Anne Rice 41:6e:6e:65:20:52:69:63:65 9 Matilde Asensi 4d:61:74:69:6c:64:65:20:41:73:65:6e:73:69 14 Ta-Nemisi Coates 54:61:2d:4e:65:6d:69:73:69:20:43:6f:61:74:65:73 16 Como se puede ver según nuestros requisitos, deberíamos tener muy presente cual de las estrategias se asimila a nuestro modelo de datos y cual deberíamos aplicar mejor. Un saludo y hasta la próxima.</summary></entry><entry><title type="html">Materialized View</title><link href="http://localhost:4000/materialized-view" rel="alternate" type="text/html" title="Materialized View" /><published>2019-10-12T00:00:00+02:00</published><updated>2019-10-12T00:00:00+02:00</updated><id>http://localhost:4000/materialized-view</id><content type="html" xml:base="http://localhost:4000/materialized-view">&lt;p&gt;El patrón materialized view, nos sirve para tener datos fragmentados en diferentes tablas en una vista desnormalizada. De esta forma, podemos consultar estos datos y recuperarlos de una manera óptima.&lt;/p&gt;
+
+&lt;p&gt;Vayamos al ejemplo para tener clara la situación y como este patrón nos ayuda a solucionarlo.&lt;/p&gt;
+
+&lt;p&gt;Imaginemos que nuestra aplicación tiene la siguiente estrucutura:&lt;/p&gt;
+
+&lt;p&gt;TABLA USUARIOS&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;(*) id_user&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;userName&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;userLastName&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pitufo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Gruñón&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Papá&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pitufo&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pitufo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Amoroso&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pitufo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Inteligente&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pitufo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Burlón&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;TABLA USUARIO CABELLERA&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;(*) id_cabellera&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;id_user&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;color&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;castaño&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;moreno&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;castaño&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;moreno&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;castaño&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Si quisieramos obtener el color de pelo de los usuarios deríamos hacer una join entre usuarios y cabellera. Imaginemos que, esta consulta fuera muy costosa. La solución pasa por tener una vista materializada precalculada, como si fuera una caché, con este resultado almacenado y simplemente ejecutar nuestra consulta sobre esta vista:&lt;/p&gt;
+
+&lt;p&gt;VISTA USUARIO-CABELLERA&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;(*) id_user&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;userName&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;userLastName&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;id_cabellera&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;color&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pitufo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Gruñón&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;castaño&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Papá&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pitufo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;moreno&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pitufo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Amoroso&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;castaño&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pitufo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Inteligente&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;moreno&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pitufo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Burlón&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;castaño&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Esta solución, nos brinda la capacidad de realizar esta acción de mejora en datos que no se actualizan con frecuencia. Si por el contrario, estos datos cambian constantemente, esto nos obligaría a recalcular o regenerar las vista y podría penalizarnos en vez de ayudarnos.&lt;/p&gt;
+
+&lt;p&gt;Sin más, hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El patrón materialized view, nos sirve para tener datos fragmentados en diferentes tablas en una vista desnormalizada. De esta forma, podemos consultar estos datos y recuperarlos de una manera óptima. Vayamos al ejemplo para tener clara la situación y como este patrón nos ayuda a solucionarlo. Imaginemos que nuestra aplicación tiene la siguiente estrucutura: TABLA USUARIOS (*) id_user userName userLastName 1 Pitufo Gruñón 2 Papá Pitufo 3 Pitufo Amoroso 4 Pitufo Inteligente 5 Pitufo Burlón TABLA USUARIO CABELLERA (*) id_cabellera id_user color 1 1 castaño 2 2 moreno 3 3 castaño 4 4 moreno 5 5 castaño Si quisieramos obtener el color de pelo de los usuarios deríamos hacer una join entre usuarios y cabellera. Imaginemos que, esta consulta fuera muy costosa. La solución pasa por tener una vista materializada precalculada, como si fuera una caché, con este resultado almacenado y simplemente ejecutar nuestra consulta sobre esta vista: VISTA USUARIO-CABELLERA (*) id_user userName userLastName id_cabellera color 1 Pitufo Gruñón 1 castaño 2 Papá Pitufo 2 moreno 3 Pitufo Amoroso 3 castaño 4 Pitufo Inteligente 4 moreno 5 Pitufo Burlón 5 castaño Esta solución, nos brinda la capacidad de realizar esta acción de mejora en datos que no se actualizan con frecuencia. Si por el contrario, estos datos cambian constantemente, esto nos obligaría a recalcular o regenerar las vista y podría penalizarnos en vez de ayudarnos. Sin más, hasta la próxima.</summary></entry><entry><title type="html">Index Table</title><link href="http://localhost:4000/index-table" rel="alternate" type="text/html" title="Index Table" /><published>2019-10-03T00:00:00+02:00</published><updated>2019-10-03T00:00:00+02:00</updated><id>http://localhost:4000/index-table</id><content type="html" xml:base="http://localhost:4000/index-table">&lt;p&gt;El patrón Index Table se utiliza para crear índices secundarios sobre consultas, que la aplicación necesita, en campos que no son una primary key y así tener un acceso a los datos con una aceptable optimización.&lt;/p&gt;
+
+&lt;p&gt;Situémonos, tenemos una tabla de productos, donde como es habitual, tenemos un id_producto como primary key, el campo nombre de producto, el tipo de producto y el precio.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;(*) id_producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;tipo_producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;precio&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Patatas&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Zanahorias&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Carne&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pescado&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Plátanos&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Primary Key&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;En nuestra aplicación para buscar patatas ejecutaríamos la query:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SELECT * from TABLE Where id_producto = 1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Inyectado nuestro servicio, ahora ya podemos usar la Interfaz IMemoryCache y generar cachés de nuestros servicios:&lt;/p&gt;
+&lt;p&gt;Con lo que obtendríamos con un buen rendimiento:&lt;/p&gt;
 
-&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NuestroController&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Controller&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IMemoryCache&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_cache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IUserRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_userRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;(*) id_producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;tipo_producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;precio&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Patatas&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NuestroController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IMemoryCache&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memoryCache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                             &lt;span class=&quot;n&quot;&gt;IUserRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;_cache&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memoryCache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;_userRepository&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;p&gt;Sin embargo, no siempre tenemos porque conocer el identificador de lo que estamos buscando en base de datos y esto nos penaliza si buscamos por “Patatas”.&lt;/p&gt;
 
-    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HttpGet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IEnumerable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Usuarios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;GetUsersByCountry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cacheKey&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&quot;users-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_cache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetOrCreateAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cacheKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;entry&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_userRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetUsersByCountry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SELECT * from TABLE Where producto = &quot;Patatas&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Y voilà, ya tenemos una caché montada en memoria. La caché que se forma, es usuarios por país. Así, si en la primera llamada pedimos los usuarios de España, accederemos hasta el repositorio, nos traeremos los datos y en la salida creará una caché con la clave users-es con los usuarios de España. Si volvemos a ejecutar la llamada al controller, la llamada ya no bajará hasta el repository sino que será la caché quien nos devuelva los usuarios. Sin embargo, si solicitamos los usuarios de México, se volverá el acceder al repositorio y se añadirá a la caché de usuarios con la clave users-mx.&lt;/p&gt;
+&lt;p&gt;A pesar de que lo encuentra, si tuviéramos una base de datos con bastante peso, esta query podría penalizar al rendimiento de la aplicación o incluso darnos un timeout en la query, cosa que no sería necesario si implementáramos Index Table.&lt;/p&gt;
 
-&lt;p&gt;Vale, ¿que fácil no? Pues la verdad que sí. Decir que la IMemoryCaché se limita por un &lt;a href=&quot;https://es.wikipedia.org/wiki/Algoritmo_de_caché&quot;&gt;algoritmo LRU&lt;/a&gt; que nos permite usar el 20% de la RAM de la instancia como máximo.&lt;/p&gt;
+&lt;p&gt;Aunque existen motores de bases de datos, SQL Server lo permite, en los que puedes crear índices secundarios, puede ser una buena práctica no crear estos índices y usar este patrón. Por otro lado, para aquellos motores NO-SQL en los que los índices “no existen” (lo pongo entre comillas antes de que os tiréis al cuello) este patrón se ajusta bastante bien.&lt;/p&gt;
 
-&lt;p&gt;Este tipo de caché funciona hasta que se llena. Es decir si nos ligit adamos a pedir usuarios de países se generaran tantas cachekeys como nos quepan en ese 20%. Las demás irán a repositorio mientras no entre a funcionar el algoritmo LRU.&lt;/p&gt;
+&lt;p&gt;Al lío.&lt;/p&gt;
 
-&lt;p&gt;Ooooooooh!!! Pero tranquis, que es configurable.&lt;/p&gt;
+&lt;p&gt;Tenemos varias estrategias según cuantos índices secundarios necesitamos:&lt;/p&gt;
 
-&lt;p&gt;Seteamos la vida de la caché, FromSeconds; FromMinutes…, con esta propiedad la caché se destruye en x tiempo:&lt;/p&gt;
+&lt;p&gt;La primera de ellas (romper la 1ª Forma Normal, 2ªFN, 3ªFN …), recomendable cuando nuestros datos no se actualizan con frecuencia, duplicando la tabla pero cambiando la primary key:&lt;/p&gt;
 
-&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_cache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetOrCreateAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cacheKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;entry&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SlidingExpiration&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TimeSpan&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;FromMinutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_userRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetUsersByCountry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;(*) producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;id_producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;tipo_producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;precio&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Patatas&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Zanahorias&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Carne&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pescado&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Plátanos&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Si volviéramos a ejecutar la consulta:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SELECT * from TABLE_PRODUCT_NAME Where producto = &quot;Patatas&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Seteamos la capacidad de la caché a 50 megas &lt;strong&gt;ojito con los cálculos a ojo cubero que nos podemos comer la memoria si nuestro equipo empieza a crear caches en los diferentes servicios sin control&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;El rendimiento de nuestra query estaría optimizado.&lt;/p&gt;
 
-&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_cache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetOrCreateAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cacheKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;entry&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Size&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_userRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetUsersByCountry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;p&gt;La segunda estrategia sería crear tablas con referencias a otras tablas formalizadas con los índices secundarios. Más vale un a imagen que mil palabras:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;(*) id_producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;tipo_producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;precio&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Patatas&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Zanahorias&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Carne&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pescado&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Plátanos&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;relación (*)id_producto = id_producto&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;(*) producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;id_producto&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Patatas&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Zanahorias&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Carne&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pescado&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Plátanos&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;De esta forma si quisiéramos obtener el precio de las patatas:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Id = SELECT id  from TABLE_PRODUCTS_NAME WHERE producto = &quot;Patatas&quot;
+SELECT prices from TABLE_PRODUCTS WHERE id = &quot;@Id&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Y de momento eso es todo.&lt;/p&gt;
+&lt;p&gt;Lo malo, sí, como vemos tenemos que tirar dos queries. ¿¿Y la JOIN?? Pensad en grandes bases de datos…&lt;/p&gt;
 
-&lt;p&gt;Un saludo y hasta la próxima.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Code" /><summary type="html">Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria.</summary></entry><entry><title type="html">Refit</title><link href="http://localhost:4000/refit" rel="alternate" type="text/html" title="Refit" /><published>2019-04-23T00:00:00+02:00</published><updated>2019-04-23T00:00:00+02:00</updated><id>http://localhost:4000/refit</id><content type="html" xml:base="http://localhost:4000/refit">&lt;p&gt;Hola de nuevo. Hoy vengo a presentaros un Nuget que me recomendó mi compañero &lt;a href=&quot;https://es.linkedin.com/in/josep-vilches-fernandez-752b522a&quot;&gt;@Vilches&lt;/a&gt; y que desde ese momento he usado para las llamadas rest a third parties o en api gateways.&lt;/p&gt;
+&lt;p&gt;La tercera estrategía, es una mezcla entre la primera y la segunda, es decir, duplicar… las tablas normalizadas pero con los índices que queramos y en función de la SELECT hacer un switch a la tabla que contiene el índice por el WHERE que estamos buscando:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://reactiveui.github.io/refit/&quot;&gt;Refit&lt;/a&gt; es un nuget que nos permite convertir nuestra Api Rest en un contrato (interface).&lt;/p&gt;
+&lt;p&gt;TABLE PRIMARY KEY PRODUCT_ID&lt;/p&gt;
 
-&lt;p&gt;Con esto, Refit lo que nos proporciona es no tener que implementar las lógicas de las llamadas, centralizándolas en un contrato; configurando el servicio y la instancia del HttpClientFactory en el registro de dependencias de .Net Core.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;(*) id_producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;tipo_producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;precio&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Patatas&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Zanahorias&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Carne&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pescado&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Plátanos&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;p&gt;El ejemplo:&lt;/p&gt;
+&lt;p&gt;TABLE PRIMARY KEY PRODUCT_NAME&lt;/p&gt;
 
-&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IGitHubApi&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/users/{user}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;GetUser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;(*) producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;id_producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;tipo_producto&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;precio&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Patatas&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Zanahorias&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Carne&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Pescado&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Plátanos&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;RegisterServices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IServiceCollection&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddRefitClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IGitHubApi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;()&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ConfigureHttpClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BaseAddress&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Uri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;GitHubApiUrl&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DefaultRequestHeaders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Accept&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MediaTypeWithQualityHeaderValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;SetHandlerLifetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Timeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InfiniteTimeSpan&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;AddPolicyHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetRetryPolicy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;p&gt;Que buscamos “Patatas” pues atacamos a TABLE PRIMARY KEY PRODUCT_NAME, en cambio si buscamos por id atacaremos a TABLE PRIMARY KEY PRODUCT_ID.&lt;/p&gt;
 
-&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IAsyncPolicy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HttpResponseMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;GetRetryPolicy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;httpMaxRetires&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Si buscáramos por nombre de producto y por tipo de producto una solución es crear una tabla concatenado los estos parámetros como clave primaria en la tabla resultante TABLE PRIMARY KEY PRODUCT_NAME+PRODUCT_TYPE.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HttpPolicyExtensions&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;HandleTransientHttpError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WaitAndRetryAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;httpMaxRetires&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SleepDurationProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Un saludo.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El patrón Index Table se utiliza para crear índices secundarios sobre consultas, que la aplicación necesita, en campos que no son una primary key y así tener un acceso a los datos con una aceptable optimización. Situémonos, tenemos una tabla de productos, donde como es habitual, tenemos un id_producto como primary key, el campo nombre de producto, el tipo de producto y el precio. (*) id_producto producto tipo_producto precio 1 Patatas 1 2 2 Zanahorias 1 3 3 Carne 2 6 4 Pescado 3 5 5 Plátanos 4 3 Primary Key En nuestra aplicación para buscar patatas ejecutaríamos la query: SELECT * from TABLE Where id_producto = 1 Con lo que obtendríamos con un buen rendimiento: (*) id_producto producto tipo_producto precio 1 Patatas 1 2 Sin embargo, no siempre tenemos porque conocer el identificador de lo que estamos buscando en base de datos y esto nos penaliza si buscamos por “Patatas”. SELECT * from TABLE Where producto = &quot;Patatas&quot; A pesar de que lo encuentra, si tuviéramos una base de datos con bastante peso, esta query podría penalizar al rendimiento de la aplicación o incluso darnos un timeout en la query, cosa que no sería necesario si implementáramos Index Table. Aunque existen motores de bases de datos, SQL Server lo permite, en los que puedes crear índices secundarios, puede ser una buena práctica no crear estos índices y usar este patrón. Por otro lado, para aquellos motores NO-SQL en los que los índices “no existen” (lo pongo entre comillas antes de que os tiréis al cuello) este patrón se ajusta bastante bien. Al lío. Tenemos varias estrategias según cuantos índices secundarios necesitamos: La primera de ellas (romper la 1ª Forma Normal, 2ªFN, 3ªFN …), recomendable cuando nuestros datos no se actualizan con frecuencia, duplicando la tabla pero cambiando la primary key: (*) producto id_producto tipo_producto precio Patatas 1 1 2 Zanahorias 2 1 3 Carne 3 2 6 Pescado 4 3 5 Plátanos 5 4 3 Si volviéramos a ejecutar la consulta: SELECT * from TABLE_PRODUCT_NAME Where producto = &quot;Patatas&quot; El rendimiento de nuestra query estaría optimizado. La segunda estrategia sería crear tablas con referencias a otras tablas formalizadas con los índices secundarios. Más vale un a imagen que mil palabras: (*) id_producto producto tipo_producto precio 1 Patatas 1 2 2 Zanahorias 1 3 3 Carne 2 6 4 Pescado 3 5 5 Plátanos 4 3 relación (*)id_producto = id_producto (*) producto id_producto Patatas 1 Zanahorias 2 Carne 3 Pescado 4 Plátanos 5 De esta forma si quisiéramos obtener el precio de las patatas: @Id = SELECT id from TABLE_PRODUCTS_NAME WHERE producto = &quot;Patatas&quot; SELECT prices from TABLE_PRODUCTS WHERE id = &quot;@Id&quot; Lo malo, sí, como vemos tenemos que tirar dos queries. ¿¿Y la JOIN?? Pensad en grandes bases de datos… La tercera estrategía, es una mezcla entre la primera y la segunda, es decir, duplicar… las tablas normalizadas pero con los índices que queramos y en función de la SELECT hacer un switch a la tabla que contiene el índice por el WHERE que estamos buscando: TABLE PRIMARY KEY PRODUCT_ID (*) id_producto producto tipo_producto precio 1 Patatas 1 2 2 Zanahorias 1 3 3 Carne 2 6 4 Pescado 3 5 5 Plátanos 4 3 TABLE PRIMARY KEY PRODUCT_NAME (*) producto id_producto tipo_producto precio Patatas 1 1 2 Zanahorias 2 1 3 Carne 3 2 6 Pescado 4 3 5 Plátanos 5 4 3 Que buscamos “Patatas” pues atacamos a TABLE PRIMARY KEY PRODUCT_NAME, en cambio si buscamos por id atacaremos a TABLE PRIMARY KEY PRODUCT_ID. Si buscáramos por nombre de producto y por tipo de producto una solución es crear una tabla concatenado los estos parámetros como clave primaria en la tabla resultante TABLE PRIMARY KEY PRODUCT_NAME+PRODUCT_TYPE. Un saludo.</summary></entry><entry><title type="html">Event Sourcing</title><link href="http://localhost:4000/event-sourcing" rel="alternate" type="text/html" title="Event Sourcing" /><published>2019-09-24T00:00:00+02:00</published><updated>2019-09-24T00:00:00+02:00</updated><id>http://localhost:4000/event-sourcing</id><content type="html" xml:base="http://localhost:4000/event-sourcing">&lt;p&gt;El patrón Event Sourcing nos ayuda con el diseño y la implementación de nuestra aplicación. Es un patrón que se basa en almacenar todos lo cambios realizados sobre una entidad de dominio.&lt;/p&gt;
 
-&lt;p&gt;Y ya!! Con esto ya podemos empezar a consumir el servicio de Github pasándole como parámetro el usuario.&lt;/p&gt;
+&lt;p&gt;Este patrón nos ayuda a saber porque estados a pasado una entidad y en caso de producirse un fallo irrecuperable, poder reprocesar los estados almacenados dejando la estructura de datos de nuevo con el último estado que tenía (mantener la coherencia de datos) o realizar modificaciones manuales para compensar algún error, a través de un evento.&lt;/p&gt;
 
-&lt;p&gt;Además, como vemos se intregra con &lt;a href=&quot;http://www.thepollyproject.org/&quot;&gt;Polly&lt;/a&gt; para política de reintentos, &lt;a href=&quot;https://www.newtonsoft.com/json&quot;&gt;Newtonsoft&lt;/a&gt; para las deserializaciones, se puede configurar un Handling para las excepciones, herencia, headers, uploads, authorization, etc…&lt;/p&gt;
+&lt;p&gt;Este patrón nos ayuda a mitigar los problemas de las arquitecturas CRUD con muchas peticiones concurrentes.&lt;/p&gt;
 
-&lt;p&gt;Simple, fácil, bueno y completito, ¿no?&lt;/p&gt;
+&lt;p&gt;Imaginemos que tenemos 2 usuarios (A, B) que van a interactuar con una misma entidad, y que por cosas del espacio-tiempo las dos transacciones llegan al mismo tiempo a la base de datos para modificar esta entidad. Podría ser, que por mala fortuna, la petición B que debería procesarse posterior a la de A, modifique la entidad y que seguidamente A la volviera a modificar. En este caso obtendríamos una inconsistencia de datos en esa entidad, con lo que la veracidad de la información quedaría anulada.&lt;/p&gt;
 
-&lt;p&gt;Un saludo.&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Code" /><summary type="html">Hola de nuevo. Hoy vengo a presentaros un Nuget que me recomendó mi compañero @Vilches y que desde ese momento he usado para las llamadas rest a third parties o en api gateways.</summary></entry></feed>
+&lt;p&gt;Con event sourcing, podemos solventar este problema, ya que los eventos de A y B tienen una marca de tiempo, con lo que nos permite procesar estos eventos cronológicamente como sucede con los &lt;a href=&quot;https://es.wikipedia.org/wiki/Tiempos_lógicos_de_Lamport&quot; title=&quot;Relojes de Lamport&quot;&gt;Relojes de Lamport&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Los principales beneficios de Event Sourcing son:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Almacenamos todos los eventos que hacen mutar una entidad.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Como la emisión y el procesamiento de los eventos van por separado, nos permite mejor rendimiento y escalabilidad.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Tenemos una trazabilidad para verificar, modificar o eliminar cambios en una entidad y sabemos quien y cuando se ha desencadenado este evento.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Mejoramos la consistencias de datos ya que no se producen modificaciones simultaneas sin controlar el orden en nuestra base de datos.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Casa muy bien con el patrón CQRS.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Veamos el gráfico de la infraestructura:&lt;/p&gt;</content><author><name>JRRN</name></author><category term="Arquitectura" /><summary type="html">El patrón Event Sourcing nos ayuda con el diseño y la implementación de nuestra aplicación. Es un patrón que se basa en almacenar todos lo cambios realizados sobre una entidad de dominio.</summary></entry></feed>

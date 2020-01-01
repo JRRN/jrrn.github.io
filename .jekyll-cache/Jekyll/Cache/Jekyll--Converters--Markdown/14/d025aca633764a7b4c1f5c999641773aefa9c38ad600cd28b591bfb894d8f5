@@ -1,0 +1,32 @@
+I"�	<p>En Azure Cloud, como en la mayoría de “Nubes” del mercado podemos encontrar una clasificación, según las responsabilidades que se quieran administrar. En la imagen siguiente, podemos observar las diferentes opciones que tenemos:</p>
+
+<p><img src="/img/tiposinfraestructuracloud/iaaspaassaas.png" alt="Infraestructura" title="iaaspaassaas" /></p>
+
+<p>Así, en un entorno local, nosotros somos los responsables de todo.</p>
+
+<p>A medida que vayamos pasando por las diferentes infraestrucuturas, la infraestructura como servicio (IaaS), a continuación a la plataforma como servicio (PaaS) y al software como servicio (SaaS), el proveedor de la nube absorverá esta responsabilidad.</p>
+
+<p>Esta responsabilidad compartida desempeñará un papel en la decisiones de arquitectura, ya que pueden tener implicaciones en los costos, las funcionalidades operacionales, la seguridad y las funcionalidades técnicas de la aplicación. Al trasladar estas responsabilidades al proveedor, puede centrarse en aportar valor a su empresa y alejarse de las actividades que no sean una función empresarial esencial.</p>
+
+<p>Estas infraestrucuturas nos ofrecen dos tipos de escalado, el vertical y el horizontal, donde:</p>
+<ul>
+  <li>El escalado vertical es la acción de agregar más recursos a una sola instancia.</li>
+  <li>El escalado horizontal es la adición de instancias.</li>
+</ul>
+
+<p><img src="/img/tiposinfraestructuracloud/escalado.png" alt="TiposEscalado" title="escalado" /></p>
+
+<p>Pensando en la infraestructura siempre tenemos que tener en cuenta que la arquitectura es la base del diseño de una aplicación. Una buena arquitectura nos proporcionará la confianza de que nuestra aplicación puede satisfacer las necesidades de nuestros clientes, tanto ahora como en el futuro.</p>
+
+<p>Las prioridades de arquitectura y las necesidades de cada aplicación son diferentes, pero los cuatro pilares de la arquitectura son un punto de referencia en los que siempre nos debemos basar y tener en cuenta:</p>
+
+<ul>
+  <li>Seguridad: proteger el acceso y la integridad de los datos, y cumplir los requisitos normativos.</li>
+  <li>Rendimiento y escalabilidad: satisfacer la demanda de forma eficaz en todos los escenarios.</li>
+  <li>Disponibilidad y capacidad de recuperación: reducir al mínimo el tiempo de inactividad y evitar la pérdida permanente de datos.</li>
+  <li>Eficiencia y operaciones: maximizar la facilidad de mantenimiento y asegurarse de que se cumplen los requisitos de supervisión.</li>
+</ul>
+
+<p>Saludos.</p>
+
+:ET

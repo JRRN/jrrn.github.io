@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="generator" content="Jekyll">
+
+	<title>Sharding</title>
+	<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Sharding | JRRN Coding!</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Sharding" />
+<meta name="author" content="JRRN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="El patrón de Sharding o particionamiento es un patrón orientado a los datos; tiene especial consideración en la forma en que accedemos y almacenamos la información. La cuestión de todo esto es crear particiones de nuestros datos de forma distribuida en particiones. De esta forma, podremos balancear el acceso y recuperación de los datos de una forma más óptima accediendo al bloque al que estamos interesados. Por otro lado, esta misma técnica la podemos realizar particionando bases de datos extensas en bases de datos separadas y más pequeñas. Así, el escalado de las particiones es más rápido y podríamos escalar, como si fueran servicios independientes, las partes que necesitamos y en las que recurrimos más habitualmente a ellas. Venga en texto plano, ¿Qué es más manejable, una roca de 1 tonelada o 1000 rocas de 1 kilo? … Ahora transpolemos de esta pregunta las virtudes de este patrón. Necesitaría ser un monstruo de máquina para mover la tonelada de piedra, mientras que en 1000 viajes, yo mismo, podría mover esa tonelada. Si tuviera que mover dos veces la tonelada de datos, sería más fácil, que llamara a mi sobrina de 3 años y la liara por un par chucherías, que encontrar otro monstruo de máquina para mover la tonelada. Podría repartir la tonelada de datos según las necesidades de las peticiones, de esta tonelada podría enviar el kilo que me solicita cada petición, mientras que si no lo tuviera particionado, tendría que llevar esa tonelada a la primera petición que tomara lo que necesita y seguidamente, llevar esa tonelada a la siguiente petición para que nuevamente, tomara lo que necesita. Me sería más fácil hacer dos piedras de un kilo que dos piedras de una tonelada. Parece sencillo verdad, sin embargo, la complejidad de este patrón, es tener muy claro el modelo de datos y saber que estrategia de particionado nos beneficia más en nuestra aplicación. Por ello según el tipo de particionado podemos encontrar las estrategias: De Búsqueda: Las entidades se organizan en particiones donde esta deberá contener todos los datos de la entidad buscada. Como ejemplo, si tuviéramos todos los libros del mundo con sus datos relacionados, significaría que deberíamos tener en la misma partición, con sus tablas relacionadas, los libros de Matilde Asensi en la tabla autores y la relacionada de sus libros. De esta forma, a la hora de buscar los libros de Matilde Asensi, no saltaríamos de partición para recuperar estos datos. De Rango: Las entidades directamente relacionadas, se agrupan en la misma partición y se ordenan por sus claves primarias. Como ejemplo podríamos particionar la base de datos de todos los libros del mundo según el apellido del autor, de esta forma accederíamos a particiones diferentes si buscamos un libro de Rice, Anne o un libro de Coates, Ta-Nemisi. De Hash: En este caso definimos un cálculo único para identificar en que partición almacenamos la información o la recuperamos. En el ejemplo de todos los libros del mundo, podríamos generar un hash a partir del nombre y apellidos de los autores: Autor Hash Partición Anne Rice 41:6e:6e:65:20:52:69:63:65 9 Matilde Asensi 4d:61:74:69:6c:64:65:20:41:73:65:6e:73:69 14 Ta-Nemisi Coates 54:61:2d:4e:65:6d:69:73:69:20:43:6f:61:74:65:73 16 Como se puede ver según nuestros requisitos, deberíamos tener muy presente cual de las estrategias se asimila a nuestro modelo de datos y cual deberíamos aplicar mejor. Un saludo y hasta la próxima." />
+<meta property="og:description" content="El patrón de Sharding o particionamiento es un patrón orientado a los datos; tiene especial consideración en la forma en que accedemos y almacenamos la información. La cuestión de todo esto es crear particiones de nuestros datos de forma distribuida en particiones. De esta forma, podremos balancear el acceso y recuperación de los datos de una forma más óptima accediendo al bloque al que estamos interesados. Por otro lado, esta misma técnica la podemos realizar particionando bases de datos extensas en bases de datos separadas y más pequeñas. Así, el escalado de las particiones es más rápido y podríamos escalar, como si fueran servicios independientes, las partes que necesitamos y en las que recurrimos más habitualmente a ellas. Venga en texto plano, ¿Qué es más manejable, una roca de 1 tonelada o 1000 rocas de 1 kilo? … Ahora transpolemos de esta pregunta las virtudes de este patrón. Necesitaría ser un monstruo de máquina para mover la tonelada de piedra, mientras que en 1000 viajes, yo mismo, podría mover esa tonelada. Si tuviera que mover dos veces la tonelada de datos, sería más fácil, que llamara a mi sobrina de 3 años y la liara por un par chucherías, que encontrar otro monstruo de máquina para mover la tonelada. Podría repartir la tonelada de datos según las necesidades de las peticiones, de esta tonelada podría enviar el kilo que me solicita cada petición, mientras que si no lo tuviera particionado, tendría que llevar esa tonelada a la primera petición que tomara lo que necesita y seguidamente, llevar esa tonelada a la siguiente petición para que nuevamente, tomara lo que necesita. Me sería más fácil hacer dos piedras de un kilo que dos piedras de una tonelada. Parece sencillo verdad, sin embargo, la complejidad de este patrón, es tener muy claro el modelo de datos y saber que estrategia de particionado nos beneficia más en nuestra aplicación. Por ello según el tipo de particionado podemos encontrar las estrategias: De Búsqueda: Las entidades se organizan en particiones donde esta deberá contener todos los datos de la entidad buscada. Como ejemplo, si tuviéramos todos los libros del mundo con sus datos relacionados, significaría que deberíamos tener en la misma partición, con sus tablas relacionadas, los libros de Matilde Asensi en la tabla autores y la relacionada de sus libros. De esta forma, a la hora de buscar los libros de Matilde Asensi, no saltaríamos de partición para recuperar estos datos. De Rango: Las entidades directamente relacionadas, se agrupan en la misma partición y se ordenan por sus claves primarias. Como ejemplo podríamos particionar la base de datos de todos los libros del mundo según el apellido del autor, de esta forma accederíamos a particiones diferentes si buscamos un libro de Rice, Anne o un libro de Coates, Ta-Nemisi. De Hash: En este caso definimos un cálculo único para identificar en que partición almacenamos la información o la recuperamos. En el ejemplo de todos los libros del mundo, podríamos generar un hash a partir del nombre y apellidos de los autores: Autor Hash Partición Anne Rice 41:6e:6e:65:20:52:69:63:65 9 Matilde Asensi 4d:61:74:69:6c:64:65:20:41:73:65:6e:73:69 14 Ta-Nemisi Coates 54:61:2d:4e:65:6d:69:73:69:20:43:6f:61:74:65:73 16 Como se puede ver según nuestros requisitos, deberíamos tener muy presente cual de las estrategias se asimila a nuestro modelo de datos y cual deberíamos aplicar mejor. Un saludo y hasta la próxima." />
+<link rel="canonical" href="http://localhost:4000/sharding" />
+<meta property="og:url" content="http://localhost:4000/sharding" />
+<meta property="og:site_name" content="JRRN Coding!" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-10-17T00:00:00+02:00" />
+<script type="application/ld+json">
+{"datePublished":"2019-10-17T00:00:00+02:00","headline":"Sharding","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/sharding"},"url":"http://localhost:4000/sharding","author":{"@type":"Person","name":"JRRN"},"description":"El patrón de Sharding o particionamiento es un patrón orientado a los datos; tiene especial consideración en la forma en que accedemos y almacenamos la información. La cuestión de todo esto es crear particiones de nuestros datos de forma distribuida en particiones. De esta forma, podremos balancear el acceso y recuperación de los datos de una forma más óptima accediendo al bloque al que estamos interesados. Por otro lado, esta misma técnica la podemos realizar particionando bases de datos extensas en bases de datos separadas y más pequeñas. Así, el escalado de las particiones es más rápido y podríamos escalar, como si fueran servicios independientes, las partes que necesitamos y en las que recurrimos más habitualmente a ellas. Venga en texto plano, ¿Qué es más manejable, una roca de 1 tonelada o 1000 rocas de 1 kilo? … Ahora transpolemos de esta pregunta las virtudes de este patrón. Necesitaría ser un monstruo de máquina para mover la tonelada de piedra, mientras que en 1000 viajes, yo mismo, podría mover esa tonelada. Si tuviera que mover dos veces la tonelada de datos, sería más fácil, que llamara a mi sobrina de 3 años y la liara por un par chucherías, que encontrar otro monstruo de máquina para mover la tonelada. Podría repartir la tonelada de datos según las necesidades de las peticiones, de esta tonelada podría enviar el kilo que me solicita cada petición, mientras que si no lo tuviera particionado, tendría que llevar esa tonelada a la primera petición que tomara lo que necesita y seguidamente, llevar esa tonelada a la siguiente petición para que nuevamente, tomara lo que necesita. Me sería más fácil hacer dos piedras de un kilo que dos piedras de una tonelada. Parece sencillo verdad, sin embargo, la complejidad de este patrón, es tener muy claro el modelo de datos y saber que estrategia de particionado nos beneficia más en nuestra aplicación. Por ello según el tipo de particionado podemos encontrar las estrategias: De Búsqueda: Las entidades se organizan en particiones donde esta deberá contener todos los datos de la entidad buscada. Como ejemplo, si tuviéramos todos los libros del mundo con sus datos relacionados, significaría que deberíamos tener en la misma partición, con sus tablas relacionadas, los libros de Matilde Asensi en la tabla autores y la relacionada de sus libros. De esta forma, a la hora de buscar los libros de Matilde Asensi, no saltaríamos de partición para recuperar estos datos. De Rango: Las entidades directamente relacionadas, se agrupan en la misma partición y se ordenan por sus claves primarias. Como ejemplo podríamos particionar la base de datos de todos los libros del mundo según el apellido del autor, de esta forma accederíamos a particiones diferentes si buscamos un libro de Rice, Anne o un libro de Coates, Ta-Nemisi. De Hash: En este caso definimos un cálculo único para identificar en que partición almacenamos la información o la recuperamos. En el ejemplo de todos los libros del mundo, podríamos generar un hash a partir del nombre y apellidos de los autores: Autor Hash Partición Anne Rice 41:6e:6e:65:20:52:69:63:65 9 Matilde Asensi 4d:61:74:69:6c:64:65:20:41:73:65:6e:73:69 14 Ta-Nemisi Coates 54:61:2d:4e:65:6d:69:73:69:20:43:6f:61:74:65:73 16 Como se puede ver según nuestros requisitos, deberíamos tener muy presente cual de las estrategias se asimila a nuestro modelo de datos y cual deberíamos aplicar mejor. Un saludo y hasta la próxima.","@type":"BlogPosting","dateModified":"2019-10-17T00:00:00+02:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+	<link rel="shortcut icon" href="img/icons/favicon.ico">
+	<!-- RSS -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+	
+	
+
+
+
+
+
+  	
+</head>
+
+
+<body>
+	<div id="wrap">
+	  	<!-- Navigation -->
+	  	<nav id="nav">
+	<div id="nav-list">
+		<a href="/">Home</a>
+		<!-- Nav pages -->
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	      <a href="/about" title="Sobre mí">Sobre mí</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+    <!-- Nav links -->
+	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
+<a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
+
+
+
+	</div>
+  
+  <!-- Nav footer -->
+	
+	  <span>version 1.0.0</span>
+
+
+
+
+
+	
+
+</nav>
+
+    <!-- Icon menu -->
+	  <a id="nav-menu">
+	  	<div id="menu"></div>
+	  </a>
+      <!-- Header -->
+        <header id="header">
+	<div class="headerbackground"></div>
+	<a href="/">
+	  <h1>JRRN Coding!</h1>
+	</a>
+</header>
+
+    <!-- Main content -->
+	  <div id="container">
+      <div class="row">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-md-7 col-lg-7">
+          <main>
+            <article id="post-page">
+	<div>
+		<h2>Sharding</h2><span>[
+			
+				
+				<a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura<nobr></code>&nbsp;</a>
+			
+			]</span>	
+	<time datetime="2019-10-17T00:00:00+02:00" class="by-line">17 Oct 2019</time>
+	</div>
+		
+	<div class="content">
+		<p>El patrón de Sharding o particionamiento es un patrón orientado a los datos; tiene especial consideración en la forma en que accedemos y almacenamos la información.</p>
+
+<p>La cuestión de todo esto es crear particiones de nuestros datos de forma distribuida en particiones. De esta forma, podremos balancear el acceso y recuperación de los datos de una forma más óptima accediendo al bloque al que estamos interesados. Por otro lado, esta misma técnica la podemos realizar particionando bases de datos extensas en bases de datos separadas y más pequeñas.</p>
+
+<p>Así, el escalado de las particiones es más rápido y podríamos escalar, como si fueran servicios independientes, las partes que necesitamos y en las que recurrimos más habitualmente a ellas.</p>
+
+<p>Venga en texto plano, ¿Qué es más manejable, una roca de 1 tonelada o 1000 rocas de 1 kilo? …</p>
+
+<p>Ahora transpolemos de esta pregunta las virtudes de este patrón.</p>
+
+<ol>
+  <li>Necesitaría ser un monstruo de máquina para mover la tonelada de piedra, mientras que en 1000 viajes, yo mismo, podría mover esa tonelada.</li>
+  <li>Si tuviera que mover dos veces la tonelada de datos, sería más fácil, que llamara a mi sobrina de 3 años y la liara por un par chucherías, que encontrar otro monstruo de máquina para mover la tonelada.</li>
+  <li>Podría repartir la tonelada de datos según las necesidades de las peticiones, de esta tonelada podría enviar el kilo que me solicita cada petición, mientras que si no lo tuviera particionado, tendría que llevar esa tonelada a la primera petición que tomara lo que necesita y seguidamente, llevar esa tonelada a la siguiente petición para que nuevamente, tomara lo que necesita.</li>
+  <li>Me sería más fácil hacer dos piedras de un kilo que dos piedras de una tonelada.</li>
+</ol>
+
+<p>Parece sencillo verdad, sin embargo, la complejidad de este patrón, es tener muy claro el modelo de datos y saber que estrategia de particionado nos beneficia más en nuestra aplicación.</p>
+
+<p>Por ello según el tipo de particionado podemos encontrar las estrategias:</p>
+
+<ul>
+  <li>
+    <p>De Búsqueda: Las entidades se organizan en particiones donde esta deberá contener todos los datos de la entidad buscada. Como ejemplo, si tuviéramos todos los libros del mundo con sus datos relacionados, significaría que deberíamos tener en la misma partición, con sus tablas relacionadas, los libros de Matilde Asensi en la tabla autores y la relacionada de sus libros. De esta forma, a la hora de buscar los libros de Matilde Asensi, no saltaríamos de partición para recuperar estos datos.</p>
+  </li>
+  <li>
+    <p>De Rango: Las entidades directamente relacionadas, se agrupan en la misma partición y se ordenan por sus claves primarias. Como ejemplo podríamos particionar la base de datos de todos los libros del mundo según el apellido del autor, de esta forma accederíamos a particiones diferentes si buscamos un libro de Rice, Anne o un libro de Coates, Ta-Nemisi.</p>
+  </li>
+  <li>
+    <p>De Hash: En este caso definimos un cálculo único para identificar en que partición almacenamos la información o la recuperamos. En el ejemplo de todos los libros del mundo, podríamos generar un hash a partir del nombre y apellidos de los autores:</p>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Autor</th>
+      <th style="text-align: center">Hash</th>
+      <th style="text-align: center">Partición</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Anne Rice</td>
+      <td style="text-align: center">41:6e:6e:65:20:52:69:63:65</td>
+      <td style="text-align: center">9</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Matilde Asensi</td>
+      <td style="text-align: center">4d:61:74:69:6c:64:65:20:41:73:65:6e:73:69</td>
+      <td style="text-align: center">14</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ta-Nemisi Coates</td>
+      <td style="text-align: center">54:61:2d:4e:65:6d:69:73:69:20:43:6f:61:74:65:73</td>
+      <td style="text-align: center">16</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+Como se puede ver según nuestros requisitos, deberíamos tener muy presente cual de las estrategias se asimila a nuestro modelo de datos y cual deberíamos aplicar mejor.</p>
+
+<p>Un saludo y hasta la próxima.</p>
+
+	</div>
+</article>
+
+
+          </main>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <br/>
+<br/>
+<h5>Archivo </h5>
+
+
+
+  
+  
+  <a href="/tag/Arquitectura"><code class="highligher-rouge">Arquitectura</code></a><br/>
+
+  
+  
+  <a href="/tag/Conferences"><code class="highligher-rouge">Conferences</code></a><br/>
+
+  
+  
+  <a href="/tag/Code"><code class="highligher-rouge">Code</code></a><br/>
+
+  
+  
+  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
+
+  
+  
+  <a href="/tag/MsIoT"><code class="highligher-rouge">MsIoT</code></a><br/>
+
+  
+  
+  <a href="/tag/ML"><code class="highligher-rouge">ML</code></a><br/>
+
+  
+  
+  <a href="/tag/Git"><code class="highligher-rouge">Git</code></a><br/>
+
+  
+  
+  <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
+
+
+        </div>
+        <div class="col-md-1 col-lg-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 pull-center">
+		  <!-- Pagination links -->
+      
+      </div>
+      </div>
+    </div>
+    <br/><br/><br/>
+	    
+	    <!-- Footer -->
+	    <footer>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 pull-center">
+                <span>@2017 - JRRN</span>
+        </div>
+        <div class="col-md-2 pull-right">
+                <a href="https://sessionize.com/j-rafa-ramon/" target="_blank">
+                    <img src="/img/icons/iu.png" title="Sessionize" class="socialLinksfooter" style="height: 30px;" alt="Sessionize Logo">
+                </a>
+                <a href="https://github.com/jrrn" target="_blank">
+                    <img src="/img/icons/github_ico.jpg" title="Github" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
+                </a>
+                <a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" target="_blank">
+                    <img src="/img/icons/linkedin_ico.jpg" tilte="LinkedIn" class="socialLinksfooter" style="height: 30px;" alt="LinkedIn Logo">
+                </a>
+        </div>
+    </div>
+
+</footer>
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/main.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99774552-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-99774552-1');
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-4171359147847443",
+          enable_page_level_ads: true
+     });
+</script>
+
+	    <!-- Script -->
+      <script src="/js/main.js"></script>	
+
+
+  </div>
+</body>
+</html>

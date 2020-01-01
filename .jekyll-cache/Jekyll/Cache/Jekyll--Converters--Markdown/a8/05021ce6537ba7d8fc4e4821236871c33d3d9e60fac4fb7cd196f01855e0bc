@@ -1,0 +1,97 @@
+I"�)<p>El patrón <strong>Chain Of Responsability</strong> nos ayuda a crear una secuencia de unión entre objetos tal que, si el objeto más interno de la cadena no es capaz de dar una respuesta, uno de los objetos de nivel superior será el encargado de darla. Esta respuesta será a nivel del contexto en que el objeto se encuentre y sea capaz de responder.</p>
+
+<p>Como siempre, mejor con un ejemplo, ¿no?</p>
+
+<p>Os acordáis de nuestro ejemplo de venta de libros…</p>
+
+<p>En él, tenemos libros, dentro de libros tenemos categoría de libros y dentro de la categoría de libros tenemos el libro en cuestión.</p>
+
+<p>Empezamos:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">BaseLibro</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="n">BaseLibro</span> <span class="n">siguiente</span> <span class="p">{</span> <span class="k">protected</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">private</span> <span class="kt">string</span> <span class="nf">DescripcionBase</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="s">"Descripción base : Es un libro."</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="k">abstract</span> <span class="kt">string</span> <span class="n">descripcion</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="kt">string</span> <span class="nf">GetDescripcion</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">descripcion</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">siguiente</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">?</span> <span class="n">siguiente</span><span class="p">.</span><span class="nf">GetDescripcion</span><span class="p">()</span> <span class="p">:</span> <span class="nf">DescripcionBase</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">LibroCoR</span> <span class="p">:</span> <span class="n">BaseLibro</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">_libroDescripcion</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">LibroCoR</span><span class="p">(</span><span class="kt">string</span> <span class="n">descripcion</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_libroDescripcion</span> <span class="p">=</span> <span class="n">descripcion</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">override</span> <span class="kt">string</span> <span class="n">descripcion</span> <span class="p">=&gt;</span> <span class="n">_libroDescripcion</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">LibroCategoriaDescripcion</span> <span class="p">:</span> <span class="n">BaseLibro</span> <span class="p">{</span>
+        <span class="k">protected</span> <span class="kt">string</span> <span class="n">_categoriaDescripcion</span><span class="p">;</span>
+        <span class="k">protected</span> <span class="kt">string</span> <span class="n">_categoria</span><span class="p">;</span>
+
+        <span class="k">public</span> <span class="nf">LibroCategoriaDescripcion</span><span class="p">(</span><span class="kt">string</span> <span class="n">descripcion</span><span class="p">,</span> <span class="kt">string</span> <span class="n">categoria</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_categoriaDescripcion</span> <span class="p">=</span> <span class="n">descripcion</span><span class="p">;</span>
+            <span class="n">_categoria</span> <span class="p">=</span> <span class="n">categoria</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">protected</span> <span class="k">override</span> <span class="kt">string</span> <span class="n">descripcion</span> <span class="p">=&gt;</span> 
+                <span class="n">_categoriaDescripcion</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">?</span> <span class="s">$"La categoria </span><span class="p">{</span><span class="n">_categoria</span><span class="p">}</span><span class="s"> 
+</span>                <span class="p">:</span> <span class="p">{</span><span class="n">_categoriaDescripcion</span><span class="p">}</span><span class="s">" : null;
+</span><span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">LibroDescripcion</span> <span class="p">:</span> <span class="n">BaseLibro</span> <span class="p">{</span>
+        <span class="k">protected</span> <span class="kt">string</span> <span class="n">_libroDescripcion</span><span class="p">;</span>
+        <span class="k">protected</span> <span class="kt">string</span> <span class="n">_libro</span><span class="p">;</span>
+
+        <span class="k">public</span> <span class="nf">LibroDescripcion</span><span class="p">(</span><span class="kt">string</span> <span class="n">descripcion</span><span class="p">,</span> <span class="kt">string</span> <span class="n">libro</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_libroDescripcion</span> <span class="p">=</span> <span class="n">descripcion</span><span class="p">;</span>
+            <span class="n">_libro</span> <span class="p">=</span> <span class="n">libro</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">protected</span> <span class="k">override</span> <span class="kt">string</span> <span class="n">descripcion</span> <span class="p">=&gt;</span> 
+            <span class="n">_libroDescripcion</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">?</span> <span class="s">$"El libro </span><span class="p">{</span><span class="n">_libro</span><span class="p">}</span><span class="s"> 
+</span>            <span class="p">:</span> <span class="p">{</span><span class="n">_libroDescripcion</span><span class="p">}</span><span class="s">" : null;
+</span><span class="p">}</span>
+
+<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Show</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">BaseLibro</span> <span class="n">libroBase</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">LibroCoR</span><span class="p">(</span><span class="s">"Libro de IT de patrones"</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">libroBase</span><span class="p">.</span><span class="nf">GetDescripcion</span><span class="p">());</span>
+
+    <span class="n">BaseLibro</span> <span class="n">modelo1</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">LibroCategoriaDescripcion</span><span class="p">(</span><span class="s">"Libro IT"</span><span class="p">,</span> <span class="s">"Libro para desarrolladores"</span><span class="p">);</span>
+    <span class="n">BaseLibro</span> <span class="n">libro2</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">LibroCoR</span><span class="p">(</span><span class="k">null</span><span class="p">);</span>
+    <span class="n">libro2</span><span class="p">.</span><span class="n">siguiente</span> <span class="p">=</span> <span class="n">modelo1</span><span class="p">;</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">libro2</span><span class="p">.</span><span class="nf">GetDescripcion</span><span class="p">());</span>
+
+    <span class="n">BaseLibro</span> <span class="n">marca1</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">LibroDescripcion</span><span class="p">(</span><span class="s">"Libro IT Tapa Dura"</span><span class="p">,</span> <span class="s">"TIPO"</span><span class="p">);</span>
+    <span class="n">BaseLibro</span> <span class="n">modelo2</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">LibroCategoriaDescripcion</span><span class="p">(</span><span class="s">"Tecnología"</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+    <span class="n">modelo2</span><span class="p">.</span><span class="n">siguiente</span> <span class="p">=</span> <span class="n">marca1</span><span class="p">;</span>
+
+    <span class="n">BaseLibro</span> <span class="n">vehiculo3</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">LibroCoR</span><span class="p">(</span><span class="k">null</span><span class="p">);</span>
+    <span class="n">vehiculo3</span><span class="p">.</span><span class="n">siguiente</span> <span class="p">=</span> <span class="n">modelo2</span><span class="p">;</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">vehiculo3</span><span class="p">.</span><span class="nf">GetDescripcion</span><span class="p">());</span>
+
+    <span class="n">BaseLibro</span> <span class="n">vehiculo4</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">LibroCoR</span><span class="p">(</span><span class="k">null</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">vehiculo4</span><span class="p">.</span><span class="nf">GetDescripcion</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Saludos y hasta la próxima.</p>
+
+:ET

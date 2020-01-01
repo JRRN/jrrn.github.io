@@ -1,0 +1,55 @@
+I"�<p>En este artículo introductorio, que formará parte de una serie de artículos breves, revisaremos los patrones de diseño disponibles para C# y otros lenguajes de programación.</p>
+
+<p>Mi intención es explicar todos los patrones de una forma clara, con ejemplos y con su codificación y de paso aprender los que no he usado.</p>
+
+<p>Los patrones de diseño nos sirven para abstraer lógicas de programación sobre paradigmas conocidos.</p>
+
+<p>En definitiva, esto significa que si por ejemplo tomásemos como paradigma un blog. Usaríamos una template (patrón) sobre todas las páginas que fueran de tipo blogPage y/u otra template (patrón)  para las páginas de tipo HomePage.</p>
+
+<p>Así, pasamos a enumerar los patrones que revisaremos en esta serie de artículos:</p>
+
+<h3 id="patrones-de-construcción"><a href="patrones-de-construccion" title="Patrones de construcción">Patrones de construcción</a></h3>
+
+<ul>
+  <li><a href="patron-abstract-factory" title="Patrón Abstract Factory">Patrón Abstract Factory</a></li>
+  <li><a href="patron-builder" title="Patrón Builder">Patrón Builder</a></li>
+  <li><a href="patron-factory-method" title="Patrón Factory Method">Patrón Factory Method</a></li>
+  <li><a href="patron-prototype" title="Patrón Prototype">Patrón Prototype</a></li>
+  <li><a href="patron-singleton" title="Patrón Singleton">Patrón Singleton</a></li>
+</ul>
+
+<h3 id="patrones-de-estructura"><a href="patrones-de-estructura" title="Patrones de estructura">Patrones de estructura</a></h3>
+
+<ul>
+  <li><a href="patron-adapter" title="Patrón Adapter">Patrón Adapter</a></li>
+  <li><a href="patron-bridge" title="Patrón Bridge">Patrón Bridge</a></li>
+  <li><a href="patron-composite" title="Patrón Composite">Patrón Composite</a></li>
+  <li><a href="patron-decorator" title="Patrón Decorator">Patrón Decorator</a></li>
+  <li><a href="patron-facade" title="Patrón Facade">Patrón Facade</a></li>
+  <li><a href="patron-flyweight" title="Patrón Flyweight">Patrón Flyweight</a></li>
+  <li><a href="patron-proxy" title="Patrón Proxy">Patrón Proxy</a></li>
+</ul>
+
+<h3 id="patrones-de-comportamiento"><a href="patrones-de-comportamiento" title="Patrones de comportamiento">Patrones de comportamiento</a></h3>
+
+<ul>
+  <li><a href="patron-chain-of-responsability" title="Patrón Chain of Responsibility">Patrón Chain of Responsibility</a></li>
+  <li><a href="patron-command" title="Patrón Command">Patrón Command</a></li>
+  <li><a href="patron-interpreter" title="Patrón Interpreter">Patrón Interpreter</a></li>
+  <li><a href="patron-iterator" title="Patrón Iterator">Patrón Iterator</a></li>
+  <li><a href="patron-mediator" title="Patrón Mediator">Patrón Mediator</a></li>
+  <li><a href="patron-memento" title="Patrón Memento">Patrón Memento</a></li>
+  <li><a href="patron-observer" title="Patrón Observer">Patrón Observer</a></li>
+  <li><a href="patron-state" title="Patrón State">Patrón State</a></li>
+  <li><a href="patron-strategy" title="Patrón Strategy">Patrón Strategy</a></li>
+  <li><a href="patron-template-method" title="Patrón Template Method">Patrón Template Method</a></li>
+  <li><a href="patron-visitor" title="Patrón Visitor">Patrón Visitor</a></li>
+  <li><a href="patro-specification" title="Patrón Specification">Patrón Specification</a></li>
+</ul>
+
+<p>Nos vemos en el siguiente post.</p>
+
+<ul>
+  <li><a href="https://github.com/JRRN/PatternsInAction" title="Código">Código</a></li>
+</ul>
+:ET

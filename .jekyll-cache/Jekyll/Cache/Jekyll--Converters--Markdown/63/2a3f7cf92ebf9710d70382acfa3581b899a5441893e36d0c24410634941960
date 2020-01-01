@@ -1,0 +1,97 @@
+I"�2<p>El patrón Visitor nos permite agregar operaciones a objetos sin tener que modificar la clase concreta de estos objetos. Su uso se recomienda para pequeñas y pocas funcionalidades extra.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="n">inteface</span> <span class="n">Visitante</span> <span class="p">{</span>
+    <span class="k">void</span> <span class="nf">Visita</span><span class="p">(</span><span class="n">EditorialSinFilial</span> <span class="n">editorialSinFilial</span><span class="p">);</span>
+    <span class="k">void</span> <span class="nf">Visita</span><span class="p">(</span><span class="n">EditorialMadre</span> <span class="n">editorialMadre</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Editorial</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">nombre</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">protected</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">email</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">protected</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">direccion</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">protected</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="nf">Editorial</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombre</span><span class="p">,</span> <span class="kt">string</span> <span class="n">email</span><span class="p">,</span> <span class="kt">string</span> <span class="n">direccion</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">nombre</span> <span class="p">=</span> <span class="n">nombre</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">email</span> <span class="p">=</span> <span class="n">email</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">direccion</span> <span class="p">=</span> <span class="n">direccion</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">abstract</span> <span class="kt">bool</span> <span class="nf">AgregarEditorialFilial</span><span class="p">(</span><span class="n">Editorial</span> <span class="n">filial</span><span class="p">);</span>
+
+    <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">AceptaVisitante</span><span class="p">(</span><span class="n">Visitante</span> <span class="n">visitante</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">EditorialSinFilial</span> <span class="p">:</span> <span class="n">Editorial</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nf">EditorialSinFilial</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombre</span><span class="p">,</span> <span class="kt">string</span> <span class="n">email</span><span class="p">,</span> <span class="kt">string</span> <span class="n">direccion</span><span class="p">)</span>
+        <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">direccion</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">AgregarEditorialFilial</span><span class="p">(</span><span class="n">Editorial</span> <span class="n">filial</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">AceptaVisitante</span><span class="p">(</span><span class="n">Visitante</span> <span class="n">visitante</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">visitante</span><span class="p">.</span><span class="nf">Visita</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">EditorialMadre</span> <span class="p">:</span> <span class="n">Editorial</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">Editorial</span><span class="p">&gt;</span> <span class="n">editorialesFiliales</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Editorial</span><span class="p">&gt;();</span>
+
+    <span class="k">public</span> <span class="nf">EditorialMadre</span><span class="p">(</span><span class="kt">string</span> <span class="n">nombre</span><span class="p">,</span> <span class="kt">string</span> <span class="n">email</span><span class="p">,</span> <span class="kt">string</span> <span class="n">direccion</span><span class="p">)</span>
+        <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">direccion</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">AgregarEditorialFilial</span><span class="p">(</span><span class="n">Editorial</span> <span class="n">filial</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">editorialesFiliales</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">filial</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">AceptaVisitante</span><span class="p">(</span><span class="n">Visitante</span> <span class="n">visitante</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">visitante</span><span class="p">.</span><span class="nf">Visita</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="n">Editorial</span> <span class="n">editorialFilial</span> <span class="k">in</span> <span class="n">editorialesFiliales</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">editorialFilial</span><span class="p">.</span><span class="nf">AceptaVisitante</span><span class="p">(</span><span class="n">visitante</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">VisitanteMailingComercial</span> <span class="p">:</span> <span class="n">Visitante</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Visita</span><span class="p">(</span><span class="n">EditorialSinFilial</span> <span class="n">editorial</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Envía mail a </span><span class="p">{</span><span class="n">editorial</span><span class="p">.</span><span class="n">nombre</span><span class="p">}</span><span class="s"> a </span><span class="p">{</span><span class="n">editorial</span><span class="p">.</span><span class="n">email</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Visita</span><span class="p">(</span><span class="n">EditorialMadre</span> <span class="n">editorial</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Envía mail a </span><span class="p">{</span><span class="n">editorial</span><span class="p">.</span><span class="n">nombre</span><span class="p">}</span><span class="s"> a </span><span class="p">{</span><span class="n">editorial</span><span class="p">.</span><span class="n">email</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Usuario</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Editorial</span> <span class="n">editorial1</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EditorialSinFilial</span><span class="p">(</span><span class="s">"empresa1"</span><span class="p">,</span><span class="s">"mail@empresa1.com"</span><span class="p">,</span><span class="s">"Calle Empresa 1"</span><span class="p">);</span>
+        <span class="n">Editorial</span> <span class="n">editorial2</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EditorialSinFilial</span><span class="p">(</span><span class="s">"empresa2"</span><span class="p">,</span><span class="s">"mail@empresa2.com"</span><span class="p">,</span><span class="s">"Calle Empresa 2"</span><span class="p">);</span>
+
+        <span class="n">Editorial</span> <span class="n">grupoEditorial</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EditorialMadre</span><span class="p">(</span><span class="s">"grupoEditorial1"</span><span class="p">,</span><span class="s">"mail@grupoEditorial1.com"</span><span class="p">,</span><span class="s">"Calle Grupo Editorial1"</span><span class="p">);</span>
+
+        <span class="n">grupoEditorial</span><span class="p">.</span><span class="nf">AgregarEditorialFilial</span><span class="p">(</span><span class="n">editorial1</span><span class="p">);</span>
+        <span class="n">grupoEditorial</span><span class="p">.</span><span class="nf">AgregarEditorialFilial</span><span class="p">(</span><span class="n">editorial2</span><span class="p">);</span>
+
+        <span class="n">Editorial</span> <span class="n">editorial3</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EditorialSinFilial</span><span class="p">(</span><span class="s">"empresa3"</span><span class="p">,</span><span class="s">"mail@empresa3.com"</span><span class="p">,</span><span class="s">"Calle Empresa 3"</span><span class="p">);</span>
+
+        <span class="n">Editorial</span> <span class="n">grupoEditorial2</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EditorialMadre</span><span class="p">(</span><span class="s">"grupoEditorial2"</span><span class="p">,</span><span class="s">"mail@grupoEditorial2.com"</span><span class="p">,</span><span class="s">"Calle Grupo Editorial2"</span><span class="p">);</span>
+
+        <span class="n">grupoEditorial2</span><span class="p">.</span><span class="nf">AgregarEditorialFilial</span><span class="p">(</span><span class="n">grupoEditorial</span><span class="p">);</span>
+        <span class="n">grupoEditorial2</span><span class="p">.</span><span class="nf">AgregarEditorialFilial</span><span class="p">(</span><span class="n">editorial3</span><span class="p">);</span>
+
+        <span class="n">grupoEditorial2</span><span class="p">.</span><span class="nf">AceptaVisitante</span><span class="p">(</span><span class="k">new</span> <span class="nf">VisitanteMailingComercial</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Saludos.</p>
+:ET

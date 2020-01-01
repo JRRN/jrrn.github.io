@@ -1,0 +1,108 @@
+I"/<p>El patrón <strong>iterator</strong> nos proporciona un mecanismo para recorrer colecciones de objetos de forma secuencial sin tener conocimiento de cómo están implementadas estas colecciones.</p>
+
+<p>Vamos con el ejemplo:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Item</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">_descripcion</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nf">Item</span><span class="p">(</span><span class="kt">string</span> <span class="n">descripcion</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_descripcion</span> <span class="p">=</span> <span class="n">descripcion</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="kt">bool</span> <span class="nf">PalabraClaveValida</span><span class="p">(</span><span class="kt">string</span> <span class="n">palabraClave</span><span class="p">)</span> 
+        <span class="p">=&gt;</span> <span class="n">_descripcion</span><span class="p">.</span><span class="nf">IndexOf</span><span class="p">(</span><span class="n">palabraClave</span><span class="p">,</span> <span class="n">StringComparison</span><span class="p">.</span><span class="n">Ordinal</span><span class="p">)</span> <span class="p">!=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">BookIterator</span> <span class="p">:</span> <span class="n">Item</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">BookIterator</span><span class="p">(</span><span class="kt">string</span> <span class="n">descripcion</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">descripcion</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span> 
+        <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Descripción del Libro: </span><span class="p">{</span> <span class="n">_descripcion</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Iterador</span><span class="p">&lt;</span><span class="n">TItem</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">TItem</span> <span class="p">:</span> <span class="n">Item</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">palabraClaveConsulta</span> <span class="p">{</span> <span class="k">protected</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">protected</span> <span class="kt">int</span> <span class="n">indice</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">TItem</span><span class="p">&gt;</span> <span class="n">contenido</span> <span class="p">{</span> <span class="k">protected</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Inicio</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">indice</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">length</span> <span class="p">=</span> <span class="n">contenido</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">indice</span> <span class="p">&lt;</span> <span class="n">length</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">contenido</span><span class="p">[</span><span class="n">indice</span><span class="p">].</span><span class="nf">PalabraClaveValida</span><span class="p">(</span><span class="n">palabraClaveConsulta</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">indice</span><span class="p">++;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Siguiente</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">length</span> <span class="p">=</span> <span class="n">contenido</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
+        <span class="n">indice</span><span class="p">++;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">indice</span> <span class="p">&lt;</span> <span class="n">length</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">contenido</span><span class="p">[</span><span class="n">indice</span><span class="p">].</span><span class="nf">PalabraClaveValida</span><span class="p">(</span><span class="n">palabraClaveConsulta</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">indice</span><span class="p">++;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">TItem</span> <span class="nf">item</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">indice</span> <span class="p">&lt;</span> <span class="n">contenido</span><span class="p">.</span><span class="n">Count</span> <span class="p">?</span> <span class="n">contenido</span><span class="p">[</span><span class="n">indice</span><span class="p">]</span> <span class="p">:</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">IteradorBook</span> <span class="p">:</span> <span class="n">Iterador</span><span class="p">&lt;</span><span class="n">BookIterator</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Catalogo</span><span class="p">&lt;</span><span class="n">TElemento</span><span class="p">,</span> <span class="n">TIterador</span><span class="p">&gt;</span>
+    <span class="k">where</span> <span class="n">TElemento</span> <span class="p">:</span> <span class="n">Item</span>
+    <span class="k">where</span> <span class="n">TIterador</span> <span class="p">:</span> <span class="n">Iterador</span><span class="p">&lt;</span><span class="n">TElemento</span><span class="p">&gt;,</span> <span class="k">new</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">TElemento</span><span class="p">&gt;</span> <span class="n">contenido</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">TElemento</span><span class="p">&gt;();</span>
+
+    <span class="k">public</span> <span class="n">TIterador</span> <span class="nf">Busqueda</span><span class="p">(</span><span class="kt">string</span> <span class="n">palabraClaveConsulta</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">TIterador</span> <span class="n">resultado</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TIterador</span>
+        <span class="p">{</span>
+            <span class="n">contenido</span> <span class="p">=</span> <span class="n">contenido</span><span class="p">,</span>
+            <span class="n">palabraClaveConsulta</span> <span class="p">=</span> <span class="n">palabraClaveConsulta</span>
+        <span class="p">};</span>
+
+        <span class="k">return</span> <span class="n">resultado</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CatalogoBook</span> <span class="p">:</span> <span class="n">Catalogo</span><span class="p">&lt;</span><span class="n">BookIterator</span><span class="p">,</span> <span class="n">IteradorBook</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">CatalogoBook</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">contenido</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">BookIterator</span><span class="p">(</span><span class="s">"Libro PDF"</span><span class="p">));</span>
+        <span class="n">contenido</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">BookIterator</span><span class="p">(</span><span class="s">"Gran libro en PDF"</span><span class="p">));</span>
+        <span class="n">contenido</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">BookIterator</span><span class="p">(</span><span class="s">"Libro de gran calidad"</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Usuario</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">CatalogoBook</span> <span class="n">catalogo</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CatalogoBook</span><span class="p">();</span>
+        <span class="n">IteradorBook</span> <span class="n">iterador</span> <span class="p">=</span> <span class="n">catalogo</span><span class="p">.</span><span class="nf">Busqueda</span><span class="p">(</span><span class="s">"PDF"</span><span class="p">);</span>
+        <span class="n">BookIterator</span> <span class="n">libro</span><span class="p">;</span>
+        <span class="n">iterador</span><span class="p">.</span><span class="nf">Inicio</span><span class="p">();</span>
+        <span class="n">libro</span> <span class="p">=</span> <span class="n">iterador</span><span class="p">.</span><span class="nf">item</span><span class="p">();</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">libro</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">libro</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
+            <span class="n">iterador</span><span class="p">.</span><span class="nf">Siguiente</span><span class="p">();</span>
+            <span class="n">libro</span> <span class="p">=</span> <span class="n">iterador</span><span class="p">.</span><span class="nf">item</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Descripción del Libro: Libro PDF
+Descripción del Libro: Gran libro en PDF</p>
+
+<p>Hasta la próxima.</p>
+:ET

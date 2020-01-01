@@ -1,0 +1,45 @@
+I"�<p>Hola de nuevo. Hoy vengo a presentaros un Nuget que me recomendó mi compañero <a href="https://es.linkedin.com/in/josep-vilches-fernandez-752b522a">@Vilches</a> y que desde ese momento he usado para las llamadas rest a third parties o en api gateways.</p>
+
+<p><a href="https://reactiveui.github.io/refit/">Refit</a> es un nuget que nos permite convertir nuestra Api Rest en un contrato (interface).</p>
+
+<p>Con esto, Refit lo que nos proporciona es no tener que implementar las lógicas de las llamadas, centralizándolas en un contrato; configurando el servicio y la instancia del HttpClientFactory en el registro de dependencias de .Net Core.</p>
+
+<p>El ejemplo:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">IGitHubApi</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="nf">Get</span><span class="p">(</span><span class="s">"/users/{user}"</span><span class="p">)]</span>
+    <span class="n">Task</span><span class="p">&lt;</span><span class="n">User</span><span class="p">&gt;</span> <span class="nf">GetUser</span><span class="p">(</span><span class="kt">string</span> <span class="n">user</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">RegisterServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">services</span><span class="p">.</span><span class="n">AddRefitClient</span><span class="p">&lt;</span><span class="n">IGitHubApi</span><span class="p">&gt;()</span>
+    <span class="p">.</span><span class="nf">ConfigureHttpClient</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span>
+        <span class="p">{</span>
+            <span class="n">c</span><span class="p">.</span><span class="n">BaseAddress</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Uri</span><span class="p">(</span><span class="n">_configuration</span><span class="p">[</span><span class="s">"GitHubApiUrl"</span><span class="p">]);</span>
+            <span class="n">c</span><span class="p">.</span><span class="n">DefaultRequestHeaders</span><span class="p">.</span><span class="n">Accept</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">MediaTypeWithQualityHeaderValue</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+    <span class="p">.</span><span class="nf">SetHandlerLifetime</span><span class="p">(</span><span class="n">Timeout</span><span class="p">.</span><span class="n">InfiniteTimeSpan</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">AddPolicyHandler</span><span class="p">(</span><span class="nf">GetRetryPolicy</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">static</span> <span class="n">IAsyncPolicy</span><span class="p">&lt;</span><span class="n">HttpResponseMessage</span><span class="p">&gt;</span> <span class="nf">GetRetryPolicy</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">httpMaxRetires</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">HttpPolicyExtensions</span>
+        <span class="p">.</span><span class="nf">HandleTransientHttpError</span><span class="p">()</span>
+        <span class="p">.</span><span class="nf">WaitAndRetryAsync</span><span class="p">(</span><span class="n">httpMaxRetires</span><span class="p">,</span> <span class="n">SleepDurationProvider</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Y ya!! Con esto ya podemos empezar a consumir el servicio de Github pasándole como parámetro el usuario.</p>
+
+<p>Además, como vemos se intregra con <a href="http://www.thepollyproject.org/">Polly</a> para política de reintentos, <a href="https://www.newtonsoft.com/json">Newtonsoft</a> para las deserializaciones, se puede configurar un Handling para las excepciones, herencia, headers, uploads, authorization, etc…</p>
+
+<p>Simple, fácil, bueno y completito, ¿no?</p>
+
+<p>Un saludo.</p>
+:ET

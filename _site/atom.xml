@@ -4,7 +4,7 @@
  <title>JRRN Coding!</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2019-09-21T12:12:13+02:00</updated>
+ <updated>2020-01-01T12:24:19+01:00</updated>
  <author>
    <name>JRRN</name>
    <uri>https://jrrn.github.io</uri>
@@ -14,101 +14,101 @@
  
 
  <entry>
-   <title>Caché Aside</title>
-   <link href="http://localhost:4000/cahe-aside"/>
-   <id>http://localhost:4000/cahe-aside</id>
-   <updated>2019-09-21T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;El patrón Cache Aside nos permite devolver datos en una petición sin tener la necesidad de ir a la base de datos a buscarlos. Con este patrón reducimos el tiempo de acceso a los datos, reducimos el uso de recursos lo que hace que mejoremos el rendimiento de nuestra aplicación.&lt;/p&gt;...</content>
+   <title>Backend for FrontEnds</title>
+   <link href="http://localhost:4000/backend-for-frontends"/>
+   <id>http://localhost:4000/backend-for-frontends</id>
+   <updated>2020-01-01T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;¡Hola de nuevo! ¡Feliz año a todos! Hoy presentaremos el patrón de implementación Backends para Frontends. Este patrón está basado en el concepto “S” de SOLID de separación de responsabilidades.&lt;/p&gt; &lt;p&gt;Lo que viene a decir es, teniendo una api que es consumida tanto por un aplicación móvil, cómo por una...</content>
  </entry>
 
  
 
  <entry>
-   <title>Sin Servidor vs Contenedores</title>
-   <link href="http://localhost:4000/sinservidorvscontenedores"/>
-   <id>http://localhost:4000/sinservidorvscontenedores</id>
-   <updated>2019-09-15T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;&lt;strong&gt;¿Qué es sin servidor?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Sin servidor (Serverless) es un enfoque de desarrollo que no basa su infraestructura en máquinas virtuales sino que como servicio Saas, demanda acceso para su ejecución y lo libera después de su uso.&lt;/p&gt; &lt;p&gt;Esto no quiere decir que por detrás de las aplicaciones sin servidor no...</content>
+   <title>Anti-Corruption Layer</title>
+   <link href="http://localhost:4000/anti-corruption-layer"/>
+   <id>http://localhost:4000/anti-corruption-layer</id>
+   <updated>2019-12-29T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;Hola de nuevo. Lo primero, presta mucha atención a este patrón si estáis trabajando con microservicios o con Arquitecturas DDD (Domain Driven Design).&lt;/p&gt; &lt;p&gt;Anti-Corruption Layer nos recomienda crear una capa de aislamiento que permita a los clientes trabajar con sus modelos de negocio y desacoplar estos modelos en nuestra lógica...</content>
  </entry>
 
  
 
  <entry>
-   <title>Throttling</title>
-   <link href="http://localhost:4000/throttling"/>
-   <id>http://localhost:4000/throttling</id>
-   <updated>2019-09-11T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;El patrón Throttling (estrangulamiento) nos permite controlar el consumo de recursos utilizados por una instancia de una aplicación.&lt;/p&gt; &lt;p&gt;Con este control solventamos la necesidad de que nuestro sistema siga funcionando, cuando el escalado no es lo suficientemente rápido aprovisionando, mientras nuestra aplicación recibe una carga masiva de peticiones, evitando una...</content>
+   <title>Ambassador</title>
+   <link href="http://localhost:4000/ambassador"/>
+   <id>http://localhost:4000/ambassador</id>
+   <updated>2019-12-28T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;Hola! El patrón Ambassador nos sirve para colocar antes de otros servicios un “proxy” que nos de más control de comunicaciones sobre estas aplicaciones de terceros, pudiendo aplicar muchos de los patrones que estamos aprendiendo.&lt;/p&gt; &lt;p&gt;Pongamos el caso, tenemos un servicio que nos devuelve las facturas de un usuario. Sin...</content>
  </entry>
 
  
 
  <entry>
-   <title>Queue-Based Load Leveling</title>
-   <link href="http://localhost:4000/queue-based-load-leveling"/>
-   <id>http://localhost:4000/queue-based-load-leveling</id>
-   <updated>2019-09-10T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;El patrón Queue-Based Load Leveling, es un patrón que se utiliza para controlar y enumerar la carga masiva sobre un servicio.&lt;/p&gt; &lt;p&gt;Imaginemos que tenemos una api, esta api tiene una llamada que nuestra aplicación usa de forma masiva cuando los usuarios usan nuestra aplicación. Imaginemos, también, que esa petición recibe...</content>
+   <title>Valet Key</title>
+   <link href="http://localhost:4000/valet-key"/>
+   <id>http://localhost:4000/valet-key</id>
+   <updated>2019-12-27T00:00:00+01:00</updated>
+   <content type="html">&lt;p&gt;Hola a todos. El patrón Valet Key nos ayuda a validar al usuario a la hora de acceder a contenido o recursos que no necesiten una autenticación de usuario, es decir, es ofrecer la posibilidad de consumir ciertos datos o recursos a usuarios anónimos que usan nuestra aplicación como pasarela...</content>
  </entry>
 
  
 
  <entry>
-   <title>Health Endpoint Monitoring</title>
-   <link href="http://localhost:4000/health-endpoint-monitoring"/>
-   <id>http://localhost:4000/health-endpoint-monitoring</id>
-   <updated>2019-07-21T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;Health Endpoint Monitoring es un patrón de disponibilidad el cual nos permite verificar la salud de nuestros servicios exponiendo un servicio que monitorizamos cada x tiempo.&lt;/p&gt; &lt;p&gt;Básicamente, lo que hacemos es llamar a un/os servicio/s y que esto/s nos vaya/n respondiendo la pregunta ¿Sigues vivo? (Keep Alive).&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;/img/cloudpatterns/health-endpoint-monitoring.png&quot; alt=&quot;health-endpoint-monitoring&quot;...</content>
+   <title>Static Content Hosting</title>
+   <link href="http://localhost:4000/static-content-hosting"/>
+   <id>http://localhost:4000/static-content-hosting</id>
+   <updated>2019-10-27T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El objetivo de este patrón es reducir el coste de llamadas que no necesiten pasar por una lógica o servicio devolviendo el contenido o recurso requerido de la forma más rápida posible.&lt;/p&gt; &lt;p&gt;Imaginemos que nuestra web tiene varios documentos PDF donde le explicamos al usuario como vamos a tratar su...</content>
  </entry>
 
  
 
  <entry>
-   <title>Patrones de diseño Cloud</title>
-   <link href="http://localhost:4000/patrones-de-diseno-cloud"/>
-   <id>http://localhost:4000/patrones-de-diseno-cloud</id>
-   <updated>2019-07-14T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;Hola de nuevo. Volviendo al tema de las arquitecturas, esta vez revisaremos los patrones de diseño orientados al Cloud. A diferencia de los patrones de diseño, un mismo patrón nos puede ofrecer varias soluciones para los principales problemas comunes en nuestras arquitectura cloud.&lt;/p&gt; &lt;p&gt;Para ello, dividiremos los patrones cloud según...</content>
+   <title>Conferencia .NET Conf Barcelona 2019</title>
+   <link href="http://localhost:4000/netconfbarcelona"/>
+   <id>http://localhost:4000/netconfbarcelona</id>
+   <updated>2019-10-22T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;Hola a todos. Preparado para las .NET Conf Barcelona 2019 con Machine Learning .NET visión de aproximación.&lt;/p&gt; &lt;p&gt;&lt;a href=&quot;https://netconfbcn.azurewebsites.net/&quot;&gt;Site&lt;/a&gt;&lt;/p&gt; &lt;blockquote&gt; &lt;p&gt;&lt;strong&gt;Machine Learning .NET visión de aproximación:&lt;/strong&gt; ML.Net es el nuevo framework de Microsoft que nos permite usar código c# en nuestros proyectos de Machine Learning. En esta charla profundizaremos un...</content>
  </entry>
 
  
 
  <entry>
-   <title>ML.Net con modelo ONNX</title>
-   <link href="http://localhost:4000/ml-net"/>
-   <id>http://localhost:4000/ml-net</id>
-   <updated>2019-07-13T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;Hola! Hoy vengo a presentaros una POC en la que llevo un tiempo trabajando.&lt;/p&gt; &lt;p&gt;Me picaba la curiosidad jugar un poco con Machine Learning y ver que nos podía ofrecer. Después de leer y situarme un poco sobre el tema, coincidió que Microsoft, había implementado un nuevo Framework de integración...</content>
+   <title>Sharding</title>
+   <link href="http://localhost:4000/sharding"/>
+   <id>http://localhost:4000/sharding</id>
+   <updated>2019-10-17T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón de Sharding o particionamiento es un patrón orientado a los datos; tiene especial consideración en la forma en que accedemos y almacenamos la información.&lt;/p&gt; &lt;p&gt;La cuestión de todo esto es crear particiones de nuestros datos de forma distribuida en particiones. De esta forma, podremos balancear el acceso y...</content>
  </entry>
 
  
 
  <entry>
-   <title>Conferencia Net Core Conference 2019</title>
-   <link href="http://localhost:4000/netcoreconfgalicia"/>
-   <id>http://localhost:4000/netcoreconfgalicia</id>
-   <updated>2019-07-10T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;Hola a todos. Esta vez nos vemos en Galicia, Santiago de Compostela. Mi compañero &lt;a href=&quot;http://www.marcalmontserrat.com&quot;&gt;&lt;strong&gt;Marçal Montserrat&lt;/strong&gt;&lt;/a&gt; no nos acompañará esta vez. De nuevo, muchas gracias por confiar en nosotros y darnos la oportunidad de aportar a la comunidad.&lt;/p&gt; &lt;p&gt;&lt;a href=&quot;https://galicia.netcoreconf.com&quot;&gt;Agenda&lt;/a&gt;&lt;/p&gt; &lt;blockquote&gt; &lt;p&gt;&lt;strong&gt;De 0 a 100 en ARM segundos:&lt;/strong&gt; El...</content>
+   <title>Materialized View</title>
+   <link href="http://localhost:4000/materialized-view"/>
+   <id>http://localhost:4000/materialized-view</id>
+   <updated>2019-10-12T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón materialized view, nos sirve para tener datos fragmentados en diferentes tablas en una vista desnormalizada. De esta forma, podemos consultar estos datos y recuperarlos de una manera óptima.&lt;/p&gt; &lt;p&gt;Vayamos al ejemplo para tener clara la situación y como este patrón nos ayuda a solucionarlo.&lt;/p&gt; &lt;p&gt;Imaginemos que nuestra aplicación...</content>
  </entry>
 
  
 
  <entry>
-   <title>Caché no distribuida en Net Core</title>
-   <link href="http://localhost:4000/cache-no-distribuida"/>
-   <id>http://localhost:4000/cache-no-distribuida</id>
-   <updated>2019-07-10T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria.&lt;/p&gt; &lt;p&gt;Este tipo de caché, como redis, memcaché, etc… se diferencia que no es una caché persistida y distribuida. Esto quiere decir que esta caché se crea en memoria...</content>
+   <title>Index Table</title>
+   <link href="http://localhost:4000/index-table"/>
+   <id>http://localhost:4000/index-table</id>
+   <updated>2019-10-03T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón Index Table se utiliza para crear índices secundarios sobre consultas, que la aplicación necesita, en campos que no son una primary key y así tener un acceso a los datos con una aceptable optimización.&lt;/p&gt; &lt;p&gt;Situémonos, tenemos una tabla de productos, donde como es habitual, tenemos un id_producto como...</content>
  </entry>
 
  
 
  <entry>
-   <title>Refit</title>
-   <link href="http://localhost:4000/refit"/>
-   <id>http://localhost:4000/refit</id>
-   <updated>2019-04-23T00:00:00+02:00</updated>
-   <content type="html">&lt;p&gt;Hola de nuevo. Hoy vengo a presentaros un Nuget que me recomendó mi compañero &lt;a href=&quot;https://es.linkedin.com/in/josep-vilches-fernandez-752b522a&quot;&gt;@Vilches&lt;/a&gt; y que desde ese momento he usado para las llamadas rest a third parties o en api gateways.&lt;/p&gt; &lt;p&gt;&lt;a href=&quot;https://reactiveui.github.io/refit/&quot;&gt;Refit&lt;/a&gt; es un nuget que nos permite convertir nuestra Api Rest en un contrato (interface).&lt;/p&gt;...</content>
+   <title>Event Sourcing</title>
+   <link href="http://localhost:4000/event-sourcing"/>
+   <id>http://localhost:4000/event-sourcing</id>
+   <updated>2019-09-24T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;El patrón Event Sourcing nos ayuda con el diseño y la implementación de nuestra aplicación. Es un patrón que se basa en almacenar todos lo cambios realizados sobre una entidad de dominio.&lt;/p&gt; &lt;p&gt;Este patrón nos ayuda a saber porque estados a pasado una entidad y en caso de producirse un...</content>
  </entry>
 
  

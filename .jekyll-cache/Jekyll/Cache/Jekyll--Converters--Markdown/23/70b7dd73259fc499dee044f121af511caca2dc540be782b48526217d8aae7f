@@ -1,0 +1,2 @@
+I"�<p>El patrón Observer se usa para crear una dependencia entre el objeto y otros que estén anexados a él. De esta forma, cuando se realiza una modificación en el primer objeto, los objetos anexados a el, reciben esta actualización.</p>
+:ET

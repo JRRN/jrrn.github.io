@@ -1,0 +1,67 @@
+I"�<p>El patrón <strong>composite</strong> nos da la utilidad de generar una composición de objetos variables. Esta composición, generalmente, se encuentra en forma de árbol y respeta una jerarquía.</p>
+
+<p>A través de este polimorfismo variable de la citada jerarquía el encapsulamiento a ojos del cliente es muy sencilla y puede usarlos sin tener que conocer la profundidad del arbol y objetos generados.</p>
+
+<p>En nuestro caso de la venta de libros, el supuesto donde aplicaríamos este patrón podrái ser en la distribucción de nuestro repositorio, tanto a clientes finales, como a editoriales más pequeñas, que pueden tener clientes.</p>
+
+<p>Sin más, vamos al ejemplo con el que se verá más claro su estrucutura y comportamiento:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Cliente</span> <span class="p">{</span>
+    <span class="k">protected</span> <span class="k">static</span> <span class="kt">double</span> <span class="n">_costeLibroUnitario</span> <span class="p">=</span> <span class="m">4.0</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">int</span> <span class="n">_numeroLibros</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">AnadirLibro</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">_numeroLibros</span> <span class="p">+=</span> <span class="m">1</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">abstract</span> <span class="kt">double</span> <span class="nf">CalcularPedido</span><span class="p">();</span>
+    <span class="k">public</span> <span class="k">abstract</span> <span class="kt">bool</span> <span class="nf">AgregarEditorial</span><span class="p">(</span><span class="n">Cliente</span> <span class="n">nombreClienteEditorial</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">ClienteFinal</span> <span class="p">:</span> <span class="n">Cliente</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">AgregarEditorial</span><span class="p">(</span><span class="n">Cliente</span> <span class="n">filial</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">false</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">double</span> <span class="nf">CalcularPedido</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">_numeroLibros</span> <span class="p">*</span> <span class="n">_costeLibroUnitario</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">EditorialCliente</span> <span class="p">:</span> <span class="n">Cliente</span> <span class="p">{</span>
+   <span class="k">protected</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Cliente</span><span class="p">&gt;</span> <span class="n">_clientesEditorial</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Cliente</span><span class="p">&gt;();</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">double</span> <span class="nf">CalcularPedido</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">total</span> <span class="p">=</span> <span class="m">0.0</span><span class="p">;</span>
+
+        <span class="k">foreach</span> <span class="p">(</span><span class="n">Cliente</span> <span class="n">clienteEditorial</span> <span class="k">in</span> <span class="n">_clientesEditorial</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">total</span> <span class="p">=</span> <span class="n">total</span> <span class="p">+</span> <span class="n">clienteEditorial</span><span class="p">.</span><span class="nf">CalcularPedido</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">total</span> <span class="p">+</span> <span class="n">_numeroLibros</span> <span class="p">*</span> <span class="n">_costeLibroUnitario</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">AgregarEditorial</span><span class="p">(</span><span class="n">Cliente</span> <span class="n">cliente</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_clientesEditorial</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">cliente</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Pedido</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Cliente</span> <span class="n">clienteFinal</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ClienteFinal</span><span class="p">();</span>
+        <span class="n">clienteFinal</span><span class="p">.</span><span class="nf">AnadirLibro</span><span class="p">();</span>
+
+        <span class="n">Cliente</span> <span class="n">otroClienteFinal</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ClienteFinal</span><span class="p">();</span>
+        <span class="n">otroClienteFinal</span><span class="p">.</span><span class="nf">AnadirLibro</span><span class="p">();</span>
+        <span class="n">otroClienteFinal</span><span class="p">.</span><span class="nf">AnadirLibro</span><span class="p">();</span>
+
+        <span class="n">Cliente</span> <span class="n">editorialCliente</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EditorialCliente</span><span class="p">();</span>
+        <span class="n">editorialCliente</span><span class="p">.</span><span class="nf">AgregarEditorial</span><span class="p">(</span><span class="n">clienteFinal</span><span class="p">);</span>
+        <span class="n">editorialCliente</span><span class="p">.</span><span class="nf">AgregarEditorial</span><span class="p">(</span><span class="n">otroClienteFinal</span><span class="p">);</span>
+        <span class="n">editorialCliente</span><span class="p">.</span><span class="nf">AnadirLibro</span><span class="p">();</span>
+
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Total pedidos clientes: </span><span class="p">{</span> <span class="n">editorialCliente</span><span class="p">.</span><span class="nf">CalcularPedido</span><span class="p">()</span> <span class="p">}</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>El resultado que obtendremos será el calculo de los libro solicitados por los clientes.</p>
+
+<p>Saludos.</p>
+
+:ET

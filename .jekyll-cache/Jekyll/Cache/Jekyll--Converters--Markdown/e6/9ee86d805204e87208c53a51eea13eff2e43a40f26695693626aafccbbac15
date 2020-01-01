@@ -1,0 +1,379 @@
+I"��<p>Hola hoy vengo con los principios SOLID. Aunque es un tema que conozco, el pasado sábado asistí a la <a href="http://netconfbcn2018.azurewebsites.net/">NET. Conf 2018</a> y varias personas no tenían conocimiento sobre ellos y eso no se puede quedar así.</p>
+
+<p>Los presentamos:</p>
+
+<ul>
+  <li><strong>S</strong>ingle Responsability</li>
+  <li><strong>O</strong>pen Closed</li>
+  <li><strong>L</strong>iskow</li>
+  <li><strong>I</strong>nterface Segregation</li>
+  <li><strong>D</strong>ependency Injection</li>
+</ul>
+
+<p>Los detallamos:</p>
+
+<ul>
+  <li><strong>S</strong>ingle Responsability</li>
+</ul>
+
+<p>Este principio trata de realizar los métodos de una clase con una única función. Es decir se responsabilizan solo de hacer una cosa, solo una y concreta.</p>
+
+<ul>
+  <li><strong>O</strong>pen Closed</li>
+</ul>
+
+<p>Este principio lo que nos dice es que los métodos ya creados no puede ser modificados y adaptados. En su lugar deben crearse nuevos métodos que realicen esa nueva funcionalidad.</p>
+
+<p>De esta forma, los test seguirán pasando, la aplicación seguirá funcionando y podremos darle más valor a nuestro código con funcionalidades nuevas. De ahí la extensión con el tag de open y cerrado a la modificación con el tag de closed para los métodos ya creados.</p>
+
+<ul>
+  <li><strong>L</strong>iskow</li>
+</ul>
+
+<p>Este principio habla de crear clases derivadas para que puedan ser usarse como una implementación base.</p>
+
+<p>De esta forma, deberemos implementar clases derivadas sin volver a reimplementar lógica y asegurando que no rompemos nada al usar la clase base.</p>
+
+<ul>
+  <li><strong>I</strong>nterface Segretation</li>
+</ul>
+
+<p>Este principio describe que usando la S de los principios, debemos definir interfaces específicas a una lógica concreta. Es preferible tener muchas interfaces y poder agruparlas por herencia que no tener interfaces con muchos métodos.</p>
+
+<p>Al definir interfaces, la facilidad de aprovechar la lógica es muy grande y nos facilita el acceso a los métodos de cualquier interfaz desde cualquier clase de nuestro programa.</p>
+
+<ul>
+  <li><strong>D</strong>ependency Injection</li>
+</ul>
+
+<p>La inyección de dependencias no sirve para desacoplar las clases. Aunque es muy difícil evitar el acoplamiento, con este principio el acoplamiento es a un contrato, que podemos substituir en cualquier momento, sin necesidad de conocer las implementaciones del contrato/interfaz.</p>
+
+<p>También fue definido por Robert C. Martin. El objetivo de este principio conseguir desacoplar las clases. En todo diseño siempre debe existir un acoplamiento pero hay que evitarlo en la medida de lo posible. Un sistema no acoplado no hace nada pero un sistema altamente acoplado es muy difícil de mantener.</p>
+
+<p>Y como siempre un ejemplo donde veremos como vamos aplicando los principios.</p>
+
+<p>El problema</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">namespace</span> <span class="nn">CalcToSolid</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">NoSolidCalc</span>
+    <span class="p">{</span>
+
+        <span class="k">public</span> <span class="kt">int</span> <span class="nf">Operation</span><span class="p">(</span><span class="n">OperationType</span> <span class="n">operationType</span><span class="p">,</span> <span class="kt">string</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">string</span> <span class="n">operand2</span><span class="p">)</span>
+        <span class="p">{</span>
+
+            <span class="kt">var</span> <span class="n">parsed1</span> <span class="p">=</span>  <span class="kt">int</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">operand1</span><span class="p">,</span> <span class="k">out</span> <span class="kt">int</span> <span class="n">operandOneParsed</span><span class="p">);</span>
+            <span class="kt">var</span> <span class="n">parsed2</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">operand2</span><span class="p">,</span> <span class="k">out</span> <span class="kt">int</span> <span class="n">operandTwoParsed</span><span class="p">);</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="n">parsed1</span> <span class="p">&amp;&amp;</span> <span class="n">parsed2</span><span class="p">){</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">operationType</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">OperationType</span><span class="p">.</span><span class="n">DIV</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="k">return</span> <span class="n">operandOneParsed</span> <span class="p">/</span> <span class="n">operandTwoParsed</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">operationType</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">OperationType</span><span class="p">.</span><span class="n">MUL</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="k">return</span> <span class="n">operandOneParsed</span> <span class="p">*</span> <span class="n">operandTwoParsed</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">operationType</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">OperationType</span><span class="p">.</span><span class="n">SUB</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="k">return</span> <span class="n">operandOneParsed</span> <span class="p">-</span> <span class="n">operandTwoParsed</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="k">return</span> <span class="n">operandOneParsed</span> <span class="p">+</span> <span class="n">operandTwoParsed</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">enum</span> <span class="n">OperationType</span> <span class="p">{</span>
+        <span class="n">SUM</span><span class="p">,</span>
+        <span class="n">SUB</span><span class="p">,</span>
+        <span class="n">DIV</span><span class="p">,</span>
+        <span class="n">MUL</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">CalcToSolid</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nf">NoSolidOperation</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">NoSolidOperation</span><span class="p">(){</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Intro First Operand"</span><span class="p">);</span>
+            <span class="kt">var</span> <span class="n">operand1</span> <span class="p">=</span> <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Intro Second Operand"</span><span class="p">);</span>
+            <span class="kt">var</span> <span class="n">operand2</span> <span class="p">=</span> <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Intro Operation"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"0: SUM"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"1: SUB"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"2: DIV"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"3: MUL"</span><span class="p">);</span>
+            <span class="kt">var</span> <span class="n">operation</span> <span class="p">=</span> <span class="p">(</span><span class="n">OperationType</span><span class="p">)</span><span class="n">Console</span><span class="p">.</span><span class="nf">Read</span><span class="p">();</span>
+
+            <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">NoSolidCalc</span><span class="p">().</span><span class="nf">Operation</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="n">operand1</span><span class="p">,</span> <span class="n">operand2</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>La solución:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">namespace</span> <span class="nn">CalcToSolid.SolidCalc.Interfaces</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">interface</span> <span class="nc">ICalc</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">DoOperation</span><span class="p">(</span><span class="n">OperationType</span> <span class="n">operation</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span> <span class="nn">CalcToSolid.SolidCalc.Interfaces</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">interface</span> <span class="nc">IConverter</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">ConvertStringToInt</span><span class="p">(</span><span class="kt">string</span> <span class="k">value</span><span class="p">);</span>
+        <span class="kt">float</span> <span class="nf">ConvertStringToFloat</span><span class="p">(</span><span class="kt">string</span> <span class="k">value</span><span class="p">);</span> <span class="c1">// Open-Close</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span> <span class="nn">CalcToSolid.SolidCalc.Interfaces</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">interface</span> <span class="nc">IMenu</span>
+    <span class="p">{</span>
+        <span class="kt">string</span> <span class="nf">PrintMenuOperand1</span><span class="p">();</span>
+        <span class="kt">string</span> <span class="nf">PrintMenuOperand2</span><span class="p">();</span>
+        <span class="n">OperationType</span> <span class="nf">PrintMenuOperation</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span> <span class="nn">CalcToSolid.SolidCalc.Interfaces</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">interface</span> <span class="nc">IOperation</span> 
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">Execute</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">using</span> <span class="nn">CalcToSolid.SolidCalc.Interfaces</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">CalcToSolid.SolidCalc.Logic</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Converter</span> <span class="p">:</span> <span class="n">IConverter</span> <span class="c1">// Open - Close</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">IConverter</span><span class="p">.</span><span class="nf">ConvertStringToInt</span><span class="p">(</span><span class="kt">string</span> <span class="k">value</span><span class="p">)</span> <span class="c1">//Single responsibility</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">isConverted</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="k">value</span><span class="p">,</span> <span class="k">out</span> <span class="kt">int</span> <span class="n">intValue</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">isConverted</span> <span class="p">?</span> <span class="n">intValue</span> <span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="kt">float</span> <span class="nf">ConvertStringToFloat</span><span class="p">(</span><span class="kt">string</span> <span class="k">value</span><span class="p">)</span> <span class="c1">//  Single responsibility</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">isConverted</span> <span class="p">=</span> <span class="kt">float</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="k">value</span><span class="p">,</span> <span class="k">out</span> <span class="kt">float</span> <span class="n">floatValue</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">isConverted</span> <span class="p">?</span> <span class="n">floatValue</span> <span class="p">:</span> <span class="m">0.0f</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">CalcToSolid.SolidCalc.Interfaces</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">CalcToSolid.SolidCalc.Logic</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Menu</span> <span class="p">:</span> <span class="n">IMenu</span>
+    <span class="p">{</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="n">IConverter</span> <span class="n">_converter</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Converter</span><span class="p">();</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="nf">PrintMenuOperand1</span><span class="p">()</span> <span class="c1">//Single responsibility)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Intro First Operand"</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="kt">string</span> <span class="nf">PrintMenuOperand2</span><span class="p">()</span> <span class="c1">//Single responsibility)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Intro Second Operand"</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="n">OperationType</span> <span class="nf">PrintMenuOperation</span><span class="p">()</span> <span class="c1">//Single responsibility)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Intro Operation"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"0: SUM"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"1: SUB"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"2: DIV"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"3: MUL"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"4: NExpM"</span><span class="p">);</span>
+            <span class="kt">var</span> <span class="n">operation</span> <span class="p">=</span> <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+
+            <span class="k">return</span> <span class="p">(</span><span class="n">OperationType</span><span class="p">)</span> <span class="n">_converter</span><span class="p">.</span><span class="nf">ConvertStringToInt</span><span class="p">(</span><span class="n">operation</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">using</span> <span class="nn">CalcToSolid.SolidCalc.Interfaces</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">CalcToSolid.SolidCalc.Logic</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">OperationDiv</span> <span class="p">:</span> <span class="n">IOperation</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="nf">Execute</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span> <span class="c1">//Single responsibility</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">operand1</span> <span class="p">/</span> <span class="n">operand2</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">using</span> <span class="nn">CalcToSolid.SolidCalc.Interfaces</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">CalcToSolid.SolidCalc.Logic</span>
+<span class="p">{</span>
+	<span class="k">public</span> <span class="k">class</span> <span class="nc">OperationMul</span> <span class="p">:</span> <span class="n">IOperation</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="nf">Execute</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span> <span class="c1">//Single responsibility</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">operand1</span> <span class="p">*</span> <span class="n">operand2</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">using</span> <span class="nn">CalcToSolid.SolidCalc.Interfaces</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">CalcToSolid.SolidCalc.Logic</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">OperationNExpM</span> <span class="p">:</span> <span class="n">IOperation</span>
+    <span class="p">{</span>
+        <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">IOperation</span> <span class="n">_mul</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">OperationMul</span><span class="p">();</span> <span class="c1">//Liskov </span>
+
+        <span class="k">public</span> <span class="kt">int</span> <span class="nf">Execute</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">result</span><span class="p">=</span> <span class="n">operand1</span><span class="p">;</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">=</span><span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">operand2</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="n">result</span> <span class="p">=</span> <span class="n">_mul</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">operand1</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">using</span> <span class="nn">CalcToSolid.SolidCalc.Interfaces</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">CalcToSolid.SolidCalc.Logic</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">OperationSub</span> <span class="p">:</span> <span class="n">IOperation</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="nf">Execute</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span> <span class="c1">//Single responsibility</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">operand1</span> <span class="p">-</span> <span class="n">operand2</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">using</span> <span class="nn">CalcToSolid.SolidCalc.Interfaces</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">CalcToSolid.SolidCalc.Logic</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">OperationSum</span> <span class="p">:</span> <span class="n">IOperation</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="nf">Execute</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span> <span class="c1">//Single responsibility</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">operand1</span> <span class="p">+</span> <span class="n">operand2</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">using</span> <span class="nn">CalcToSolid.SolidCalc.Interfaces</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">CalcToSolid.SolidCalc.Logic</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">SolidCalc</span> <span class="p">:</span> <span class="n">ICalc</span>
+    <span class="p">{</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="n">IOperation</span> <span class="n">_summatory</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="n">IOperation</span> <span class="n">_multiplication</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="n">IOperation</span> <span class="n">_subtraction</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="n">IOperation</span> <span class="n">_division</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="n">IOperation</span> <span class="n">_exponential</span><span class="p">;</span>
+
+        <span class="k">public</span> <span class="nf">SolidCalc</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">_summatory</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">OperationSum</span><span class="p">();</span> <span class="c1">//Interface segregation</span>
+            <span class="n">_multiplication</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">OperationMul</span><span class="p">();</span> <span class="c1">//Interface segregation</span>
+            <span class="n">_subtraction</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">OperationSub</span><span class="p">();</span> <span class="c1">//Interface segregation</span>
+            <span class="n">_division</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">OperationDiv</span><span class="p">();</span> <span class="c1">//Interface segregation</span>
+            <span class="n">_exponential</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">OperationNExpM</span><span class="p">();</span> <span class="c1">//Interface segregation</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="kt">int</span> <span class="nf">DoOperation</span><span class="p">(</span><span class="n">OperationType</span> <span class="n">operation</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="n">operation</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">case</span> <span class="n">OperationType</span><span class="p">.</span><span class="n">Div</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="nf">Division</span><span class="p">(</span><span class="n">operand1</span><span class="p">,</span> <span class="n">operand2</span><span class="p">);</span>
+                <span class="k">case</span> <span class="n">OperationType</span><span class="p">.</span><span class="n">Mul</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="nf">Multiplication</span><span class="p">(</span><span class="n">operand1</span><span class="p">,</span> <span class="n">operand2</span><span class="p">);</span>
+                <span class="k">case</span> <span class="n">OperationType</span><span class="p">.</span><span class="n">Sub</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="nf">Subtraction</span><span class="p">(</span><span class="n">operand1</span><span class="p">,</span> <span class="n">operand2</span><span class="p">);</span>
+                <span class="k">case</span> <span class="n">OperationType</span><span class="p">.</span><span class="n">Sum</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="nf">Summatory</span><span class="p">(</span><span class="n">operand1</span><span class="p">,</span> <span class="n">operand2</span><span class="p">);</span>
+                <span class="k">case</span> <span class="n">OperationType</span><span class="p">.</span><span class="n">NExpM</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="nf">Exponential</span><span class="p">(</span><span class="n">operand1</span><span class="p">,</span> <span class="n">operand2</span><span class="p">);</span>
+                <span class="k">default</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="kt">int</span> <span class="nf">Division</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">_division</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">operand1</span><span class="p">,</span> <span class="n">operand2</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="kt">int</span> <span class="nf">Multiplication</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">_multiplication</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">operand1</span><span class="p">,</span> <span class="n">operand2</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="kt">int</span> <span class="nf">Subtraction</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">_subtraction</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">operand1</span><span class="p">,</span> <span class="n">operand2</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="kt">int</span> <span class="nf">Summatory</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">_summatory</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">operand1</span><span class="p">,</span> <span class="n">operand2</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="kt">int</span> <span class="nf">Exponential</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">_exponential</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">operand1</span><span class="p">,</span> <span class="n">operand2</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Un saludo.</p>
+
+<blockquote>
+  <p><strong>Gracias:</strong> A mis compañeros Erik Piqué, Marçal Montserrat y Omar Amalfi por sus comentarios.</p>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>En el repositorio vereís que ha varios commits con sus refactorizaciones hasta llegar a un estado final.</li>
+  </ul>
+</blockquote>
+
+<p><a href="https://github.com/JRRN/EasySolidExercise/">Código de ejemplo</a></p>
+:ET

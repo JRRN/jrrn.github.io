@@ -1,0 +1,141 @@
+I"�<p>El patrón materialized view, nos sirve para tener datos fragmentados en diferentes tablas en una vista desnormalizada. De esta forma, podemos consultar estos datos y recuperarlos de una manera óptima.</p>
+
+<p>Vayamos al ejemplo para tener clara la situación y como este patrón nos ayuda a solucionarlo.</p>
+
+<p>Imaginemos que nuestra aplicación tiene la siguiente estrucutura:</p>
+
+<p>TABLA USUARIOS</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">(*) id_user</th>
+      <th style="text-align: center">userName</th>
+      <th style="text-align: center">userLastName</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">Pitufo</td>
+      <td style="text-align: center">Gruñón</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">Papá</td>
+      <td style="text-align: center">Pitufo</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">Pitufo</td>
+      <td style="text-align: center">Amoroso</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">Pitufo</td>
+      <td style="text-align: center">Inteligente</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">Pitufo</td>
+      <td style="text-align: center">Burlón</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>TABLA USUARIO CABELLERA</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">(*) id_cabellera</th>
+      <th style="text-align: center">id_user</th>
+      <th style="text-align: center">color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">castaño</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">moreno</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">castaño</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">moreno</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">castaño</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Si quisieramos obtener el color de pelo de los usuarios deríamos hacer una join entre usuarios y cabellera. Imaginemos que, esta consulta fuera muy costosa. La solución pasa por tener una vista materializada precalculada, como si fuera una caché, con este resultado almacenado y simplemente ejecutar nuestra consulta sobre esta vista:</p>
+
+<p>VISTA USUARIO-CABELLERA</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">(*) id_user</th>
+      <th style="text-align: center">userName</th>
+      <th style="text-align: center">userLastName</th>
+      <th style="text-align: center">id_cabellera</th>
+      <th style="text-align: center">color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">Pitufo</td>
+      <td style="text-align: center">Gruñón</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">castaño</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">Papá</td>
+      <td style="text-align: center">Pitufo</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">moreno</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">Pitufo</td>
+      <td style="text-align: center">Amoroso</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">castaño</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">Pitufo</td>
+      <td style="text-align: center">Inteligente</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">moreno</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">Pitufo</td>
+      <td style="text-align: center">Burlón</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">castaño</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Esta solución, nos brinda la capacidad de realizar esta acción de mejora en datos que no se actualizan con frecuencia. Si por el contrario, estos datos cambian constantemente, esto nos obligaría a recalcular o regenerar las vista y podría penalizarnos en vez de ayudarnos.</p>
+
+<p>Sin más, hasta la próxima.</p>
+:ET

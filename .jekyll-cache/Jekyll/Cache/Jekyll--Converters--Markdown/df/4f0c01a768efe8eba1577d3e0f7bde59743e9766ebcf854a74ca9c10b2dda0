@@ -1,0 +1,65 @@
+I"<p>El patrón de Sharding o particionamiento es un patrón orientado a los datos; tiene especial consideración en la forma en que accedemos y almacenamos la información.</p>
+
+<p>La cuestión de todo esto es crear particiones de nuestros datos de forma distribuida en particiones. De esta forma, podremos balancear el acceso y recuperación de los datos de una forma más óptima accediendo al bloque al que estamos interesados. Por otro lado, esta misma técnica la podemos realizar particionando bases de datos extensas en bases de datos separadas y más pequeñas.</p>
+
+<p>Así, el escalado de las particiones es más rápido y podríamos escalar, como si fueran servicios independientes, las partes que necesitamos y en las que recurrimos más habitualmente a ellas.</p>
+
+<p>Venga en texto plano, ¿Qué es más manejable, una roca de 1 tonelada o 1000 rocas de 1 kilo? …</p>
+
+<p>Ahora transpolemos de esta pregunta las virtudes de este patrón.</p>
+
+<ol>
+  <li>Necesitaría ser un monstruo de máquina para mover la tonelada de piedra, mientras que en 1000 viajes, yo mismo, podría mover esa tonelada.</li>
+  <li>Si tuviera que mover dos veces la tonelada de datos, sería más fácil, que llamara a mi sobrina de 3 años y la liara por un par chucherías, que encontrar otro monstruo de máquina para mover la tonelada.</li>
+  <li>Podría repartir la tonelada de datos según las necesidades de las peticiones, de esta tonelada podría enviar el kilo que me solicita cada petición, mientras que si no lo tuviera particionado, tendría que llevar esa tonelada a la primera petición que tomara lo que necesita y seguidamente, llevar esa tonelada a la siguiente petición para que nuevamente, tomara lo que necesita.</li>
+  <li>Me sería más fácil hacer dos piedras de un kilo que dos piedras de una tonelada.</li>
+</ol>
+
+<p>Parece sencillo verdad, sin embargo, la complejidad de este patrón, es tener muy claro el modelo de datos y saber que estrategia de particionado nos beneficia más en nuestra aplicación.</p>
+
+<p>Por ello según el tipo de particionado podemos encontrar las estrategias:</p>
+
+<ul>
+  <li>
+    <p>De Búsqueda: Las entidades se organizan en particiones donde esta deberá contener todos los datos de la entidad buscada. Como ejemplo, si tuviéramos todos los libros del mundo con sus datos relacionados, significaría que deberíamos tener en la misma partición, con sus tablas relacionadas, los libros de Matilde Asensi en la tabla autores y la relacionada de sus libros. De esta forma, a la hora de buscar los libros de Matilde Asensi, no saltaríamos de partición para recuperar estos datos.</p>
+  </li>
+  <li>
+    <p>De Rango: Las entidades directamente relacionadas, se agrupan en la misma partición y se ordenan por sus claves primarias. Como ejemplo podríamos particionar la base de datos de todos los libros del mundo según el apellido del autor, de esta forma accederíamos a particiones diferentes si buscamos un libro de Rice, Anne o un libro de Coates, Ta-Nemisi.</p>
+  </li>
+  <li>
+    <p>De Hash: En este caso definimos un cálculo único para identificar en que partición almacenamos la información o la recuperamos. En el ejemplo de todos los libros del mundo, podríamos generar un hash a partir del nombre y apellidos de los autores:</p>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Autor</th>
+      <th style="text-align: center">Hash</th>
+      <th style="text-align: center">Partición</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Anne Rice</td>
+      <td style="text-align: center">41:6e:6e:65:20:52:69:63:65</td>
+      <td style="text-align: center">9</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Matilde Asensi</td>
+      <td style="text-align: center">4d:61:74:69:6c:64:65:20:41:73:65:6e:73:69</td>
+      <td style="text-align: center">14</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ta-Nemisi Coates</td>
+      <td style="text-align: center">54:61:2d:4e:65:6d:69:73:69:20:43:6f:61:74:65:73</td>
+      <td style="text-align: center">16</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+Como se puede ver según nuestros requisitos, deberíamos tener muy presente cual de las estrategias se asimila a nuestro modelo de datos y cual deberíamos aplicar mejor.</p>
+
+<p>Un saludo y hasta la próxima.</p>
+:ET

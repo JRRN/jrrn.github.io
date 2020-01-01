@@ -1,0 +1,53 @@
+I"<h3 id="raspberry-pi-3-lcd-c-y-ms-iot">Raspberry Pi 3, LCD, C# y MS IoT</h3>
+
+<p>Hola, hará un año o así, compré una Raspeberry Pi 3.</p>
+
+<p>Mi idea era jugar un poco con ella tanto en su versión modo PC/Servidor como su versión IoT.</p>
+
+<p>Durante este año, he jugado con ella, he probado varias distribuciones Raspbian, Arch Linux, Suse y Fedora, buscando cual era la más cómoda, me ofrecía más prestaciones, etc…</p>
+
+<p>En su día, este blog estuvo alojado con un nginx + PhP + postgreSQL + Wordpress, finalmente un día, se me quedó frita, y aunque tenía documentado paso por paso como levantarlo otra vez, decidí migrar a Github Pages.</p>
+
+<p>Después de esta gran anécdota, decidí comprar un par de starter kits de Elegoo, el Fun Kit y 37 Sensor Kit v 2.0 y ver si Microsoft había avanzado en esta línea, que en sus comienzos era como una piedra, o la tenías de adorno o se la tirabas a alguien a la cabeza. Me sorprende que los sistemas Linux hayan podido montar todo el SO y Microsoft no, pero eso es otra charla, un ¿NANO Server?</p>
+
+<p>En definitiva, os adjunto, el código y el esquema para poder enviar texto sobre una pantalla LCD desde la RPi3.</p>
+
+<p>Esquema:</p>
+
+<p><img src="/img/lcdiot/lcddiagram.png" alt="lcddiagram" title="lcddiagram" /></p>
+
+<p>Por otro lado, el esquema en <a href="http://fritzing.org/home/" title="fritzing">Fritzing</a>, que si no lo conocéis, es un programa de código abierto que te permite crear los esquemas y diagramas con un montón de componentes.</p>
+
+<p><a href="/img/lcdiot/lcdfritzing.fzz" title="Fritzing File">FritzingFile</a></p>
+
+<p>Y finalmente el código fuente:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">public</span> <span class="k">sealed</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">MainPage</span> <span class="p">:</span> <span class="n">Page</span>
+    <span class="p">{</span>
+        <span class="n">CharacterLCD</span> <span class="n">lcd</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+        <span class="k">public</span> <span class="nf">MainPage</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="nf">InitializeComponent</span><span class="p">();</span>
+            <span class="n">Unloaded</span> <span class="p">+=</span> <span class="n">MainPage_Unloaded</span><span class="p">;</span>
+
+            <span class="n">lcd</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CharacterLCD</span><span class="p">();</span>
+            <span class="n">lcd</span><span class="p">.</span><span class="nf">WriteLCD</span><span class="p">(</span><span class="s">"Welcome MS IoT 2 Plain Concepts!"</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">MainPage_Unloaded</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">RoutedEventArgs</span> <span class="n">e</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">lcd</span><span class="p">.</span><span class="nf">Dispose</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">WriteLCD_Click</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">RoutedEventArgs</span> <span class="n">e</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">lcd</span><span class="p">.</span><span class="nf">WriteLCD</span><span class="p">(</span><span class="n">txtWriteLCD</span><span class="p">.</span><span class="n">Text</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p><a href="https://github.com/JRRN/MS_IoT" title="GitHub JRRN">LCD</a></p>
+
+<p>Nos vemos.</p>
+
+:ET

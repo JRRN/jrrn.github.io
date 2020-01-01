@@ -1,0 +1,78 @@
+I"�<p>La función del patrón <strong>facade</strong> es resolver agrupando en una única interfaz como conjunto de objetos varias interfaces.</p>
+
+<p>De esta forma el patrón facade encapsula las interfaces específicas y expone una única interfaz como punto de entrada.</p>
+
+<p>Para los mortales, simplemente se trata de que toda petición entre por una interfaz que engloba las demás y esta sea capaz de redirigir hacia la interfaz concreta que tiene el servicio al que esta solicitando acceso la petición.</p>
+
+<p>Una vez más, vamos con el ejemplo para clarificar.</p>
+
+<p>En nuestro sistema de libros tenemos un servicio web para mostrar toda el site. Sin embargo, en la arquitectura del site hemos divido los servicios por las entidades con las que trabaja. De esta forma, tendremos un servicio que trate el catálago, otro que trate los libros y otro que trate los pedidos.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="nc">ICatalagoService</span> <span class="p">{</span>
+    <span class="k">void</span> <span class="nf">GetCatalogo</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">interface</span> <span class="nc">IBookService</span> <span class="p">{</span>
+    <span class="k">void</span> <span class="nf">GetBookById</span><span class="p">(</span><span class="n">Guid</span> <span class="n">book</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">interface</span> <span class="nc">IPedidosService</span> <span class="p">{</span>
+    <span class="k">void</span> <span class="nf">GetPedidoById</span><span class="p">(</span><span class="n">Guid</span> <span class="n">pedido</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CatalogoService</span> <span class="p">:</span> <span class="n">ICatalagoService</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GetCatalogo</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Contenido del Catalógo"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">BookService</span> <span class="p">:</span> <span class="n">IBookService</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GetBookById</span><span class="p">(</span><span class="n">Guid</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos del libro: </span><span class="p">{</span><span class="n">id</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">PedidosService</span> <span class="p">:</span> <span class="n">IPedidosService</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GetPedidoById</span><span class="p">(</span><span class="n">Guid</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Datos del pedido: </span><span class="p">{</span><span class="n">id</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="n">interace</span> <span class="n">IFacadeService</span> <span class="p">{</span>
+    <span class="k">void</span> <span class="nf">GetCatalogo</span><span class="p">();</span>
+    <span class="k">void</span> <span class="nf">GetBookById</span><span class="p">(</span><span class="n">Guid</span> <span class="n">id</span><span class="p">);</span>
+    <span class="k">void</span> <span class="nf">GetPedidoById</span><span class="p">(</span><span class="n">Guid</span> <span class="n">id</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">FacadeService</span> <span class="p">:</span> <span class="n">IFacadeService</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">ICatalagoService</span> <span class="n">_catalogo</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CatalagoService</span><span class="p">();</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">IBookService</span> <span class="n">_book</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BookService</span><span class="p">();</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">IPedidosService</span>  <span class="n">_pedido</span><span class="p">=</span> <span class="k">new</span> <span class="nf">PedidosService</span><span class="p">();</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GetCatalogo</span><span class="p">(){</span>
+        <span class="n">_catalogo</span><span class="p">.</span><span class="nf">GetCatalogo</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GetBookById</span><span class="p">(</span><span class="n">Guid</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_book</span><span class="p">.</span><span class="nf">GetBookById</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GetPedidoById</span><span class="p">(</span><span class="n">Guid</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_pedido</span><span class="p">.</span><span class="nf">GetPedidoById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Web</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">){</span>
+        <span class="n">IFacadeService</span> <span class="n">_facade</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">FacadeService</span><span class="p">();</span>
+
+        <span class="n">_facade</span><span class="p">.</span><span class="nf">GetCatalogo</span><span class="p">();</span>
+        <span class="n">_facade</span><span class="p">.</span><span class="nf">GetBookById</span><span class="p">(</span><span class="n">Guid</span><span class="p">.</span><span class="nf">NewGuid</span><span class="p">());</span>
+        <span class="n">_facade</span><span class="p">.</span><span class="nf">GetPedidoById</span><span class="p">(</span><span class="n">Guid</span><span class="p">.</span><span class="nf">NewGuid</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Saludos y hasta la próxima.</p>
+
+:ET

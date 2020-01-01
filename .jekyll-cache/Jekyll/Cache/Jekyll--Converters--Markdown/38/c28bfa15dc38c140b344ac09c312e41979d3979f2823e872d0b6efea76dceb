@@ -1,0 +1,86 @@
+I"C&<p>El patrón <strong>Mediator</strong> nos ayuda a gestionar y controlar las interacciones entre un conjunto de objetos sin que deban conocerse entre ellos.</p>
+
+<p>Para los mortales, se define un objeto que tiene las reglas de interacción entre los objetos que se van a comunicar.</p>
+
+<p>¿Todavía no? Veámoslo con un ejemplo:</p>
+
+<p>Esta vez dejaremos a un lado los recurrentes ejemplos de nuestros libros para cambiar por algo más adaptable a nuestro ejemplo, “Torre de control, ¿me recibe?”</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">TorreDeControl</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="kt">bool</span> <span class="n">_pistaLlena</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="k">private</span> <span class="kt">int</span> <span class="n">_numero</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">RecibeMensaje</span><span class="p">(</span><span class="kt">int</span> <span class="n">numero</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">((</span><span class="n">_pistaLlena</span> <span class="p">==</span> <span class="k">true</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="n">Task</span><span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="m">2000</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">_pistaLlena</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="n">_numero</span> <span class="p">=</span> <span class="n">numero</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="nf">EnviaMensaje</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">((</span><span class="n">_pistaLlena</span> <span class="p">==</span> <span class="k">false</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="n">Task</span><span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="m">2000</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">_pistaLlena</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">_numero</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Productor</span> <span class="p">{</span>
+        <span class="k">private</span> <span class="n">TorreDeControl</span> <span class="n">_torreControl</span><span class="p">;</span>
+        <span class="k">private</span> <span class="kt">int</span> <span class="n">_id</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">num</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+        <span class="k">public</span> <span class="nf">Productor</span><span class="p">(</span><span class="n">TorreDeControl</span> <span class="n">torreControl</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">_torreControl</span> <span class="p">=</span> <span class="n">torreControl</span><span class="p">;</span>
+            <span class="n">_id</span> <span class="p">=</span> <span class="n">num</span><span class="p">++;</span>
+        <span class="p">}</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Run</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+            <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">num</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Random</span><span class="p">().</span><span class="nf">Next</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">999</span><span class="p">);</span>
+                <span class="n">_torreControl</span><span class="p">.</span><span class="nf">RecibeMensaje</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+                <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Productor </span><span class="p">{</span><span class="n">_id</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Consumidor</span> <span class="p">{</span>
+        <span class="k">private</span> <span class="n">TorreDeControl</span> <span class="n">_torreControl</span><span class="p">;</span>
+        <span class="k">private</span> <span class="kt">int</span> <span class="n">_id</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">num</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+        <span class="k">public</span> <span class="nf">Consumidor</span><span class="p">(</span><span class="n">TorreDeControl</span> <span class="n">torreControl</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">_torreControl</span> <span class="p">=</span> <span class="n">torreControl</span><span class="p">;</span>
+            <span class="n">num</span><span class="p">++;</span>
+            <span class="n">_id</span> <span class="p">=</span> <span class="n">num</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Run</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Consumidor </span><span class="p">{</span><span class="n">_id</span><span class="p">}</span><span class="s"> </span><span class="p">{</span><span class="n">_torreControl</span><span class="p">.</span><span class="nf">EnviaMensaje</span><span class="p">()}</span><span class="s">"</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">TorreDeControl</span> <span class="n">torreControl</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TorreDeControl</span><span class="p">();</span>
+        <span class="k">new</span> <span class="nf">Productor</span><span class="p">(</span><span class="n">torreControl</span><span class="p">).</span><span class="nf">Run</span><span class="p">();</span>
+        <span class="k">new</span> <span class="nf">Productor</span><span class="p">(</span><span class="n">torreControl</span><span class="p">).</span><span class="nf">Run</span><span class="p">();</span>
+        <span class="k">new</span> <span class="nf">Consumidor</span><span class="p">(</span><span class="n">torreControl</span><span class="p">).</span><span class="nf">Run</span><span class="p">();</span>
+        <span class="k">new</span> <span class="nf">Consumidor</span><span class="p">(</span><span class="n">torreControl</span><span class="p">).</span><span class="nf">Run</span><span class="p">();</span>
+        <span class="k">new</span> <span class="nf">Consumidor</span><span class="p">(</span><span class="n">torreControl</span><span class="p">).</span><span class="nf">Run</span><span class="p">();</span>
+        <span class="k">new</span> <span class="nf">Consumidor</span><span class="p">(</span><span class="n">torreControl</span><span class="p">).</span><span class="nf">Run</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Saludos.</p>
+:ET

@@ -1,0 +1,60 @@
+I"v<p>El patrón <strong>singleton</strong> tiene como objetivo asegurar que una clase sólo posee una instancia y proporciona un método de clase único que devuelve la instancia.</p>
+
+<p>Es un patrón simple y conocido. Si queremos que solo haya una instancia de un objeto y no se puedan generar más mientras haya una existente, este es nuestro patrón. Por ejemplo, si recordamos el patrón Abstract Factory, solo necesitamos una única instancia para ir generando los demás tipos de libros.</p>
+
+<p>En nuestro ejemplo de libros, gestionaremos las clases que deban tener una sola instancia:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">public</span> <span class="k">class</span> <span class="nc">DocumentosVacios</span> <span class="p">:</span> <span class="n">Documentos</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">DocumentosVacios</span> <span class="n">_instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nf">DocumentosVacios</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">documentos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Documento</span><span class="p">&gt;();</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">DocumentosVacios</span> <span class="nf">Instance</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">_instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">_instance</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DocumentosVacios</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Incluye</span><span class="p">(</span><span class="n">Documento</span> <span class="n">doc</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">documentos</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Excluye</span><span class="p">(</span><span class="n">Documento</span> <span class="n">doc</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">documentos</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>O si creamos una nueva clase Editorial en la que inicializaremos los datos de la editorial una vez y los recuperaremos siempre de esa misma instancia sin tener que generar una instancia cada vez que queramos recuperar los datos de la editorial:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">public</span> <span class="k">class</span> <span class="nc">EditorialSingleton</span> <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">nombreEditorial</span>  <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">ubicacion</span>  <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="n">DateTime</span> <span class="n">fechaEditorial</span>  <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">private</span> <span class="k">static</span> <span class="n">EditorialSingleton</span> <span class="n">_instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+
+        <span class="k">private</span> <span class="nf">EditorialSingleton</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="n">EditorialSingleton</span> <span class="nf">Instance</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">_instance</span> <span class="p">??</span> <span class="p">(</span><span class="n">_instance</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EditorialSingleton</span><span class="p">());</span>
+
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Visualiza</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Editorial:  </span><span class="p">{</span><span class="n">nombreEditorial</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Ubicacion:  </span><span class="p">{</span><span class="n">ubicacion</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Para ver la salida:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">public</span> <span class="k">class</span> <span class="nc">TestEditorial</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">EditorialSingleton</span> <span class="n">laEditorial</span> <span class="p">=</span> <span class="n">EditorialSingleton</span><span class="p">.</span><span class="nf">Instance</span><span class="p">();</span>
+        <span class="n">laEditorial</span><span class="p">.</span><span class="n">nombreEditorial</span> <span class="p">=</span> <span class="s">"JRRN Publicaciones"</span><span class="p">;</span>
+        <span class="n">laEditorial</span><span class="p">.</span><span class="n">ubicacion</span> <span class="p">=</span> <span class="s">"Barcelona"</span><span class="p">;</span>
+        <span class="n">laEditorial</span><span class="p">.</span><span class="n">fechaEditorial</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DateTime</span><span class="p">(</span><span class="m">2018</span><span class="p">,</span><span class="m">05</span><span class="p">,</span><span class="m">11</span><span class="p">);</span>
+
+        <span class="n">EditorialSingleton</span> <span class="n">_laEditorial</span> <span class="p">=</span> <span class="n">EditorialSingleton</span><span class="p">.</span><span class="nf">Instance</span><span class="p">();</span>
+        <span class="n">_laEditorial</span><span class="p">.</span><span class="nf">Visualiza</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+:ET

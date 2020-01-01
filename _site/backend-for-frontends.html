@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="generator" content="Jekyll">
+
+	<title>Backend for FrontEnds</title>
+	<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Backend for FrontEnds | JRRN Coding!</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Backend for FrontEnds" />
+<meta name="author" content="JRRN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="¡Hola de nuevo! ¡Feliz año a todos! Hoy presentaremos el patrón de implementación Backends para Frontends. Este patrón está basado en el concepto “S” de SOLID de separación de responsabilidades." />
+<meta property="og:description" content="¡Hola de nuevo! ¡Feliz año a todos! Hoy presentaremos el patrón de implementación Backends para Frontends. Este patrón está basado en el concepto “S” de SOLID de separación de responsabilidades." />
+<link rel="canonical" href="http://localhost:4000/backend-for-frontends" />
+<meta property="og:url" content="http://localhost:4000/backend-for-frontends" />
+<meta property="og:site_name" content="JRRN Coding!" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-01T00:00:00+01:00" />
+<script type="application/ld+json">
+{"datePublished":"2020-01-01T00:00:00+01:00","headline":"Backend for FrontEnds","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/backend-for-frontends"},"url":"http://localhost:4000/backend-for-frontends","author":{"@type":"Person","name":"JRRN"},"description":"¡Hola de nuevo! ¡Feliz año a todos! Hoy presentaremos el patrón de implementación Backends para Frontends. Este patrón está basado en el concepto “S” de SOLID de separación de responsabilidades.","@type":"BlogPosting","dateModified":"2020-01-01T00:00:00+01:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+	<link rel="shortcut icon" href="img/icons/favicon.ico">
+	<!-- RSS -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" />
+	
+	
+
+
+
+
+
+  	
+</head>
+
+
+<body>
+	<div id="wrap">
+	  	<!-- Navigation -->
+	  	<nav id="nav">
+	<div id="nav-list">
+		<a href="/">Home</a>
+		<!-- Nav pages -->
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	      <a href="/about" title="Sobre mí">Sobre mí</a>
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+	    
+	  
+    <!-- Nav links -->
+	  <!-- <a href="https://github.com/KingFelix/emerald/archive/master.zip">Download</a>
+<a href="https://github.com/KingFelix/emerald">Project on Github</a> -->
+
+
+
+	</div>
+  
+  <!-- Nav footer -->
+	
+	  <span>version 1.0.0</span>
+
+
+
+
+
+	
+
+</nav>
+
+    <!-- Icon menu -->
+	  <a id="nav-menu">
+	  	<div id="menu"></div>
+	  </a>
+      <!-- Header -->
+        <header id="header">
+	<div class="headerbackground"></div>
+	<a href="/">
+	  <h1>JRRN Coding!</h1>
+	</a>
+</header>
+
+    <!-- Main content -->
+	  <div id="container">
+      <div class="row">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-md-7 col-lg-7">
+          <main>
+            <article id="post-page">
+	<div>
+		<h2>Backend for FrontEnds</h2><span>[
+			
+				
+				<a href="/tag/Arquitectura"><code class="highligher-rouge"><nobr>Arquitectura<nobr></code>&nbsp;</a>
+			
+			]</span>	
+	<time datetime="2020-01-01T00:00:00+01:00" class="by-line">01 Jan 2020</time>
+	</div>
+		
+	<div class="content">
+		<p>¡Hola de nuevo! ¡Feliz año a todos! Hoy presentaremos el patrón de implementación Backends para Frontends. Este patrón está basado en el concepto “S” de SOLID de separación de responsabilidades.</p>
+
+<p>Lo que viene a decir es, teniendo una api que es consumida tanto por un aplicación móvil, cómo por una aplicación web deberiamos separar las llamadas que realiza la app mobil de las llamadas que realiza la aplicación web.</p>
+
+<p>Una imagen vale más que mil palabras:</p>
+
+<p><img src="/img/cloudpatterns/backforfront.png" alt="Backend for Frontend" title="Backend for Frontend" /></p>
+
+<p>Ahora, porqué esta aproximación es mucho mejor y coherente con nuestra infraestructura cloud?</p>
+
+<p>En primer lugar, teniendo separados los servicios, estos se pueden escalar independientemente según su tráfico.</p>
+
+<p>Por otro lado, aunque puedan tener llamadas iguales en nuestras apis, las dimensiones y cantidad de información a mostrar en cada dispositivo es diferente, con lo que nos señala que los modelos a devolver en nuestra llamadas son, en la parte web con muchas más propiedades y en la parte mobile, con muchas menos propiedades. Esta misma simplificación nos ayuda a reducir el peso de las llamadas en nuestros dispositivos móviles.</p>
+
+<p>Un saludos.</p>
+
+	</div>
+</article>
+
+
+          </main>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <br/>
+<br/>
+<h5>Archivo </h5>
+
+
+
+  
+  
+  <a href="/tag/Arquitectura"><code class="highligher-rouge">Arquitectura</code></a><br/>
+
+  
+  
+  <a href="/tag/Conferences"><code class="highligher-rouge">Conferences</code></a><br/>
+
+  
+  
+  <a href="/tag/Code"><code class="highligher-rouge">Code</code></a><br/>
+
+  
+  
+  <a href="/tag/Azure"><code class="highligher-rouge">Azure</code></a><br/>
+
+  
+  
+  <a href="/tag/MsIoT"><code class="highligher-rouge">MsIoT</code></a><br/>
+
+  
+  
+  <a href="/tag/ML"><code class="highligher-rouge">ML</code></a><br/>
+
+  
+  
+  <a href="/tag/Git"><code class="highligher-rouge">Git</code></a><br/>
+
+  
+  
+  <a href="/tag/Docker"><code class="highligher-rouge">Docker</code></a><br/>
+
+
+        </div>
+        <div class="col-md-1 col-lg-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 pull-center">
+		  <!-- Pagination links -->
+      
+      </div>
+      </div>
+    </div>
+    <br/><br/><br/>
+	    
+	    <!-- Footer -->
+	    <footer>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 pull-center">
+                <span>@2017 - JRRN</span>
+        </div>
+        <div class="col-md-2 pull-right">
+                <a href="https://sessionize.com/j-rafa-ramon/" target="_blank">
+                    <img src="/img/icons/iu.png" title="Sessionize" class="socialLinksfooter" style="height: 30px;" alt="Sessionize Logo">
+                </a>
+                <a href="https://github.com/jrrn" target="_blank">
+                    <img src="/img/icons/github_ico.jpg" title="Github" class="socialLinksfooter" style="height: 30px;" alt="Github Logo">
+                </a>
+                <a href="https://www.linkedin.com/in/josé-rafael-ramón-navarro-27710661/" target="_blank">
+                    <img src="/img/icons/linkedin_ico.jpg" tilte="LinkedIn" class="socialLinksfooter" style="height: 30px;" alt="LinkedIn Logo">
+                </a>
+        </div>
+    </div>
+
+</footer>
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,400italic%7CSignika:700,300,400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/main.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99774552-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-99774552-1');
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-4171359147847443",
+          enable_page_level_ads: true
+     });
+</script>
+
+	    <!-- Script -->
+      <script src="/js/main.js"></script>	
+
+
+  </div>
+</body>
+</html>

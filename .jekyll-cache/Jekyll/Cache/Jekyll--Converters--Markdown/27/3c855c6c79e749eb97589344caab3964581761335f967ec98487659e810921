@@ -1,0 +1,20 @@
+I"�<p>Hola a todos. El patrón Valet Key nos ayuda a validar al usuario a la hora de acceder a contenido o recursos que no necesiten una autenticación de usuario, es decir, es ofrecer la posibilidad de consumir ciertos datos o recursos a usuarios anónimos que usan nuestra aplicación como pasarela para consumirlos.</p>
+
+<p>Vamos con el ejemplo.</p>
+
+<p>Imaginemos que tenemos una api en la que exponemos los resultados de fútbol de la jornada a los usuarios de nuestra aplicación. Nuestra aplicación front no requiere que el usuario esté registrado para poder saber los resultados de la jornada. La manera fácil, es crear un end point [anonymous] que devuelva estos resultados.</p>
+
+<p>Sin embargo, al realizar esta acción lo que estamos permitiendo es que cualquiera pueda realizar esta llamada, consumir nuestros servicio y por lo tanto tener un coste mayor de procesamiento ya que el diario deportivo mundial, se ha dado cuenta que este servicio lo puede consumir sin ningún coste adicional y obtener los resultados deportivos. Para nosotros, podría ser un problema si todos los forofos del fútbol del mundo están pendientes del resultado del partido más importante de la jornada. A final de mes, nos llevariamos una buena torta en la facturación de nuestra infraestructura por el coste de las llamadas, el escalado para aguantar el tráfico, etc…</p>
+
+<p>Sin embargo, con el patrón valet key, podemos mitigar este desafortunado incidente para nuestro bolsillo.</p>
+
+<p>Valet Key, lo que nos permite desde nuestra aplicación front es obtener un key con la que los usuarios anónimos podrán acceder al servicio de consulta de los resultados de la jornada, mientras lo realicen por la pasarela de nuestra aplicación. Mientras que si la llamada se origina fuera de nuestra aplicación, aseguraremos un 401.</p>
+
+<p><img src="/img/cloudpatterns/valet-key.png" alt="Valet Key" title="Valet Key" /></p>
+
+<p>De esta forma, nuestro coste reflejará el consumo real de nuestros usuarios.</p>
+
+<p>Además, dando una vuelta más de tuerca, podremos dar keys que nos den información a nuestras aplicaciones back, para poder clasificar a estos usuarios en roles y según su rol, poder dar más o menos privilegios a estos usuario anónimos.</p>
+
+<p>Un saludo.</p>
+:ET
