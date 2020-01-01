@@ -1,2 +1,0 @@
-I"÷<p>El patr√≥n <strong>Command</strong> nos ayuda a transformar una solicitud en un objeto. Estas solicitudes tienen la propiedad de poder encolarse, ser borradas y actualizadas dentro de la cola de peticiones.</p>
-:ET

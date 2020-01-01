@@ -1,2 +1,0 @@
-I"i<p>El patrón <strong>Chain Of Responsability</strong> nos ayuda a crear una secuencia de unión entre objetos tal que, si el objeto más interno de la cadena no es capaz de dar una respuesta, uno de los objetos de nivel superior será el encargado de darla. Esta respuesta será a nivel del contexto en que el objeto se encuentre y sea capaz de responder.</p>
-:ET

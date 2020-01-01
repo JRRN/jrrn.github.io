@@ -1,2 +1,0 @@
-I"<p>El patrón <strong>proxy</strong> se utiliza para diseñar un objeto que sustituye a otro objeto que controla su acceso. El objeto proxy es el que queda expuesto en la capa de servicios o presentación siendo idéntico y con mismo contrato que el original.</p>
-:ET

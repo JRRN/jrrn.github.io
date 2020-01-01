@@ -1,2 +1,0 @@
-I"!<p>El patrón Cache Aside nos permite devolver datos en una petición sin tener la necesidad de ir a la base de datos a buscarlos. Con este patrón reducimos el tiempo de acceso a los datos, reducimos el uso de recursos lo que hace que mejoremos el rendimiento de nuestra aplicación.</p>
-:ET

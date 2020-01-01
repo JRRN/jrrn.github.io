@@ -1,2 +1,0 @@
-I"{<p>El patrón <strong>bridge</strong> es usado para separar la implementación de un objeto, de su representación y de su interfaz. Así, conseguimos que la implementación de este objeto quede intacta, mientras que la representación puede crecer de manera independiente sin que haya un acoplamiento y tengamos que hacer cambios en el objeto con estas nuevas ampliaciones.</p>
-:ET
