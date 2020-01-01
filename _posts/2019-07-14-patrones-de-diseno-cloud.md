@@ -29,7 +29,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 
 - [Ambassador](ambassador "Ambassador")
 - [Anti-Corruption Layer](anti-corruption-layer "Anti-Corruption Layer]")
-- Backends for Frontends
+- [Backends for Frontends](backend-for-frontends "Backends for Frontends")
 - [CQRS](cqrs "CQRS")
 - Compute Resource Consolidation
 - External Configuration Store
