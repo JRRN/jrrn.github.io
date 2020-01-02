@@ -31,7 +31,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - [Anti-Corruption Layer](anti-corruption-layer "Anti-Corruption Layer]")
 - [Backends for Frontends](backend-for-frontends "Backends for Frontends")
 - [CQRS](cqrs "CQRS")
-- Compute Resource Consolidation
+- [Compute Resource Consolidation](compute-resource-consolidation "Compute Resource Consolidation")
 - External Configuration Store
 - Gateway Aggregation
 - Gateway Offloading
