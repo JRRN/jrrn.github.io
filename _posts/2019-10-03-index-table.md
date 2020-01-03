@@ -28,7 +28,6 @@ Con lo que obtendríamos con un buen rendimiento:
 |:-:|:-:|:-:|:-:|
 |1|Patatas|1| 2|
 
-
 Sin embargo, no siempre tenemos porque conocer el identificador de lo que estamos buscando en base de datos y esto nos penaliza si buscamos por "Patatas".
 
     SELECT * from TABLE Where producto = "Patatas"
@@ -41,7 +40,7 @@ Al lío.
 
 Tenemos varias estrategias según cuantos índices secundarios necesitamos:
 
-La primera de ellas (romper la 1ª Forma Normal, 2ªFN, 3ªFN ...), recomendable cuando nuestros datos no se actualizan con frecuencia, duplicando la tabla pero cambiando la primary key:
+La primera de ellas (romper la 1ª Forma Normal, 2ªFN, 3ªFN ...), recomendable cuando nuestros datos no se actualizan con frecuencia, duplicando la tabla, pero cambiando la primary key:
 
 |(*) producto|id_producto|tipo_producto|precio|
 |:-:|:-:|:-:|:-:|
@@ -50,7 +49,6 @@ La primera de ellas (romper la 1ª Forma Normal, 2ªFN, 3ªFN ...), recomendable
 |Carne|3|2|6|
 |Pescado|4|3|5|
 |Plátanos|5|4|3|
-
 
 Si volviéramos a ejecutar la consulta:
 
@@ -85,7 +83,7 @@ De esta forma si quisiéramos obtener el precio de las patatas:
 
 Lo malo, sí, como vemos tenemos que tirar dos queries. ¿¿Y la JOIN?? Pensad en grandes bases de datos...
 
-La tercera estrategía, es una mezcla entre la primera y la segunda, es decir, duplicar... las tablas normalizadas pero con los índices que queramos y en función de la SELECT hacer un switch a la tabla que contiene el índice por el WHERE que estamos buscando:
+La tercera estrategia, es una mezcla entre la primera y la segunda, es decir, duplicar... las tablas normalizadas, pero con los índices que queramos y en función de la SELECT hacer un switch a la tabla que contiene el índice por el WHERE que estamos buscando:
 
 TABLE PRIMARY KEY PRODUCT_ID
 
