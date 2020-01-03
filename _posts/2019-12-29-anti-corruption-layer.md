@@ -12,7 +12,7 @@ Eric Evans, fue el que acuñó este concepto en su libro sobre [DDD](https://ddd
 
 Así no reinventaremos la rueda y usaremos el ejemplo que usaba en su libro:
 
-Imaginemos que una aplicación depende de Google Calendar para programar y recordar eventos. Para sincronizar los datos desde y hacia Google Calendar, necesitaremos asignar los datos entre los dos sistemas, es decir, nuestra aplicación y Google Calendar. Esto se debe a que los modelos de datos y la estructura serán diferentes en estos sistemas. Con el patrón anti-corruption layer, lo que haremos es usar un proxy/middleware que traducza los contratos entre Google Calendar y los contratos que usemos en nuestra aplicaciones.
+Imaginemos que una aplicación depende de Google Calendar para programar y recordar eventos. Para sincronizar los datos desde y hacia Google Calendar, necesitaremos asignar los datos entre los dos sistemas, es decir, nuestra aplicación y Google Calendar. Esto se debe a que los modelos de datos y la estructura serán diferentes en estos sistemas. Con el patrón anti-corruption layer, lo que haremos es usar un proxy/middleware que traduzca los contratos entre Google Calendar y los contratos que usemos en nuestras aplicaciones.
 
 ![Anti-Corruption Layer](/img/cloudpatterns/anti-corruption-layer.png "Anti-Corruption Layer")
 

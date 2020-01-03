@@ -4,7 +4,7 @@ title: Compute Resource Consolidation
 tags: Arquitectura
 ---
 
-Buenas!! Compute Resource Consolidation es un patrón de implementación que nos ayuda, aunque hay que tener muy clara la foto de nuestro aprovisionamiento en el Cloud, a optimizar nuestra infraestructura en términos de costes y unidades de proceso.
+¡¡Buenas!! Compute Resource Consolidation es un patrón de implementación que nos ayuda, aunque hay que tener muy clara la foto de nuestro aprovisionamiento en el Cloud, a optimizar nuestra infraestructura en términos de costes y unidades de proceso.
 
 Lo que viene a decir es que donde caben 2, caben 3.
 
@@ -20,7 +20,7 @@ Así, aplicando el patrón y con la información que tenemos de como se encuentr
 
 ![Good Compute Resource Consolidation](/img/cloudpatterns/good_compute_resource_consolidation.png "Good Compute Resource Consolidation")
 
-Sí. Unificariamos los servicios de API Diurna y API Nocturna en un mismo App Service Plan y dejaríamos la API Notificaciones en otro App Service Plan por separado.
+Sí. Unificaríamos los servicios de API Diurna y API Nocturna en un mismo App Service Plan y dejaríamos la API Notificaciones en otro App Service Plan por separado.
 
 ¿Por qué? Los nombres y lo horarios son la pista... Porqué mientras la API diurna está a pleno rendimiento la nocturna descansa, y mientras que la nocturna trabaja la diurna descansa. De esta forma el App Service Plan esta amortizado ya que trabaja a pleno rendimiento casi las 24 horas del día y además reducimos los costes, ya que pasamos de 3 a 2 App Service Plans.
 

@@ -32,7 +32,7 @@ Para ello, dividiremos los patrones cloud según el enfoque al que están orient
 - [Backends for Frontends](backend-for-frontends "Backends for Frontends")
 - [CQRS](cqrs "CQRS")
 - [Compute Resource Consolidation](compute-resource-consolidation "Compute Resource Consolidation")
-- External Configuration Store
+- [External Configuration Store](external-configuration-store "External Configuration Store")
 - Gateway Aggregation
 - Gateway Offloading
 - Gateway Routing
