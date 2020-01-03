@@ -10,7 +10,7 @@ Hola de nuevo, para acabar una más de principios para el diseño de software:
 
 **KISS** - (Mantenlo simple, estúpido): Esto es algo que se explica por sí mismo: siempre es más fácil evitar errores, mejorar el rendimiento, agregar funciones y mantener un software más simple que algo complicado. Y como en la vida, las cosas simples y no forzadas mejor...
 
-Este principio no significa que nunca se deba introducir complejidad para resolver un problema complejo, significa que debemos usar la solución más simple para poder resorverlo.
+Este principio no significa que nunca se deba introducir complejidad para resolver un problema complejo, significa que debemos usar la solución más simple para poder resolverlo.
 
 <br>
 
@@ -43,6 +43,6 @@ La idea es que cualquier unidad de código en la que se esté trabajando debe pa
 <br>
 Finalmente:
 
-**Red Green Refactor** ayuda a los desarrolladores a aplicar todos los principios de la escritura de un buen software al ayudar a la comprensión del problema en cuestión, creando una solución **KISS** sin romper la funcionalidad existente -> **YAGNI**, y garantizar que el código resultante esté listo para realizar cambios futuros  -> **DRY**.
+**Red Green Refactor** ayuda a los desarrolladores a aplicar todos los principios de la escritura de un buen software al ayudar a la comprensión del problema en cuestión, creando una solución **KISS** sin romper la funcionalidad existente -> **YAGNI**, y garantizar que el código resultante esté listo para realizar cambios futuros -> **DRY**.
 
 Saludos.
