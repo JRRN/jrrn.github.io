@@ -26,5 +26,5 @@ Los principales beneficios de Event Sourcing son:
 
 - Casa muy bien con el patrón CQRS.
 
-Veamos el gráfico de la infraestructura:
+Un saludo.
 
