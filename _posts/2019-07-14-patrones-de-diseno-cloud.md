@@ -4,9 +4,9 @@ title: Patrones de diseño Cloud
 tags: Arquitectura
 ---
 
-Hola de nuevo. Volviendo al tema de las arquitecturas, esta vez revisaremos los patrones de diseño orientados al Cloud. A diferencia de los patrones de diseño, un mismo patrón nos puede ofrecer varias soluciones para los principales problemas comunes en nuestras arquitectura cloud.
+Hola de nuevo. Volviendo al tema de las arquitecturas, esta vez revisaremos los patrones de diseño orientados al Cloud. A diferencia de los patrones de diseño, un mismo patrón nos puede ofrecer varias soluciones para los principales problemas comunes en nuestras arquitecturas Cloud.
 
-Para ello, dividiremos los patrones cloud según el enfoque al que están orientados. Pasamos a enumerarlos:
+Para ello, dividiremos los patrones Cloud según el enfoque al que están orientados. Pasamos a enumerarlos:
 
 ### Patrones de Disponibilidad ###
 
