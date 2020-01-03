@@ -6,7 +6,7 @@ tags: Code
 
 Hola de nuevo, hoy quiero hablaros de la caché no distribuida que nos aporta Net Core y que la carga en memoria.
 
-Este tipo de caché, como redis, memcaché, etc... se diferencia que no es una caché persistida y distribuida. Esto quiere decir que esta caché se crea en memoria y en cada instancia de servidor de la aplicación, donde tenemos una caché diferente.
+Este tipo de caché, como redis, memcaché, etc. Se diferencia que no es una caché persistida y distribuida. Esto quiere decir que esta caché se crea en memoria y en cada instancia de servidor de la aplicación, donde tenemos una caché diferente.
 
 Para ello, simplemente necesitamos añadir el servicio en la inyección de dependencias y el paquete nuget **Microsoft.Extensions.Caching.Memory**:
 
@@ -47,11 +47,11 @@ public class NuestroController : Controller
 }
 ~~~
 
-Y voilà, ya tenemos una caché montada en memoria. La caché que se forma, es usuarios por país. Así, si en la primera llamada pedimos los usuarios de España, accederemos hasta el repositorio, nos traeremos los datos y en la salida creará una caché con la clave users-es con los usuarios de España. Si volvemos a ejecutar la llamada al controller, la llamada ya no bajará hasta el repository sino que será la caché quien nos devuelva los usuarios. Sin embargo, si solicitamos los usuarios de México, se volverá el acceder al repositorio y se añadirá a la caché de usuarios con la clave users-mx.
+Y voila, ya tenemos una caché montada en memoria. La caché que se forma es usuarios por país. Así, si en la primera llamada pedimos los usuarios de España, accederemos hasta el repositorio, nos traeremos los datos y en la salida creará una caché con la clave users-es con los usuarios de España. Si volvemos a ejecutar la llamada al controller, la llamada ya no bajará hasta el repository sino que será la caché quien nos devuelva los usuarios. Sin embargo, si solicitamos los usuarios de México, se volverá el acceder al repositorio y se añadirá a la caché de usuarios con la clave users-mx.
 
-Vale, ¿que fácil no? Pues la verdad que sí. Decir que la IMemoryCaché se limita por un [algoritmo LRU](https://es.wikipedia.org/wiki/Algoritmo_de_caché) que nos permite usar el 20% de la RAM de la instancia como máximo.
+Vale, ¿que fácil no? Pues la verdad que sí. Hay que decir que la IMemoryCaché se limita por un [algoritmo LRU](https://es.wikipedia.org/wiki/Algoritmo_de_caché) que nos permite usar el 20% de la RAM de la instancia como máximo.
 
-Este tipo de caché funciona hasta que se llena. Es decir si nos ligit adamos a pedir usuarios de países se generaran tantas cachekeys como nos quepan en ese 20%. Las demás irán a repositorio mientras no entre a funcionar el algoritmo LRU.
+Este tipo de caché funciona hasta que se llena. Es decir, si nos ligit adamos a pedir usuarios de países se generaran tantas cachekeys como nos quepan en ese 20%. Las demás irán a repositorio mientras no entre a funcionar el algoritmo LRU.
 
 Ooooooooh!!! Pero tranquis, que es configurable.
 

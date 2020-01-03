@@ -4,7 +4,7 @@ title: Patrón de Opciones
 tags: Arquitectura
 ---
 
-¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montado más de una vez para albergar en un clase todas las settings de nuestra aplicación y no tener desparramado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y se replicaba en todo el contexto de la aplicación)?
+¿Quien no recuerda los maravillosos Configuration Provider que nos hemos montado más de una vez para albergar en una clase todas las settings de nuestra aplicación y no tener desparramado por el código el acceso a estas (de esta forma, si cambiaba una setting se centralizaba en un punto y se replicaba en todo el contexto de la aplicación)?
 
 ¿Qué no sabes de lo que te hablo?:
 
@@ -27,9 +27,9 @@ public static class Main {
 }
 ~~~
 
-Sin embargo, con Net Core, se lo han currado un poco más y ahora queda centralizado a la hora de registrar la dependencias.
+Sin embargo, con Net Core, se lo han currado un poco más y ahora queda centralizado a la hora de registrar las dependencias.
 
-Primero de todo generamos una clase para la sección de las appsettings o para todo el appsettings, recordemos que si hacemos esta última, será accesible desde cualquier punto de la aplicación.
+Primero de todo generamos una clase para la sección de las appsettings o para todo el appsettings, recordemos que, si hacemos esta última, será accesible desde cualquier punto de la aplicación.
 
 Appsettings.json
 {
@@ -47,7 +47,7 @@ public class MySettings
 }
 ~~~
 
-Por otro lado registramos en el contenedor de servicios la clase que hemos definido anteriormente, aquí esta la magia:
+Por otro lado, registramos en el contenedor de servicios la clase que hemos definido anteriormente, aquí esta la magia:
 
 ~~~csharp
     services.Configure<MySettings>(
@@ -73,7 +73,7 @@ public class HomeController : Controller
 }
 ~~~
 
-Lo mejor de todo es que podemos inyectar esta configuración en páginas razor:
+Lo mejor de todo es que podemos inyectar esta configuración en páginas Razor:
 
 ~~~csharp
 @page
