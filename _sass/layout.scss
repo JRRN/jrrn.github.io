@@ -258,3 +258,18 @@
     width: 100%; 
   }
   
+  @media only screen and (max-width: 600px) {
+    .pagination {
+      text-align: center;
+      margin-top: 2em;
+      margin-bottom: 2em;
+      display: inherit;
+      span {
+        background-color: darken($background-color, 5%);
+        color: $text-color;
+      }
+      a:hover {
+        background-color: lighten($main-color, 5%);
+      }
+    }
+  }
