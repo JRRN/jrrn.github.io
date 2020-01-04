@@ -33,7 +33,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - [CQRS](cqrs "CQRS")
 - [Compute Resource Consolidation](compute-resource-consolidation "Compute Resource Consolidation")
 - [External Configuration Store](external-configuration-store "External Configuration Store")
-- Gateway Aggregation
+- [Gateway Aggregation](gateway-aggregation "Gateway Aggregation")
 - Gateway Offloading
 - Gateway Routing
 - Leader Election
@@ -57,7 +57,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - [Ambassador](ambassador "Ambassador")
 - [Anti-Corruption Layer](anti-corruption-layer "Anti-Corruption Layer]")
 - External Configuration Store
-- Gateway Aggregation
+- [Gateway Aggregation](gateway-aggregation "Gateway Aggregation")
 - Gateway Offloading
 - Gateway Routing
 - [Health EndPoint Monitoring](health-endpoint-monitoring "Health EndPoint Monitoring")
