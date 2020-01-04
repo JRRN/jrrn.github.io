@@ -39,4 +39,4 @@ Sería como evitar "Es que para jugar al FIFA2020 me pide más máquina de la qu
 Un saludo.
 
 > Os recomiendo una lectura, buscad, FAT Client - THIN Server vs THIN Client - FAT Server o también llamado Thin Client vs Fat Client
-> Es sobre sistema distribuidos y las aproximaciones de alternativas a arquitectura de aplicaciones.
+> Es sobre sistemas distribuidos y las aproximaciones de alternativas a arquitectura en aplicaciones.
