@@ -26,7 +26,7 @@ Tenemos los casos de Ikea y Amazon Music.
 
 Amazon Music realiza el patrón de agregación en su página home con un solo método GetHome, donde lo que hace es hacer una única petición y posteriormente en la parte de back, realiza todas las llamadas a los servicios internos, recopila la información, la "agrega" en un modelo, HomeModel y la devuelve al navegador para que renderice todo este contenido.
 
-Sin embargo, Ikea, realiza varias llamadas en las renderiza por componente cada sección, fijaos en las llamadas orders, stores, onlineshoppinglist, userinfo, etc.
+Sin embargo, Ikea, realiza varias llamadas en las que renderiza por componente cada sección, fijaos en las llamadas orders, stores, onlineshoppinglist, userinfo, etc.
 
 Vamos con un gráfico:
 
