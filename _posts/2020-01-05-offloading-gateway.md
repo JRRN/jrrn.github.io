@@ -22,6 +22,6 @@ Pues bien, como dice el Offloading Gateway, para que esto no ocurra, tengamos m�
 
 Donde las tres APIS que antes consumíamos directamente ya no quedarían expuestas al usuario, si no que el usuario tendría la visibilidad del Offloading Gateway, que sería el encargado de realizar la autorización. 
 
-Del Offloading Gateway a las tres APIS, pasaríamos los parámetros necesarios en las llamadas con las propiedades que hayamos deserializado en el Offloanding Gateway y aplicaríamos una seguridad de [Valet Key](valet-key "Valet Key") en esta comunicación, un apikey o simplemente si no es necesario, podriamos estas APIS de forma no pública (no visibles desde el exterior) en nuestra red de Azure y ya, por ejemplo.
+Del Offloading Gateway a las tres APIS, pasaríamos los parámetros necesarios en las llamadas con las propiedades que hayamos deserializado en el Offloanding Gateway y aplicaríamos una seguridad de [Valet Key](valet-key "Valet Key") en esta comunicación, un apikey o simplemente si no es necesario, podríamos estas APIS de forma no pública (no visibles desde el exterior) en nuestra red de Azure y ya, por ejemplo.
 
 Un saludo.
