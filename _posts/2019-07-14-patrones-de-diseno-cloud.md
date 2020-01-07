@@ -35,7 +35,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - [External Configuration Store](external-configuration-store "External Configuration Store")
 - [Gateway Aggregation](gateway-aggregation "Gateway Aggregation")
 - [Gateway Offloading](offloading-gateway "Gateway Offloading")
-- Gateway Routing
+- [Gateway Routing](gateway-routing "Gateway Routing")
 - Leader Election
 - Pipes and Filters
 - Sidecar
@@ -59,7 +59,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - External Configuration Store
 - [Gateway Aggregation](gateway-aggregation "Gateway Aggregation")
 - [Gateway Offloading](offloading-gateway "Gateway Offloading")
-- Gateway Routing
+- [Gateway Routing](gateway-routing "Gateway Routing")
 - [Health EndPoint Monitoring](health-endpoint-monitoring "Health EndPoint Monitoring")
 - Sidecar
 - Strangler
