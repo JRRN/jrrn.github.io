@@ -36,7 +36,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - [Gateway Aggregation](gateway-aggregation "Gateway Aggregation")
 - [Gateway Offloading](offloading-gateway "Gateway Offloading")
 - [Gateway Routing](gateway-routing "Gateway Routing")
-- Leader Election
+- [Leader Election](leader-election "Leader Election")
 - Pipes and Filters
 - Sidecar
 - [Static Content Hosting](static-content-hosting "Static Content Hosting")
@@ -83,7 +83,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - Circuit Breaker
 - Compensating Transaction
 - [Health EndPoint Monitoring](health-endpoint-monitoring "Health EndPoint Monitoring")
-- Leader Election
+- [Leader Election](leader-election "Leader Election")
 - [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
 - Retry
 - Scheduler Agent Supervisor
