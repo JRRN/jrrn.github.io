@@ -37,7 +37,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - [Gateway Offloading](offloading-gateway "Gateway Offloading")
 - [Gateway Routing](gateway-routing "Gateway Routing")
 - [Leader Election](leader-election "Leader Election")
-- Pipes and Filters
+- [Pipes and Filters](pipes-and-filters "Pipes and Filters")
 - Sidecar
 - [Static Content Hosting](static-content-hosting "Static Content Hosting")
 - Strangler
@@ -46,7 +46,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 
 - Comprobación de notificaciones
 - Competing Consumers
-- Pipes and Filters
+- [Pipes and Filters](pipes-and-filters "Pipes and Filters")
 - Priority Queue
 - Publisher-Subscriber
 - [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
