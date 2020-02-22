@@ -40,7 +40,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - [Pipes and Filters](pipes-and-filters "Pipes and Filters")
 - [Sidecar](sidecar "Sidecar")
 - [Static Content Hosting](static-content-hosting "Static Content Hosting")
-- Strangler
+- [Strangler](strangler "Strangler")
 
 ### Patrones de Mensajería ###
 
@@ -62,7 +62,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - [Gateway Routing](gateway-routing "Gateway Routing")
 - [Health EndPoint Monitoring](health-endpoint-monitoring "Health EndPoint Monitoring")
 - [Sidecar](sidecar "Sidecar")
-- Strangler
+- [Strangler](strangler "Strangler")
 
 ### Patrones de Rendimiento y escalabilidad ###
 
