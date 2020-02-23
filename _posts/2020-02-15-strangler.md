@@ -12,7 +12,7 @@ No me he podido resistir...
 
 Venga va, seguimos.
 
-El patrón Strangler es un patrón que nos sirve para ir migradando servicios o aplicaciones que se nos quedan obsoletas hacia nuevas implementaciones. La metáfora del estrangulamiento, es que, en cada iteración vas "estrangulando" más y más la antigua aplicación hasta que ya no queda nada de lo antiguo y lo has migrado hacia la nueva implementación.
+El patrón Strangler es un patrón que nos sirve para ir migrando servicios o aplicaciones que se nos quedan obsoletas hacia nuevas implementaciones. La metáfora del estrangulamiento, es que, en cada iteración vas "estrangulando" más y más la antigua aplicación hasta que ya no queda nada de lo antiguo y lo has migrado hacia la nueva implementación.
 
 El modo en que empleamos este patrón es poniendo delante de la aplicación a migrar un balanceador, en el que vamos balanceando a medida que vamos migrando las llamadas hacia los nuevos servicios o aplicaciones.
 
