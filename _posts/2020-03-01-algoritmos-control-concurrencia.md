@@ -6,7 +6,7 @@ tags: Arquitectura
 
 Hola a todos, hoy os vengo a explicar los algoritmos de concurrencia en los sistemas distribuidos. Atentos por que viene chapa, aunque a mí, me parece la mar de interesante.
 
-Empezamos con la forma en que los procesos se ejecutan en sistemas distribuidos y como se determina el orden, aunque hay más algoritmos ([Berkeley](https://es.wikipedia.org/wiki/Algoritmo_de_Berkeley "Berkeley") , [Marzullo](https://es.wikipedia.org/wiki/Algoritmo_de_Marzullo "Marzullo"), [Paxos](https://es.wikipedia.org/wiki/Algoritmo_de_Paxos "Paxos"))
+Empezamos con la forma en que los procesos se ejecutan en sistemas distribuidos y como se determina el orden, aunque hay más algoritmos ([Berkeley](https://es.wikipedia.org/wiki/Algoritmo_de_Berkeley "Berkeley") , [Marzullo](https://es.wikipedia.org/wiki/Algoritmo_de_Marzullo "Marzullo"), [Paxos](https://es.wikipedia.org/wiki/Algoritmo_de_Paxos "Paxos")) nos centraremos en los algoritmos de tiempos lógicos:
 
 **Algoritmos de Tiempos Lógicos**
 
@@ -40,7 +40,7 @@ Empezamos con la forma en que los procesos se ejecutan en sistemas distribuidos 
 
 **Algoritmos de exlusión mútua:**
 
-Los algoritmos de exclusión mutua ayudan a los sistemas distribuidos a solventar la forma en la que se coordinan en la ejecución de sus procesos, solventando los fallos que se puedan producir en esta coordinación.
+Los algoritmos de exclusión mutua ayudan a los sistemas distribuidos a solventar la forma en la que se coordinan en la ejecución de sus procesos, solventando los fallos que se puedan producir en esta coordinación (Resiliencia).
 
 ***Algoritmo basado en servidor central:***
 Este algoritmo se basa en tener un servidor en el que se encolan las peticiones y es éste el que decide, según una cola de peticiones, el proceso que entra en ejecución, dando paso y recibiendo una confirmación de que este proceso ya ha acabado. De esta forma, el servidor puede dar paso al siguiente proceso de la cola.
@@ -71,3 +71,7 @@ Es decir, si la ejecución esta lista para ejecutar y los demás procesos dan el
 A nivel de escalabilidad, en la siguiente votación, habrá un nodo o proceso más para votar y para solicitar el estado de ejecución, lo que implica que los demás nodos deben saber que hay uno nuevo para determinar nuevo número de respuestas a recibir para poder ejecutarse.
 
 ![Maekawa](/img/sistdist/maekawa.png "Maekawa")
+
+Sin más, espero que os haya gustado y aclarado las dudas sobre estos algoritmos.
+
+Un saludo.
