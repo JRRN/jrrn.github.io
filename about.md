@@ -188,7 +188,7 @@ title: Sobre mí
         <div class="rela-block user-desc" id="user_description">Software Developer Enginner</div>
     </div>
     <div class="rela-block profile-name-stats">
-        <p>Mi nombre es Rafa. Actualmente, desarrollo mis labores en Plain Concepts
+        <p>Mi nombre es Rafa. Actualmente, desarrollo mis labores
         como desarrollador de Software, principalmente en tecnologías .Net con
         Azure.</p>
         <p> Personalmente, me apasiona cualquier cosa que me tenga enfrascado
