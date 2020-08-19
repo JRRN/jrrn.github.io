@@ -16,7 +16,7 @@ No os la perdaís:
 
 >**Resiliencia. O cómo Skynet logra recuperarse de sus errores**
 
-En esta charla, hablaremos del tema de la resiliencia y las posibilidades que nos ofrece Azure para reducir nuestras errores.
+En esta charla, hablaremos del tema de la resiliencia y las posibilidades que nos ofrece Azure para reducir nuestros errores.
 
 Nos vemos virtualmente en la conf.
 

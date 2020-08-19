@@ -45,7 +45,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 ### Patrones de Mensajería ###
 
 - [Claim-Check](claim-check "Claim-Check")
-- Competing Consumers
+- [Competing Consumers](competing-consumers "Competing Consumers")
 - [Pipes and Filters](pipes-and-filters "Pipes and Filters")
 - Priority Queue
 - Publisher-Subscriber
