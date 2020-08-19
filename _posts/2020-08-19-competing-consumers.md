@@ -24,5 +24,6 @@ Entonces, si lo pensaís bien, nos queda una Api, que al llegar una petición en
 
 ![Competing Consumers](/img/cloudpatterns/competing-consumers.png "Competing Consumers")
 
+
 Un saludo y hasta la próxima. 
 
