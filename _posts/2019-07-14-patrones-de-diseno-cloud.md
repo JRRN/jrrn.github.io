@@ -47,7 +47,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - [Claim-Check](claim-check "Claim-Check")
 - [Competing Consumers](competing-consumers "Competing Consumers")
 - [Pipes and Filters](pipes-and-filters "Pipes and Filters")
-- [Priority Queue](prority-queue "Priority Queue")
+- [Priority Queue](priority-queue "Priority Queue")
 - Publisher-Subscriber
 - [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
 - Scheduler Agent Supervisor
@@ -71,7 +71,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - [Event Sourcing](event-sourcing "Event Sourcing")
 - [Index Table](index-table "Index Table")
 - [Materialized View](materialized-view "Materialized View")
-- [Priority Queue](prority-queue "Priority Queue")
+- [Priority Queue](priority-queue "Priority Queue")
 - [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
 - [Sharding](sharding "Sharding")
 - [Static Content Hosting](static-content-hosting "Static Content Hosting")

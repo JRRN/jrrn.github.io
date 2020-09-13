@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Prority Queue
+title: Priority Queue
 tags: Arquitectura
 ---
 
@@ -19,7 +19,7 @@ Por otro lado, hay sistemas de mensajería en los que puedes definir reglas y a 
 Sin embargo, si nuestro sistema de mensajería no admite reglas en los mensajes, la alternativa que nos queda es aplicar estas reglas en código y que sea este el que clasifique en un sistemas de colas/topics los mensajes según su prioridad.
 
  
-![Prority Queue](/img/cloudpatterns/prority-queue.png "Prority Queue")
+![Priority Queue](/img/cloudpatterns/priority-queue.png "Priority Queue")
 
 
 Un saludo y hasta la próxima.
