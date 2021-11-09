@@ -44,3 +44,9 @@ header h1{
 .content {
 	white-space: normal;
 }
+
+.emoji {
+    max-width: 100% !important;
+	display: -webkit-inline-box !important;
+	margin: auto !important  ;
+}

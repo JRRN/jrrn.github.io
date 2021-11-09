@@ -48,7 +48,7 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - [Competing Consumers](competing-consumers "Competing Consumers")
 - [Pipes and Filters](pipes-and-filters "Pipes and Filters")
 - [Priority Queue](priority-queue "Priority Queue")
-- Publisher-Subscriber
+- [Publisher-Subscriber](publisher-subscriber "Publisher-Subscriber")
 - [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
 - Scheduler Agent Supervisor
 

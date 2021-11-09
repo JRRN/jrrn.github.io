@@ -4,8 +4,28 @@
 //
 
 body {
-	font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'JetBrains Mono';
+    src: url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/webfonts/JetBrainsMono-Regular.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 	letter-spacing: 0.01em;
+}
+
+// @font-face{
+//     font-family: 'JetBrains Mono';
+//     src: url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/webfonts/JetBrainsMono-Regular.woff2') format('woff2'),
+//          url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+//     font-weight: normal;
+//     font-style: normal;
+// 	letter-spacing: 0.01em;
+// }
+
+* {
+    -webkit-font-feature-settings: "liga" on, "calt" on;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: 'JetBrains Mono';
 }
 
 /*- Typography for medium and small screen, based on 16px font-size -*/
