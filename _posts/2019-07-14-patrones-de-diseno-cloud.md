@@ -50,13 +50,13 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 - [Priority Queue](priority-queue "Priority Queue")
 - [Publisher-Subscriber](publisher-subscriber "Publisher-Subscriber")
 - [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
-- Scheduler Agent Supervisor
+- [Scheduler Agent Supervisor](scheduler-agent-supervisor "Scheduler Agent Supervisor")
 
 ### Patrones de Administración y supervisión ###
 
 - [Ambassador](ambassador "Ambassador")
 - [Anti-Corruption Layer](anti-corruption-layer "Anti-Corruption Layer]")
-- External Configuration Store
+- [External Configuration Store](external-configuration-store "External Configuration Store")
 - [Gateway Aggregation](gateway-aggregation "Gateway Aggregation")
 - [Gateway Offloading](offloading-gateway "Gateway Offloading")
 - [Gateway Routing](gateway-routing "Gateway Routing")
@@ -79,14 +79,14 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 
 ### Patrones de Resistencia ###
 
-- Bulkhead
-- Circuit Breaker
+- [Bulkhead](bulkhead "Bulkhead")
+- [Circuit Breaker](circuit-breaker "Circuit Breaker")
 - Compensating Transaction
 - [Health EndPoint Monitoring](health-endpoint-monitoring "Health EndPoint Monitoring")
 - [Leader Election](leader-election "Leader Election")
 - [Queue-Based Load Leveling](queue-based-load-leveling "Queue-Based Load Leveling")
-- Retry
-- Scheduler Agent Supervisor
+- [Retry](retry "Retry")
+- [Scheduler Agent Supervisor](scheduler-agent-supervisor "Scheduler Agent Supervisor")gits 
 
 ### Patrones de Seguridad ###
 
@@ -97,3 +97,4 @@ Para ello, dividiremos los patrones Cloud según el enfoque al que están orient
 Nos vemos en breve y empezamos.
 
 Saludos.
+

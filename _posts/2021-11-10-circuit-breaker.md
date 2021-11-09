@@ -31,7 +31,7 @@ Para implementar esta parte del código Polly tiene extensiones para poder gesti
 
 Vale, pero no es todo tan bonito. Porque igual que podemos acabar con lo sockets si se producen muchas excepciones, podemos agotarlos si se producen muchos retries.
 
-En definitiva, circuit braker nos ayuda con las intermitencias y las altas latencies en ciertos servicios, pero configurar circuit braker por defecto, considero, es una mala praxis.
+En definitiva, circuit braker nos ayuda con las intermitencias y las altas latencias en ciertos servicios, pero configurar circuit braker por defecto, considero, es una mala praxis.
 
-Un saludo.
+Be water my friend! Un saludo.
 
