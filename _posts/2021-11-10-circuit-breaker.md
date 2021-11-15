@@ -27,7 +27,7 @@ No se produce sexta llamada y devolvemos al usuario que el servicio no está dis
 
 Sin embargo, si en el transcurso de las iteraciones, el servicio se recupera, entonces se cierra el circuito y volvemos a la normalidad.
 
-Para implementar esta parte del código Polly tiene extensiones para poder gestionarlo de una manera muy sencilla a través de policy.
+Para implementar esta parte del código [Polly](https://github.com/App-vNext/Polly "Polly") tiene extensiones para poder gestionarlo de una manera muy sencilla a través de policy.
 
 Vale, pero no es todo tan bonito. Porque igual que podemos acabar con lo sockets si se producen muchas excepciones, podemos agotarlos si se producen muchos retries.
 
